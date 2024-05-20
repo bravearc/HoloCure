@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public AudioListener Listener;
+    public AudioClip BGM;
+    public AudioClip UISound;
+    public AudioClip ClickSound;
+    public List<AudioClip> ItemSound;
+    public void Init()
     {
-        
+        Listener = gameObject.AddComponent<AudioListener>();
+        ItemSound = new List<AudioClip>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void BGMStart()
     {
-        
+
     }
 }
