@@ -69,8 +69,8 @@ public class MapController : MonoBehaviour
                     t.position = new Vector2(mainX + poX, mainY + poY);
                     break;
                 default:
-                    MapSwap(); 
                     Debug.LogWarning("MapControllError");
+                    MapSwap(); 
                     break;
             }
             ++_count;

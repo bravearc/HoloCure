@@ -7,18 +7,21 @@ using System.IO;
 using System.Globalization;
 using System.Linq;
 
-public class DataManager : MonoBehaviour
+public class DataManager
 {
-    public Dictionary<CharaterID, CharacterData> Character { get; private set; }
+    public Dictionary<CharacterID, CharacterData> Character { get; private set; }
     public Dictionary<ItemID, ItemData> Item { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
     public void Init()
     {
-        //Character = 
+        string path = "Assets/resources/Data/";
+        Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
+        Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
+        Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
     }
 
-    private Dictionary<TKey, TValue> ParseToDict<TValue, TKey>([NotNull] string path, Func<TValue, TKey> keySelector)
+    private Dictionary<TKey, TValue> ParseToDick<TKey, TValue>([NotNull] string path, Func<TValue, TKey> keySelector)
     {
         string fullPath = path;
 #if UNITY_EDITOR
@@ -32,11 +35,9 @@ public class DataManager : MonoBehaviour
             return records.ToDictionary(keySelector);
         }
     }
-
-
 }
 
-public enum CharaterID
+public enum CharacterID
 {
 
 }
@@ -47,7 +48,7 @@ public enum CharacterType
 public struct CharacterData
 {
     public CharacterType Type { get; set; }
-    public CharaterID ID { get; set; }
+    public CharacterID ID { get; set; }
     public string Name { get; set; }
     public int HP {  get; set; }
 }
@@ -61,9 +62,9 @@ public enum ItemType
 }
 public struct ItemData
 {
-    ItemType ID { get; set; }
-    string Name { get; set; }
-    ItemType ItemType { get; set; }
+    public ItemID ID { get; set; }
+    public ItemType ItemType { get; set; }
+    public string Name { get; set; }
 }
 public enum SoundID
 {
