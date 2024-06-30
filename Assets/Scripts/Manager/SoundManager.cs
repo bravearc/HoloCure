@@ -1,20 +1,30 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
+using System;
+using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioListener Listener;
-    public AudioClip BGM;
-    public AudioClip UISound;
-    public AudioClip ClickSound;
-    public List<AudioClip> ItemSound;
+    enum BGMList
+    {
+        Main,
+        Play
+    }
+
+
+    private AudioListener _listener;
+    private AudioClip _bgm;
+    private AudioClip _mouseSound;
+    private AudioClip ClickSound;
+    private List<AudioClip> ItemSound;
     public void Init()
     {
-        Listener = gameObject.AddComponent<AudioListener>();
-        ItemSound = new List<AudioClip>();
+        _listener = gameObject.AddComponent<AudioListener>();
+        ItemSound = new List<AudioClip>();        
     }
-    public void BGMStart()
+
+    public void BGMChange(int i)
     {
 
     }

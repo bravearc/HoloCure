@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour, IAttack
+public class PlayerAttack : MonoBehaviour
 {
     public float _attack;
     public float _skill;
