@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
@@ -11,6 +8,7 @@ public class MapController : MonoBehaviour
     /// </summary>
     public Transform MainMap;
     Transform[] _maps = new Transform[4];
+    EnemyController enemyController;
     
     Collider2D _mapCol;
     float _mapSizeX;
@@ -18,6 +16,7 @@ public class MapController : MonoBehaviour
 
     private void Awake()
     {
+        enemyController = GameObject.Find("EnemyController").GetComponent<EnemyController>();
         Init();
     }
     void Init()
@@ -75,6 +74,7 @@ public class MapController : MonoBehaviour
             }
             ++_count;
         }
+        enemyController.ChangeMap(MainMap);
     }
 }
 

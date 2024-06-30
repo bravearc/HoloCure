@@ -10,14 +10,14 @@ using System.Linq;
 public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
-    public Dictionary<ItemID, ItemData> Item { get; private set; }
+    public Dictionary<WeaponID, WeaponData> Weapon { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
     public void Init()
     {
-        string path = "Assets/resources/Data/";
+        string path = "Assets/Resources/Data/";
         Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
-        Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
+        Weapon = ParseToDick<WeaponID, WeaponData>(path + "Item.csv", data => data.ID);
         Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
     }
 
@@ -27,9 +27,9 @@ public class DataManager
 #if UNITY_EDITOR
         using (var reader = new StreamReader(fullPath))
 #else
-        using (var reader2 = new StringReader(fullPath))
+        using (var reader = new StringReader(fullPath))
 #endif
-            using ( var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        using ( var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
             var records = csv.GetRecords<TValue>().ToList();
             return records.ToDictionary(keySelector);
@@ -39,7 +39,7 @@ public class DataManager
 
 public enum CharacterID
 {
-
+    None
 }
 public enum CharacterType
 {
@@ -47,24 +47,43 @@ public enum CharacterType
 }
 public struct CharacterData
 {
-    public CharacterType Type { get; set; }
     public CharacterID ID { get; set; }
     public string Name { get; set; }
-    public int HP {  get; set; }
-}
-public enum ItemID
-{
+    public float HP { get; set; }
+    public float Attack { get; set; }
+    public float Speed { get; set; }
+    public float Criticial {  get; set; }
+    public CharacterType Type { get; set; }
+    public int Unlock {  get; set; }
 
 }
-public enum ItemType
+public enum WeaponID
 {
-
+    None
 }
-public struct ItemData
+public enum WeaponType
 {
-    public ItemID ID { get; set; }
-    public ItemType ItemType { get; set; }
+    None,
+    Melee = 1,
+    Ranged = 2,
+    Multishot = 3
+}
+
+public struct WeaponData
+{
+    public WeaponID ID { get; set; }
     public string Name { get; set; }
+    public int Level { get; set; }
+    public float Attack { get; set; }
+    public int Quantity { get; set; }
+    public float Speed { get; set; }
+    public float AttackRange { get; set; }
+    public float AttackCycle { get; set; }
+    public float Size { get; set; }
+    public int Knockback { get; set; }
+    public int MAX_Level { get; set; }
+    public WeaponType type { get; set; }
+    public string KORNAME { get; set; }
 }
 public enum SoundID
 {

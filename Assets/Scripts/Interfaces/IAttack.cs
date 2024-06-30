@@ -1,6 +1,6 @@
 ﻿internal interface IAttack
 {
-    void Attack();
+    float TakeAttack();
 }
 
 

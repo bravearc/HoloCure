@@ -1,30 +1,31 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IAttack
 {
     Rigidbody2D _rd;
     Transform _target;
     float _speed = 5f;
+    float _damage = 12f;
+
+    float _lifeTime = 5f;
+
+
     void Start()
     {
         _rd = GetComponent<Rigidbody2D>();
         _target = GameObject.FindGameObjectWithTag("Target").transform;
+        Init();
     }
-    private void OnEnable()
+    private void Init()
     {
-        Vector3 direction = (transform.position - _target.position).normalized;
-        _rd.velocity = direction * _speed;
+        Vector3 direction = (_target.position - transform.position).normalized;
+        _rd.AddForce(direction * _speed, ForceMode2D.Impulse);
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        _rd.rotation = angle;
+        Destroy(gameObject, _lifeTime);
     }
 
-    public void TargetSet(Transform target)
+    public float TakeAttack()
     {
-        this._target = target;
-    }
-    private void FixedUpdate()
-    {
-        _rd.MovePosition(Vector2.right);
+        return _damage;
     }
 }

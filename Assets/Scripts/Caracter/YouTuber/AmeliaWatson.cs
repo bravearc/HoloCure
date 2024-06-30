@@ -1,15 +1,31 @@
+using UnityEditor;
 using UnityEngine;
 
-public class AmeliaWatson : ICaracter, ISpecialSkill
+public class AmeliaWatson : MonoBehaviour, ICharacter, ISpecialSkill
 {
     public float Hp { get; set; }
     public float Attack { get; set; }
     public float Speed { get; set; }
     public float Critical { get; set; }
 
+    private float _timer;
+    private float _time = 2f;
     void Start()
     {
-        //GameObject go = GameObject.FindGameObjectWithTag("Player");
+        Hp = 60f;
+        Attack = 10f;
+        Speed = 2f;
+        Critical = 3f;
+    }
+
+    void Update()
+    {
+        _timer += Time.deltaTime;
+        if(_timer > _time)
+        {
+            BulletSpwan();
+            _timer = 0;
+        }
     }
     public float[] StatCheck()
     {
@@ -18,6 +34,13 @@ public class AmeliaWatson : ICaracter, ISpecialSkill
     }
     public void SpecialSkill()
     {
+
+    }
+
+    private void BulletSpwan()
+    {
+        GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
+        Instantiate(go, transform.position, Quaternion.identity);
 
     }
 }
