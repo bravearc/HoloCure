@@ -11,6 +11,8 @@ public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
     public Dictionary<WeaponID, WeaponData> Weapon { get; private set; }
+    public Dictionary<EquipmentID, EquipmentData> Equipment { get; private set; }
+    public Dictionary<StempID, StempData> Stemp { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
     public void Init()
@@ -54,6 +56,7 @@ public struct CharacterData
     public float Speed { get; set; }
     public float Criticial {  get; set; }
     public CharacterType Type { get; set; }
+    public string Sprite { get; set; }
     public int Unlock {  get; set; }
 
 }
@@ -68,7 +71,6 @@ public enum WeaponType
     Ranged = 2,
     Multishot = 3
 }
-
 public struct WeaponData
 {
     public WeaponID ID { get; set; }
@@ -84,6 +86,22 @@ public struct WeaponData
     public int MAX_Level { get; set; }
     public WeaponType type { get; set; }
     public string KORNAME { get; set; }
+}
+public enum EquipmentID
+{
+
+}
+public struct EquipmentData 
+{ 
+    public string Name { get; set; }
+}
+public enum StempID
+{
+
+}
+public struct StempData
+{
+    public string Name { get; set; }
 }
 public enum SoundID
 {
@@ -115,4 +133,17 @@ public struct AssetBundleData
 {
     public AssetBuldleID ID { get; set; }
     public AssetBundle Asset { get; set; }
+}
+public enum EnemyID
+{
+
+}
+public struct EnemyData
+{
+
+}
+
+public enum BossData
+{
+    None
 }

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderCooking : Item
+public class SpiderCooking : Weapon
 {
     CircleCollider2D _circle2D;
     float _timer;
@@ -11,11 +9,6 @@ public class SpiderCooking : Item
     void Start()
     {
         _circle2D = GetComponent<CircleCollider2D>();
-    }
-
-    public override void ItemLevelUp(WeaponData data)
-    {
-        base.ItemLevelUp(data);
     }
 
     void FixedUpdate()
@@ -43,7 +36,13 @@ public class SpiderCooking : Item
     {
         if (other.gameObject.GetComponent<IEnemy>() is IEnemy enemy)
         {
+            //isKnockback를 매개변수로 전달해서 넉백 기능 추가.
             enemy.TakeAttack(_attack);
         }
+    }
+
+    public virtual void ResetSettings() 
+    {
+        transform.localScale = new Vector2(_size, _size);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class AmeliaWatson : MonoBehaviour, ICharacter, ISpecialSkill
+public class AmeliaWatson : MonoBehaviour, IStats, ISpecialSkill
 {
     public float Hp { get; set; }
     public float Attack { get; set; }
@@ -32,15 +32,16 @@ public class AmeliaWatson : MonoBehaviour, ICharacter, ISpecialSkill
         float[] stat = new float[4] {Hp, Attack, Speed, Critical};
         return stat;
     }
-    public void SpecialSkill()
-    {
-
-    }
 
     private void BulletSpwan()
     {
         GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
         Instantiate(go, transform.position, Quaternion.identity);
 
+    }
+
+    public void SpecialSkill()
+    {
+        throw new System.NotImplementedException();
     }
 }

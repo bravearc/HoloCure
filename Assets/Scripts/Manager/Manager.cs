@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour
     public static SoundManager Sound;
     public static SpawnManager Spawn;
     public static AssetManager Asset;
-    public static UIManager UI;
+    public static GameManager Game;
     void Awake()
     {
         Init();
@@ -33,9 +33,9 @@ public class Manager : MonoBehaviour
         go.transform.parent = transform;
         go.AddComponent<AssetManager>();
 
-        go = new GameObject(nameof(UIManager));
+        go = new GameObject(nameof(GameManager));
         go.transform.parent = transform;
-        go.AddComponent<UIManager>();
+        go.AddComponent<GameManager>();
 
     }
 }

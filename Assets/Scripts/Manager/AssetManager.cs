@@ -9,6 +9,7 @@ public class AssetManager : MonoBehaviour
     public Dictionary<string, AudioClip> Sound { get; private set; }
     public Dictionary<string, Sprite> Sprite { get; private set; }
     public Dictionary<string, GameObject> Item { get; private set; }
+    public Dictionary<string, GameObject> Object { get; private set; }
 
     public Dictionary<string, string> Text { get; private set; }
 
@@ -20,8 +21,9 @@ public class AssetManager : MonoBehaviour
 
     public AudioClip LoadAudioClip(string audio) => Load(Sound, string.Concat(Defind.Path.Audio, audio));
     public Sprite LoadSprite(string sprite) => Load(Sprite, string.Concat(Defind.Path.Sprite, sprite));
-    public GameObject LoadChacter(string name, Transform tr) => Instantiate(string.Concat(Defind.Path.Character, name), tr);
-    public GameObject LoadItem(string item, Transform tr) => Instantiate(string.Concat(Defind.Path.Item, item), tr);
+    public GameObject LoadChacter(string name, Transform tr = null) => Instantiate(string.Concat(Defind.Path.Character, name), tr);
+    public GameObject LoadItem(string item, Transform tr = null) => Instantiate(string.Concat(Defind.Path.Item, item), tr);
+    public GameObject LoadObject(string ob, Transform tr = null) => Instantiate(string.Concat(Defind.Path.Object, ob), tr);
 
     private T Load<T>(Dictionary<string, T>dic, string path, Transform tr = null) where T : Object
     {

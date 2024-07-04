@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ICharacter
+public interface IStats
 {
     public float Hp { get; set; }
     public float Attack { get; set; }

@@ -11,5 +11,6 @@ public static class Defind
         public const string Sprite = "/Sprite";
         public const string Item = "/Item";
         public const string Text = "/Text";
+        public const string Object = "/Object";
     }
 }
