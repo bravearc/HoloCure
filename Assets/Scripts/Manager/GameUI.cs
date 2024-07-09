@@ -4,17 +4,26 @@ using UnityEngine.UI;
 
 public class GameUI : UIManager
 {
-    public CharacterData characterData;
-    private IStats istats;
-
-    public GameObject PlayUI;
-
     public GameObject MainUI;
     public GameObject Time;
-    public GameObject Paused;
+    public GameObject Event;
 
+    public GameObject Stat;
+    public GameObject Paused;
+    public GameObject LevelUp;
+    public GameObject ItemBox;
+    public GameObject Hammer;
+
+    //Main UI
+    private Image _characterImage;
+    private Slider _hpSlider;
+    private Image _specialImage;
+    private Slider _specialTimerSlider;
+
+    //타이머
     private Text _time;
 
+    //스탯
     private Text _nameText;
     private Text _hpText;
     private Text _atkText;
@@ -23,138 +32,224 @@ public class GameUI : UIManager
     private Text _pickupText;
     private Text _hasteText;
 
+    //홀로코인, 클리어 수
     private Text _holoCoinText;
     private Text _enemyCountText;
 
+    //인벤토리
     private Image[] _weaponImage = new Image[6];
     private Image[] _equipmentImage = new Image[6];
     private Image[] _stempImage = new Image[3];
 
+    //아이템 레벨
     private Image[] _weaponLevelImage = new Image[6];
     private Image[] _equipmentLevelImage = new Image[6];
 
+    //경험치
     private Image _experiencePoints;
-    private DateTime _startTime;
 
-    public void Init(CharacterData id)
+    //일시 정지
+    private Button _skill;
+    private Button _questionMark;
+    private Button _resume;
+    private Button _setting;
+    private Button _quit;
+
+    //Level Up
+    private Transform _levelUpPointer;
+    private Transform[] _levelUpPointerPositions = new Transform[4];
+    private Button[] _levelUpButtons = new Button[4];
+    private Text[] _levelUpNameTexts = new Text[4];
+    private Text[] _levelUpDescriptionsText = new Text[4];
+    private Image[] _levelUpTypeImage = new Image[4];
+    private Image[] _levelUpItemImage = new Image[4];
+
+    //ItemBox
+    private GameObject _boxing;
+    private Button _boxingOpenButton;
+    private Transform _unBoxingPointer;
+    private Transform[] _unBoxingPointerPositions = new Transform[2];
+    private Button[] _unBoxingButtons = new Button[2];
+    private GameObject _unBoxing;
+    private Text _unboxingNameText;
+    private Text _unboxingDescriptionText;
+    private Image _unboxingItemImage;
+    private Image _unBoxingtypeImage;
+
+    //Hammer
+    private Button[] _hammerWeaponButtons = new Button[6];
+    private Image[] _hammerWeaponImages = new Image[6];
+    private Button[] _hammerEquipmentButtons = new Button[6];
+    private Image[] _hammerEquipmentImages = new Image[6];
+    private Text _hammerNameText;
+    private Text _hammerDescriptionText;
+    private Image _hammerItemImage;
+    private Image _hammerTypeImage;
+
+    public void Init()
     {
-        characterData = id;
-        PlayUI = Manager.Asset.LoadObject("PlayUI");
-        MainUI = transform.Find("MainUI").gameObject;
-        Time = transform.Find("Time").gameObject;
-        Paused = transform.Find("Paused").gameObject;
+        MainUI = FindObject("MainUI");
+        Time = FindObject("Time");
+        Event = FindObject("Event");
 
         _time = Time.transform.Find("Timer").GetComponent<Text>();
 
-        Transform tr = Paused.transform.Find("Stat").Find("Texts");
-        _nameText = tr.Find("Name").GetComponent<Text>();
-        _hpText = tr.Find("HP").GetComponent<Text>();
-        _atkText = tr.Find("ATK").GetComponent<Text>();
-        _spdText = tr.Find("SPD").GetComponent<Text>();
-        _crtText = tr.Find("CRT").GetComponent<Text>();
-        _pickupText = tr.Find("Pickup").GetComponent<Text>();
-        _hasteText = tr.Find("Haste").GetComponent<Text>();
+        #region 초기화
+        #region Main UI
+        _characterImage = FindComponent<Image>("Character", MainUI.transform);
+        _hpSlider = FindComponent<Slider>("Hp", MainUI.transform);
+        _specialImage = FindComponent<Image>("SpecialImage", MainUI.transform);
+        _specialTimerSlider = FindComponent<Slider>("SpecialSlider", MainUI.transform);
+        #endregion
 
-        tr = transform.Find("Count").Find("Texts");
-        _holoCoinText = tr.Find("Gold").GetComponent<Text>();
-        _enemyCountText = tr.Find("EnemyCount").GetComponent<Text>();
+        #region 스탯
+        Stat = FindObject("Stat", Event.transform).transform.Find("Texts").gameObject;
+        _nameText = FindComponent<Text>("Name", Stat.transform);
+        _hpText = FindComponent<Text>("HP", Stat.transform);
+        _atkText = FindComponent<Text>("ATK", Stat.transform);
+        _spdText = FindComponent<Text>("SPD", Stat.transform);
+        _crtText = FindComponent<Text>("CRT", Stat.transform);
+        _pickupText = FindComponent<Text>("Pickup", Stat.transform);
+        _hasteText = FindComponent<Text>("Haste", Stat.transform);
+        #endregion
 
-        _startTime = DateTime.Now;
+        #region 코인, 클리어 수
+        Transform countTexts = FindObject("Count").transform.Find("Texts");
+        _holoCoinText = FindComponent<Text>("Gold", countTexts);
+        _enemyCountText = FindComponent<Text>("EnemyCount", countTexts);
+        #endregion
 
-        tr = MainUI.transform.Find("Weapon");
-        SetObject(_weaponImage, tr);
-        tr = MainUI.transform.Find("Equipment");
-        SetObject(_equipmentImage, tr);
-        tr = MainUI.transform.Find("WeaponLevel");
-        SetObject(_weaponLevelImage, tr);
-        tr = MainUI.transform.Find("EquipmentLevel");
-        SetObject(_equipmentLevelImage, tr);
+        #region 인벤토리
+        SetObjectArray(_weaponImage, "Weapon");
+        SetObjectArray(_equipmentImage, "Equipment");
+        SetObjectArray(_weaponLevelImage, "WeaponLevel");
+        SetObjectArray(_equipmentLevelImage, "EquipmentLevel");
+        #endregion
 
-        _experiencePoints = transform.Find("ExperiencePoints")
-            .GetChild(0).GetComponent<Image>();
-    }
+        #region 일시 정지
+        Paused = FindObject("Paused", Event.transform).gameObject;
+        Transform pausedButtons = Paused.transform.Find("Buttons");
+        _skill = FindComponent<Button>("Skill", pausedButtons);
+        _questionMark = FindComponent<Button>("????", pausedButtons);
+        _resume = FindComponent<Button>("Resume", pausedButtons);
+        _setting = FindComponent<Button>("Setting", pausedButtons);
+        _quit = FindComponent<Button>("Quit", pausedButtons);
+        #endregion
 
-
-    /// <summary>
-    /// 경험치 이미지, 경험치 몇% 찼는지 전달하면됨.
-    /// </summary>
-    /// <param name="i"></param>
-    public void ExperiencePointsUp(int i)
-    {
-        int image = i / 2;
-        _experiencePoints.sprite = Manager.Asset.LoadSprite($"Point_{image}");
-    }
-
-    //스탯 세팅 및 스탯 업데이트
-    //오버라이딩
-    public void SetStats(string name, float hp, float at, float spd, float crt, float pic, float has)
-    {
-        _nameText.text = name;
-        _hpText.text = StringStats(hp);
-        _atkText.text = StringStats(at);
-        _spdText.text = StringStats(spd);
-        _crtText.text = StringStats(crt);
-        _pickupText.text = StringStats(pic);
-        _hasteText.text = StringStats(has);
-    }
-    private string StringStats(float fl)
-    {
-        string str = Mathf.FloorToInt(fl).ToString();
-        return str + "%";
-    }
-
-    //자식오브젝트 세팅
-    private void SetObject<T>(T[] array, Transform t)
-    {
-        for(int i = 0; i < array.Length; i++) 
+        #region 레벨 업
+        LevelUp = FindObject("LevelUp", Event.transform).gameObject;
+        Transform levelUpTransform = LevelUp.transform;
+        _levelUpPointer = levelUpTransform.Find("Pointer");
+        SetObjectArray(_levelUpPointerPositions, "PointerPosition", levelUpTransform);
+        for (int i = 0; i < 4; i++)
         {
-            array[i] = t.GetChild(i).GetComponent<T>();
+            _levelUpButtons[i] = FindComponent<Button>($"Buttons/LevelUpButton_{i}", levelUpTransform);
+            _levelUpNameTexts[i] = FindComponent<Text>("NameText", _levelUpButtons[i].transform);
+            _levelUpDescriptionsText[i] = FindComponent<Text>("Description", _levelUpButtons[i].transform);
+            _levelUpTypeImage[i] = FindComponent<Image>("TypeImage", _levelUpButtons[i].transform);
+            _levelUpItemImage[i] = FindComponent<Image>("ItemImage", _levelUpButtons[i].transform);
+        }
+        #endregion
+
+        #region 아이템 박스
+        ItemBox = FindObject("ItemBox", Event.transform).gameObject;
+        _boxing = FindObject("Boxing", ItemBox.transform).gameObject;
+        _boxingOpenButton = FindComponent<Button>("Button", _boxing.transform);
+
+        _unBoxing = FindObject("UnBoxing", ItemBox.transform).gameObject;
+        _unBoxingPointer = _unBoxing.transform.Find("Pointer");
+        SetObjectArray(_unBoxingPointerPositions, "PointerPosition", _unBoxing.transform);
+        SetObjectArray(_unBoxingButtons, "Buttons", _unBoxing.transform);
+
+        Transform unBoxingImage = _unBoxing.transform.Find("Image");
+        _unboxingNameText = FindComponent<Text>("NameText", unBoxingImage);
+        _unboxingDescriptionText = FindComponent<Text>("Description", unBoxingImage);
+        _unboxingItemImage = FindComponent<Image>("TypeImage", unBoxingImage);
+        _unBoxingtypeImage = FindComponent<Image>("ItemImage", unBoxingImage);
+        #endregion
+
+        #region 모루
+        Hammer = FindObject("Hammer", Event.transform).gameObject;
+        SetObjectArray(_hammerWeaponButtons, "Weapons");
+        SetObjectArray(_hammerEquipmentButtons, "Equipment");
+        for (int i = 0; i < 6; i++)
+        {
+            _hammerWeaponImages[i] = _hammerWeaponButtons[i].transform.GetChild(0).GetComponent<Image>();
+            _hammerEquipmentImages[i] = _hammerEquipmentButtons[i].transform.GetChild(0).GetComponent<Image>();
+        }
+
+        Transform hammerImage = Hammer.transform.Find("Image");
+        _hammerNameText = FindComponent<Text>("NameText", hammerImage);
+        _hammerDescriptionText = FindComponent<Text>("Description", hammerImage);
+        _hammerItemImage = FindComponent<Image>("TypeImage", hammerImage);
+        _hammerTypeImage = FindComponent<Image>("ItemImage", hammerImage);
+        #endregion
+
+        _experiencePoints = FindObject("ExperiencePoints").transform.GetChild(0).GetComponent<Image>();
+        #endregion
+    }
+
+    private GameObject FindObject(string name, Transform parent = null)
+    {
+        Transform target = parent == null ? transform.Find(name) : parent.Find(name);
+        if (target == null) throw new Exception($"{name} not found in {parent?.name ?? "root"}");
+        return target.gameObject;
+    }
+
+    private T FindComponent<T>(string name, Transform parent)
+    {
+        Transform target = parent.Find(name);
+        if (target == null) throw new Exception($"{name} component not found in {parent.name}");
+        return target.GetComponent<T>();
+    }
+
+    private void SetObjectArray<T>(T[] array, string parentName, Transform parent = null)
+    {
+        Transform parentTransform = parent == null ? MainUI.transform.Find(parentName) : parent.Find(parentName);
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = parentTransform.GetChild(i).GetComponent<T>();
         }
     }
 
-    //게임 플레이 시간 표기
+    //경험치 표기
+    public void ExperiencePointsUp(int i)
+    {
+        int imageIndex = i / 2;
+        _experiencePoints.sprite = Manager.Asset.LoadSprite($"Point_{imageIndex}");
+    }
+
+    //스탯 세팅
+    public void SetStats(string name, float hp, float maxhp, float atk, float spd, float crt, float pickup, float haste)
+    {
+        _nameText.text = name;
+        _hpText.text = StringStats(hp) + " / " + StringStats(maxhp);
+        _atkText.text = StringStats(atk);
+        _spdText.text = StringStats(spd);
+        _crtText.text = StringStats(crt);
+        _pickupText.text = StringStats(pickup);
+        _hasteText.text = StringStats(haste);
+    }
+
+    private string StringStats(float value)
+    {
+        return $"{Mathf.FloorToInt(value)}%";
+    }
+
+    //시간 표기
     public void TimeUpdate(string timer)
     {
         _time.text = timer;
     }
 
-    //획득한 Item Image 교체
-    public void ItemImageUpdate<T>(T t, string itemName, int count)
-    {
-        Image[] images = t switch
-        {
-            Weapon => _weaponImage,
-            Equipment => _equipmentImage,
-            Stemp => _stempImage,
-            _ => throw new ArgumentException("Unsupported type", nameof(t))
-        };
 
-        string normalSprite = images.ToString() switch
-        {
-            "_weaponImage" => "Waepon",
-            "_equipmentImage" => "Equipment",
-            "_stempImage" => "Stemp",
-            _ => throw new ArgumentException("string type", nameof(images))
-        };
-
-
-        images[count].sprite = Manager.Asset.LoadSprite(itemName);
-        RectTransform RT = images[count].GetComponent<RectTransform>();
-        RT.sizeDelta = new Vector2(80, 80);
-    }
-
-    public void LevelImageUpdate(Image image, int i)
-    {
-        image.sprite = Manager.Asset.LoadSprite($"Lv_{i}");
-    }
-
-    //Enemy 죽인 수 표기
+    //Enemy 처리 카운트 업데이트, Enemy객체가 전달.
     public void EnemyCountUpdate(int count)
     {
         _enemyCountText.text = count.ToString();
     }
 
-    //HoloCoin 획득 수 표기
+    //홀로코인 획득 갯수 업데이트, Inventory class에서 전달.
     public void GoldUpdate(int coin)
     {
         _holoCoinText.text = coin.ToString();

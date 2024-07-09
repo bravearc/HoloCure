@@ -1,6 +1,8 @@
-public interface Item
+using UnityEngine;
+
+public class Item : MonoBehaviour
 {
-    public WeaponID _weaponID { get; set; }
+    public ItemID _id { get; set; }
     public string _name { get; set; }
     public int _level { get; set; }
     public float _attack { get; set; }
@@ -11,11 +13,6 @@ public interface Item
     public float _size { get; set; }
     public int _MAX_Level { get; set; }
     public bool isKnockback { get; set; }
-    public virtual void ItemLevelUp(WeaponID id){ }
-    public virtual void ResetSettings() { }
+    public virtual void ItemFunction() { }
 
-    public virtual void EquipItem()
-    {
-        //Inventory class¿¡ Àü´Þ.
-    }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private GameUI gameUI;
+    public CharacterData _characterdata;
     public Inventory Inventory;
 
     private DateTime _startTime;
 
     public string _name;
     public float _hp;
+    public float _maxhp;
     public float _attack;
     public float _speed;
     public float _critical;
@@ -29,16 +31,20 @@ public class GameManager : MonoBehaviour
     public void SetCharacter(CharacterData data)
     {
         _name = data.Name;
-        _hp = data.HP;
+        _hp = data.Hp;
         _attack = data.Attack;
         _speed = data.Speed;
         _critical = data.Criticial;
+    }
+    public CharacterData GetCharacterData()
+    {
+        return _characterdata;
     }
 
     //gameUI - stats РќДо
     public void StatGain()
     {
-        gameUI.SetStats(_name, _hp, _attack, _speed, _critical, _pickup, _haste);
+        gameUI.SetStats(_name, _hp, _maxhp, _attack, _speed, _critical, _pickup, _haste);
     }
 
     //timer

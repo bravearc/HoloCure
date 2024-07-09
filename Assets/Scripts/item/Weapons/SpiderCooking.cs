@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpiderCooking : Weapon
+public class SpiderCooking : Item
 {
     CircleCollider2D _circle2D;
     float _timer;

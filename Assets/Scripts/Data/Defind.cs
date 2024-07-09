@@ -1,7 +1,20 @@
 using System.IO;
 
-public static class Defind
+public static class Define
 {
+    public enum UIEvent
+    {
+        Click,
+        Enter
+    }
+
+    public enum Sound
+    {
+        BGM,
+        Effect,
+        Collision,
+        Max
+    }
     public class Path
     {
         public const string Enemy = "/Enemy";

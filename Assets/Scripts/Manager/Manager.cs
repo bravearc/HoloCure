@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -10,6 +8,7 @@ public class Manager : MonoBehaviour
     public static SpawnManager Spawn;
     public static AssetManager Asset;
     public static GameManager Game;
+    public static UIManager UI;
     void Awake()
     {
         Init();
@@ -23,19 +22,23 @@ public class Manager : MonoBehaviour
 
         go = new GameObject(nameof(SoundManager));
         go.transform.parent = transform;
-        go.AddComponent<SoundManager>();
+        Utils.GetOrAddComponent<SoundManager>(go);
 
         go = new GameObject(nameof(SpawnManager));
         go.transform.parent = transform;
-        go.AddComponent<SpawnManager>();
+        Utils.GetOrAddComponent<SpawnManager>(go);
 
         go = new GameObject(nameof(AssetManager));
         go.transform.parent = transform;
-        go.AddComponent<AssetManager>();
+        Utils.GetOrAddComponent<AssetManager>(go);
 
         go = new GameObject(nameof(GameManager));
         go.transform.parent = transform;
-        go.AddComponent<GameManager>();
+        Utils.GetOrAddComponent<GameManager>(go);
+
+        go = new GameObject(nameof(UIManager));
+        go.transform.parent = transform;
+        Utils.GetOrAddComponent<UIManager>(go);
 
     }
 }

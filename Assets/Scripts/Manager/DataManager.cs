@@ -10,16 +10,17 @@ using System.Linq;
 public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
-    public Dictionary<WeaponID, WeaponData> Weapon { get; private set; }
-    public Dictionary<EquipmentID, EquipmentData> Equipment { get; private set; }
-    public Dictionary<StempID, StempData> Stemp { get; private set; }
+    public Dictionary<ItemID, ItemData> Item { get; private set; }
+    public Dictionary<ItemID, List<WeaponData>> Weapon { get; private set; }
+    public Dictionary<ItemID, List<EquipmentData>> Equipment { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
+
     public void Init()
     {
         string path = "Assets/Resources/Data/";
         Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
-        Weapon = ParseToDick<WeaponID, WeaponData>(path + "Item.csv", data => data.ID);
+        Item = ParseToDick<ItemID, ItemData>(path + "Weapon.csv", data => data.ID);
         Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
     }
 
@@ -39,83 +40,16 @@ public class DataManager
     }
 }
 
-public enum CharacterID
-{
-    None
-}
-public enum CharacterType
-{
 
-}
-public struct CharacterData
-{
-    public CharacterID ID { get; set; }
-    public string Name { get; set; }
-    public float HP { get; set; }
-    public float Attack { get; set; }
-    public float Speed { get; set; }
-    public float Criticial {  get; set; }
-    public CharacterType Type { get; set; }
-    public string Sprite { get; set; }
-    public int Unlock {  get; set; }
-
-}
-public enum WeaponID
-{
-    None
-}
-public enum WeaponType
-{
-    None,
-    Melee = 1,
-    Ranged = 2,
-    Multishot = 3
-}
-public struct WeaponData
-{
-    public WeaponID ID { get; set; }
-    public string Name { get; set; }
-    public int Level { get; set; }
-    public float Attack { get; set; }
-    public int Quantity { get; set; }
-    public float Speed { get; set; }
-    public float AttackRange { get; set; }
-    public float AttackCycle { get; set; }
-    public float Size { get; set; }
-    public int Knockback { get; set; }
-    public int MAX_Level { get; set; }
-    public WeaponType type { get; set; }
-    public string KORNAME { get; set; }
-}
-public enum EquipmentID
-{
-
-}
-public struct EquipmentData 
-{ 
-    public string Name { get; set; }
-}
-public enum StempID
-{
-
-}
-public struct StempData
-{
-    public string Name { get; set; }
-}
 public enum SoundID
 {
-    None,
-    Character,
-    Monster,
-    UI,
-    BGM,
-    Effect
+    None
 }
 public struct SoundData
 {
     public SoundID ID { get; set; }
     public string Name { get; set; }
+    public string AudioClip { get; set; }
     public int Volume { get; set; }
 
 }
@@ -136,14 +70,12 @@ public struct AssetBundleData
 }
 public enum EnemyID
 {
-
+    None,
+    Nomal = 1000,
+    Boss = 2000
 }
 public struct EnemyData
 {
-
-}
-
-public enum BossData
-{
-    None
+    public EnemyID ID { get; set; }
+    public float Hp { get; set; }
 }

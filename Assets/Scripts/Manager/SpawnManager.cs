@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System;
+using static UnityEditor.Progress;
 
 public class SpawnManager : MonoBehaviour
 {
     private EnemyID enemyID;
-
-    public void Init()
-    {
-        
-    }
-    public GameObject BossRezen(int i)
-    {
-        BossData bossName = (BossData)i;
-        return Manager.Asset.LoadObject(bossName.ToString());
-    }
+    private const int WEAPON_MIN_IDX = 1000;
+    private const int WEAPON_MAX_IDX = 1016;
+    private const int EQUIPMENT_MIN_IDX = 2000;
+    private const int EQUIPMENT_MAX_IDX = 2019;
 
     public GameObject EnemyRezen(int i)
     {
@@ -24,87 +20,37 @@ public class SpawnManager : MonoBehaviour
         return Manager.Asset.LoadObject(enemy.ToString());
 
     }
-    public GameObject ItemBox()
+
+    public T RandomItem<T>() where T : IItem
     {
-        IItem type = RandomType();
-        if (Manager.Game.Inventory.IsItemFull(type)) 
+        IItem item;
+        if (typeof(T) == typeof(WeaponData))
         {
-            return RandomItem(type);
-        }
-        else 
-        {
-            ItemBox();
-        }
-        return null;
-    }
-
-
-    public void LevelUp()
-    {
-
-    }
-
-    private IItem RandomType()
-    {
-        int random = Random.Range(1, 4);
-        if (random == 1)
-        {
-            return new Weapon();
-        }
-        else if (random == 2) 
-        {
-            return new Equipment();
+            item = Manager.Game.Inventory.IsItemTypeFull<WeaponData>()
+                ? GetItem<WeaponData>()
+                : GetItem<WeaponData>(Manager.Game.Inventory.Weapon);
         }
         else
         {
-            return new Stemp();
+            item = Manager.Game.Inventory.IsItemTypeFull<EquipmentData>()
+                   ? GetItem<EquipmentData>()
+                   : GetItem<EquipmentData>(Manager.Game.Inventory.Equipment);
         }
-    }
-    private GameObject RandomItem<T>(T t)
-    {
-        #region 랜덤 범위 책정
-        int minInt = 1;
-        int maxInt = 0;
-        switch (t)
-        {
-            case Weapon:
-                maxInt = Manager.Data.Weapon.Count + 1;
-                break;
-            case Equipment:
-                maxInt = Manager.Data.Equipment.Count + 1;
-                break;
-            case Stemp:
-                maxInt = Manager.Data.Stemp.Count + 1;
-                break;
-            default:
-                break;
-        }
-        #endregion
-
-        int itemNumber = Random.Range(minInt, maxInt);
-        if (t is not Stemp)
-        {
-            int dataTableNumber = 6;
-            itemNumber = (itemNumber == 0) ? 1 : itemNumber * dataTableNumber;
-        }
-
-        return DicFilter(t, itemNumber);
+        return (T)item;
     }
 
-    private GameObject DicFilter<T>(T t, int i)
+    public T GetItem<T>()
     {
-        if (t is Weapon)
-        {
-            return Manager.Asset.LoadObject(Manager.Data.Weapon[(WeaponID)i].Name);
-        }
-        else if (t is Equipment)
-        {
-            return Manager.Asset.LoadObject(Manager.Data.Equipment[(EquipmentID)i].Name);
-        }
-        else if (t is Stemp) 
-        {
-            return Manager.Asset.LoadObject(Manager.Data.Stemp[(StempID)i].Name);
-        }
-        return null; 
+        if (typeof(T) == typeof(WeaponData))
+            return Utils.Shuffle<T>(WEAPON_MIN_IDX, WEAPON_MAX_IDX);
+        else if (typeof(T) == typeof(EquipmentData))
+            return Utils.Shuffle<T>(EQUIPMENT_MIN_IDX, EQUIPMENT_MAX_IDX);
+        else
+            throw new ArgumentException("Unsupported type");
+    }
+
+    public T GetItem<T>(List<T> t)
+    {
+        return t[Utils.Shuffle<int>(0, t.Count)];
     }
 }
