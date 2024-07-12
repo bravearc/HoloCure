@@ -47,6 +47,9 @@ public class UI_Base : MonoBehaviour
     protected void BindImage(Type type) => Bind<Image>(type);
     protected void BindButton(Type type) => Bind<Button>(type);
     protected void BindSlider(Type type) => Bind<Slider>(type);
+    protected void BindAni(Type type) => Bind<Animator>(type);
+    protected void BindTransform(Type type) => Bind<Transform>(type);
+    protected void BindRectTransform(Type type) => Bind<RectTransform>(type);
 
     protected T Get<T>(int idx) where T : Object
     {
@@ -63,8 +66,11 @@ public class UI_Base : MonoBehaviour
     protected Image GetImage(int idx) => Get<Image>(idx);
     protected Button GetButton(int idx) => Get<Button>(idx);
     protected Slider GetSlider(int idx) => Get<Slider>(idx);
+    protected Animator GetAni(int idx) => Get<Animator>(idx);
+    protected Transform GetTransform(int idx) => Get<Transform>(idx);
+    protected RectTransform GetRectTransform(int idx) => Get<RectTransform>(idx);
 
-    protected static void BindEvent(UIBehaviour view, Action<PointerEventData> action, Define.UIEvent type , Component component)
+    protected void BindEvent(UIBehaviour view, Action<PointerEventData> action, Define.UIEvent type , Component component)
     {
         //UI_EventHandler handler = Utils.GetOrAddComponent<UI_EventHandler>(view);
 
@@ -77,5 +83,10 @@ public class UI_Base : MonoBehaviour
                 view.OnPointerEnterAsObservable().Subscribe(action).AddTo(component);
                 break;
         }
+    }
+
+    protected void BindModelEvent<T>(ReactiveProperty<T> model, Action<T> action, Component component)
+    {
+        model.Subscribe(action).AddTo(component);
     }
 }

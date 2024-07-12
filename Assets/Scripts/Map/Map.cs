@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    MapController mapController;
+    SubItem_Map subItem_Map;
 
     private void Awake()
     {
-        mapController = GetComponentInParent<MapController>();
+        subItem_Map = GetComponentInParent<SubItem_Map>();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerArea"))
         {
-            mapController.MapSwap();
+            subItem_Map.MapSwap();
         }
     }
 
@@ -20,7 +20,7 @@ public class Map : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            mapController.MainMap = transform;
+            subItem_Map.MainMap = transform;
         }
     }
 }

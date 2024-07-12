@@ -1,17 +1,20 @@
+using System;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
 public class SubItem_Skill : UI_SubItem
 {
+    IDisposable _updateDisposable;
     void Start()
     {
-        this.UpdateAsObservable().Subscribe(_ => KeyCheck()).Dispose();
+        _updateDisposable =
+            this.UpdateAsObservable().Subscribe(_ => KeyCheck());
     }
 
     protected override void KeyCheck()
     {
-        if(Input.GetKeyDown("Cancel"))
+        if (Input.GetKeyDown("Cancel"))
         {
             OnCancel();
         }
@@ -21,5 +24,9 @@ public class SubItem_Skill : UI_SubItem
     {
         Manager.UI.ShowPopup<Popup_Paused>();
         Manager.Asset.Destroy(gameObject);
+    }
+    private void OnDestroy()
+    {
+        _updateDisposable?.Dispose();
     }
 }

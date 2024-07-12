@@ -1,34 +1,31 @@
 using UnityEngine;
 
-public class MapController : MonoBehaviour
+public class SubItem_Map : UI_SubItem
 {
-    GameObject _player;
-    /// <summary>
-    /// 현재 플레이어가 위치한 맵
-    /// </summary>
     public Transform MainMap;
-    Transform[] _maps = new Transform[4];
-    EnemyController enemyController;
-    
-    Collider2D _mapCol;
-    float _mapSizeX;
-    float _mapSizeY;
+    public EnemyController enemyController;
+    public GameObject _player;
+    public Transform[] _maps = new Transform[4];
+    public Collider2D _mapCol;
+    public float _mapSizeX;
+    public float _mapSizeY;
 
-    private void Awake()
+    private void Start()
     {
-        enemyController = GameObject.Find("EnemyController").GetComponent<EnemyController>();
+        enemyController = Manager.Asset.LoadObject("EnemyController").GetComponent<EnemyController>();
+        _player = GameObject.FindWithTag("Player");
+        MainMap = transform.Find("Map0");
         Init();
     }
-    void Init()
+    protected override void Init()
     {
+        //base.Init();
         for (int i = 0; i < transform.childCount; ++i)
         {
-            _maps[i] = transform.GetChild(i);
+            _maps[i] = transform.GetChild(i).transform;
         }
 
-        MainMap = _maps[0];
-        _mapCol = MainMap.GetComponent<BoxCollider2D>();
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _mapCol = Utils.GetOrAddComponent<BoxCollider2D>(MainMap.gameObject);
         _mapSizeX = _mapCol.bounds.extents.x;
         _mapSizeY = _mapCol.bounds.extents.y;
     }

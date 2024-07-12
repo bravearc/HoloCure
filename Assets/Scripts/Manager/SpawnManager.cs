@@ -1,56 +1,54 @@
-using System.Linq;
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using System.Collections.Generic;
-using System;
-using static UnityEditor.Progress;
 
 public class SpawnManager : MonoBehaviour
 {
-    private EnemyID enemyID;
-    private const int WEAPON_MIN_IDX = 1000;
-    private const int WEAPON_MAX_IDX = 1016;
-    private const int EQUIPMENT_MIN_IDX = 2000;
-    private const int EQUIPMENT_MAX_IDX = 2019;
-
-    public GameObject EnemyRezen(int i)
+    public GameObject GetEnemy(int i)
     {
         EnemyID enemy = (EnemyID)i;
         return Manager.Asset.LoadObject(enemy.ToString());
-
     }
 
-    public T RandomItem<T>() where T : IItem
+    public GameObject GetBoss(int i)
     {
-        IItem item;
-        if (typeof(T) == typeof(WeaponData))
+        EnemyID enemy = (EnemyID)i;
+        return Manager.Asset.LoadObject(enemy.ToString());
+    }
+
+    public ItemID GetRandomItem()
+    {
+        int getType = Random.Range(1, 4);
+        ItemID id = getType switch
         {
-            item = Manager.Game.Inventory.IsItemTypeFull<WeaponData>()
-                ? GetItem<WeaponData>()
-                : GetItem<WeaponData>(Manager.Game.Inventory.Weapon);
+            1 => (ItemID)Random.Range((int)Define.ItemNumber.Weapon_Start, (int)Define.ItemNumber.Weapon_End),
+            2 => (ItemID)Random.Range((int)Define.ItemNumber.Equipment_Start, (int)Define.ItemNumber.Equipment_End),
+            3 => (ItemID)Random.Range((int)Define.ItemNumber.Stats_Start, (int)Define.ItemNumber.Stats_End),
+            _ => throw new NotImplementedException()
+        };
+
+        return id;
+    }
+
+    public ItemID GetInventoryItem()
+    {
+        ItemID newItem;
+        int random = Random.Range(1, 4);
+        if (random == 1)
+        {
+            List<Weapon> list = Manager.Game.Inventory.Weapons;
+            newItem = list[Random.Range(0, list.Count)].ID;
+        }
+        else if (random == 2)
+        {
+            List<Equipment> list = Manager.Game.Inventory.Equipments;
+            newItem = list[Random.Range(0, list.Count)].ID;
         }
         else
         {
-            item = Manager.Game.Inventory.IsItemTypeFull<EquipmentData>()
-                   ? GetItem<EquipmentData>()
-                   : GetItem<EquipmentData>(Manager.Game.Inventory.Equipment);
+            newItem = (ItemID)Random.Range((int)Define.ItemNumber.Stats_Start, (int)Define.ItemNumber.Stats_End);
         }
-        return (T)item;
-    }
-
-    public T GetItem<T>()
-    {
-        if (typeof(T) == typeof(WeaponData))
-            return Utils.Shuffle<T>(WEAPON_MIN_IDX, WEAPON_MAX_IDX);
-        else if (typeof(T) == typeof(EquipmentData))
-            return Utils.Shuffle<T>(EQUIPMENT_MIN_IDX, EQUIPMENT_MAX_IDX);
-        else
-            throw new ArgumentException("Unsupported type");
-    }
-
-    public T GetItem<T>(List<T> t)
-    {
-        return t[Utils.Shuffle<int>(0, t.Count)];
+        return newItem;
     }
 }

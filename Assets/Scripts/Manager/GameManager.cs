@@ -1,65 +1,61 @@
 using System;
 using UnityEngine;
+using UniRx;
+using System.ComponentModel;
 
 public class GameManager : MonoBehaviour
 {
-    private GameUI gameUI;
-    public CharacterData _characterdata;
     public Inventory Inventory;
-
+    public Character Character;
+    public ReactiveProperty<TimeSpan> ElapsedTime = new();
+    public ReactiveProperty<float> SpesialTimer = new();
+    public CharacterID CharacterID;
+    private CharacterData _characterData;
     private DateTime _startTime;
 
-    public string _name;
-    public float _hp;
-    public float _maxhp;
-    public float _attack;
-    public float _speed;
-    public float _critical;
-    public float _pickup = 30;
-    public float _haste = 12;
-
+    bool _isPlaying;
     public void Init()
     {
-        gameUI = Manager.Asset.LoadObject("GameUI").GetComponent<GameUI>();
-        Inventory = gameUI.transform.GetComponent<Inventory>();
+        Inventory = Utils.GetOrAddComponent<Inventory>(gameObject);
     }
 
     private void Update()
     {
-        TimeSystem();
+        if (_isPlaying) 
+        { 
+            TimeSystem();
+        }
     }
-    public void SetCharacter(CharacterData data)
-    {
-        _name = data.Name;
-        _hp = data.Hp;
-        _attack = data.Attack;
-        _speed = data.Speed;
-        _critical = data.Criticial;
-    }
+
     public CharacterData GetCharacterData()
     {
-        return _characterdata;
+        return _characterData;
     }
 
-    //gameUI - stats 전달
-    public void StatGain()
+    public void GameStart(CharacterID id)
     {
-        gameUI.SetStats(_name, _hp, _maxhp, _attack, _speed, _critical, _pickup, _haste);
+        CharacterID = id;
+        Character = Manager.Asset.Instantiate("Character").GetComponent<Character>();
+        _characterData = Manager.Data.Character[id];
+        Character.Init();
+        Inventory.Init();
+        Manager.UI.MakeSubItem<SubItem_Map>();
+        Manager.UI.MakeSubItem<SubItem_MainUI>();
+        _isPlaying = true;
     }
-
-    //timer
+    public void GameOver()
+    {
+        _isPlaying = false;
+        Inventory.Claer();
+        Manager.UI.Clear();
+        Manager.UI.ShowPopup<Popup_Title>();
+    }
+    //Time
     private void TimeSystem()
     {
-        TimeSpan elapsedTime = DateTime.Now - _startTime;
-        string timer = string.Format("{0:D2} : {1:D2}", elapsedTime.Minutes, elapsedTime.Seconds);
-        gameUI.TimeUpdate(timer);
-        if (elapsedTime.Minutes % 3 == 0)
-        {
-            //스폰되는 Enemy Update
-        }
-        else if (elapsedTime.Seconds % 5 == 0)
-        {
-            //보스 스폰
-        }
+        TimeSpan elapsed = DateTime.Now - _startTime;
+        ElapsedTime.SetValueAndForceNotify(elapsed);
+
+        SpesialTimer.Value += Time.fixedDeltaTime * 1;
     }
 }

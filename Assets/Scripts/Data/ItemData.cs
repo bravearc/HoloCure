@@ -1,39 +1,76 @@
-public interface IItem
-{
-    public ItemID ID { get; set; }
-    string Name { get; set; }
-    string Explanation { get; set; }
-    public ItemType Type { get; set; }
-    public int Level { get; set; }
-}
+
 public enum ItemID
 {
-    None,
-    Weapon = 1,
-    Equipment = 1001,
-    Drop = 2001
+    Weapon = 1000,
+    SpiderCooking,
+    EliteLavaBucket,
+    CEOsTears,
+    WamyWater,
+    Sausage,
+    HoloBomb,
+    PsychoAxe,
+    BL_Book,
+    CuttingBoard,
+    FanBeam,
+    PlugTypeAsacoco,
+    Glowstick,
+    IdloSong,
+    BounceBall,
+    ENsCurse,
+    X_Potato,
+    Equipment = 2000,
+    NinjaHeadband,
+    HopeSoda,
+    Sake,
+    CandyKingdomSweets,
+    Limiter,
+    BodyPillow,
+    DevilHat,
+    InjectionTypeAsacoco,
+    Halu,
+    FocusShades,
+    KnightlyMilk,
+    NursesHorn,
+    Headphones,
+    GorillasPaw,
+    UberSheep,
+    IdolCostume,
+    EnergyDrink,
+    StudyGlasses,
+    JustBandage,
+    Drop = 3000,
+    Anvil,
+    ExperiencePoints,
+    HoloCoin,
+    Stats = 3500,
+    MaxHPUp,
+    ATKUp,
+    SPDUp,
+    CRTUp,
+    PickUpRangeUp,
+    HasteUp,
+    MaxItem
 }
 public enum ItemType
 {
-    None,
     Weapon,
     Equipment,
-    Drop,
-    Melee = 101,
-    Ranged = 102,
-    Multishot = 103
+}
+public enum WeaponType
+{
+    Melee,
+    Ranged,
+    Multishot
 }
 
-
-public class EquipmentData : IItem
+public class EquipmentData
 {
     public ItemID ID { get; set; }
     public string Name { get; set; }
     public int Level { get; set; }
     public string Explanation { get; set; }
-    public ItemType Type { get; set; }
 }
-public class WeaponData : IItem
+public class WeaponData
 {
     public ItemID ID { get; set; }
     public string Name { get; set; }
@@ -46,13 +83,19 @@ public class WeaponData : IItem
     public int Knockback { get; set; }
     public int MaxLevel { get; set; }
     public string Explanation { get; set; }
-    public ItemType Type { get; set; }
+    public WeaponType Type { get; set; }
 }
 public class ItemData
 {
     public ItemID ID { get; set; }
     public string Name { get; set; }
     public ItemType Type { get; set; }
-    public string Explanation { get; set; }
     public string IconIamge { get; set; }
+}
+
+public class StatsData
+{
+    public ItemID ID { get; set; }
+    public string Name { get; set; }
+    public string Explanation { get; set; }
 }

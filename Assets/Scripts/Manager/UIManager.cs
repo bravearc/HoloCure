@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     {
         Canvas canvas = Utils.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.overrideSorting = true;
+        canvas.overrideSorting = sort;
 
         if (sort)
         {

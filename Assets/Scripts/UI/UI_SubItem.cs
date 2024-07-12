@@ -9,10 +9,7 @@ public abstract class UI_SubItem : UI_Base
         Manager.UI.SetCanvas(gameObject, false);
     }
 
-    protected virtual void KeyCheck()
-    {
-
-    }
+    protected virtual void KeyCheck(){}
 
     protected virtual void OnCancel()
     {

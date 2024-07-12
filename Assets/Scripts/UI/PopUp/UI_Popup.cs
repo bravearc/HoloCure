@@ -23,5 +23,6 @@ public class UI_Popup : UI_Base
     {
         Time.timeScale = 1;
         Manager.Sound.SoundScale(Define.Sound.BGM, 1);
+        Manager.Asset.Destroy(gameObject);
     }
 }

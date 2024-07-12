@@ -1,18 +1,8 @@
-public enum MainUI_Type
-{ 
-    Hp,
-    Special,
-    Gold,
-    EnemyCount
-}
-public enum MainUI_Item
-{
-    Weapon,
-    Equipment
-}
+using System;
 
-public class Popup_MainUI : UI_Popup
+public class SubItem_MainUI : UI_SubItem
 {
+    #region enum
     protected enum Images
     {
         Weapon0 = 0,
@@ -47,24 +37,29 @@ public class Popup_MainUI : UI_Popup
     {
         Timer,
         GoldText,
-        EnemyCountText
+        EnemyCountText,
+        HpText
     }
     protected enum Sliders
     {
         HpSlider,
         SpecialSlider
     }
+    #endregion
 
     private Images[] _weapons = new Images[6];
     private Images[] _weaponLevels = new Images[6];
     private Images[] _equipments = new Images[6];
     private Images[] _equipmentLevels = new Images[6];
+    private Inventory _inventory;
+    private Character _character;
     private void Start()
     {
         Init();
     }
     protected override void Init()
     {
+        base.Init();
         BindSlider(typeof(Sliders));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
@@ -77,6 +72,15 @@ public class Popup_MainUI : UI_Popup
             Manager.Asset.LoadSprite(Manager.Game.GetCharacterData().Sprite_Icon);
         GetImage((int)Images.SpecialImage).sprite =
             Manager.Asset.LoadSprite(Manager.Game.GetCharacterData().Sprite_Special);
+
+        _inventory = Manager.Game.Inventory;
+        _character = Manager.Game.Character;
+
+        BindModelEvent(Manager.Game.ElapsedTime, UpdateTimerUI, this);
+        BindModelEvent(_inventory.WeaponCount, UpdateInventoryWeaponUI, this);
+        BindModelEvent(_inventory.EquipmentCount, UpdateInventoryEquimentsUI, this);
+        BindModelEvent(_character.CurrentExp, UpdateUI, this);
+        BindModelEvent(Manager.Game.SpesialTimer, UpdateSpesialUI, this);
     }
     
     protected void SetArray(Images[] array, int idx)
@@ -87,13 +91,19 @@ public class Popup_MainUI : UI_Popup
         }
     }
 
+    //GameManager를 관찰
+    private void UpdateSpesialUI(float value)
+    {
+        GetSlider((int)Sliders.SpecialSlider).value += value;
+    }
+
     /// <summary>
     /// 경험치 이미지
     /// </summary>
     /// <param name="exPoint"></param>
-    public void UpdateUI(int exPoint)
+    private void UpdateUI(float exPoint)
     {
-        int number = exPoint / 2;
+        int number = (int)exPoint / 2;
         GetImage((int)Images.ExperiencePoints).sprite = Manager.Asset.LoadSprite($"Point_{number}");
     }
 
@@ -103,20 +113,20 @@ public class Popup_MainUI : UI_Popup
     /// </summary>
     /// <param name="type"></param>
     /// <param name="count"></param>
-    public void UpdateUI(MainUI_Type type, int count)
+    public void UpdateUI(Define.MainUI_Type type, int count)
     {
         switch(type)
         {
-            case MainUI_Type.Hp:
+            case Define.MainUI_Type.Hp:
                 GetSlider((int)Sliders.HpSlider).value = count;
                 break;
-            case MainUI_Type.Special:
+            case Define.MainUI_Type.Special:
                 GetSlider((int)Sliders.SpecialSlider).value = count;
                 break;
-            case MainUI_Type.Gold:
+            case Define.MainUI_Type.Gold:
                 GetText((int)Texts.GoldText).text = count.ToString();
                 break;
-            case MainUI_Type.EnemyCount:
+            case Define.MainUI_Type.EnemyCount:
                 GetText((int)Texts.EnemyCountText).text = count.ToString();
                 break;
         }
@@ -125,9 +135,11 @@ public class Popup_MainUI : UI_Popup
     /// 타이머
     /// </summary>
     /// <param name="time"></param>
-    public void UpdateUI(string time)
+    public void UpdateTimerUI(TimeSpan time)
     {
-        GetText((int)Texts.Timer).text = time;
+        string timer = string.Format("{0:D2}:{1:D2}", time.Minutes, time.Seconds);
+
+        GetText((int)Texts.Timer).text = timer;
     }
     /// <summary>
     /// 인벤토리 슬롯 이미지
@@ -136,20 +148,17 @@ public class Popup_MainUI : UI_Popup
     /// <param name="idx"></param>
     /// <param name="sprite"></param>
     /// <param name="level"></param>
-    public void UpdateUI(MainUI_Item type, int idx, UnityEngine.Sprite sprite, int level = 1)
+    public void UpdateInventoryWeaponUI(int idx)
     {
-        MainUI_Item item = type;
-        
-        switch (item) 
-        {
-            case MainUI_Item.Weapon:
-                GetImage((int)_weapons[idx]).sprite = sprite;
-                GetImage((int)_weaponLevels[idx]).sprite = Manager.Asset.LoadSprite($"Lv_{level}");
-                break;
-            case MainUI_Item.Equipment:
-                GetImage((int)_equipments[idx]).sprite = sprite;
-                GetImage((int)_equipmentLevels[idx]).sprite = Manager.Asset.LoadSprite($"Lv_{level}");
-                break;
-        }
+        Weapon weapon = _inventory.Weapons[idx];
+        GetImage((int)_weapons[idx]).sprite = Manager.Asset.LoadSprite(weapon.WeaponData.Name);
+        GetImage((int)_weaponLevels[idx]).sprite = Manager.Asset.LoadSprite($"Lv_{weapon.Level}");
+    }
+
+    private void UpdateInventoryEquimentsUI(int idx)
+    {
+        Equipment equipment = _inventory.Equipments[idx];
+        GetImage((int)_equipments[idx]).sprite = Manager.Asset.LoadSprite(equipment.EquipmentData.Name);
+        GetImage((int)_equipmentLevels[idx]).sprite = Manager.Asset.LoadSprite($"Lv_{equipment.Level}");
     }
 }

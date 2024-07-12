@@ -1,5 +1,6 @@
 public class SubItem_Stats : UI_SubItem
 {
+    #region enum
     protected enum Texts
     {
         Name,
@@ -14,6 +15,7 @@ public class SubItem_Stats : UI_SubItem
     {
         Character
     }
+    #endregion
     private void Start() => Init();
 
     protected override void Init()
@@ -25,15 +27,16 @@ public class SubItem_Stats : UI_SubItem
 
     private void StatSet()
     {
+        Character character = Manager.Game.Character;
         CharacterData data = Manager.Game.GetCharacterData();
-        GetText((int)Texts.HP).text = Manager.Game._hp.ToString() +
-            " / " + Manager.Game._maxhp.ToString();
-        GetText((int)Texts.Name).text = Manager.Game._name;
-        GetText((int)Texts.ATK).text = Manager.Game._attack.ToString();
-        GetText((int)Texts.SPD).text = Manager.Game._speed.ToString();
-        GetText((int)Texts.Haste).text = Manager.Game._haste.ToString();
-        GetText((int)Texts.Pickup).text = Manager.Game._pickup.ToString();
+        GetText((int)Texts.HP).text = character.Hp.ToString() +
+            " / " + character.MaxHp.ToString();
+        GetText((int)Texts.Name).text = data.Name;
+        GetText((int)Texts.ATK).text = character.Attack.ToString();
+        GetText((int)Texts.SPD).text = character.Speed.ToString();
+        GetText((int)Texts.Haste).text = character.Haste.ToString();
+        GetText((int)Texts.Pickup).text = character.Pickup.ToString();
         GetImage((int)Images.Character).sprite =
-            Manager.Asset.LoadSprite(Manager.Game._name);
+            Manager.Asset.LoadSprite(data.Name);
     }
 }

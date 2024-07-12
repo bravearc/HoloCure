@@ -13,15 +13,18 @@ public class DataManager
     public Dictionary<ItemID, ItemData> Item { get; private set; }
     public Dictionary<ItemID, List<WeaponData>> Weapon { get; private set; }
     public Dictionary<ItemID, List<EquipmentData>> Equipment { get; private set; }
+    public Dictionary<ItemID, StatsData> Stats { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
+    public Dictionary<ExpID, ExpData> Exp { get; private set; }
 
     public void Init()
     {
         string path = "Assets/Resources/Data/";
         Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
-        Item = ParseToDick<ItemID, ItemData>(path + "Weapon.csv", data => data.ID);
+        Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
         Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
+        Exp = ParseToDick<ExpID, ExpData>(path + "Exp.csv", data => data.ID);
     }
 
     private Dictionary<TKey, TValue> ParseToDick<TKey, TValue>([NotNull] string path, Func<TValue, TKey> keySelector)

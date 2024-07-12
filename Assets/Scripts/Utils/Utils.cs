@@ -1,6 +1,10 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
+using UniRx;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Type = System.Type;
+
 
 public class Utils : MonoBehaviour
 {
@@ -19,32 +23,32 @@ public class Utils : MonoBehaviour
         return component;
     }
     public static T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
-    {
-        if (go == null)
         {
-            return null;
-        }
-
-        if (recursive == false)
-        {
-            Transform transform = go.transform.Find(name);
-            if (transform != null)
+            if (go == null)
             {
-                return transform.GetComponent<T>();
+                return null;
             }
-            else
+
+            if (recursive == false)
             {
-                foreach(T component in go.GetComponentsInChildren<T>()) 
-                { 
-                    if (string.IsNullOrEmpty(name) || component.name == name)
+                Transform transform = go.transform.Find(name);
+                if (transform != null)
+                {
+                    return transform.GetComponent<T>();
+                }
+                else
+                {
+                    foreach (T component in go.GetComponentsInChildren<T>())
                     {
-                        return component;
+                        if (string.IsNullOrEmpty(name) || component.name == name)
+                        {
+                            return component;
+                        }
                     }
                 }
             }
+            return null;
         }
-        return null;
-    }
 
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
     {
@@ -54,10 +58,36 @@ public class Utils : MonoBehaviour
         return null;
     }
 
-    public static T Shuffle<T>(int min, int max)
+    public static bool IsWeapon(ItemID id)
     {
-        int result = UnityEngine.Random.Range(min, max);
+        if ((int)Define.ItemNumber.Weapon_Start <= (int)id
+            && (int)id < (int)Define.ItemNumber.Weapon_End)
+        {  
+            return true; 
+        }
+        return false;
+    }
 
-        return (T)Convert.ChangeType(result, typeof(T));
+    public static bool IsEquipment(ItemID id)
+    {
+        if((int)Define.ItemNumber.Equipment_Start <= (int)id
+            && (int)id < (int)Define.ItemNumber.Equipment_End)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static string GetItemType(ItemID id)
+    {
+        if ((int)id < (int)Define.ItemNumber.Weapon_End)
+            return "Weapon";
+        else if ((int)id < (int)Define.ItemNumber.Weapon_End)
+            return "Equipment";
+        else if ((int)Define.ItemNumber.Stats_Start <= (int)id
+            && (int)id < (int)Define.ItemNumber.Stats_End)
+            return "Stats";
+        else
+            return "Drop";
     }
 }

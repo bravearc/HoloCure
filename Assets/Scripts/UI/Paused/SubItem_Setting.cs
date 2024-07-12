@@ -1,13 +1,17 @@
+using System;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
 public class SubItem_Setting : UI_SubItem
 {
-    private void Start()
+    IDisposable _updateDisposable;
+    void Start()
     {
-        this.UpdateAsObservable().Subscribe(_ => KeyCheck()).Dispose();
+        _updateDisposable =
+            this.UpdateAsObservable().Subscribe(_ => KeyCheck());
     }
+
     protected override void KeyCheck()
     {
         if (Input.GetKeyDown("Cancel"))
@@ -19,6 +23,10 @@ public class SubItem_Setting : UI_SubItem
     protected override void OnCancel()
     {
         Manager.UI.ShowPopup<Popup_Paused>();
-        base.OnCancel();
+        Manager.Asset.Destroy(gameObject);
+    }
+    private void OnDestroy()
+    {
+        _updateDisposable?.Dispose();
     }
 }
