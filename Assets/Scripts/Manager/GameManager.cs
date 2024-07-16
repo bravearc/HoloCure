@@ -2,60 +2,78 @@ using System;
 using UnityEngine;
 using UniRx;
 using System.ComponentModel;
+using UniRx.Triggers;
 
 public class GameManager : MonoBehaviour
 {
     public Inventory Inventory;
     public Character Character;
     public ReactiveProperty<TimeSpan> ElapsedTime = new();
+    public ReactiveProperty<int> EnemyCount = new();
+    public ReactiveProperty<int> GoldCount = new();
     public ReactiveProperty<float> SpesialTimer = new();
+    public ReactiveProperty<float> ExperiencePoints = new();
     public CharacterID CharacterID;
     private CharacterData _characterData;
     private DateTime _startTime;
+    private IDisposable _disposable;
 
-    bool _isPlaying;
+    private bool _isPlaying;
+    private bool _isStage = true;
     public void Init()
     {
         Inventory = Utils.GetOrAddComponent<Inventory>(gameObject);
+        _disposable = this.UpdateAsObservable().Subscribe(_ => TimeSystem());
     }
 
-    private void Update()
+    public bool IsStage()
     {
-        if (_isPlaying) 
-        { 
-            TimeSystem();
-        }
+        return _isStage;
     }
-
+    public void SetStageMode(bool mode)
+    {
+        _isStage = mode;
+    }
     public CharacterData GetCharacterData()
     {
         return _characterData;
     }
 
-    public void GameStart(CharacterID id)
+    public void GameStart()
     {
-        CharacterID = id;
         Character = Manager.Asset.Instantiate("Character").GetComponent<Character>();
-        _characterData = Manager.Data.Character[id];
+        _characterData = Manager.Data.Character[CharacterID];
         Character.Init();
         Inventory.Init();
         Manager.UI.MakeSubItem<SubItem_Map>();
         Manager.UI.MakeSubItem<SubItem_MainUI>();
         _isPlaying = true;
     }
+
+    public void SetCharacterID(CharacterID id)
+    {
+        CharacterID = id;
+    }
     public void GameOver()
     {
         _isPlaying = false;
         Inventory.Claer();
         Manager.UI.Clear();
-        Manager.UI.ShowPopup<Popup_Title>();
+
     }
-    //Time
     private void TimeSystem()
     {
-        TimeSpan elapsed = DateTime.Now - _startTime;
-        ElapsedTime.SetValueAndForceNotify(elapsed);
+        if (_isPlaying)
+        {
+            TimeSpan elapsed = DateTime.Now - _startTime;
+            ElapsedTime.SetValueAndForceNotify(elapsed);
 
-        SpesialTimer.Value += Time.fixedDeltaTime * 1;
+            SpesialTimer.Value += Time.fixedDeltaTime * 1;
+        }
+    }
+
+    private void OnDisable()
+    {
+        _disposable?.Dispose();
     }
 }

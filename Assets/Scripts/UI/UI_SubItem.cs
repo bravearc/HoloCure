@@ -11,9 +11,9 @@ public abstract class UI_SubItem : UI_Base
 
     protected virtual void KeyCheck(){}
 
-    protected virtual void OnCancel()
+
+    protected virtual void CloseSubItem()
     {
         Manager.Asset.Destroy(gameObject);
     }
-
 }

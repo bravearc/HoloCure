@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 using Type = System.Type;
 
 public class Popup_LevelUp : UI_Popup
@@ -26,7 +25,15 @@ public class Popup_LevelUp : UI_Popup
         DescriptionText0 = 4,
         DescriptionText1,
         DescriptionText2,
-        DescriptionText3
+        DescriptionText3,
+        NewText0 = 8,
+        NewText1,
+        NewText2,
+        NewText3,
+        TypeText0 = 12,
+        TypeText1, 
+        TypeText2, 
+        TypeText3
     }
     protected enum Images
     {
@@ -37,26 +44,40 @@ public class Popup_LevelUp : UI_Popup
         ItemImage0 = 4,
         ItemImage1,
         ItemImage2,
-        ItemImage3
+        ItemImage3,
+        ItemFrameImage0 = 8,
+        ItemFrameImage1,
+        ItemFrameImage2,
+        ItemFrameImage3,
+        Button0,
+        Button1,
+        Button2,
+        Button3
     }
     protected enum Objects
     {
-        Position0, 
-        Position1, 
-        Position2, 
-        Position3,
-        NewText0,
-        NewText1,
-        NewText2,
-        NewText3,
         Pointer
     }
     #endregion
+
+    private Buttons _currentButton;
+    private Buttons CurrentButton
+    {
+        get
+        {
+            return _currentButton;
+        }
+        set
+        {
+            SetButtonNormal(_currentButton);
+            SetButtonHighlighted(value);
+            _currentButton = value;
+        }
+    }
     private const int LEVELUP_ITEM_MAX_COUNT = 4;
     private ItemID[] _itemList = new ItemID[4];
-    private GameObject[] _position = new GameObject[4];
     private Inventory _inventory;
-    void Start() => Init();
+    private RectTransform _pointer;
 
     protected override void Init()
     {
@@ -65,17 +86,18 @@ public class Popup_LevelUp : UI_Popup
         BindText(typeof(Texts));
         BindImage(typeof(Images));
         BindObject(typeof(Objects));
-        BindEvent(GetButton((int)Define.UIEvent.Enter), OnEnterButton, Define.UIEvent.Enter, this);
-        BindEvent(GetButton((int)Define.UIEvent.Click), OnEnterButton, Define.UIEvent.Click, this);
-        Manager.UI.MakeSubItem<SubItem_Stats>(transform);
-        _inventory = Manager.Game.Inventory;
-        for (int idx = 0; idx < 4; idx++)
+        _pointer = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
+        for (int idx = 0; idx < LEVELUP_ITEM_MAX_COUNT; idx++)
         {
-            _position[idx] = GetObject(idx);
-            BindEvent(GetButton(idx), OnEnterButton, Define.UIEvent.Enter, this);
-            BindEvent(GetButton(idx), OnClickButton, Define.UIEvent.Click, this);
+            Button button = GetButton(idx);
+            button.BindEvent(OnEnterButton, Define.UIEvent.Enter, this);
+            button.BindEvent(OnEnterButton, Define.UIEvent.Click, this);
         }
-        SetupItem();
+        
+        Manager.UI.MakeSubItem<SubItem_Stats>(transform);
+        
+        _inventory = Manager.Game.Inventory;
+        //SetupItem();
     }
 
     void SetupItem()
@@ -83,27 +105,26 @@ public class Popup_LevelUp : UI_Popup
         for (int idx = 0; idx < 4; idx++)
         {
             ItemID id = Manager.Spawn.GetRandomItem();
-            string type = Utils.GetItemType(id);
-
+            ItemType type = Manager.Data.Item[id].Type;
             switch(type)
             {
-                case "Weapon": SetupWeapon(id, idx); break;
-                case "Equipment": SetupEquipment(id, idx); break;
-                case "Stats": SetupStats(id, idx); break;
+                case ItemType.Weapon: SetupWeapon(id, idx); break;
+                case ItemType.Equipment: SetupEquipment(id, idx); break;
+                case ItemType.Stat: SetupStats(id, idx); break;
             }
             _itemList[idx] = id;
         }
     }
 
-    void ShowItems(string name, string Exp, string type, string icon, bool active, int idx)
+    void ShowItems(string name, string Exp, string typeImage, string icon, bool newText, string typeText, int idx)
     {
         GetText(idx + (int)Texts.NameText0).text = name;
         GetText(idx + (int)Texts.DescriptionText0).text = Exp;
-        GetImage(idx + (int)Images.TypeImage0).sprite = Manager.Asset.LoadSprite(type);
+        GetImage(idx + (int)Images.TypeImage0).sprite = Manager.Asset.LoadSprite(typeImage);
         GetImage(idx + (int)Images.ItemImage0).sprite = Manager.Asset.LoadSprite(icon);
-        GetObject(idx + (int)Objects.NewText0).SetActive(active);
+        GetText(idx + (int)Texts.NewText0).text = newText ? "New!" : "";
+        GetText(idx + (int)Texts.TypeText0).text = typeText;
     }
-
     void SetupWeapon(ItemID id, int idx)
     {
         List<Weapon> list = _inventory.Weapons;
@@ -117,9 +138,9 @@ public class Popup_LevelUp : UI_Popup
         string type = data.Type.ToString();
         string icon = data.Name;
         bool active = item != null;
-        ShowItems(name, Exp, type, icon, active, idx);  
+        string typeText = Manager.Data.Item[id].Type.ToString();
+        ShowItems(name, Exp, type, icon, active, typeText, idx);  
     }
-
     void SetupEquipment(ItemID id, int idx)
     {
         List<Equipment> list = _inventory.Equipments;
@@ -133,7 +154,8 @@ public class Popup_LevelUp : UI_Popup
         string type = null;
         string icon = data.Name;
         bool active = item != null;
-        ShowItems(name, Exp, type, icon, active, idx);
+        string typeText = Manager.Data.Item[id].Type.ToString();
+        ShowItems(name, Exp, type, icon, active, typeText, idx);
     }
     void SetupStats(ItemID id, int idx)
     {
@@ -143,22 +165,35 @@ public class Popup_LevelUp : UI_Popup
         string type = null;
         string icon = data.Name;
         bool active = false;
-        ShowItems(name, Exp, type, icon, active, idx);
+        string typeText = "";
+        ShowItems(name, Exp, type, icon, active, typeText, idx);
     }
     protected override void OnEnterButton(PointerEventData data)
     {
-        Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
-        int buttonIndex = (int)button;
-        GetObject((int)Objects.Pointer).transform.position = _position[buttonIndex].transform.position;
-        
-        base.OnEnterButton(data);
+        Buttons buttonIdx = Enum.Parse<Buttons>(data.pointerEnter.name);
+        CurrentButton = buttonIdx;
     }
 
     protected override void OnClickButton(PointerEventData data) 
     {
-        Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
-        int buttonIndex = (int)button;
-        _inventory.GetItem(_itemList[buttonIndex]);
-        base.OnClickButton(data);
+        Buttons buttonIdx = Enum.Parse<Buttons>(data.pointerClick.name);
+        base.ClosePopup();
+        _inventory.GetItem(_itemList[(int)buttonIdx]);
+    }
+
+    protected void SetButtonNormal(Buttons button)
+    {
+        GetImage((int)button).sprite = 
+            Manager.Asset.LoadSprite("ui_menu_upgrade_window_0");
+
+    }
+    protected void SetButtonHighlighted(Buttons currentButton)
+    {
+
+        GetImage((int)currentButton).sprite =
+            Manager.Asset.LoadSprite("ui_menu_upgrade_window_selected_0");
+        float resize = -600;
+        float pointerPosition = GetImage((int)currentButton).rectTransform.position.y;
+            _pointer.anchoredPosition = new Vector2(-142, pointerPosition + resize);
     }
 }

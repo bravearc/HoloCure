@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UniRx;
 using UniRx.Triggers;
 using System.Collections;
 using System;
-using System.Data.Common;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Popup_ItemBox : UI_Popup
 {
@@ -17,12 +16,17 @@ public class Popup_ItemBox : UI_Popup
     }
     protected enum Texts
     {
+        TakeText,
+        CancelText,
         NameText,
         ExplanationText,
-        TypeText
+        TypeText,
+        NewText
     }
     protected enum Images
     {
+        TakeButton,
+        CancelButton,
         GetItemImage0,
         GetItemImage1,
         TypeImage,
@@ -30,12 +34,9 @@ public class Popup_ItemBox : UI_Popup
     }
     protected enum Objects
     {
-        Position0,
-        Position1,
         GetBox,
         OpenBox,
         CloseBox,
-        New,
         Pointer
     }
     protected enum Anis
@@ -46,22 +47,48 @@ public class Popup_ItemBox : UI_Popup
     IDisposable _updateDisposable;
     Inventory _inventory;
     ItemID _itemID;
-    void Start()
+    public RectTransform _pointer;
+
+    Buttons _currentButon;
+    Buttons CurrentButton 
+    { 
+        get
+        {
+            return _currentButon;
+        } 
+        set
+        {
+            SetButtonNormal(_currentButon);
+            SetButtonsHighlight(value);
+            _currentButon = value;
+        }
+    }
+    protected override void Init()
     {
+        base.Init();
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindObject(typeof(Objects));
         BindImage(typeof(Images));
+        BindAnimator(typeof(Anis));
 
-        _updateDisposable = 
+        _pointer = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
+
+        GetObject((int)Objects.OpenBox).SetActive(false);
+        GetObject((int)Objects.CloseBox).SetActive(false);
+
+        _updateDisposable =
             this.UpdateAsObservable().Subscribe(_ => KeyCheck());
-        
-        Init();
-    }
 
-    protected override void Init()
-    {
-        base.Init();
+        CurrentButton = _currentButon;
+
+        for (int idx = 0; idx < Enum.GetValues(typeof(Buttons)).Length; idx++) 
+        { 
+            Button button = GetButton(idx);
+            button.BindEvent(OnEnterButton, Define.UIEvent.Enter, this);
+            button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
+        }
+
     }
 
     protected void KeyCheck()
@@ -79,12 +106,13 @@ public class Popup_ItemBox : UI_Popup
         if (Utils.IsWeapon(_itemID))
         {
             WeaponData data;
+            string newtext = "";
             Weapon weapon = _inventory.Weapons.Find(weapon => weapon.ID == _itemID);
             if (weapon != null) 
             {
                 int level = weapon.Level.Value;
                 data = Manager.Data.Weapon[_itemID][level + 1];
-                GetObject((int)Objects.New).SetActive(false);
+                newtext = "New!";
             }
             else
             {
@@ -96,16 +124,18 @@ public class Popup_ItemBox : UI_Popup
             GetImage((int)Images.GetItemImage1).sprite = Manager.Asset.LoadSprite(data.Name);
             GetImage((int)Images.TypeImage).sprite = Manager.Asset.LoadSprite(data.Type.ToString());
             GetImage((int)Images.ItemFrameImage).sprite = Manager.Asset.LoadSprite("Weapon_Frame");
+            GetText((int)Texts.NewText).text = newtext;
         }
         else
         {
             EquipmentData data;
+            string newtext = "";
             Equipment equipment = _inventory.Equipments.Find(weapon => weapon.ID == _itemID);
             if (equipment != null)
             {
                 int level = equipment.Level.Value;
                 data = Manager.Data.Equipment[_itemID][level + 1];
-                GetObject((int)Objects.New).SetActive(false);
+                newtext = "New!";
             }
             else
             {
@@ -117,6 +147,7 @@ public class Popup_ItemBox : UI_Popup
             GetImage((int)Images.GetItemImage1).sprite = Manager.Asset.LoadSprite(data.Name);
             GetImage((int)Images.TypeImage).sprite = null;
             GetImage((int)Images.ItemFrameImage).sprite = Manager.Asset.LoadSprite("Equipment_Frame");
+            GetText((int)Texts.NewText).text = newtext;
         }
 
     }
@@ -126,7 +157,7 @@ public class Popup_ItemBox : UI_Popup
         GetObject((int)Objects.OpenBox).SetActive(true);
         GetObject((int)Objects.GetBox).SetActive(false);
 
-        while (GetAni((int)Anis.OpenBox).GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        while (GetAnimator((int)Anis.OpenBox).GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
             yield return null;
         }
@@ -139,8 +170,8 @@ public class Popup_ItemBox : UI_Popup
     protected override void OnEnterButton(PointerEventData data)
     {
         Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
-        int buttonIndex = (int)button;
-        GetObject((int)Objects.Pointer).transform.position = GetObject(buttonIndex).transform.position;
+        CurrentButton = button;
+        //버튼사운드
     }
 
     protected override void OnClickButton(PointerEventData data)
@@ -157,6 +188,22 @@ public class Popup_ItemBox : UI_Popup
 
         base.OnClickButton(data);
     }
+
+    void SetButtonNormal(Buttons button)
+    {
+        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_Button_0");
+        GetText((int)button).color = Color.white;
+    }
+
+    void SetButtonsHighlight(Buttons button) 
+    {
+        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_Button_1");
+        GetText((int)button).color = Color.black;
+        float resize = -586;
+        float pointerY = GetImage((int)button).rectTransform.position.y + resize;
+        _pointer.anchoredPosition = new Vector2(455, pointerY);
+    }
+
     bool IsFever()
     {
         return UnityEngine.Random.Range(1, 101) < 30 ?  true : false;

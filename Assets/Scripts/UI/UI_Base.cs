@@ -8,10 +8,11 @@ using UniRx;
 using UnityEngine.EventSystems;
 using UniRx.Triggers;
 
-
-public class UI_Base : MonoBehaviour
+//[RequireComponent(typeof(Canvas))]
+public abstract class UI_Base : MonoBehaviour
 {
     Dictionary<Type, Object[]> _objects = new();
+    void Start() => Init();
 
     protected virtual void Init()
     {
@@ -47,18 +48,18 @@ public class UI_Base : MonoBehaviour
     protected void BindImage(Type type) => Bind<Image>(type);
     protected void BindButton(Type type) => Bind<Button>(type);
     protected void BindSlider(Type type) => Bind<Slider>(type);
-    protected void BindAni(Type type) => Bind<Animator>(type);
+    protected void BindAnimation(Type type) => Bind<Animation>(type);
+    protected void BindAnimator(Type type) => Bind<Animator>(type);
     protected void BindTransform(Type type) => Bind<Transform>(type);
     protected void BindRectTransform(Type type) => Bind<RectTransform>(type);
 
     protected T Get<T>(int idx) where T : Object
     {
-        Object[] newObject = null;
-        if (_objects.TryGetValue(typeof(T), out newObject) == false)
+        if (_objects.TryGetValue(typeof(T), out Object[] objects))
         {
-            return null;
+            return objects[idx] as T;
         }
-        return newObject as T;
+        throw new InvalidOperationException($"Failed to Get({typeof(T)}, {idx}). Binding must be completed first.");
     }
 
     protected GameObject GetObject(int idx) => Get<GameObject>(idx);
@@ -66,27 +67,26 @@ public class UI_Base : MonoBehaviour
     protected Image GetImage(int idx) => Get<Image>(idx);
     protected Button GetButton(int idx) => Get<Button>(idx);
     protected Slider GetSlider(int idx) => Get<Slider>(idx);
-    protected Animator GetAni(int idx) => Get<Animator>(idx);
+    protected Animation GetAnimation(int idx) => Get<Animation>(idx);
+    protected Animator GetAnimator(int idx) => Get<Animator>(idx);
     protected Transform GetTransform(int idx) => Get<Transform>(idx);
     protected RectTransform GetRectTransform(int idx) => Get<RectTransform>(idx);
 
-    protected void BindEvent(UIBehaviour view, Action<PointerEventData> action, Define.UIEvent type , Component component)
+    public static void BindEvent(UIBehaviour view, Action<PointerEventData> action, Define.UIEvent type , Component component)
     {
-        //UI_EventHandler handler = Utils.GetOrAddComponent<UI_EventHandler>(view);
-
         switch (type)
         {
-            case Define.UIEvent.Click:
-                view.OnPointerClickAsObservable().Subscribe(action).AddTo(component);
-                break;
             case Define.UIEvent.Enter:
                 view.OnPointerEnterAsObservable().Subscribe(action).AddTo(component);
                 break;
+            case Define.UIEvent.Click:
+                view.OnPointerClickAsObservable().Subscribe(action).AddTo(component);
+                break;
         }
     }
-
-    protected void BindModelEvent<T>(ReactiveProperty<T> model, Action<T> action, Component component)
+    public static void BindModelEvent<T>(ReactiveProperty<T> model, Action<T> action, Component component)
     {
         model.Subscribe(action).AddTo(component);
     }
+
 }

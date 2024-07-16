@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-public class AmeliaWatson : MonoBehaviour, IStats, ISpecialSkill
+public class AmeliaWatson : MonoBehaviour, IStats
 {
     public float Hp { get; set; }
     public float Attack { get; set; }

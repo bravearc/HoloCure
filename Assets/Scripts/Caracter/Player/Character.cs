@@ -3,8 +3,8 @@ using UniRx;
 
 public class Character : MonoBehaviour
 {
-    public ReactiveProperty<float> Hp = new();
-    public ReactiveProperty<float> MaxHp = new();
+    public ReactiveProperty<int> Hp = new();
+    public ReactiveProperty<int> MaxHp = new();
     public ReactiveProperty<float> Attack = new();
     public ReactiveProperty<float> Speed = new();
     public ReactiveProperty<float> Criticial = new();
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
             LevelUp();
         }
     }
-    public void UpdateHp(float damage)
+    public void Update_Hp(int damage)
     {
         if (damage > 0) { }
         //회복 사운드
@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
         Manager.UI.ShowPopup<Popup_LevelUp>();
     }
 
-    private void GetMaxHP(float value)
+    private void GetMaxHP(int value)
     {
         MaxHp.Value += value;
     }

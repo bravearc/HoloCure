@@ -3,8 +3,8 @@ using UnityEngine;
 public class Title_LowerParts : MonoBehaviour
 {
     public RectTransform _rect;
-    Vector2 _endPoint = new Vector2(-70, -240);
-    Vector2 _startPoint = new Vector2(0, -240);
+    Vector2 _endPoint = new Vector2(-70, 0);
+    Vector2 _startPoint = new Vector2(0, 0);
     Vector2 _moveSpeed = new Vector2(-0.5f, 0);
     Vector2 _setPoint = new Vector2(-1300, 0);
 

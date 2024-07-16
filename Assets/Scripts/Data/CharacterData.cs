@@ -10,8 +10,8 @@ public class CharacterData
 {
     public CharacterID ID { get; set; }
     public string Name { get; set; }
-    public float MaxHp { get; set; }
-    public float Hp { get; set; }
+    public int MaxHp { get; set; }
+    public int Hp { get; set; }
     public float Attack { get; set; }
     public float Speed { get; set; }
     public float Criticial { get; set; }

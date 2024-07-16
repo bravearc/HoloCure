@@ -10,9 +10,11 @@ using System.Linq;
 public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
+    public Dictionary<CharacterID, SelectData> Select { get; private set; }
     public Dictionary<ItemID, ItemData> Item { get; private set; }
     public Dictionary<ItemID, List<WeaponData>> Weapon { get; private set; }
     public Dictionary<ItemID, List<EquipmentData>> Equipment { get; private set; }
+    public Dictionary<int, StageData> Stage { get; private set; }
     public Dictionary<ItemID, StatsData> Stats { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }

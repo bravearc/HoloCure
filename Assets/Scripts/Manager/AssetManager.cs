@@ -8,7 +8,7 @@ public class AssetManager : MonoBehaviour
     public Dictionary<string, Sprite> Sprite { get; private set; }
     public Dictionary<string, GameObject> Object { get; private set; }
     public Dictionary<string, string> Text { get; private set; }
-
+    public Dictionary<string, AnimationClip> AniClip { get; private set; }
 
     public void Init()
     {
@@ -17,36 +17,36 @@ public class AssetManager : MonoBehaviour
         Sprite = new();
         Object = new();
         Text = new();
+        AniClip = new();
     }
 
     public AudioClip LoadAudioClip(string audio) => Load(Sound, string.Concat(Define.Path.Audio, audio));
     public Sprite LoadSprite(string sprite) => Load(Sprite, string.Concat(Define.Path.Sprite, sprite));
     public GameObject LoadObject(string ob, Transform tr = null) => Instantiate(string.Concat(Define.Path.Object, ob), tr);
 
+    public AnimationClip LoadAniClip(string ani) => Load(AniClip, string.Concat(Define.Path.Ani, ani));
     public T Load<T>(Dictionary<string, T>dic, string path, Transform tr = null) where T : Object
     {
-        if (dic[path] != null)
+        if (false == dic.ContainsKey(path))
         {
+            T resource = Resources.Load<T>(path);
+            dic.Add(path, resource);
             return dic[path];
         }
-
-        T t = Resources.Load<T>(path);
-        dic.Add(path, t);
-        return t; 
+        return dic[path]; 
     }
 
     public GameObject Instantiate(string path, Transform tr = null)
     {
         GameObject obj = Resources.Load<GameObject>(path);
-        Instantiate(obj, tr);
-        return obj;
+        return Instantiate(obj, tr);
     }
 
     public GameObject Instantiate(GameObject obj, Transform tr = null) 
     {
         GameObject go = UnityEngine.Object.Instantiate(obj, tr);
         go.name = obj.name;
-        return obj;
+        return go;
     }
 
     public void Destroy(GameObject go)

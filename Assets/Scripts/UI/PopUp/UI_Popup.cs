@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class UI_Popup : UI_Base
 {
@@ -7,10 +8,10 @@ public class UI_Popup : UI_Base
     {
         base.Init();
         Manager.UI.SetCanvas(gameObject);
-        Time.timeScale = 0;
-        Manager.Sound.SoundScale(Define.Sound.BGM, 0.5f);
+        //Time.timeScale = 0;
+        //Manager.Sound.SoundScale(Define.Sound.BGM, 0.5f);
     }
-    public virtual void ClosePopup()
+    protected virtual void ClosePopup()
     {
         Manager.UI.ClosePopupUI();
     }
@@ -25,4 +26,6 @@ public class UI_Popup : UI_Base
         Manager.Sound.SoundScale(Define.Sound.BGM, 1);
         Manager.Asset.Destroy(gameObject);
     }
+
+
 }

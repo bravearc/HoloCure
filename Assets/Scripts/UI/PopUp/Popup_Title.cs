@@ -1,9 +1,14 @@
+using UnityEngine;
 
 public class Popup_Title : UI_Popup
 {
-    void Start() => Init();
     protected override void Init()
     {
+        Manager.UI.MakeSubItem<SubItem_Title>();
+    }
 
+    void OnDisable()
+    {
+        base.ClosePopup();
     }
 }

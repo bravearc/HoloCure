@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -78,6 +79,11 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool IsLevelUp(ItemID id)
+    {
+        return _itemIDList.Contains(id);
     }
 
     public void Claer()

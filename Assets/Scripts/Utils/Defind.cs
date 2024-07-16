@@ -1,58 +1,30 @@
 
 public static class Define
-
 {
-
     public enum UIEvent
-
-    {
-
+    {     
         Click,
-
         Enter
-
     }
-
-
-
     public enum Sound
-
     {
-
         BGM,
-
         Effect,
-
         Collision,
-
         Max
-
     }
-
     public class Path
-
     {
-
         public const string Enemy = "Enemy/";
-
         public const string CSV = "Data/";
-
         public const string Character = "Character/";
-
         public const string Audio = "Audio/";
-
         public const string Sprite = "Sprite/";
-
         public const string Item = "Item/";
-
         public const string Text = "Text/";
-
         public const string Object = "Object/";
-
+        public const string Ani = "Animation/";
     }
-
-
-
     public enum ItemNumber
     {
         StartingWeaopn_Start = 1,
@@ -71,5 +43,20 @@ public static class Define
         Gold,
         EnemyCount
     }
+    public enum Mode_Type
+    {
+        StageMode,
+        EndlessMode
+    }
+    public class KeyCode
+    {
+        public const string Vertical = "Vertical";
+        public const string Confirm = "Confirm";
+        public const string Cencel = "Cancel";
+    }
 
+    public class AniTrigger
+    {
+        public const string PointerMove = "PointerMove";
+    }
 }

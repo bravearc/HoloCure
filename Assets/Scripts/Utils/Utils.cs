@@ -1,7 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
-using UniRx;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Type = System.Type;
 
@@ -29,26 +26,23 @@ public class Utils : MonoBehaviour
                 return null;
             }
 
-            if (recursive == false)
-            {
-                Transform transform = go.transform.Find(name);
-                if (transform != null)
-                {
-                    return transform.GetComponent<T>();
-                }
-                else
-                {
-                    foreach (T component in go.GetComponentsInChildren<T>())
-                    {
-                        if (string.IsNullOrEmpty(name) || component.name == name)
-                        {
-                            return component;
-                        }
-                    }
-                }
-            }
-            return null;
+        if (recursive == false)
+        {
+            Transform transform = go.transform.Find(name);
+            Debug.Assert(transform != null);
+            return transform.GetComponent<T>();
         }
+        else
+        {
+            foreach (T component in go.GetComponentsInChildren<T>())
+            {
+                if (string.IsNullOrEmpty(name) == false && component.name != name) continue;
+                    
+                return component;
+            }
+        }
+        return null;
+    }
 
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
     {

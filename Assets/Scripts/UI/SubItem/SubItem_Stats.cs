@@ -16,7 +16,6 @@ public class SubItem_Stats : UI_SubItem
         Character
     }
     #endregion
-    private void Start() => Init();
 
     protected override void Init()
     {
@@ -37,6 +36,6 @@ public class SubItem_Stats : UI_SubItem
         GetText((int)Texts.Haste).text = character.Haste.ToString();
         GetText((int)Texts.Pickup).text = character.Pickup.ToString();
         GetImage((int)Images.Character).sprite =
-            Manager.Asset.LoadSprite(data.Name);
+        Manager.Asset.LoadSprite(data.Name);
     }
 }

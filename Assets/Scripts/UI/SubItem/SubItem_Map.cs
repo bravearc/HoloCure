@@ -10,15 +10,11 @@ public class SubItem_Map : UI_SubItem
     public float _mapSizeX;
     public float _mapSizeY;
 
-    private void Start()
+    protected override void Init()
     {
         enemyController = Manager.Asset.LoadObject("EnemyController").GetComponent<EnemyController>();
         _player = GameObject.FindWithTag("Player");
         MainMap = transform.Find("Map0");
-        Init();
-    }
-    protected override void Init()
-    {
         //base.Init();
         for (int i = 0; i < transform.childCount; ++i)
         {

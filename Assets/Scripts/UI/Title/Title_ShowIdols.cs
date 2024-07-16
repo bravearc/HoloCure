@@ -1,11 +1,9 @@
 using System;
-using System.Diagnostics;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 public class Title_ShowIdols : UI_SubItem
 {
-    void Start() => Init();
     IDisposable _updateDisposable;
     RectTransform[] _rects;
     private float[] _shakeY;

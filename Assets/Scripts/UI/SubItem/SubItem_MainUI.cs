@@ -31,7 +31,7 @@ public class SubItem_MainUI : UI_SubItem
         EquipmentLevel5,
         CharacterImage,
         SpecialImage,
-        ExperiencePoints
+        ExperiencePointsImage
     }
     protected enum Texts
     {
@@ -53,10 +53,9 @@ public class SubItem_MainUI : UI_SubItem
     private Images[] _equipmentLevels = new Images[6];
     private Inventory _inventory;
     private Character _character;
-    private void Start()
-    {
-        Init();
-    }
+
+    private float _maxExperiencePoints;
+
     protected override void Init()
     {
         base.Init();
@@ -79,8 +78,9 @@ public class SubItem_MainUI : UI_SubItem
         BindModelEvent(Manager.Game.ElapsedTime, UpdateTimerUI, this);
         BindModelEvent(_inventory.WeaponCount, UpdateInventoryWeaponUI, this);
         BindModelEvent(_inventory.EquipmentCount, UpdateInventoryEquimentsUI, this);
-        BindModelEvent(_character.CurrentExp, UpdateUI, this);
+        BindModelEvent(_character.CurrentExp, UI_ExperiencePoints_Update, this);
         BindModelEvent(Manager.Game.SpesialTimer, UpdateSpesialUI, this);
+        BindModelEvent(_character.MaxExp, UI_Max_ExperiencePoints_Update, this);
     }
     
     protected void SetArray(Images[] array, int idx)
@@ -91,20 +91,21 @@ public class SubItem_MainUI : UI_SubItem
         }
     }
 
-    //GameManager를 관찰
+
     private void UpdateSpesialUI(float value)
     {
         GetSlider((int)Sliders.SpecialSlider).value += value;
     }
 
-    /// <summary>
-    /// 경험치 이미지
-    /// </summary>
-    /// <param name="exPoint"></param>
-    private void UpdateUI(float exPoint)
+
+    private void UI_ExperiencePoints_Update(float experiencePointsImage)
     {
-        int number = (int)exPoint / 2;
-        GetImage((int)Images.ExperiencePoints).sprite = Manager.Asset.LoadSprite($"Point_{number}");
+        float gauge = _maxExperiencePoints / experiencePointsImage;
+        GetImage((int)Images.ExperiencePointsImage).fillAmount = gauge;
+    }
+    private void UI_Max_ExperiencePoints_Update(float maxExperiencePoints)
+    {
+        _maxExperiencePoints = maxExperiencePoints;
     }
 
     /// <summary>

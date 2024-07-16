@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
+    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_SubItem
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
@@ -47,10 +47,12 @@ public class UIManager : MonoBehaviour
 
         GameObject go = Manager.Asset.Instantiate(prefab);
         if (parent != null)
-            go.transform.SetParent(parent);
+            go.transform.SetParent(parent, false);
+
 
         go.transform.localScale = Vector3.one;
         go.transform.localPosition = prefab.transform.position;
+        go.transform.localRotation = Quaternion.identity;
 
         return Utils.GetOrAddComponent<T>(go);
     }
@@ -99,6 +101,7 @@ public class UIManager : MonoBehaviour
         }
         UI_Popup popup = _popupStack.Pop();
         Manager.Asset.Destroy(popup.gameObject);
+        --_order;
 
     }
 
