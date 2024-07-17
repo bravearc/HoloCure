@@ -9,7 +9,8 @@ public class SubItem_ChooseStage : UI_SubItem
     protected enum Buttons
     {
         StageChangeButton,
-        GoButton
+        GoButton,
+        StageButton
     }
 
     protected enum Texts
@@ -20,10 +21,15 @@ public class SubItem_ChooseStage : UI_SubItem
 
     protected enum Images 
     {
-        StageImage
+        StageButton
+    }
+    protected enum Objects
+    {
+        Go
     }
 
     #endregion
+    int _nextStage = 1;
     protected override void Init()
     {
         base.Init();
@@ -31,6 +37,7 @@ public class SubItem_ChooseStage : UI_SubItem
         BindButton(typeof(Buttons));
         BindImage(typeof(Images));
         BindText(typeof(Texts));
+        BindObject(typeof(Objects));
 
         for (int idx = 0; idx < Enum.GetValues(typeof(Buttons)).Length; idx++) 
         { 
@@ -38,26 +45,55 @@ public class SubItem_ChooseStage : UI_SubItem
             button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
         }
 
-        GetButton((int)Buttons.GoButton).gameObject.SetActive(false);
+        GetObject((int)Objects.Go).gameObject.SetActive(false);
     }
 
     void OnClickButton(PointerEventData data)
     {
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
-        ProcessButton(button);
-    }
 
+        switch (button)
+        {
+            case Buttons.StageChangeButton:
+                StageReplacement(data.position.x);
+                break;
+            case Buttons.GoButton:
+                //GameManager에 스테이지 세팅
+                Manager.Game.GameStart();
+                base.CloseSubItem();
+                break;
+            case Buttons.StageButton:
+                GetObject((int)Objects.Go).gameObject.SetActive(true);
+                break;
+        }
+
+        //ProcessButton(button);
+    }
     void ProcessButton(Buttons button)
     {
         switch (button) 
         { 
             case Buttons.StageChangeButton:
-                GetButton((int)Buttons.GoButton).gameObject.SetActive(true); 
+                
                 break;
             case Buttons.GoButton:
                 Manager.Game.GameStart();
-                    break;
+                break;
+            case Buttons.StageButton:
+                GetButton((int)Buttons.GoButton).gameObject.SetActive(true);
+                break;
         }
     }
+    void StageReplacement(float buttonPosition)
+    {
+        _nextStage += buttonPosition > 1000 ? 1 : -1;
+        if (_nextStage < 1)
+        {
+            _nextStage = 3;
+        }
 
+        GetImage((int)Images.StageButton).sprite = Manager.Asset.LoadSprite($"spr_Stage{_nextStage}Port_0");
+        GetText((int)Texts.StageNameText).text = Manager.Data.Stage[_nextStage].Name;
+        GetText((int)Texts.HoloCoinText).text = _nextStage.ToString();
+    }
 }

@@ -85,6 +85,7 @@ public class WeaponData
     public int MaxLevel { get; set; }
     public string Explanation { get; set; }
     public WeaponType Type { get; set; }
+    public string KORNAME { get; set; }
 }
 public class ItemData
 {

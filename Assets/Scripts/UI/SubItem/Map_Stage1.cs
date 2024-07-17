@@ -1,26 +1,28 @@
 using UnityEngine;
 
-public class SubItem_Map : UI_SubItem
+public class Map_Stage1 : MonoBehaviour
 {
     public Transform MainMap;
-    public EnemyController enemyController;
-    public GameObject _player;
-    public Transform[] _maps = new Transform[4];
-    public Collider2D _mapCol;
-    public float _mapSizeX;
-    public float _mapSizeY;
+    private Transform[] _maps = new Transform[4];
+    private EnemyController _enemyController;
+    private GameObject _character;
+    private Collider2D _mapCol;
+    private float _mapSizeX;
+    private float _mapSizeY;
 
-    protected override void Init()
+    private void Start() => Init();
+    void Init()
     {
-        enemyController = Manager.Asset.LoadObject("EnemyController").GetComponent<EnemyController>();
-        _player = GameObject.FindWithTag("Player");
-        MainMap = transform.Find("Map0");
-        //base.Init();
+        _enemyController = Utils.GetOrAddComponent<EnemyController>(Manager.Asset.LoadObject("EnemyController"));
+
+        _character = GameObject.FindWithTag("Character");
+
         for (int i = 0; i < transform.childCount; ++i)
         {
             _maps[i] = transform.GetChild(i).transform;
         }
-
+        MainMap = _maps[0];
+        
         _mapCol = Utils.GetOrAddComponent<BoxCollider2D>(MainMap.gameObject);
         _mapSizeX = _mapCol.bounds.extents.x;
         _mapSizeY = _mapCol.bounds.extents.y;
@@ -28,7 +30,7 @@ public class SubItem_Map : UI_SubItem
 
     public void MapSwap()
     {
-        Vector2 playerPos = _player.transform.position;
+        Vector2 playerPos = _character.transform.position;
         Vector2 mainMapPos = MainMap.transform.position;
 
         int pathX = playerPos.x > mainMapPos.x ? 2 : -2;
@@ -37,12 +39,12 @@ public class SubItem_Map : UI_SubItem
         float poX = _mapSizeX * pathX;
         float poY = _mapSizeY * pathY;
 
-        int _count = 0;
-
         float mainX = mainMapPos.x;
         float mainY = mainMapPos.y;
 
-        foreach (Transform t in this._maps)
+        int _count = 0;
+
+        foreach (Transform t in _maps)
         {
             if (MainMap == t)
             {
@@ -67,7 +69,7 @@ public class SubItem_Map : UI_SubItem
             }
             ++_count;
         }
-        enemyController.ChangeMap(MainMap);
+        _enemyController.ChangeMap(MainMap);
     }
 }
 

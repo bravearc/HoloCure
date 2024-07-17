@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public ReactiveProperty<int> GoldCount = new();
     public ReactiveProperty<float> SpesialTimer = new();
     public ReactiveProperty<float> ExperiencePoints = new();
+    private StageData stageData;
     public CharacterID CharacterID;
     private CharacterData _characterData;
     private DateTime _startTime;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         Inventory = Utils.GetOrAddComponent<Inventory>(gameObject);
         _disposable = this.UpdateAsObservable().Subscribe(_ => TimeSystem());
+        Manager.UI.ShowPopup<Popup_Title>();
     }
 
     public bool IsStage()
@@ -41,12 +43,12 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        Character = Manager.Asset.Instantiate("Character").GetComponent<Character>();
+        Manager.UI.CloseALLPopupUI();
+        Manager.UI.ShowPopup<Popup_PlayUI>();
+        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.LoadObject("Character"));
         _characterData = Manager.Data.Character[CharacterID];
         Character.Init();
         Inventory.Init();
-        Manager.UI.MakeSubItem<SubItem_Map>();
-        Manager.UI.MakeSubItem<SubItem_MainUI>();
         _isPlaying = true;
     }
 

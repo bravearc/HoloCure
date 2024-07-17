@@ -1,20 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
     public List<Weapon> Weapons = new();
     public List<Equipment> Equipments = new();
+
     public ReactiveProperty<int> WeaponCount = new(-1);
     public ReactiveProperty<int> EquipmentCount = new(-1);
+
+    private SubItem_Inventory _inventory_SubItem;
     private HashSet<ItemID> _itemIDList = new();
 
     private const int INVENTORY_MAX_COUNT = 6;
     public void Init()
     {
         GetItem((ItemID)Manager.Game.GetCharacterData().NormalWeapon);
+        _inventory_SubItem = Utils.GetOrAddComponent<SubItem_Inventory>(GameObject.Find(nameof(SubItem_Inventory)));
     }
     public bool IsItemTypeFull(ItemID id)
     {
@@ -56,6 +59,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            int idx = 0;
             if((int)id < (int)Define.ItemNumber.Weapon_End)
             {
                 foreach(Weapon weapon in Weapons)
@@ -65,6 +69,7 @@ public class Inventory : MonoBehaviour
                         weapon.LevelUp();
                         break;
                     }
+                    ++idx;
                 }
             }
             else

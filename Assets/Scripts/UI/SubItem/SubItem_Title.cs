@@ -52,13 +52,11 @@ public class SubItem_Title : UI_SubItem
     protected override void Init()
     {
         base.Init();
-        //Manager.UI.SetCanvas(gameObject, false);
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
 
         CurrentButton = _currentButton;
-        Debug.Log(_currentButton.ToString());
         foreach (Buttons buttonIdx in Enum.GetValues(typeof(Buttons)))
         {
             Button button = GetButton((int)buttonIdx);
@@ -69,26 +67,35 @@ public class SubItem_Title : UI_SubItem
 
     protected void OnEnterButton(PointerEventData data)
     {
-        Debug.Log(Enum.Parse<Buttons>(data.pointerEnter.name));
         Buttons nextButton = Enum.Parse<Buttons>(data.pointerEnter.name);
         CurrentButton = nextButton;
     }
 
     protected void OnClickButton(PointerEventData data)
     {
-        UnityEngine.Debug.Log("클릭");
+        Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
+        switch(button) 
+        { 
+            case Buttons.PlayButton:
+                Manager.UI.ClosePopupUI();
+                Manager.UI.ShowPopup<Popup_Select>();
+                break;
+            case Buttons.ShopButton: break;
+            case Buttons.ReaderBoardButton: break;
+            case Buttons.SettingsButton: break;
+            case Buttons.CreditsButton: break;
+            case Buttons.QuitButton: break;
+        }
     }
 
     protected void SetButtonNormal(Buttons button)
     {
-        Debug.Log("노멀" + button.ToString());
         GetText((int)button).color = Color.white;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_0");
     }
 
     protected void SetButtonHighlighted(Buttons button)
     {
-        Debug.Log("하이라이트" + button.ToString());
         GetText((int)button).color = Color.black;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_1");
     }

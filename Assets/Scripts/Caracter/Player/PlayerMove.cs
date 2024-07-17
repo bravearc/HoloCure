@@ -21,7 +21,7 @@ public class Player_Move : MonoBehaviour
     {
         playerRbody = GetComponent<Rigidbody2D>();
         _pointer = transform.Find("Target");
-        _atPoint = transform.Find("ATPoint");
+        _atPoint = transform.Find("EnemySpawnPoints");
         _points = new Transform[_atPoint.childCount];
         for(int i = 0; i < 8; i++)
         {

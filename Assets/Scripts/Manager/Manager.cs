@@ -34,7 +34,6 @@ public class Manager : MonoBehaviour
         go.transform.parent = transform;
         Sound = Utils.GetOrAddComponent<SoundManager>(go);
         
-
         go = new GameObject(nameof(SpawnManager));
         go.transform.parent = transform;
         Spawn = Utils.GetOrAddComponent<SpawnManager>(go);
@@ -52,6 +51,8 @@ public class Manager : MonoBehaviour
         UI = Utils.GetOrAddComponent<UIManager>(go);
 
         Asset.Init();
-
+        //Sound.Init();
+        Game.Init();
     }
+
 }

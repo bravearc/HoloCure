@@ -7,7 +7,7 @@ public class UI_Popup : UI_Base
     protected override void Init()
     {
         base.Init();
-        Manager.UI.SetCanvas(gameObject);
+        Manager.UI.SetCanvas(gameObject, true);
         //Time.timeScale = 0;
         //Manager.Sound.SoundScale(Define.Sound.BGM, 0.5f);
     }
