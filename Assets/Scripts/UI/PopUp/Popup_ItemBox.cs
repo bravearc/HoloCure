@@ -122,7 +122,7 @@ public class Popup_ItemBox : UI_Popup
             GetText((int)Texts.TypeText).text = ">> Weapon";
             GetImage((int)Images.GetItemImage0).sprite = Manager.Asset.LoadSprite(data.Name);
             GetImage((int)Images.GetItemImage1).sprite = Manager.Asset.LoadSprite(data.Name);
-            GetImage((int)Images.TypeImage).sprite = Manager.Asset.LoadSprite(data.Type.ToString());
+            GetImage((int)Images.TypeImage).sprite = Manager.Asset.LoadSprite(data.WeaponType.ToString());
             GetImage((int)Images.ItemFrameImage).sprite = Manager.Asset.LoadSprite("Weapon_Frame");
             GetText((int)Texts.NewText).text = newtext;
         }

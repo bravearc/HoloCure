@@ -53,12 +53,14 @@ public enum ItemID
 }
 public enum ItemType
 {
+    StartingWeapon,
     Weapon,
     Equipment,
     Stat
 }
 public enum WeaponType
 {
+    None,
     Melee,
     Ranged,
     Multishot
@@ -80,11 +82,12 @@ public class WeaponData
     public float Quantity { get; set; }
     public float Speed { get; set; }
     public float AttackRange { get; set; }
+    public float AttackCycle { get; set; }
     public float Size { get; set; }
     public int Knockback { get; set; }
     public int MaxLevel { get; set; }
     public string Explanation { get; set; }
-    public WeaponType Type { get; set; }
+    public WeaponType WeaponType { get; set; }
     public string KORNAME { get; set; }
 }
 public class ItemData
@@ -92,7 +95,8 @@ public class ItemData
     public ItemID ID { get; set; }
     public string Name { get; set; }
     public ItemType Type { get; set; }
-    public string IconIamge { get; set; }
+    public string IconImage { get; set; }
+    public string KOR { get; set; }
 }
 
 public class StatsData

@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
         Pickup.Value = _characterData.Pickup;
         Haste.Value = _characterData.Haste;
         Level.Value = 1;
-        MaxExp.Value = Manager.Data.Exp[(ExpID)Level.Value].Exp;
+        //MaxExp.Value = Manager.Data.Exp[(ExpID)Level.Value].Exp;
 
     }
     public void GetStats(ItemID id, int value)

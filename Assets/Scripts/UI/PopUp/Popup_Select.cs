@@ -55,11 +55,11 @@ public class Popup_Select : UI_Popup
 
     void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.Confirm))
+        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
         {
 
         }
-        else if (Input.GetButtonDown(Define.KeyCode.Cencel))
+        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
         {
 
         }
@@ -83,23 +83,27 @@ public class Popup_Select : UI_Popup
 
     void UpdateUI_View(CharacterID id)
     {
+        ++id;
+
         GetAnimator((int)Animators.Popup_Select).SetTrigger(Define.AniTrigger.PointerMove);
-    //    SelectData data = Manager.Data.Select[id];
+        SelectData data = Manager.Data.Select[id];
 
-    //    GetText((int)Texts.NameText).text = data.Name;
-    //    GetText((int)Texts.HPText).text = data.HP.ToString();
-    //    GetText((int)Texts.ATKText).text = data.Attack.ToString();
-    //    GetText((int)Texts.SPDText).text = data.Speed.ToString();
-    //    GetText((int)Texts.CRTText).text = data.Critical.ToString();
-        
-    //    GetAnimation((int)Animations.CharacterAni).clip = Manager.Asset.LoadAniClip(data.AniClip);
-    //    GetImage((int)Images.CharacterBGImage).sprite = Manager.Asset.LoadSprite(data.Idol_Icon);
+        GetText((int)Texts.NameText).text = data.Name;
+        GetText((int)Texts.HPText).text = data.Hp.ToString();
+        GetText((int)Texts.ATKText).text = data.Attack.ToString();
+        GetText((int)Texts.SPDText).text = data.Speed.ToString();
+        GetText((int)Texts.CRTText).text = data.Critical.ToString();
+      
+        GetAnimation((int)Animations.CharacterAni).clip = Manager.Asset.LoadAniClip(data.AniClip);
+        CharacterData character = Manager.Data.Character[id];
+        GetImage((int)Images.CharacterBGImage).sprite = Manager.Asset.LoadSprite(character.Sprite_Icon);
 
-    //    GetText((int)Texts.WeaponNameText).text = data.AttackName;
-    //    GetText((int)Texts.WeaponDescriptionText).text = data.AttackDescription;
-        
-    //    GetText((int)Texts.SkillNameText).text = data.SpecialName;
-    //    GetText((int)Texts.SkillDescriptionText).text = data.SpecialDescription;
+        GetText((int)Texts.SkillNameText).text = data.SpecialName;
+        GetText((int)Texts.SkillDescriptionText).text = data.SpecialDescription;
+
+        WeaponData weapon = Manager.Data.Weapon[(ItemID)character.NormalWeapon][1];
+        GetText((int)Texts.WeaponNameText).text = weapon.Name;
+        GetText((int)Texts.WeaponDescriptionText).text = weapon.Explanation;
     }
 
     void SetAnimation(SelectData data)

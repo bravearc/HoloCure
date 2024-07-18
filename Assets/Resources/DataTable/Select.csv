@@ -1,0 +1,30 @@
+ID,Name,StartingWeaponID,Hp,Attack,Speed,Critical,SpecialDescription,SpecialName,AniClip
+1,Watson Amelia,1101,75,1.3,1.35,10,Watson Amelia,Watson Amelia,null
+2,Gawr Gura,1102,65,1.1,1.4,5,Gawr Gura,Gawr Gura,null
+3,Ninomae Inanis,1103,75,0.9,1.5,1,Ninomae Inanis,Ninomae Inanis,null
+4,Takanashi Kiara,1104,90,1,1.4,5,Takanashi Kiara,Takanashi Kiara,null
+5,Mori Calliope,1105,70,1.15,1.3,10,Mori Calliope,Mori Calliope,null
+6,Hakos Baelz,1106,60,1.1,1.6,10,Hakos Baelz,Hakos Baelz,null
+7,Ouro Kronii,1107,70,1.2,1.35,3,Ouro Kronii,Ouro Kronii,null
+8,Ceres Fauna,1108,65,1,1.3,3,Ceres Fauna,Ceres Fauna,null
+9,Nanashi Mumei,1109,70,0.8,1.4,5,Nanashi Mumei,Nanashi Mumei,null
+10,Tsukumo Sana,1110,80,0.8,1.3,1,Tsukumo Sana,Tsukumo Sana,null
+11,IRyS,1111,55,1.1,1.5,5,IRyS,IRyS,null
+12,Shirakami Fubuki,1112,55,1,1.5,5,Shirakami Fubuki,Shirakami Fubuki,null
+13,Ookami Mio,1113,70,85,1.4,1,Ookami Mio,Ookami Mio,null
+14,Nekomata Okayu,1114,60,0.9,1.4,5,Nekomata Okayu,Nekomata Okayu,null
+15,Inugami Korone,1115,60,1.2,1.4,1,Inugami Korone,Inugami Korone,null
+16,Tokino Sora,1116,65,1,1.4,3,Tokino Sora,Tokino Sora,null
+17,AZKi,1117,75,1.1,1.35,3,AZKi,AZKi,null
+18,RobocoSan,1118,75,1,1.4,5,RobocoSan,RobocoSan,null
+19,Hoshimachi Suisei,1119,70,1.3,1.3,10,Hoshimachi Suisei,Hoshimachi Suisei,null
+20,Sakura Miko,1120,60,0.9,1.4,1,Sakura Miko,Sakura Miko,null
+21,Akai Haato,1121,55,0.9,1.45,5,Akai Haato,Akai Haato,null
+22,Yozora Mel,1122,75,1.1,1.4,2,Yozora Mel,Yozora Mel,null
+23,Natsuiro Matsuri,1123,60,1.2,1.45,1,Natsuiro Matsuri,Natsuiro Matsuri,null
+24,Aki Rosenthal,1124,80,1.1,1.5,1,Aki Rosenthal,Aki Rosenthal,null
+25,Oozora Subaru,1125,60,1.1,1.5,5,Oozora Subaru,Oozora Subaru,null
+26,Yuzuki Choco,1126,65,1.1,1.4,10,Yuzuki Choco,Yuzuki Choco,null
+27,Murasaki Shion,1127,50,1.3,1.35,5,Murasaki Shion,Murasaki Shion,null
+28,Nakiri Ayame,1128,60,1.3,1.3,10,Nakiri Ayame,Nakiri Ayame,null
+29,Minato Aqua,1129,45,1.2,1.4,10,Minato Aqua,Minato Aqua,null

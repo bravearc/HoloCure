@@ -4,13 +4,17 @@ public enum CharacterID
 }
 public enum CharacterType
 {
-
+    MYTH,
+    COUNCIL,
+    Gamers,
+    JP0,
+    JP1,
+    JP2
 }
 public class CharacterData
 {
     public CharacterID ID { get; set; }
     public string Name { get; set; }
-    public int MaxHp { get; set; }
     public int Hp { get; set; }
     public float Attack { get; set; }
     public float Speed { get; set; }

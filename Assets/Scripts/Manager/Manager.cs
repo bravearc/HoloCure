@@ -51,6 +51,7 @@ public class Manager : MonoBehaviour
         UI = Utils.GetOrAddComponent<UIManager>(go);
 
         Asset.Init();
+        Data.Init();
         //Sound.Init();
         Game.Init();
     }

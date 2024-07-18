@@ -3,6 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UniRx.Triggers;
 
 public class SubItem_ChooseMode : UI_SubItem
 {
@@ -35,7 +36,7 @@ public class SubItem_ChooseMode : UI_SubItem
             _currentButton = value;
         }
     }
-    Popup_Select _Select;
+    Popup_Select _select;
     protected override void Init()
     {
         base.Init();
@@ -44,7 +45,7 @@ public class SubItem_ChooseMode : UI_SubItem
         BindObject(typeof(Objects));
         BindAnimator(typeof(Animators));
 
-        _Select = transform.parent.GetComponent<Popup_Select>();
+        _select = transform.parent.GetComponent<Popup_Select>();
 
         for (int idx = 0; idx < Enum.GetValues(typeof(Buttons)).Length; idx++) 
         {
@@ -52,6 +53,25 @@ public class SubItem_ChooseMode : UI_SubItem
             button.BindEvent(OnEnterButton, Define.UIEvent.Enter, this);
             button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
         }
+
+        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
+    }
+    private void OnPressKey()
+    {
+        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        {
+
+        }
+        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        {
+            ProcessCancel();
+        }
+    }
+
+    private void ProcessCancel()
+    {
+        base.CloseSubItem();
+        Manager.UI.MakeSubItem<SubItem_SelectIdol>(_select.transform);
     }
 
     void OnEnterButton(PointerEventData data)
@@ -88,7 +108,7 @@ public class SubItem_ChooseMode : UI_SubItem
                 Manager.Game.SetStageMode(false); break;
         }
 
-        _Select.ShowStage();
+        _select.ShowStage();
         base.CloseSubItem();
     }
 }

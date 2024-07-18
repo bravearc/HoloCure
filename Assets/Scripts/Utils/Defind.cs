@@ -50,9 +50,9 @@ public static class Define
     }
     public class KeyCode
     {
-        public const string Vertical = "Vertical";
-        public const string Confirm = "Confirm";
-        public const string Cencel = "Cancel";
+        public const string VERTICAL = "Vertical";
+        public const string CONFIRM = "Confirm";
+        public const string CANCEL = "Cancel";
     }
 
     public class AniTrigger

@@ -1,7 +1,9 @@
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using UniRx.Triggers;
+using UniRx;
+using UnityEngine;
 
 public class SubItem_ChooseStage : UI_SubItem
 {
@@ -29,10 +31,16 @@ public class SubItem_ChooseStage : UI_SubItem
     }
 
     #endregion
+
+    Popup_Select _select;
+
     int _nextStage = 1;
+    bool _isGoButtonSet;
     protected override void Init()
     {
         base.Init();
+
+        _select = transform.parent.GetComponent<Popup_Select>();
 
         BindButton(typeof(Buttons));
         BindImage(typeof(Images));
@@ -46,6 +54,32 @@ public class SubItem_ChooseStage : UI_SubItem
         }
 
         GetObject((int)Objects.Go).gameObject.SetActive(false);
+
+        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
+    }
+    private void OnPressKey()
+    {
+        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        {
+
+        }
+        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        {
+            ProcessCancel();
+        }
+    }
+    private void ProcessCancel()
+    {
+        if (_isGoButtonSet)
+        {
+            GetObject((int)Objects.Go).SetActive(false);
+            _isGoButtonSet = false;
+        }
+        else
+        {
+            base.CloseSubItem();
+            Manager.UI.MakeSubItem<SubItem_ChooseMode>(_select.transform);
+        }
     }
 
     void OnClickButton(PointerEventData data)
@@ -63,6 +97,7 @@ public class SubItem_ChooseStage : UI_SubItem
                 base.CloseSubItem();
                 break;
             case Buttons.StageButton:
+                _isGoButtonSet = true;
                 GetObject((int)Objects.Go).gameObject.SetActive(true);
                 break;
         }
@@ -91,9 +126,13 @@ public class SubItem_ChooseStage : UI_SubItem
         {
             _nextStage = 3;
         }
+        else if (_nextStage > 3) 
+        { 
+            _nextStage = 1;
+        }
 
         GetImage((int)Images.StageButton).sprite = Manager.Asset.LoadSprite($"spr_Stage{_nextStage}Port_0");
-        GetText((int)Texts.StageNameText).text = Manager.Data.Stage[_nextStage].Name;
-        GetText((int)Texts.HoloCoinText).text = _nextStage.ToString();
+        GetText((int)Texts.StageNameText).text = Manager.Data.Stage[_nextStage - 1].Name;
+        GetText((int)Texts.HoloCoinText).text = $"x {_nextStage.ToString()}";
     }
 }

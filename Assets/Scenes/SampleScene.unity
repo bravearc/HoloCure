@@ -1087,6 +1087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Popup_Paused
       objectReference: {fileID: 0}
+    - target: {fileID: 1372137591109061877, guid: 2ecfeefde6a2641428415dfd3788275a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1850,6 +1854,10 @@ PrefabInstance:
     - target: {fileID: 5145245807929967864, guid: 36bc51e07e36bd842a928d4c15f113fe, type: 3}
       propertyPath: m_Name
       value: SubItem_Stats
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145245807929967864, guid: 36bc51e07e36bd842a928d4c15f113fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

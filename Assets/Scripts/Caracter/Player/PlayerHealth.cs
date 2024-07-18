@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public void StatInit(CharacterData data)
     {
         Hp = data.Hp;
-        MaxHp = data.MaxHp;
+        MaxHp = data.Hp;
         Attack = data.Attack;
         Speed = data.Speed;
         Criticial = data.Criticial;

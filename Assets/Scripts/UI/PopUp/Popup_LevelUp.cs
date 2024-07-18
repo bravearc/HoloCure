@@ -135,7 +135,7 @@ public class Popup_LevelUp : UI_Popup
         WeaponData data = Manager.Data.Weapon[id][nextLevel];
         string name = data.Name;
         string Exp = data.Explanation;
-        string type = data.Type.ToString();
+        string type = data.WeaponType.ToString();
         string icon = data.Name;
         bool active = item != null;
         string typeText = Manager.Data.Item[id].Type.ToString();

@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -67,7 +68,7 @@ public class SubItem_SelectIdol : UI_SubItem
         base.Init();
         BindButton(typeof(Buttons));
         BindObject(typeof(Objects));
-
+        ID.Value = (CharacterID)1;
         _select = transform.parent.GetComponent<Popup_Select>();
 
         for (int idx = 0; idx < Enum.GetValues(typeof(Buttons)).Length; idx++) 
@@ -77,8 +78,21 @@ public class SubItem_SelectIdol : UI_SubItem
             button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
         }
         CurrentButton = _currentButton;
+
+        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
     }
 
+    private void OnPressKey()
+    {
+        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        {
+
+        }
+        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        {
+            ProcessCancel();
+        }
+    }
     private void OnEnterButton(PointerEventData data)
     {
         Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
@@ -107,5 +121,11 @@ public class SubItem_SelectIdol : UI_SubItem
         Manager.Game.SetCharacterID(ID.Value);
         _select.ShowMode();
         base.CloseSubItem();
+    }
+
+    private void ProcessCancel()
+    {
+        Manager.UI.CloseALLPopupUI();
+        Manager.UI.ShowPopup<Popup_Title>();
     }
 }
