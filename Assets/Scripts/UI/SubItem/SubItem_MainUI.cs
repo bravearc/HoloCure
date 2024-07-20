@@ -67,10 +67,13 @@ public class SubItem_MainUI : UI_SubItem
         SetArray(_equipments, 12);
         SetArray(_equipmentLevels, 18);
 
+        string icon = Manager.Game.GetCharacterData().Sprite;
         GetImage((int)Images.CharacterImage).sprite = 
-            Manager.Asset.LoadSprite(Manager.Game.GetCharacterData().Sprite_Icon);
+            Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
+        //GetImage((int)Images.SpecialImage).sprite =
+        //    Manager.Asset.LoadSprite($"spr_{icon}_Special_0");
         GetImage((int)Images.SpecialImage).sprite =
-            Manager.Asset.LoadSprite(Manager.Game.GetCharacterData().Sprite_Special);
+            Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
 
         _inventory = Manager.Game.Inventory;
         _character = Manager.Game.Character;

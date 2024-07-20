@@ -24,25 +24,25 @@ ID,Name,Type,IconImage,KOR
 1108,,StartingWeapon,spr_FaunaWeapon_0,CeresFauna
 1109,Bird Feather,StartingWeapon,spr_MumeiWeapon_0,NanashiMumei
 1110,Orbit,StartingWeapon,spr_SanaWeapon_0,TsukumoSana
-1111,null,StartingWeapon,ui_empty_slot_item_0,IRyS
+1111,  ,StartingWeapon,ui_empty_slot_item_0,IRyS
 1112,Fox Tail,StartingWeapon,spr_FubukiWeapon_0,ShirakamiFubuki
 1113,Tarot Cards,StartingWeapon,spr_MioWeapon_0,OokamiMio
-1114,null,StartingWeapon,spr_OkayuWeapon_0,NekomataOkayu
+1114,  ,StartingWeapon,spr_OkayuWeapon_0,NekomataOkayu
 1115,Orayo,StartingWeapon,spr_KoroneWeapon_0,InugamiKorone
 1116,Bright,StartingWeapon,spr_SoraWeapon_0,TokinoSora
 1117,Diva Song,StartingWeapon,spr_AZKiWeapon_0,AZKi
 1118,High Spec Pistol,StartingWeapon,spr_RobocoWeapon_0,RobocoSan
 1119,Axe Swing,StartingWeapon,spr_SuiseiWeapon_0,HoshimachiSuisei
-1120,null,StartingWeapon,spr_MikoWeapon_0,SakuraMiko
+1120,  ,StartingWeapon,spr_MikoWeapon_0,SakuraMiko
 1121,Red Heart,StartingWeapon,spr_HaatoWeapon_0,AkaiHaato
 1122,Kapu Kapu,StartingWeapon,spr_MelWeapon_0,YozoraMel
-1123,null,StartingWeapon,spr_MatsuriWeapon_0,NatsuiroMatsuri
-1124,null,StartingWeapon,ui_empty_slot_item_0,AkiRosenthal
+1123,  ,StartingWeapon,spr_MatsuriWeapon_0,NatsuiroMatsuri
+1124,  ,StartingWeapon,ui_empty_slot_item_0,AkiRosenthal
 1125,Baseball Pitch,StartingWeapon,spr_SubaruWeapon_0,OozoraSubaru
 1126,Love Needle,StartingWeapon,spr_ChocoWeapon_0,YuzukiChoco
 1127,Murasaki Bolt,StartingWeapon,spr_ShionWeapon_0,MurasakiShion
 1128,Dual Katana,StartingWeapon,spr_AyameWeapon_0,NakiriAyame
-1129,null,StartingWeapon,spr_AquaWeapon_0,MinatoAqua
+1129,  ,StartingWeapon,spr_AquaWeapon_0,MinatoAqua
 2001,NinjaHeadband,Equipment,ui_empty_slot_item_0,닌자의 머리
 2002,HopeSoda,Equipment,ui_empty_slot_item_0,호프소다
 2003,Sake,Equipment,ui_empty_slot_item_0,술

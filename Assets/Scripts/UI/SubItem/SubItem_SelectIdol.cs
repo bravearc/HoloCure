@@ -60,15 +60,16 @@ public class SubItem_SelectIdol : UI_SubItem
             _currentButton = value;
         }
     }
-    Popup_Select _select;
     public ReactiveProperty<CharacterID> ID = new();
+    
+    Popup_Select _select;
+    const int _randomButton = 29;
 
     protected override void Init()
     {
         base.Init();
         BindButton(typeof(Buttons));
         BindObject(typeof(Objects));
-        ID.Value = (CharacterID)1;
         _select = transform.parent.GetComponent<Popup_Select>();
 
         for (int idx = 0; idx < Enum.GetValues(typeof(Buttons)).Length; idx++) 
@@ -79,6 +80,7 @@ public class SubItem_SelectIdol : UI_SubItem
         }
         CurrentButton = _currentButton;
 
+        ID.Value = (CharacterID)1;
         this.UpdateAsObservable().Subscribe(_ => OnPressKey());
     }
 
@@ -111,8 +113,8 @@ public class SubItem_SelectIdol : UI_SubItem
 
         Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_pointerRect.parent as RectTransform, buttonRect.position, null, out localPoint);
-
         _pointerRect.anchoredPosition = localPoint;
+
         ID.Value = (CharacterID)button + 1;
     }
 
@@ -128,4 +130,5 @@ public class SubItem_SelectIdol : UI_SubItem
         Manager.UI.CloseALLPopupUI();
         Manager.UI.ShowPopup<Popup_Title>();
     }
+
 }

@@ -1,30 +1,32 @@
-ID,Name,StartingWeaponID,Hp,Attack,Speed,Critical,SpecialDescription,SpecialName,AniClip
-1,Watson Amelia,1101,75,1.3,1.35,10,Watson Amelia,Watson Amelia,null
-2,Gawr Gura,1102,65,1.1,1.4,5,Gawr Gura,Gawr Gura,null
-3,Ninomae Inanis,1103,75,0.9,1.5,1,Ninomae Inanis,Ninomae Inanis,null
-4,Takanashi Kiara,1104,90,1,1.4,5,Takanashi Kiara,Takanashi Kiara,null
-5,Mori Calliope,1105,70,1.15,1.3,10,Mori Calliope,Mori Calliope,null
-6,Hakos Baelz,1106,60,1.1,1.6,10,Hakos Baelz,Hakos Baelz,null
-7,Ouro Kronii,1107,70,1.2,1.35,3,Ouro Kronii,Ouro Kronii,null
-8,Ceres Fauna,1108,65,1,1.3,3,Ceres Fauna,Ceres Fauna,null
-9,Nanashi Mumei,1109,70,0.8,1.4,5,Nanashi Mumei,Nanashi Mumei,null
-10,Tsukumo Sana,1110,80,0.8,1.3,1,Tsukumo Sana,Tsukumo Sana,null
-11,IRyS,1111,55,1.1,1.5,5,IRyS,IRyS,null
-12,Shirakami Fubuki,1112,55,1,1.5,5,Shirakami Fubuki,Shirakami Fubuki,null
-13,Ookami Mio,1113,70,85,1.4,1,Ookami Mio,Ookami Mio,null
-14,Nekomata Okayu,1114,60,0.9,1.4,5,Nekomata Okayu,Nekomata Okayu,null
-15,Inugami Korone,1115,60,1.2,1.4,1,Inugami Korone,Inugami Korone,null
-16,Tokino Sora,1116,65,1,1.4,3,Tokino Sora,Tokino Sora,null
-17,AZKi,1117,75,1.1,1.35,3,AZKi,AZKi,null
-18,RobocoSan,1118,75,1,1.4,5,RobocoSan,RobocoSan,null
-19,Hoshimachi Suisei,1119,70,1.3,1.3,10,Hoshimachi Suisei,Hoshimachi Suisei,null
-20,Sakura Miko,1120,60,0.9,1.4,1,Sakura Miko,Sakura Miko,null
-21,Akai Haato,1121,55,0.9,1.45,5,Akai Haato,Akai Haato,null
-22,Yozora Mel,1122,75,1.1,1.4,2,Yozora Mel,Yozora Mel,null
-23,Natsuiro Matsuri,1123,60,1.2,1.45,1,Natsuiro Matsuri,Natsuiro Matsuri,null
-24,Aki Rosenthal,1124,80,1.1,1.5,1,Aki Rosenthal,Aki Rosenthal,null
-25,Oozora Subaru,1125,60,1.1,1.5,5,Oozora Subaru,Oozora Subaru,null
-26,Yuzuki Choco,1126,65,1.1,1.4,10,Yuzuki Choco,Yuzuki Choco,null
-27,Murasaki Shion,1127,50,1.3,1.35,5,Murasaki Shion,Murasaki Shion,null
-28,Nakiri Ayame,1128,60,1.3,1.3,10,Nakiri Ayame,Nakiri Ayame,null
-29,Minato Aqua,1129,45,1.2,1.4,10,Minato Aqua,Minato Aqua,null
+ID,Name,Hp,Attack,Speed,Critical,SpecialDescription,SpecialName,Sprite,WeaponName,WeaponDescription
+1,Watson Amelia,75,1.3,1.35,10,The movement of all enemies is slowed by 80% for 10 seconds and the attack speed of the pistol shot is increased by 50%.,Slow Time,Ame,Pistol Shot,Shoots 3 Projectiles forward.
+2,Gawr Gura,65,1.1,1.4,5,"Summon the shark and cause 500% damage to the range, and the gura turns red for 15 seconds, increasing attack power by 50% and movement speed by 25%.",Gawr Gura,Gura,Trident Thrust,Mid ranged stab attack in front.
+3,Ninomae Inanis,75,0.9,1.5,1,"Summon eight tentacles around the na, then rotate quickly to inflict 150% damage and a knockback on the touched enemies.",Ninomae Inanis,Ina,Summon Tentacle,A tentacle shoots out in front
+4,Takanashi Kiara,90,1,1.4,5,"It causes a series of explosions around the Kiara that cause 600% damage, leaving a circular flame that causes 50% lasting damage. The flame lasts 10 seconds. In addition, it gets a buff of a phoenix for 15 seconds, consumes the buff when the HP reaches zero, and recovers the HP by 100%.
+",Takanashi Kiara,Kiara,Phoenix Sword,Short ranged slash in front.
+5,Mori Calliope,70,1.15,1.3,10,"Buff yourself for 15 seconds, increasing Nat's damage by 300% and increasing all critical damage to 300%.",Mori Calliope,Calli,Scythe Swing,Swings in a half circle arc in front.
+6,Hakos Baelz,60,1.1,1.6,10,All weapons held for 5 seconds are fired without cool time.,Hakos Baelz,Bae,Play Dice,  
+7,Ouro Kronii,70,1.2,1.35,3,"It emits a time wave that grows stronger every second, stopping all enemies except the main boss class enemy during activation.",Ouro Kronii,Kronii,Clock Hands,Stab forward with a large clock hand.
+8,Ceres Fauna,65,1,1.3,3,"Summoning a huge world number to create a recovery zone. Within the realm, Fauna becomes invincible for 10 seconds.",Ceres Fauna,Fauna,,  
+9,Nanashi Mumei,70,0.8,1.4,5,"Drop all enemies except the boss. In the next 10 seconds, each enemy that is knocked down with this special increases attack speed by 1%.",Nanashi Mumei,Mumei,Bird Feather,Shoot a bunch of feathers at a spread. Pierces through targets.
+10,Tsukumo Sana,80,0.8,1.3,1,"Giant for 10 seconds. During the giantization, Sana is invincible and does 200% damage to all enemies she comes into contact with. Pulls all the experience values on the screen when they expire.",Tsukumo Sana,Sana,Orbit,Create an orbiting planet. Hits multiple targets.
+11,  ,55,1.1,1.5,5,  ,  ,Default,,  
+12,Shirakami Fubuki,55,1,1.5,5,"Summon dozens of katanas and attack them horizontally for five seconds. During the special attack, Hubuki's avoidance rate increases to 100%.",Shirakami Fubuki,Fubuki,Fox Tail,Swipes Tail in front at close range
+13,Ookami Mio,70,85,1.4,1,Summon the Hattothaurus and punch a punch rush forward for 6 seconds. Mio gets 30% damage reduction while the special lasts.,Ookami Mio,Mio,Tarot Cards,Throw a card that quickly returns back.
+14,Nekomata Okayu,60,0.9,1.4,5,"Okayu becomes invincible for 6 seconds and the speed increases by 50%. If you touch an enemy except the boss, you will eat the enemy and recover 5% of your physical strength.",Nekomata Okayu,Okayu,,  
+15,Inugami Korone,60,1.2,1.4,1,summon huge fingers and explosives.The removed enemies are taken.,Inugami Korone,Korone,Orayo,Punch towards the front.
+16,Tokino Sora,65,1,1.4,3,"By spreading out the wings of idols, they gain 50% of attack power and physical recovery in 10 seconds. With a 50% chance, they recover 10% of the damage inflicted by the angel's wings.",Tokino Sora,Sora,Bright,Shoot forward a spinning star.
+17,AZKi,75,1.1,1.35,3,Light the stage lights in a circle for 6 seconds to attack the surrounding enemy.,AZKi,AZKi,Diva Song,Send a flying music note in front.
+18,RobocoSan,75,1,1.4,5,"It emits electricity around a short period of time and gives 300 percent damage. Roboco's attack power, speed, and item pickup range increase by 100 percent in eight seconds, and critical probability and attack speed increase by 50 percent.",RobocoSan,Roboco,High Spec Pistol,Shoots a few times in aimed direction.
+19,Hoshimachi Suisei,70,1.3,1.3,10,Drop the Tetris block for five seconds to give 300 percent damage each. The enemy that hits the mark becomes flat and cannot move for five seconds.,Hoshimachi Suisei,Suisei,Axe Swing,Swing a bloody axe in an arc in front.
+20,Sakura Miko,60,0.9,1.4,1,Summon a large area of fire around Mikko for 8 seconds. The enemy in the area receives 50% more damage.,Sakura Miko,Miko,,  
+21,Akai Haato,55,0.9,1.45,5,It fires waves that blow away all enemies and does 300% damage. Replace character with Hato/Hajama.,Akai Haato,Haato,Red Heart,Create big red hearts. Hearts knock enemies back.
+22,Yozora Mel,75,1.1,1.4,2,"Mel is vanned for four seconds. Every object freezes, and the object around Mel, except for the boss, is vanned by its presence.
+A mosaic is attached to the character and a large prohibited icon appears around it, where the surrounding enemies cannot move and the miscellaneous mob that reaches the icon range dies instantly.",Yozora Mel,Mel,Kapu Kapu,Bite targets in front
+23,Natsuiro Matsuri,60,1.2,1.45,1,"Call the north of the festival.If you press the special key key key key, create a powerful device.",Natsuiro Matsuri,Matsuri,,  
+24,,80,1.1,1.5,1,  ,  ,Default,,  
+25,Oozora Subaru,60,1.1,1.5,5,"Screaming very loudly forward, pushing out the enemy and doing 500% damage, knocking out all of the hit enemies for 5 seconds.",Oozora Subaru,Subaru,Baseball Pitch,Throws a very fast baseball in front.
+26,Yuzuki Choco,65,1.1,1.4,10,"With a 30% reduction in all enemies' damage and defense, and a 40% chance of being close to Choco, they are on Choco's side for 8 seconds and fight together.",Yuzuki Choco,Choco,Love Needle,Thrust a giant needle in front.
+27,Murasaki Shion,50,1.3,1.35,5,"Jump high into the sky and become invincible for 3 seconds. After 3 seconds, it falls to the ground and inflicts 1000% of damage on surrounding enemies.",Murasaki Shion,Shion,Murasaki Bolt,Fires a quick magic bolt in front.
+28,Nakiri Ayame,60,1.3,1.3,10,"The attack speed of this stream increases by 200%. Four seconds after activation, the horn cuts the screen and inflicts 1000% of damage on the entire enemy.",Nakiri Ayame,Ayame,Dual Katana,Slashes twice in front.
+29,Minato Aqua,45,1.2,1.4,10,"Summon a huge Neco running in the aimed direction. When you run into an enemy, 300% damage is applied and knocked back.",Minato Aqua,Aqua,,  

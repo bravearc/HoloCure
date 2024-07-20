@@ -1,30 +1,30 @@
-ID,Name,Hp,Attack,Speed,Criticial,Special,Pickup,Haste,NormalWeapon,Type,Sprite_Icon,Sprite_Special,Unlock
-1,WatsonAmelia,75,1.3,1.35,10,Slow Time,50,0,1101,MYTH,spr_Ame_portrait_0,spr_RobocoWeapon_0,0
-2,GawrGura,65,1.1,1.4,5,Shark Call,50,0,1102,MYTH,spr_Gura_portrait_0,spr_RobocoWeapon_0,1
-3,NinomaeInanis,75,0.9,1.5,1,Tako Spin,50,0,1103,MYTH,spr_InaPortrait_0,spr_RobocoWeapon_0,1
-4,TakanashiKiara,90,1,1.4,5,Phoenix Fire,50,0,1104,MYTH,spr_KiaraPortrait_0,spr_RobocoWeapon_0,1
-5,MoriCalliope,70,1.15,1.3,10,The Reaper,50,0,1105,MYTH,spr_Calli_portrait_0,spr_RobocoWeapon_0,1
-6,HakosBaelz,60,1.1,1.6,10,Absolute Chaos,50,0,1106,COUNCIL,spr_BaePortrait_0,spr_RobocoWeapon_0,1
-7,OuroKronii,70,1.2,1.35,3,Ruler of Time,50,0,1107,COUNCIL,spr_KroniiPortrait_0,spr_RobocoWeapon_0,1
-8,CeresFauna,65,1,1.3,3,Mother Nature,50,0,1108,COUNCIL,spr_FaunaPortrait_0,spr_RobocoWeapon_0,1
-9,NanashiMumei,70,0.8,1.4,5,True Horror,50,0,1109,COUNCIL,spr_MumeiPortrait_0,spr_RobocoWeapon_0,1
-10,TsukumoSana,80,0.8,1.3,1,Become Beeg,50,0,1110,COUNCIL,spr_SanaPortrait_0,spr_RobocoWeapon_0,1
-11,IRyS,55,1.1,1.5,5,Hope is Descending,50,0,1111,COUNCIL,spr_IRyS_portrait_0,spr_RobocoWeapon_0,1
-12,ShirakamiFubuki,55,1,1.5,5,Fubuki Storm ,50,0,1112,Gamers,spr_FubukiPortrait_0,spr_RobocoWeapon_0,1
-13,OokamiMio,70,85,1.4,1,Hatotaurus,50,0,1113,Gamers,spr_MioPortrait_0,spr_RobocoWeapon_0,1
-14,NekomataOkayu,60,0.9,1.4,5,Mogu Mogu,50,0,1114,Gamers,spr_OkayuPortrait_0,spr_RobocoWeapon_0,1
-15,InugamiKorone,60,1.2,1.4,1,Korone Brainwashing,50,0,1115,Gamers,spr_KoronePortrait_0,spr_RobocoWeapon_0,1
-16,TokinoSora,65,1,1.4,3,Idol Dream,50,0,1116,JP0,spr_MatsuriPortrait_0,spr_RobocoWeapon_0,1
-17,AZKi,75,1.1,1.35,3,Full Concert,50,0,1117,JP0,spr_AZKiPortrait_0,spr_RobocoWeapon_0,1
-18,RobocoSan,75,1,1.4,5,Hi-Spec Mode,50,0,1118,JP0,spr_RobocoPortrait_0,spr_RobocoWeapon_0,1
-19,HoshimachiSuisei,70,1.3,1.3,10,Summon Blocks,50,0,1119,JP0,spr_SuiseiPortrait_0,spr_RobocoWeapon_0,1
-20,SakuraMiko,60,0.9,1.4,1,Demon Lord's Domain,50,0,1120,JP0,spr_MikoPortrait_0,spr_RobocoWeapon_0,1
-21,AkaiHaato,55,0.9,1.45,5,Change of heart,50,0,1121,JP1,spr_HaatoPortrait_0,spr_RobocoWeapon_0,1
-22,YozoraMel,75,1.1,1.4,2,Banpire,50,0,1122,JP1,spr_MelPortrait_0,spr_RobocoWeapon_0,1
-23,NatsuiroMatsuri,60,1.2,1.45,1,WASS-OI,50,0,1123,JP1,spr_MatsuriPortrait_0,spr_RobocoWeapon_0,1
-24,AkiRosenthal,80,1.1,1.5,1,Shallys,50,0,1124,JP1,spr_Rosent_Port_0,spr_RobocoWeapon_0,1
-25,OozoraSubaru,60,1.1,1.5,5,Duck Shout,50,0,1125,JP2,spr_SubaruPortrait_0,spr_RobocoWeapon_0,1
-26,YuzukiChoco,65,1.1,1.4,10,S. Dynamite Body,50,0,1126,JP2,spr_ChocoPortrait_0,spr_RobocoWeapon_0,1
-27,MurasakiShion,50,1.3,1.35,5,KusogaKick,50,0,1127,JP2,spr_ShionPortrait_0,spr_RobocoWeapon_0,1
-28,NakiriAyame,60,1.3,1.3,10,Spirit of the Oni,50,0,1128,JP2,spr_AyamePort_0,spr_RobocoWeapon_0,1
-29,MinatoAqua,44,1.2,1.4,10,Neko ,50,0,1129,JP2,spr_AquaPort_0,spr_RobocoWeapon_0,1
+ID,Name,Hp,Attack,Speed,Criticial,Special,Pickup,Haste,StartingWeapon,Type,Sprite
+1,WatsonAmelia,75,1.3,1.35,10,Slow Time,50,0,1101,MYTH,Ame
+2,GawrGura,65,1.1,1.4,5,Shark Call,50,0,1102,MYTH,Gura
+3,NinomaeInanis,75,0.9,1.5,1,Tako Spin,50,0,1103,MYTH,Ina
+4,TakanashiKiara,90,1,1.4,5,Phoenix Fire,50,0,1104,MYTH,Kiara
+5,MoriCalliope,70,1.15,1.3,10,The Reaper,50,0,1105,MYTH,Calli
+6,HakosBaelz,60,1.1,1.6,10,Absolute Chaos,50,0,1106,COUNCIL,Bae
+7,OuroKronii,70,1.2,1.35,3,Ruler of Time,50,0,1107,COUNCIL,Kronii
+8,CeresFauna,65,1,1.3,3,Mother Nature,50,0,1108,COUNCIL,Fauna
+9,NanashiMumei,70,0.8,1.4,5,True Horror,50,0,1109,COUNCIL,Mumei
+10,TsukumoSana,80,0.8,1.3,1,Become Beeg,50,0,1110,COUNCIL,Sana
+11,IRyS,55,1.1,1.5,5,Hope is Descending,50,0,1111,COUNCIL,Default
+12,ShirakamiFubuki,55,1,1.5,5,Fubuki Storm ,50,0,1112,Gamers,Fubuki
+13,OokamiMio,70,85,1.4,1,Hatotaurus,50,0,1113,Gamers,Mio
+14,NekomataOkayu,60,0.9,1.4,5,Mogu Mogu,50,0,1114,Gamers,Okayu
+15,InugamiKorone,60,1.2,1.4,1,Korone Brainwashing,50,0,1115,Gamers,Korone
+16,TokinoSora,65,1,1.4,3,Idol Dream,50,0,1116,JP0,Sora
+17,AZKi,75,1.1,1.35,3,Full Concert,50,0,1117,JP0,AZKi
+18,RobocoSan,75,1,1.4,5,Hi-Spec Mode,50,0,1118,JP0,Roboco
+19,HoshimachiSuisei,70,1.3,1.3,10,Summon Blocks,50,0,1119,JP0,Suisei
+20,SakuraMiko,60,0.9,1.4,1,Demon Lord's Domain,50,0,1120,JP0,Miko
+21,AkaiHaato,55,0.9,1.45,5,Change of heart,50,0,1121,JP1,Haato
+22,YozoraMel,75,1.1,1.4,2,Banpire,50,0,1122,JP1,Mel
+23,NatsuiroMatsuri,60,1.2,1.45,1,WASS-OI,50,0,1123,JP1,Matsuri
+24,AkiRosenthal,80,1.1,1.5,1,Shallys,50,0,1124,JP1,Default
+25,OozoraSubaru,60,1.1,1.5,5,Duck Shout,50,0,1125,JP2,Subaru
+26,YuzukiChoco,65,1.1,1.4,10,S. Dynamite Body,50,0,1126,JP2,Choco
+27,MurasakiShion,50,1.3,1.35,5,KusogaKick,50,0,1127,JP2,Shion
+28,NakiriAyame,60,1.3,1.3,10,Spirit of the Oni,50,0,1128,JP2,Ayame
+29,MinatoAqua,45,1.2,1.4,10,Neko ,50,0,1129,JP2,Aqua

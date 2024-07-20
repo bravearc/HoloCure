@@ -29,7 +29,7 @@ public class SubItem_PlayUI : UI_SubItem
 
         BindImage(typeof(Images));
         BindText(typeof(Texts));
-        BindSlider(typeof(Texts));
+        BindSlider(typeof(Sliders));
 
         BindModelEvent(Manager.Game.ElapsedTime, UpdateUI_Timer, this);
         BindModelEvent(Manager.Game.EnemyCount, UpdateUI_EnemyCount, this);
@@ -46,9 +46,14 @@ public class SubItem_PlayUI : UI_SubItem
     }
     private void Set_UIImage()
     {
-        CharacterData data = Manager.Game.GetCharacterData();
-        GetImage((int)Images.CharacterImage).sprite = Manager.Asset.LoadSprite(data.Sprite_Icon);
-        GetImage((int)Images.SpecialImage).sprite = Manager.Asset.LoadSprite(data.Sprite_Special);
+        string icon = Manager.Game.GetCharacterData().Sprite;
+
+        GetImage((int)Images.CharacterImage).sprite =
+            Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
+        //GetImage((int)Images.SpecialImage).sprite =
+        //    Manager.Asset.LoadSprite($"spr_{icon}_Special_0");
+        GetImage((int)Images.SpecialImage).sprite =
+            Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
     }
     private void UpdateUI_MaxHpText(int maxHp)
     {

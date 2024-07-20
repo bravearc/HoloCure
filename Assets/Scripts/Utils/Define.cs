@@ -55,8 +55,14 @@ public static class Define
         public const string CANCEL = "Cancel";
     }
 
-    public class AniTrigger
+    public class Anim
     {
         public const string PointerMove = "PointerMove";
+
+        public const string Idol_UI_Run = "Idol_UI_Run";
+        public const string Idol_Play_Run = "Idol_Play_Run";
+        
+        public const string Anim_Idol = "Ani_Idle";
+        public const string Anim_run = "Ani_run";
     }
 }

@@ -1,12 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-public enum ExpID
+public class ExpData
 {
-    None
-}
-public class ExpData : MonoBehaviour
-{
-    public ExpID ID { get; set; }
+    public int ID { get; set; }
     public float Exp { get; set; }
 }

@@ -15,23 +15,28 @@ public class Character : MonoBehaviour
     public ReactiveProperty<float> MaxExp = new();
     public CharacterID CharacterID;
 
-    private CharacterData _characterData;
+    Rigidbody2D _rigidbody;
+
     public void Init()
     {
-        _characterData = Manager.Game.GetCharacterData();
+        Utils.GetOrAddComponent<IdolMove>(gameObject);
+        Utils.GetOrAddComponent<CursorControl>(gameObject);
+        Utils.GetOrAddComponent<IdolAnim>(gameObject);
+
         SetStats();
     }
-    private void SetStats()
+    void SetStats()
     {
-        MaxHp.Value = _characterData.Hp;
-        Hp.Value = _characterData.Hp;
-        Attack.Value = _characterData.Attack;
-        Speed.Value = _characterData.Speed;
-        Criticial.Value = _characterData.Criticial;
-        Pickup.Value = _characterData.Pickup;
-        Haste.Value = _characterData.Haste;
+        CharacterData data = Manager.Game.GetCharacterData();
+        MaxHp.Value = data.Hp;
+        Hp.Value = data.Hp;
+        Attack.Value = data.Attack;
+        Speed.Value = data.Speed;
+        Criticial.Value = data.Criticial;
+        Pickup.Value = data.Pickup;
+        Haste.Value = data.Haste;
         Level.Value = 1;
-        //MaxExp.Value = Manager.Data.Exp[(ExpID)Level.Value].Exp;
+        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
 
     }
     public void GetStats(ItemID id, int value)
@@ -72,7 +77,7 @@ public class Character : MonoBehaviour
     }
     private void LevelUp()
     {
-        MaxExp.Value = MaxExp.Value * 1.1f;
+        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
         Manager.UI.ShowPopup<Popup_LevelUp>();
     }
 

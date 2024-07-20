@@ -9,7 +9,7 @@ public class EnemyMove : MonoBehaviour
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = Manager.Game.Character.transform;
     }
 
     private void FixedUpdate()

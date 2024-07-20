@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    Map_Stage1 _stage1;
+    [SerializeField]Map_Stage1 _stage1;
 
     private void Awake()
     {

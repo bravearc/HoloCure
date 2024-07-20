@@ -71,7 +71,7 @@ public class SubItem_ChooseMode : UI_SubItem
     private void ProcessCancel()
     {
         base.CloseSubItem();
-        Manager.UI.MakeSubItem<SubItem_SelectIdol>(_select.transform);
+        _select.ShowIdol();
     }
 
     void OnEnterButton(PointerEventData data)
@@ -88,7 +88,7 @@ public class SubItem_ChooseMode : UI_SubItem
 
     void SetButtonHighlighted(Buttons button) 
     {
-        GetAnimator((int)Animators.Pointer).SetTrigger(Define.AniTrigger.PointerMove);
+        GetAnimator((int)Animators.Pointer).SetTrigger(Define.Anim.PointerMove);
         RectTransform _pointerRect = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
         RectTransform buttonRect = GetButton((int)button).GetComponent<RectTransform>();
 

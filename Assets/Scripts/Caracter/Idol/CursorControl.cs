@@ -1,12 +1,15 @@
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
-public class Player_Move : MonoBehaviour
+public class CursorControl : MonoBehaviour
 {
     Rigidbody2D playerRbody;
-    public Transform _pointer;
-    public Transform[] _points;
-    public Transform _atPoint;
-    public Transform _pointPosition;
+    Transform _pointer;
+    Transform[] _points;
+    Transform _atPoint;
+    Transform _pointPosition;
+    SpriteRenderer _cursor;
 
     float _axisHor;
     float _axisVer;
@@ -14,43 +17,29 @@ public class Player_Move : MonoBehaviour
 
     public bool _isMouse;
 
-    public float moveSpeed { get; set; }
+    private void Start() => Init();
 
-    
-    void Awake()
+    void Init()
     {
-        playerRbody = GetComponent<Rigidbody2D>();
-        _pointer = transform.Find("Target");
-        _atPoint = transform.Find("EnemySpawnPoints");
+        _pointer = transform.Find("Pointer");
+        _atPoint = transform.Find("AttackPointers");
+        _cursor = _pointer.GetComponent<SpriteRenderer>();
         _points = new Transform[_atPoint.childCount];
-        for(int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++)
         {
-            _points[i] = _atPoint.Find($"Point ({i})");
+            _points[i] = _atPoint.GetChild(i).transform;
         }
         _pointPosition = _points[3];
 
+        this.UpdateAsObservable().Subscribe(_ => ProcessInput());
     }
 
-    private void Update()
+    void ProcessInput()
     {
         MouseCheck();
-        AttackPointChange();
+        TargetPoint();
     }
 
-    void FixedUpdate()
-    {
-        _axisHor = Input.GetAxisRaw("Horizontal");
-        _axisVer = Input.GetAxisRaw("Vertical");
-
-        Vector2 move = new Vector2(_axisHor, _axisVer);
-
-        if (move.sqrMagnitude > 1)
-        {
-            move.Normalize();
-        }
-        playerRbody.MovePosition(playerRbody.position + move * Time.fixedDeltaTime * _speed);
-        _pointer.position = _pointPosition.position;
-    }
     void MouseCheck()
     {
         if(Input.GetMouseButtonDown(0)) 
@@ -58,10 +47,12 @@ public class Player_Move : MonoBehaviour
             _isMouse = !_isMouse;
         }
     }
-    void AttackPointChange()
+    void TargetPoint()
     {
         if (!_isMouse)
         {
+            _cursor.color = Color.white;
+
             if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
             {
                 PointerMove(_points[2]);
@@ -98,29 +89,30 @@ public class Player_Move : MonoBehaviour
 
         else
         {
+            _cursor.color  = Color.yellow;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float closestDistance = float.MaxValue;
-            Transform closestPoint = null;
+            mousePosition.z = 0;
 
-            foreach (Transform point in _points)
+            Vector3 direction = (mousePosition - transform.position).normalized;
+            float distance = Vector3.Distance(mousePosition, transform.position);
+            float maxDistance = 1.5f;
+
+            if (distance > maxDistance)
             {
-                float distance = Vector3.Distance(mousePosition, point.position);
-
-                if (closestDistance > distance)
-                {
-                    closestDistance = distance;
-                    closestPoint = point;
-                }
+                mousePosition = transform.position + direction * maxDistance;
             }
-            PointerMove(closestPoint);
-        }
-    }
-  
+            _pointer.transform.position = mousePosition;
 
-    void PointerMove(Transform tr)
-    {
-        _pointer.parent = tr;
-        _pointPosition = tr;
-        _pointer.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
+
+        void PointerMove(Transform tr)
+        {
+            _pointer.parent = tr;
+            _pointPosition = tr;
+            _pointer.localPosition = Vector3.zero;
+            _pointer.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+        }
     }
 }

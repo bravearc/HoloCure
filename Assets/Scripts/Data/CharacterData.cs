@@ -21,9 +21,7 @@ public class CharacterData
     public float Criticial { get; set; }
     public float Pickup { get; set; }
     public float Haste { get; set; }
-    public int NormalWeapon { get; set; }
-    public string Sprite_Icon { get; set; }
-    public string Sprite_Special { get; set; }
+    public int StartingWeapon { get; set; }
     public CharacterType Type { get; set; }
-    public int Unlock { get; set; }
+    public string Sprite { get; set; }
 }

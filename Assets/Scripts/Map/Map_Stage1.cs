@@ -4,7 +4,7 @@ public class Map_Stage1 : MonoBehaviour
 {
     public Transform MainMap;
     private Transform[] _maps = new Transform[4];
-    private EnemyController _enemyController;
+    [SerializeField]private EnemyController _enemyController;
     private GameObject _character;
     private Collider2D _mapCol;
     private float _mapSizeX;
@@ -69,7 +69,7 @@ public class Map_Stage1 : MonoBehaviour
             }
             ++_count;
         }
-        _enemyController.ChangeMap(MainMap);
+        _enemyController.ChangeEnemyRezenPosition(MainMap);
     }
 }
 

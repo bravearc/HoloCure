@@ -8,7 +8,7 @@ public class AssetManager : MonoBehaviour
     public Dictionary<string, Sprite> Sprite { get; private set; }
     public Dictionary<string, GameObject> Object { get; private set; }
     public Dictionary<string, string> Text { get; private set; }
-    public Dictionary<string, AnimationClip> AniClip { get; private set; }
+    public Dictionary<string, AnimationClip> AnimClip { get; private set; }
 
     public void Init()
     {
@@ -17,14 +17,13 @@ public class AssetManager : MonoBehaviour
         Sprite = new();
         Object = new();
         Text = new();
-        AniClip = new();
+        AnimClip = new();
     }
 
     public AudioClip LoadAudioClip(string audio) => Load(Sound, string.Concat(Define.Path.Audio, audio));
     public Sprite LoadSprite(string sprite) => Load(Sprite, string.Concat(Define.Path.Sprite, sprite));
     public GameObject LoadObject(string ob, Transform tr = null) => Instantiate(string.Concat(Define.Path.Object, ob), tr);
-
-    public AnimationClip LoadAniClip(string ani) => Load(AniClip, string.Concat(Define.Path.Ani, ani));
+    public AnimationClip LoadAnimClip(string ani) => Load(AnimClip, string.Concat(Define.Path.Ani, ani));
     public T Load<T>(Dictionary<string, T>dic, string path, Transform tr = null) where T : Object
     {
         if (false == dic.ContainsKey(path))

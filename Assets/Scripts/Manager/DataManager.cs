@@ -18,7 +18,7 @@ public class DataManager
     public Dictionary<ItemID, StatsData> Stats { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
-    public Dictionary<ExpID, ExpData> Exp { get; private set; }
+    public List<ExpData> Exp { get; private set; }
 
     public void Init()
     {
@@ -26,7 +26,7 @@ public class DataManager
         Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
         Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
         //Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
-        //Exp = ParseToDick<ExpID, ExpData>(path + "Exp.csv", data => data.ID);
+        Exp = ParseToList<ExpData>(path + "EXP.csv");
         Stage = ParseToList<StageData>(path + "Stage.csv");
         Select = ParseToDick<CharacterID, SelectData>(path + "Select.csv", data => data.ID);
         
