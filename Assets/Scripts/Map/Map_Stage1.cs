@@ -71,5 +71,10 @@ public class Map_Stage1 : MonoBehaviour
         }
         _enemyController.ChangeEnemyRezenPosition(MainMap);
     }
+
+    private void OnDisable()
+    {
+        Manager.Asset.Destroy(_enemyController.gameObject);
+    }
 }
 

@@ -6,7 +6,6 @@ public class Inventory : MonoBehaviour
 {
     public List<Weapon> Weapons = new();
     public List<Equipment> Equipments = new();
-
     public ReactiveProperty<int> WeaponCount = new(-1);
     public ReactiveProperty<int> EquipmentCount = new(-1);
 
@@ -45,7 +44,7 @@ public class Inventory : MonoBehaviour
                 ItemData data = Manager.Data.Item[id];
                 Weapon newItem = Manager.Asset.Instantiate(data.Name, transform).GetComponent<Weapon>();
                 Weapons.Add(newItem);
-                newItem.Init();
+                newItem.Init(id);
                 WeaponCount.Value++;
             }
             else
@@ -53,7 +52,7 @@ public class Inventory : MonoBehaviour
                 ItemData data = Manager.Data.Item[id];
                 Equipment newItem = Manager.Asset.Instantiate(data.Name, transform).GetComponent<Equipment>();
                 Equipments.Add(newItem);
-                newItem.Init();
+                newItem.Init(id);
                 EquipmentCount.Value++;
             }
         }

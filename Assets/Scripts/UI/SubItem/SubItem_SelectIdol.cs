@@ -81,10 +81,9 @@ public class SubItem_SelectIdol : UI_SubItem
         CurrentButton = _currentButton;
 
         ID.Value = (CharacterID)1;
-        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
     }
 
-    private void OnPressKey()
+    protected override void OnPressKey()
     {
         if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
         {

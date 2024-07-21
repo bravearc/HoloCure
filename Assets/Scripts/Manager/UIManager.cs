@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
 
         go.transform.localScale = Vector3.one;
         go.transform.localPosition = prefab.transform.position;
-
+        Debug.Log($"Show{popup.name}");
         return popup;
     }
 
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
         UI_Popup popup = _popupStack.Pop();
         Manager.Asset.Destroy(popup.gameObject);
         --_order;
-
+        Debug.Log($"Close{popup.name}");
     }
 
     public void CloseALLPopupUI()

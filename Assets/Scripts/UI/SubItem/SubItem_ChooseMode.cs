@@ -54,9 +54,8 @@ public class SubItem_ChooseMode : UI_SubItem
             button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
         }
 
-        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
     }
-    private void OnPressKey()
+    protected override void OnPressKey()
     {
         if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
         {

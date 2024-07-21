@@ -3,13 +3,13 @@ public class SubItem_Stats : UI_SubItem
     #region enum
     protected enum Texts
     {
-        Name,
-        HP,
-        ATK,
-        SPD,
-        CRT,
-        Pickup,
-        Haste
+        NameText,
+        HPText,
+        ATKText,
+        SPDText,
+        CRTText,
+        PickupText,
+        HasteText
     }
     protected enum Images
     {
@@ -28,14 +28,14 @@ public class SubItem_Stats : UI_SubItem
     {
         Character character = Manager.Game.Character;
         CharacterData data = Manager.Game.GetCharacterData();
-        GetText((int)Texts.HP).text = character.Hp.ToString() +
+        GetText((int)Texts.HPText).text = character.Hp.ToString() +
             " / " + character.MaxHp.ToString();
-        GetText((int)Texts.Name).text = data.Name;
-        GetText((int)Texts.ATK).text = character.Attack.ToString();
-        GetText((int)Texts.SPD).text = character.Speed.ToString();
-        GetText((int)Texts.Haste).text = character.Haste.ToString();
-        GetText((int)Texts.Pickup).text = character.Pickup.ToString();
+        GetText((int)Texts.NameText).text = data.Name;
+        GetText((int)Texts.ATKText).text = character.Attack.ToString();
+        GetText((int)Texts.SPDText).text = character.Speed.ToString();
+        GetText((int)Texts.HasteText).text = character.Haste.ToString();
+        GetText((int)Texts.PickupText).text = character.Pickup.ToString();
         GetImage((int)Images.Character).sprite =
-        Manager.Asset.LoadSprite(data.Name);
+        Manager.Asset.LoadSprite($"spr_Title_{data.Sprite}_0");
     }
 }

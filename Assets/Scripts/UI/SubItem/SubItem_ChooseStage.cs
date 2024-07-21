@@ -55,9 +55,8 @@ public class SubItem_ChooseStage : UI_SubItem
 
         GetObject((int)Objects.Go).gameObject.SetActive(false);
 
-        this.UpdateAsObservable().Subscribe(_ => OnPressKey());
     }
-    private void OnPressKey()
+    protected override void OnPressKey()
     {
         if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
         {

@@ -1,31 +1,20 @@
 using System;
-using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 
 public class SubItem_QuestionMark : UI_SubItem
 {
-    IDisposable _updateDisposable;
-    void Start()
+    Popup_Paused _popup_Paused;
+    protected override void Init()
     {
-        _updateDisposable = 
-            this.UpdateAsObservable().Subscribe(_ => KeyCheck());
+        base.Init();
+        _popup_Paused = transform.parent.GetComponent<Popup_Paused>();
     }
-
-    protected override void KeyCheck()
+    protected override void OnPressKey()
     {
-        if (Input.GetKeyDown("Cancel"))
+        if (Input.GetButtonDown(Define.KeyCode.CANCEL))
         {
-            CloseSubItem();
+            Manager.UI.MakeSubItem<SubItem_Paused>(_popup_Paused.transform);
+            base.CloseSubItem();
         }
-    }
-
-    protected override void CloseSubItem()
-    {
-        base.CloseSubItem();
-    }
-    private void OnDestroy()
-    {
-        _updateDisposable?.Dispose();
     }
 }

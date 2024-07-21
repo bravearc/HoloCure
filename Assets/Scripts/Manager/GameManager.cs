@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     public ReactiveProperty<int> GoldCount = new();
     public ReactiveProperty<float> SpesialTimer = new();
     public ReactiveProperty<float> ExperiencePoints = new();
+    public ReactiveProperty<bool> IsPlaying = new();
     private StageData stageData;
     public CharacterID CharacterID;
     private CharacterData _characterData;
     private DateTime _startTime;
     private IDisposable _disposable;
 
-    private bool _isPlaying;
     private bool _isStage = true;
     public void Init()
     {
@@ -43,13 +43,14 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.LoadObject("Character"));
         Manager.UI.CloseALLPopupUI();
         Manager.UI.ShowPopup<Popup_PlayUI>();
-        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.LoadObject("Character"));
         _characterData = Manager.Data.Character[CharacterID];
         Character.Init();
         Inventory.Init();
-        _isPlaying = true;
+        _startTime = DateTime.Now;
+        IsPlaying.Value = true;
     }
 
     public void SetCharacterID(CharacterID id)
@@ -58,14 +59,16 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        _isPlaying = false;
+        IsPlaying.Value = false;
         Inventory.Claer();
         Manager.UI.Clear();
-
+        Manager.UI.ShowPopup<Popup_Title>();
+        Manager.Asset.Destroy(Character.gameObject);
+        Time.timeScale = 1.0f;
     }
     private void TimeSystem()
     {
-        if (_isPlaying)
+        if (IsPlaying.Value)
         {
             TimeSpan elapsed = DateTime.Now - _startTime;
             ElapsedTime.SetValueAndForceNotify(elapsed);

@@ -1,31 +1,20 @@
-using System;
-using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 
 public class SubItem_Setting : UI_SubItem
 {
-    IDisposable _updateDisposable;
-    void Start()
-    {
-        _updateDisposable =
-            this.UpdateAsObservable().Subscribe(_ => KeyCheck());
-    }
+    Popup_Paused _popup_Paused;
 
-    protected override void KeyCheck()
+    protected override void Init()
     {
-        if (Input.GetKeyDown("Cancel"))
+        base.Init();
+        _popup_Paused = transform.parent.GetComponent<Popup_Paused>();
+    }
+    protected override void OnPressKey()
+    {
+        if (Input.GetButtonDown(Define.KeyCode.CANCEL))
         {
-            CloseSubItem();
+            Manager.UI.MakeSubItem<SubItem_Paused>(_popup_Paused.transform);
+            base.CloseSubItem();
         }
-    }
-
-    protected override void CloseSubItem()
-    {
-        base.CloseSubItem();
-    }
-    private void OnDestroy()
-    {
-        _updateDisposable?.Dispose();
     }
 }
