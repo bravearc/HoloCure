@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -9,9 +7,20 @@ public class Manager : MonoBehaviour
     public static SoundManager Sound;
     public static SpawnManager Spawn;
     public static AssetManager Asset;
+    public static GameManager Game;
     public static UIManager UI;
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         Init();
     }
 
@@ -23,19 +32,29 @@ public class Manager : MonoBehaviour
 
         go = new GameObject(nameof(SoundManager));
         go.transform.parent = transform;
-        go.AddComponent<SoundManager>();
-
+        Sound = Utils.GetOrAddComponent<SoundManager>(go);
+        
         go = new GameObject(nameof(SpawnManager));
         go.transform.parent = transform;
-        go.AddComponent<SpawnManager>();
+        Spawn = Utils.GetOrAddComponent<SpawnManager>(go);
 
         go = new GameObject(nameof(AssetManager));
         go.transform.parent = transform;
-        go.AddComponent<AssetManager>();
+        Asset = Utils.GetOrAddComponent<AssetManager>(go);
+
+        go = new GameObject(nameof(GameManager));
+        go.transform.parent = transform;
+        Game = Utils.GetOrAddComponent<GameManager>(go);
 
         go = new GameObject(nameof(UIManager));
         go.transform.parent = transform;
-        go.AddComponent<UIManager>();
+        UI = Utils.GetOrAddComponent<UIManager>(go);
 
+        Spawn.Init();
+        Asset.Init();
+        Data.Init();
+        //Sound.Init();
+        Game.Init();
     }
+
 }

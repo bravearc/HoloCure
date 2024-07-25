@@ -1,47 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UniRx.Triggers;
+using UniRx;
+using System;
+
 
 public class EnemyController : MonoBehaviour
 {
-    Transform[] _sponPoint;
     float _timer;
-    float _monsterRegen = 15f;
-    GameObject _enemys;
+    float _monsterRegenTimer = 15;
+    int _minutes = 0;
+    EnemyID _enemyID;
+    const int NEXT_ENEMY = 3;
 
-    private void Start()
+
+    void Start() => Init();
+
+    void Init()
     {
-        _sponPoint = new Transform[transform.childCount];
-        
-        for (int i = 0; i < _sponPoint.Length; ++i)
-        {
-            _sponPoint[i] = transform.GetChild(i);
-        }
-        _enemys = new GameObject(nameof(_enemys));
+        Manager.Game.ElapsedTime.Subscribe(TimerUpdate).AddTo(this);
+        this.UpdateAsObservable().Subscribe(_ => EnemySpawn());
+        _enemyID = (EnemyID)1;
     }
+    void TimerUpdate(TimeSpan time)
+    {
+        if (time.Minutes > _minutes)
+        {
+            _minutes = time.Minutes;
+            _monsterRegenTimer -= 0.5f;
+        }
 
-    private void Update()
+        if (time.Minutes > _minutes + NEXT_ENEMY) 
+        {
+            ++_enemyID;
+        }
+    }
+    void EnemySpawn()
     {
         _timer += Time.fixedDeltaTime;
-        if( _timer > _monsterRegen) 
+        if( _timer > _monsterRegenTimer) 
         {
-            RandomSpawn();
-            _timer = 0;
+            Manager.Spawn.SpawnEnemy(_enemyID);
         }
     }
-    public void ChangeMap(Transform mainMap)
-    {
-        transform.position = mainMap.position;
-    }
-
-    private void RandomSpawn()
-    {
-        GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Enemy.prefab");
-
-        int randomInt = Random.Range(0, _sponPoint.Length);
-        GameObject spawnedEnemy = Instantiate(go, _sponPoint[randomInt].position, Quaternion.identity);
-        spawnedEnemy.transform.SetParent(_enemys.transform, false);
-    }
-
 }

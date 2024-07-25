@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour, IAttack
 {
+    public IObjectPool<GameObject> Pool { get; set; }
     Rigidbody2D _rd;
     Transform _target;
     float _speed = 5f;

@@ -1,27 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
-public class SpiderCooking : Item
+public class SpiderCooking : Weapon
 {
     CircleCollider2D _circle2D;
     float _timer;
     bool isDamage;
 
-    void Start()
+    public override void Init(ItemID id)
     {
+        base.Init(id);
         _circle2D = GetComponent<CircleCollider2D>();
-    }
-
-    public override void ItemLevelUp(WeaponData data)
-    {
-        base.ItemLevelUp(data);
     }
 
     void FixedUpdate()
     {
         _timer += Time.fixedDeltaTime;
-        if(_timer > _attackCycle) 
+        if(_timer > WeaponData.AttackCycle) 
         {
             isDamage = !isDamage;
             _timer = 0;
@@ -31,7 +26,7 @@ public class SpiderCooking : Item
     {
         if(isDamage)
         {
-            _circle2D.radius = _attackRange;
+            _circle2D.radius = WeaponData.AttackRange;
         }
         else
         {
@@ -43,7 +38,13 @@ public class SpiderCooking : Item
     {
         if (other.gameObject.GetComponent<IEnemy>() is IEnemy enemy)
         {
-            enemy.TakeAttack(_attack);
+            //isKnockback를 매개변수로 전달해서 넉백 기능 추가.
+            enemy.TakeAttack(WeaponData.Attack);
         }
+    }
+
+    public virtual void ResetSettings() 
+    {
+        transform.localScale = new Vector2(WeaponData.Size, WeaponData.Size);
     }
 }

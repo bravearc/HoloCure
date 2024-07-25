@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ani_Select_Idols_UI
+  m_Controller: {fileID: 9100000, guid: 5718cee7115e8b242af4bd7768e194d4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e5dd7b8611e001e46946a322aaaae20b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6e63013afea824b41b07c0397f3e475a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c2302770911bec04b984f560c79c50c4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ac26214b7d1eafd46a06a661b9a6f848, type: 2}

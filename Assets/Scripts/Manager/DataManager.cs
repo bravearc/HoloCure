@@ -10,15 +10,40 @@ using System.Linq;
 public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
-    public Dictionary<WeaponID, WeaponData> Weapon { get; private set; }
+    public Dictionary<CharacterID, SelectData> Select { get; private set; }
+    public Dictionary<EnemyID, EnemyData> Enemy { get; private set; }
+    public Dictionary<ItemID, ItemData> Item { get; private set; }
+    public Dictionary<ItemID, List<WeaponData>> Weapon { get; private set; }
+    public Dictionary<ItemID, List<EquipmentData>> Equipment { get; private set; }
+    public List<StageData> Stage { get; private set; }
+    public Dictionary<ItemID, StatsData> Stats { get; private set; }
     public Dictionary<SoundID, SoundData> Sound { get; private set; }
     public Dictionary<AssetBuldleID, AssetBundleData> Asset { get; private set; }
+    public List<ExpData> Exp { get; private set; }
+
     public void Init()
     {
-        string path = "Assets/Resources/Data/";
+        string path = "Assets/Resources/DataTable/";
         Character = ParseToDick<CharacterID, CharacterData>(path + "Character.csv", data => data.ID);
-        Weapon = ParseToDick<WeaponID, WeaponData>(path + "Item.csv", data => data.ID);
-        Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
+        Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
+        //Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
+        Exp = ParseToList<ExpData>(path + "EXP.csv");
+        Enemy = ParseToDick<EnemyID, EnemyData>(path + "Enemy.csv", data => data.ID);
+        Stage = ParseToList<StageData>(path + "Stage.csv");
+        Select = ParseToDick<CharacterID, SelectData>(path + "Select.csv", data => data.ID);
+        
+        Weapon = new();
+        List<WeaponData> wpList = ParseToList<WeaponData>(path + "Weapon.csv");
+        foreach (var wpData in wpList)
+        {
+            if (false == Weapon.ContainsKey(wpData.ID))
+            {
+                Weapon[wpData.ID] = new List<WeaponData> { new WeaponData() };
+                Weapon[wpData.ID][0].ID = wpData.ID;
+            }
+
+            Weapon[wpData.ID].Add(wpData);
+        }
     }
 
     private Dictionary<TKey, TValue> ParseToDick<TKey, TValue>([NotNull] string path, Func<TValue, TKey> keySelector)
@@ -35,69 +60,33 @@ public class DataManager
             return records.ToDictionary(keySelector);
         }
     }
+
+    private List<T> ParseToList<T>([NotNull] string path)
+    {
+        string fullPath = path;
+#if UNITY_EDITOR
+        using (var reader = new StreamReader(fullPath))
+#else
+        using (var reader = new StringReader(fullPath))
+#endif
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            var records = csv.GetRecords<T>().ToList();
+            return records;
+        }
+    }
 }
 
-public enum CharacterID
-{
-    None
-}
-public enum CharacterType
-{
 
-}
-public struct CharacterData
-{
-    public CharacterID ID { get; set; }
-    public string Name { get; set; }
-    public float HP { get; set; }
-    public float Attack { get; set; }
-    public float Speed { get; set; }
-    public float Criticial {  get; set; }
-    public CharacterType Type { get; set; }
-    public int Unlock {  get; set; }
-
-}
-public enum WeaponID
-{
-    None
-}
-public enum WeaponType
-{
-    None,
-    Melee = 1,
-    Ranged = 2,
-    Multishot = 3
-}
-
-public struct WeaponData
-{
-    public WeaponID ID { get; set; }
-    public string Name { get; set; }
-    public int Level { get; set; }
-    public float Attack { get; set; }
-    public int Quantity { get; set; }
-    public float Speed { get; set; }
-    public float AttackRange { get; set; }
-    public float AttackCycle { get; set; }
-    public float Size { get; set; }
-    public int Knockback { get; set; }
-    public int MAX_Level { get; set; }
-    public WeaponType type { get; set; }
-    public string KORNAME { get; set; }
-}
 public enum SoundID
 {
-    None,
-    Character,
-    Monster,
-    UI,
-    BGM,
-    Effect
+    None
 }
 public struct SoundData
 {
     public SoundID ID { get; set; }
     public string Name { get; set; }
+    public string AudioClip { get; set; }
     public int Volume { get; set; }
 
 }
@@ -115,4 +104,19 @@ public struct AssetBundleData
 {
     public AssetBuldleID ID { get; set; }
     public AssetBundle Asset { get; set; }
+}
+public enum EnemyID
+{
+    None,
+    Nomal = 1000,
+    Boss = 2000
+}
+public struct EnemyData
+{
+    public EnemyID ID { get; set; }
+    public float Hp { get; set; }
+    public float Speed { get; set; }
+    public int Attack { get; set; }
+    public string Sprite { get; set; }
+
 }
