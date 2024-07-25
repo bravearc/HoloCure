@@ -1,21 +1,16 @@
 using UnityEngine;
 
-public class Map_Stage1 : MonoBehaviour
+public class Map_Stage1 : BaseMap
 {
     public Transform MainMap;
     private Transform[] _maps = new Transform[4];
-    [SerializeField]private EnemyController _enemyController;
-    private GameObject _character;
     private Collider2D _mapCol;
     private float _mapSizeX;
     private float _mapSizeY;
 
-    private void Start() => Init();
-    void Init()
+    protected override void Init()
     {
-        _enemyController = Utils.GetOrAddComponent<EnemyController>(Manager.Asset.LoadObject("EnemyController"));
-
-        _character = GameObject.FindWithTag("Character");
+        base.Init();
 
         for (int i = 0; i < transform.childCount; ++i)
         {
@@ -69,12 +64,7 @@ public class Map_Stage1 : MonoBehaviour
             }
             ++_count;
         }
-        _enemyController.ChangeEnemyRezenPosition(MainMap);
     }
 
-    private void OnDisable()
-    {
-        Manager.Asset.Destroy(_enemyController.gameObject);
-    }
 }
 

@@ -64,5 +64,15 @@ public static class Define
         
         public const string Anim_Idol = "Ani_Idle";
         public const string Anim_run = "Ani_run";
+        public const string Anim_TakeDamage = "Ani_TakeDamage";
+    }
+    public class Tag
+    {
+        public const string IDOL = "Idol";
+        public const string EXP = "Exp";
+        public const string HASTE = "Haste";
+        public const string AREA = "Area";
+        public const string ENEMY = "Enemy";
+        public const string ITEM_BOX = "Item_box";
     }
 }

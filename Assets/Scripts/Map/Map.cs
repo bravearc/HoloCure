@@ -18,7 +18,7 @@ public class Map : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Character"))
         {
             _stage1.MainMap = transform;
         }

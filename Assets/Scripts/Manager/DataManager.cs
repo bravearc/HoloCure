@@ -11,6 +11,7 @@ public class DataManager
 {
     public Dictionary<CharacterID, CharacterData> Character { get; private set; }
     public Dictionary<CharacterID, SelectData> Select { get; private set; }
+    public Dictionary<EnemyID, EnemyData> Enemy { get; private set; }
     public Dictionary<ItemID, ItemData> Item { get; private set; }
     public Dictionary<ItemID, List<WeaponData>> Weapon { get; private set; }
     public Dictionary<ItemID, List<EquipmentData>> Equipment { get; private set; }
@@ -27,6 +28,7 @@ public class DataManager
         Item = ParseToDick<ItemID, ItemData>(path + "Item.csv", data => data.ID);
         //Sound = ParseToDick<SoundID, SoundData>(path + "Sound.csv", data => data.ID);
         Exp = ParseToList<ExpData>(path + "EXP.csv");
+        Enemy = ParseToDick<EnemyID, EnemyData>(path + "Enemy.csv", data => data.ID);
         Stage = ParseToList<StageData>(path + "Stage.csv");
         Select = ParseToDick<CharacterID, SelectData>(path + "Select.csv", data => data.ID);
         
@@ -113,4 +115,8 @@ public struct EnemyData
 {
     public EnemyID ID { get; set; }
     public float Hp { get; set; }
+    public float Speed { get; set; }
+    public int Attack { get; set; }
+    public string Sprite { get; set; }
+
 }

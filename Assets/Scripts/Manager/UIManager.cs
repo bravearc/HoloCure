@@ -77,7 +77,6 @@ public class UIManager : MonoBehaviour
 
         go.transform.localScale = Vector3.one;
         go.transform.localPosition = prefab.transform.position;
-        Debug.Log($"Show{popup.name}");
         return popup;
     }
 

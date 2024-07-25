@@ -4,16 +4,20 @@ using UniRx.Triggers;
 
 public class CursorControl : MonoBehaviour
 {
-    Rigidbody2D playerRbody;
     Transform _pointer;
-    Transform[] _points;
-    Transform _atPoint;
-    Transform _pointPosition;
     SpriteRenderer _cursor;
 
-    float _axisHor;
-    float _axisVer;
-    float _speed = 3f;
+    Vector3[] _positions = new Vector3[8]
+    {
+        new Vector3(-0.973f, 0.832f, 145),
+        new Vector3(0, 1.28f, 90),
+        new Vector3(0.973f, 0.857f, 45),
+        new Vector3(1.3f, 0f, 0),
+        new Vector3(0.973f, -0.917f, -45),
+        new Vector3(0f, -1.28f, -90),
+        new Vector3(-0.973f, -0.943f, -145),
+        new Vector3(-1.3f, 0f, 180)
+    };
 
     public bool _isMouse;
 
@@ -22,14 +26,7 @@ public class CursorControl : MonoBehaviour
     void Init()
     {
         _pointer = transform.Find("Pointer");
-        _atPoint = transform.Find("AttackPointers");
         _cursor = _pointer.GetComponent<SpriteRenderer>();
-        _points = new Transform[_atPoint.childCount];
-        for (int i = 0; i < 8; i++)
-        {
-            _points[i] = _atPoint.GetChild(i).transform;
-        }
-        _pointPosition = _points[3];
 
         this.UpdateAsObservable().Subscribe(_ => ProcessInput());
     }
@@ -49,41 +46,41 @@ public class CursorControl : MonoBehaviour
     }
     void TargetPoint()
     {
-        if (!_isMouse)
+        if (_isMouse == false)
         {
             _cursor.color = Color.white;
 
             if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
             {
-                PointerMove(_points[2]);
+                PointerMove(2);
             }
             else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
             {
-                PointerMove(_points[4]);
+                PointerMove(4);
             }
             else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
             {
-                PointerMove(_points[0]);
+                PointerMove(0);
             }
             else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
             {
-                PointerMove(_points[6]);
+                PointerMove(6);
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                PointerMove(_points[7]);
+                PointerMove(7);
             }
             else if (Input.GetKey(KeyCode.UpArrow))
             {
-                PointerMove(_points[1]);
+                PointerMove(1);
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
-                PointerMove(_points[5]);
+                PointerMove(5);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                PointerMove(_points[3]);
+                PointerMove(3);
             }
         }
 
@@ -107,12 +104,13 @@ public class CursorControl : MonoBehaviour
             _pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
 
-        void PointerMove(Transform tr)
+        void PointerMove(int idx)
         {
-            _pointer.parent = tr;
-            _pointPosition = tr;
-            _pointer.localPosition = Vector3.zero;
-            _pointer.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+            Vector2 newPosition = new Vector2(_positions[idx].x, _positions[idx].y);
+            float rotation = _positions[idx].z;
+
+            _pointer.localPosition = newPosition;
+            _pointer.localRotation = Quaternion.Euler(0f, 0f, rotation);
         }
     }
 }

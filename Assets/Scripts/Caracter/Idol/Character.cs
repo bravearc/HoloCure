@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     public CharacterID CharacterID;
 
     Rigidbody2D _rigidbody;
-
+    private void Start() => Init();
     public void Init()
     {
         Utils.GetOrAddComponent<IdolMove>(gameObject);

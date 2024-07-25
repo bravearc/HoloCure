@@ -10,5 +10,6 @@ public static class Extensions
 
     public static void BindModelEvent<T>(this ReactiveProperty<T> view, Action<T> action, Component component)
     => UI_Base.BindModelEvent<T>(view, action, component);
+
 }
 

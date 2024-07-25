@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private StageData stageData;
     public CharacterID CharacterID;
     private CharacterData _characterData;
+    private EnemyController _enemyController;
     private DateTime _startTime;
     private IDisposable _disposable;
 
@@ -43,13 +44,14 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.LoadObject("Character"));
+        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.InstantiateObject(nameof(Character)));
+        _characterData = Manager.Data.Character[CharacterID];
+        _enemyController = Utils.GetOrAddComponent<EnemyController>(Manager.Asset.InstantiateObject(nameof(EnemyController))); 
         Manager.UI.CloseALLPopupUI();
         Manager.UI.ShowPopup<Popup_PlayUI>();
-        _characterData = Manager.Data.Character[CharacterID];
-        Character.Init();
         Inventory.Init();
         _startTime = DateTime.Now;
+        Manager.Spawn.GameStartInit();
         IsPlaying.Value = true;
     }
 
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         Manager.UI.Clear();
         Manager.UI.ShowPopup<Popup_Title>();
         Manager.Asset.Destroy(Character.gameObject);
+
         Time.timeScale = 1.0f;
     }
     private void TimeSystem()
