@@ -24,6 +24,7 @@ public static class Define
         public const string Text = "Text/";
         public const string Object = "Object/";
         public const string Ani = "Animation/";
+        public const string Material = "Material/";
     }
     public enum ItemNumber
     {
