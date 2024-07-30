@@ -1,22 +1,24 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DamageText : MonoBehaviour
 {
-    Text _damageText;
-    float _endPositionY = 3;
+    TMP_Text _damageText;
+    float _endPositionY = 1;
     IEnumerator _moveCo;
-    void Start()
+    float _dieTime = 0.3f;
+    void Awake()
     {
-        _damageText = Utils.FindChild<Text>(gameObject, nameof(Text));
-        _moveCo = MoveCo();
+        _damageText = Utils.FindChild<TMP_Text>(gameObject, nameof(TMP_Text));
     }
 
-    public void Init(float damage, Transform tr)
+    public void Init(float damage, Vector2 newPos)
     {
-        transform.position = tr.position;
+        transform.position = newPos;
         _damageText.text = ((int)damage).ToString();
+        _moveCo = MoveCo();
         StartCoroutine(_moveCo);
     }
 
@@ -25,7 +27,7 @@ public class DamageText : MonoBehaviour
         float time = 0;
         Vector2 startPos = transform.position;
         Vector2 endPos = new Vector2(transform.position.x, transform.position.y + _endPositionY);
-        while (time >= 1)
+        while (time <= _dieTime)
         {
             transform.position = Vector2.Lerp(startPos, endPos, time);
 

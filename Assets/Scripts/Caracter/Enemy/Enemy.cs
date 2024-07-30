@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     EnemyType _enemyType;
     IEnumerator _moveEnemy;
 
-    bool _isMove;
+    bool _isDead = false;
     float _speed = 2f;
     float _hp;
     float _attack;
@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
         _character = Manager.Game.Character;
         _body = Utils.GetOrAddComponent<Rigidbody2D>(gameObject);
         _animator = Utils.GetOrAddComponent<Animator>(gameObject);
+        gameObject.tag = Define.Tag.ENEMY;
+        this.OnTriggerEnter2DAsObservable().Subscribe(AttackCo);
     }
 
     public void Init(EnemyID id, Vector2 newPosition)
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
         _data = Manager.Data.Enemy[id];
         _speed = _data.Speed;
         _hp = _data.Hp;
-
+        _isDead = false;
         if ((int)id < BOSS_NUMBER)
             _enemyType = EnemyType.Normal;
         else
@@ -47,7 +49,7 @@ public class Enemy : MonoBehaviour
 
         SetAnim();
         SetSize();
-        this.OnTriggerEnter2DAsObservable().Subscribe(AttackCo);
+        
         _moveEnemy = MoveEnemy();
         StartCoroutine(_moveEnemy);
     }
@@ -99,34 +101,23 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _hp -= damage;
-        Manager.Spawn.SpawnDamageText(damage, transform);
+        Manager.Spawn.SpawnDamageText(damage, transform.position);
 
         if (_hp <= 0)
         {
             Die();
+            _isDead = true;
         }
     }
 
     private void Die()
     {
-
-        Manager.Spawn.SpawnExp(GetExpID(), transform);
+        if (_isDead)
+            return;
+        Manager.Spawn.SpawnExp(transform);
         Manager.Spawn.Enemy.Release(this);
 
     }
 
-    ExpData GetExpID()
-    {
-        int normal = Random.Range(1, 100);
-        int id = normal switch
-        {
-            < 40 => 1,
-            < 60 => 2,
-            < 75 => 3,
-            < 90 => 4,
-            _ => 5
-        };
-        return Manager.Data.Exp[id];
-    }
     Vector2 GetForward => (_character.transform.position - transform.position).normalized;
 }

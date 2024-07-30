@@ -9,14 +9,12 @@ public class Inventory : MonoBehaviour
     public ReactiveProperty<int> WeaponCount = new(-1);
     public ReactiveProperty<int> EquipmentCount = new(-1);
 
-    [SerializeField]private SubItem_Inventory _inventory_SubItem;
     private HashSet<ItemID> _itemIDList = new();
 
     private const int INVENTORY_MAX_COUNT = 6;
     public void Init()
     {
-        //GetItem((ItemID)Manager.Game.GetCharacterData().StartingWeapon);
-        //_inventory_SubItem = Utils.GetOrAddComponent<SubItem_Inventory>(GameObject.Find(nameof(SubItem_Inventory)));
+        GetItem((ItemID)Manager.Game.GetCharacterData().StartingWeapon);
     }
     public bool IsItemTypeFull(ItemID id)
     {
@@ -42,7 +40,10 @@ public class Inventory : MonoBehaviour
             if ((int)id < (int)Define.ItemNumber.Weapon_End)
             {
                 ItemData data = Manager.Data.Item[id];
-                Weapon newItem = Manager.Asset.Instantiate(data.Name, transform).GetComponent<Weapon>();
+                Debug.Log(data.Name);
+                GameObject go = Manager.Asset.LoadObject(data.Name);
+                Debug.Log(go.name);
+                Weapon newItem = Manager.Asset.Instantiate(go, transform).GetComponent<Weapon>();
                 Weapons.Add(newItem);
                 newItem.Init(id);
                 WeaponCount.Value++;

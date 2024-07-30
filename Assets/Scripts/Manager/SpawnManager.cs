@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject _boxEffectContainer { get; private set; }
     public Pool<Exp> Exp { get; private set; }
     public Pool<Enemy> Enemy { get; private set; }
+    public Pool<Attack> Attack { get; private set; }
     public Pool<DamageText> DamageText { get; private set; }
 
     private const int ENEMY_SPAWN_OFFSET_COUNT = 36;
@@ -25,15 +26,18 @@ public class SpawnManager : MonoBehaviour
         _boxEffectContainer = new GameObject("BoxEffect Container");
         _boxEffectContainer.transform.parent = _objectContainer.transform;
     }
+
     public void GameStartInit()
     {
         Enemy = new Pool<Enemy>();
         DamageText = new Pool<DamageText>();
         Exp = new Pool<Exp>();
+        Attack = new Pool<Attack>();
 
         DamageText.Init(_objectContainer);
         Enemy.Init(_objectContainer);
         Exp.Init(_objectContainer);
+        Attack.Init(_objectContainer);
 
         SetEnemySpawnPosition();
     }
@@ -48,11 +52,14 @@ public class SpawnManager : MonoBehaviour
             _spawnPositions[idx] = new Vector2(WIDTH * Mathf.Cos(angle), HEIGHT * Mathf.Sin(angle));
         }
     }
-
-    public void SpawnExp(ExpData data, Transform newPos)
+    public Attack GetAttack()
+    {
+        return Attack.Get();
+    }
+    public void SpawnExp(Transform newPos)
     {
         Exp exp = Exp.Get();
-        exp.Init(data, newPos);
+        exp.Init(newPos);
     }
 
     public void SpawnEnemy(EnemyID id)
@@ -61,10 +68,10 @@ public class SpawnManager : MonoBehaviour
         enemy.Init(id, GetRandomPosition);
     }
 
-    public void SpawnDamageText(float damage, Transform transform)
+    public void SpawnDamageText(float damage, Vector2 newPos)
     {
         DamageText damageText = DamageText.Get();
-        damageText.Init(damage, transform);
+        damageText.Init(damage, newPos);
     }
     public GameObject GetBoss(int i)
     {

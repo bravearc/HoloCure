@@ -4,8 +4,8 @@ using UniRx.Triggers;
 
 public class CursorControl : MonoBehaviour
 {
-    Transform _pointer;
-    SpriteRenderer _cursor;
+    Transform _cursor;
+    SpriteRenderer _cursorSprite;
 
     Vector3[] _positions = new Vector3[8]
     {
@@ -25,8 +25,8 @@ public class CursorControl : MonoBehaviour
 
     void Init()
     {
-        _pointer = transform.Find("Pointer");
-        _cursor = _pointer.GetComponent<SpriteRenderer>();
+        _cursor = transform.Find("Cursor");
+        _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
 
         this.UpdateAsObservable().Subscribe(_ => ProcessInput());
     }
@@ -48,7 +48,7 @@ public class CursorControl : MonoBehaviour
     {
         if (_isMouse == false)
         {
-            _cursor.color = Color.white;
+            _cursorSprite.color = Color.white;
 
             if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
             {
@@ -86,7 +86,7 @@ public class CursorControl : MonoBehaviour
 
         else
         {
-            _cursor.color  = Color.yellow;
+            _cursorSprite.color  = Color.yellow;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
 
@@ -98,10 +98,10 @@ public class CursorControl : MonoBehaviour
             {
                 mousePosition = transform.position + direction * maxDistance;
             }
-            _pointer.transform.position = mousePosition;
+            _cursor.transform.position = mousePosition;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            _cursor.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
 
         void PointerMove(int idx)
@@ -109,8 +109,8 @@ public class CursorControl : MonoBehaviour
             Vector2 newPosition = new Vector2(_positions[idx].x, _positions[idx].y);
             float rotation = _positions[idx].z;
 
-            _pointer.localPosition = newPosition;
-            _pointer.localRotation = Quaternion.Euler(0f, 0f, rotation);
+            _cursor.localPosition = newPosition;
+            _cursor.localRotation = Quaternion.Euler(0f, 0f, rotation);
         }
     }
 }

@@ -44,14 +44,14 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.InstantiateObject(nameof(Character)));
         _characterData = Manager.Data.Character[CharacterID];
+        Character = Utils.GetOrAddComponent<Character>(Manager.Asset.InstantiateObject(nameof(Character)));
         _enemyController = Utils.GetOrAddComponent<EnemyController>(Manager.Asset.InstantiateObject(nameof(EnemyController))); 
         Manager.UI.CloseALLPopupUI();
         Manager.UI.ShowPopup<Popup_PlayUI>();
-        Inventory.Init();
         _startTime = DateTime.Now;
         Manager.Spawn.GameStartInit();
+        Inventory.Init();
         IsPlaying.Value = true;
     }
 

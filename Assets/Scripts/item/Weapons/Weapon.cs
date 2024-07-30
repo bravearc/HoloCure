@@ -5,41 +5,54 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public ReactiveProperty<int> Level { get; private set; } = new();
-    private WeaponData _weaponData;
-    private float _attackTimer;
+    public WeaponData WeaponData;
+    protected float _attackTimer;
+    protected Character _character;
+    protected Transform _cursor;
     public ItemID ID;
-    IEnumerator _attackCycle;
+    public IEnumerator _attackCo;
 
-    public WeaponData WeaponData { get; private set; }
+    float _attackDelay = 0.13f;
+
+
+    void Awake()
+    {
+        _character = Manager.Game.Character;
+        _cursor = Manager.Game.Character.Cursor;
+    }
     public virtual void Init(ItemID id)
     {
-        WeaponData = Manager.Data.Weapon[id][0];
-        Level.Subscribe(SetStats).AddTo(this);
-        _attackCycle = AttackCycle();
-        StartCoroutine(_attackCycle);
+        WeaponData = Manager.Data.Weapon[id][1];
+        ID = id;
+        _attackCo = AttackCo();
+        StartCoroutine(_attackCo);
     }
 
     public virtual void LevelUp()
     {
         ++Level.Value;
+        WeaponData = Manager.Data.Weapon[ID][Level.Value];
     }
 
-    IEnumerator AttackCycle()
+    IEnumerator AttackCo()
     {
-        while(_weaponData.AttackCycle > _attackTimer) 
+        while (true)
         {
-            _attackTimer += Time.deltaTime;
-            yield return null;
+            int _attackCount = 0;
+            while (WeaponData.Quantity > _attackCount)
+            {
+                Attack attack = Manager.Spawn.GetAttack();
+                attack.Init(WeaponData, _cursor.position, AttackAction);
+                ++_attackCount;
+                yield return new WaitForSeconds(_attackDelay);
+            }
+            _attackCount = 0;
+            yield return new WaitForSeconds(WeaponData.AttackCycle);
         }
-        
-        AttackStrike();
-        StartCoroutine(_attackCycle);
-    }
-    protected virtual void AttackStrike(){ }
-    protected virtual void SetStats(int level)
-    {
-        _weaponData = Manager.Data.Weapon[_weaponData.ID][level];
     }
 
+    protected virtual void AttackAction(Attack attack) {}
+
+    protected virtual void WeaponSetComponenet(Attack attack) { }
 
 }

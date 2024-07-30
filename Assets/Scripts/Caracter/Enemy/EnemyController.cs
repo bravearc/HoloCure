@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
         if( _timer > _monsterRegenTimer) 
         {
             Manager.Spawn.SpawnEnemy(_enemyID);
+            _timer = 0;
         }
     }
 }

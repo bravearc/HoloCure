@@ -2,15 +2,17 @@ using UniRx.Triggers;
 using UniRx;
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class Exp : MonoBehaviour
 {
     Character _character;
     SpriteRenderer _spriteRenderer;
-    ExpData _data;
+    Animator _animator;
+    CircleCollider2D _circleCollider;
+    public ExpData Data;
     float _shakeY = 0.2f;
     float _shakeDuration = 0.8f;
+    int _rainbowExp = 5;
     Vector2 _initialPosition;
 
     IEnumerator _moveCo;
@@ -20,19 +22,25 @@ public class Exp : MonoBehaviour
     {
         _character = Manager.Game.Character;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _circleCollider = GetComponent<CircleCollider2D>();
+        _circleCollider.offset = new Vector2(0, 3.67f);
+        _circleCollider.radius = 7.17f;
+        gameObject.tag = Define.Tag.EXP;
     }
 
-    public void Init(ExpData data, Transform newPos)
+    public void Init(Transform newPos)
     {
-        _moveCo = MoveCo();
-        _dyingMoveCo = DyingMoveCo();
         transform.position = newPos.position;
-        _data = data;
-        _spriteRenderer.sprite = Manager.Asset.LoadSprite($"spr_Exp_{data.ID}");
+        _initialPosition = (Vector2)newPos.position + Vector2.up;
+        
+        GetExpID();
+        SetExpComponent();
 
         this.OnTriggerEnter2DAsObservable().Subscribe(ExpTrigger);
 
-        _initialPosition = (Vector2)newPos.position + Vector2.up;
+        _moveCo = MoveCo();
+        _dyingMoveCo = DyingMoveCo();
         StartCoroutine(_moveCo);
     }
 
@@ -42,11 +50,12 @@ public class Exp : MonoBehaviour
         {
             case Define.Tag.EXP :
                 Exp newExp = collider.GetComponent<Exp>();
-                Manager.Spawn.SpawnExp(AddExpData(_data, newExp._data), transform);
-                Die();
+                AddExpData(Data, newExp.Data);
+                newExp.Die();
                 break;
             case Define.Tag.IDOL:
-                _character.GetExp(_data.Exp); Die();
+                _character.GetExp(Data.Exp); 
+                Die();
                 break;
             case Define.Tag.HASTE: 
                 StartCoroutine(_dyingMoveCo); 
@@ -55,9 +64,39 @@ public class Exp : MonoBehaviour
 
     }
 
-    ExpData AddExpData(ExpData exp, ExpData exp2) 
+    void GetExpID()
     {
-        return Manager.Data.Exp[exp.ID + exp2.ID];
+        int normal = Random.Range(1, 100);
+        int id = normal switch
+        {
+            < 35 => 1,
+            < 55 => 2,
+            < 70 => 3,
+            < 85 => 4,
+            < 95 => 5,
+            _ => 6
+        };
+
+        Data = Manager.Data.Exp[id - 1];
+    }
+
+    void SetExpComponent()
+    {
+        if (Data.ID != _rainbowExp)
+        {
+            _animator.enabled = false;
+            _spriteRenderer.sprite = Manager.Asset.LoadSprite($"spr_Exp_{Data.ID}");
+        }
+        else
+        {
+            _animator.enabled = true;
+        }
+    }
+
+    void AddExpData(ExpData exp, ExpData exp2) 
+    {
+        Data = Manager.Data.Exp[exp.ID + exp2.ID];
+        SetExpComponent();
     }
 
     IEnumerator MoveCo()
@@ -93,7 +132,6 @@ public class Exp : MonoBehaviour
     }
     void Die()
     {
-        StopCoroutine(_dyingMoveCo);
         Manager.Spawn.Exp.Release(this);
     }
 }

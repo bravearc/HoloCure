@@ -62,6 +62,11 @@ public class Utils : MonoBehaviour
         return false;
     }
 
+    public static float GetRandomAngle()
+    {
+        return UnityEngine.Random.Range(-0.2f, 0.2f);
+    }
+
     public static bool IsEquipment(ItemID id)
     {
         if((int)Define.ItemNumber.Equipment_Start <= (int)id

@@ -14,14 +14,18 @@ public class Character : MonoBehaviour
     public ReactiveProperty<float> CurrentExp = new();
     public ReactiveProperty<float> MaxExp = new();
     public CharacterID CharacterID;
+    public Transform Cursor;
 
+    float _normalExp = 50;
     Rigidbody2D _rigidbody;
-    private void Start() => Init();
+    private void Awake() => Init();
     public void Init()
     {
         Utils.GetOrAddComponent<IdolMove>(gameObject);
         Utils.GetOrAddComponent<CursorControl>(gameObject);
         Utils.GetOrAddComponent<IdolAnim>(gameObject);
+
+        Cursor = transform.Find("Cursor");
 
         SetStats();
     }
@@ -36,7 +40,7 @@ public class Character : MonoBehaviour
         Pickup.Value = data.Pickup;
         Haste.Value = data.Haste;
         Level.Value = 1;
-        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
+        MaxExp.Value = _normalExp;
 
     }
     public void GetStats(ItemID id, int value)
@@ -77,7 +81,7 @@ public class Character : MonoBehaviour
     }
     private void LevelUp()
     {
-        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
+        MaxExp.Value = _normalExp * 1.3f;
         Manager.UI.ShowPopup<Popup_LevelUp>();
     }
 

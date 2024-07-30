@@ -1,265 +1,265 @@
-ID,Name,Level,Attack,Quantity,Speed,AttackRange,AttackCycle,Size,Knockback,MaxLevel,WeaponType,Explanation,KORNAME
-1001,Spider Cooking,1,15,1,0,0.85,1,3,1,6,Melee,"""Create an area of miasma around, dealing slow damage to enemies inside.""",거미 요리
-1001,Spider Cooking,2,15,1,0,0.85,1,4,1,6,Melee,Increase area by <color=green>15%</color>.,거미 요리
-1001,Spider Cooking,3,18,1,0,0.85,1,4,1,6,Melee,Increase damage by <color=green>30%</color>.,거미 요리
-1001,Spider Cooking,4,18,1,0,0.85,1,4,1,6,Melee,Increase area by <color=green>25%</color>.,거미 요리
-1001,Spider Cooking,5,23,1,0,0.85,1,6,1,6,Melee,Increase frequency of hits by <color=green>20%</color>.,거미 요리
-1001,Spider Cooking,6,23,1,0,0.85,1,6,0,6,Melee,Increase damage by <color=green>60%</color>.,거미 요리
-1002,Elite Lava Bucket,1,15,1,3,15,1,1,1,6,Multishot,"""Throw lava on the ground that continues to damage the enemy.""",엘리트 용암 양동이
-1002,Elite Lava Bucket,2,15,2,3,15,1,1.2,1,6,Multishot,Lava range is up by<color=green>20%</color>.,엘리트 용암 양동이
-1002,Elite Lava Bucket,3,18,2,4,15,1,1.2,1,6,Multishot,The number of lava buckets thrown becomes two.,엘리트 용암 양동이
-1002,Elite Lava Bucket,4,23,2,4,15,1,1.2,1,6,Multishot,"30% increase in damage, 1 second increase in lava duration.",엘리트 용암 양동이
-1002,Elite Lava Bucket,5,23,3,4,15,1,1.2,1,6,Multishot,The number of lava buckets thrown becomes three.,엘리트 용암 양동이
-1002,Elite Lava Bucket,6,23,4,4,15,1,1.44,1,6,Multishot,"The number of lava buckets thrown becomes 4, and the range of lava rises by <color=green>20%</color>.",엘리트 용암 양동이
-1003,CEO's Tears,1,15,1,1,1,1,1,1,6,Multishot,Speaks out tears shot in the direction of random enemies.,사장님의 눈물
-1003,CEO's Tears,2,18,1,1,1,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,사장님의 눈물
-1003,CEO's Tears,3,18,2,1,1,1,1,1,6,Multishot,Shoot two drops of tears.,사장님의 눈물
-1003,CEO's Tears,4,18,2,1,1,0.67,1,1,6,Multishot,The attack cycle is <color=green>33%</color>.,사장님의 눈물
-1003,CEO's Tears,5,21,2,1.25,1,0.67,1,1,6,Multishot,"The speed of moving tears increased by <color=green>25%</color>, and the damage also increased by <color=green>20%</color>.",사장님의 눈물
-1003,CEO's Tears,6,21,4,1.25,1,0.3,1,1,6,Multishot,Four drops of tears.,사장님의 눈물
-1004,Wamy Water,1,15,1,0,1,1,1,0,6,Melee,Spray water of unknown origin to the front to knock back the enemy.,와미수
-1004,Wamy Water,2,18,1,0,1,1,1.3,0,6,Melee,a <color=green>20%</color> increase in damage.,와미수
-1004,Wamy Water,3,18,1,0,1,0.8,1.3,0,6,Melee,The range of attacks is increased by <color=green>30%</color>.,와미수
-1004,Wamy Water,4,18,1,0,1,0.8,1.3,0,6,Melee,The attack cycle is <color=green>20%</color>.,와미수
-1004,Wamy Water,5,23,1,0,1,0.8,1.3,0,6,Melee,a <color=green>30%</color> increase in damage.,와미수
-1004,Wamy Water,6,23,1,0,1,0.8,1.6,0,6,Melee,"The range of attack increases by <color=green>30%</color>, and stops the opponent briefly after a knockback.",와미수
-1005,Sausage,1,15,1,0,1,1,1,1,6,Melee,"If the target is close, swing a small sausage at the nearest target.",소시지
-1005,Sausage,2,18,1,0,1,1,1,1,6,Melee,a <color=green>20%</color> increase in damage.,소시지
-1005,Sausage,3,18,1,0,1,1,1,0,6,Melee,The attack cycle is reduced by <color=green>20%</color>.,소시지
-1005,Sausage,4,18,1,0,1,0.8,1,0,6,Melee,<color=green>30%</color> increase in attack range and damage.,소시지
-1005,Sausage,5,23,1,0,1,0.8,1,0,6,Melee,The attack cycle is reduced by <color=green>20%</color>.,소시지
-1005,Sausage,6,23,1,0,1,0.6,1,0,6,Melee,The number of hits in the sausage increases to two.,소시지
-1006,Holo Bomb,1,15,1,0,4,1,1,1,6,Multishot,"A bomb that explodes, dealing damage to all nearby targets.",홀로폭탄
-1006,Holo Bomb,2,15,1,0,4,1,1.15,1,6,Multishot,Increase explosion size by <color=green>15%</color>.,홀로폭탄
-1006,Holo Bomb,3,18,1,0,4,1,1.15,1,6,Multishot,Increase damage by <color=green>20%</color>.,홀로폭탄
-1006,Holo Bomb,4,18,2,0,4,1,1.15,1,6,Multishot,Throw <color=green>2</color> bombs.,홀로폭탄
-1006,Holo Bomb,5,18,2,0,4,0.8,1.15,1,6,Multishot,Reduce the time between attacks by <color=green>20%</color>.,홀로폭탄
-1006,Holo Bomb,6,18,3,0,4,0.8,1.35,1,6,Multishot,Increase explosion size by <color=green>20%</color>.,홀로폭탄
-1007,Psycho Axe,1,15,1,1,1,1,1,1,6,Ranged,Throw an axe that spirals outward from the player.,싸이코 도끼
-1007,Psycho Axe,2,18,1,1,1,1,1.2,1,6,Ranged,Increase size of axe by <color=green>20%</color>. ,싸이코 도끼
-1007,Psycho Axe,3,18,1,1,1,0.8,1.2,1,6,Ranged,Reduce delay between attacks by <color=green>20%</color>.,싸이코 도끼
-1007,Psycho Axe,4,23,1,1,1,0.8,1.44,1,6,Ranged,"""Increase damage by <color=green>33%</color>, and size by <color=green>20%</color>.",싸이코 도끼
-1007,Psycho Axe,5,23,1,1,1,0.8,2,1,6,Ranged,Lasts <color=green>1</color> second longer.,싸이코 도끼
-1007,Psycho Axe,6,30,1,1,1,0.8,2,1,6,Ranged,Increase attack size by <color=green>50%</color>.,싸이코 도끼
-1008,BL Book,1,15,1,3,2,1,1,1,6,Multishot,Repels targets with orbiting BL Books.,BL 
-1008,BL Book,2,18,2,3,2,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
-1008,BL Book,3,18,2,4,2,1,1,1,6,Multishot,Increase damage by <color=green>30%</color> and increase duration by <color=green>1</color> second.,BL 
-1008,BL Book,4,25,3,4,2,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
-1008,BL Book,5,25,4,4,2,1,1,1,6,Multishot,Increase radius and spinning speed by <color=green>25%</color>.,BL 
-1008,BL Book,6,30,4,4,2,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
-1009,Cutting Board,1,15,1,3,5,1,1,0,6,Ranged,Create a defensive wall that damages the enemy in the rear. The effect changes depending on the character.,도마
-1009,Cutting Board,2,15,1,3,5,1,1.3,0,6,Ranged,The size of the wall has risen by <color=green>30%</color>.,도마
-1009,Cutting Board,3,18,1,3,5,1,1.3,0,6,Ranged,a <color=green>30%</color> increase in damage.,도마
-1009,Cutting Board,4,18,1,3,7,1,1.3,0,6,Ranged,The wall moves further.,도마
-1009,Cutting Board,5,26,1,3,7,1,1.3,0,6,Ranged,a <color=green>50%</color> increase in damage.,도마
-1009,Cutting Board,6,26,2,3,7,0.5,1.3,0,6,Ranged,Make more walls at the back.,도마
-1010,FanBeam,1,15,1,0,1,1,1,1,6,Ranged,Shoot a powerful laser beam from the microphone.,팬빔
-1010,FanBeam,2,15,1,0,1,1,1.3,1,6,Ranged,Increase size by <color=green>30%</color>.,팬빔
-1010,FanBeam,3,15,1,0,1,0.5,1.3,1,6,Ranged,Reduce attack cooldown by <color=green>0.5</color> seconds.,팬빔
-1010,FanBeam,4,22,1,0,1,0.5,1.3,1,6,Ranged,Increase damage by <color=green>50%</color>.,팬빔
-1010,FanBeam,5,22,1,0,1,0.5,2,1,6,Ranged,Reduce attack cooldown by <color=green>0.5</color> seconds.,팬빔
-1010,FanBeam,6,22,2,0,1,0.5,2,1,6,Ranged,Increase size by <color=green>50%</color>.,팬빔
-1011,Plug Type Asacoco,1,15,1,0,3,1,1,1,6,Multishot,The penetrating tail shoots at high speed in the direction of the random enemy.,삽입식 아사코
-1011,Plug Type Asacoco,2,18,1,0,3,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,삽입식 아사코
-1011,Plug Type Asacoco,3,18,2,0,3,1,1,1,6,Multishot,The number of Asakoko launched becomes two.,삽입식 아사코
-1011,Plug Type Asacoco,4,23,2,0,3,1,1,1,6,Multishot,a <color=green>30%</color> increase in damage.,삽입식 아사코
-1011,Plug Type Asacoco,5,23,3,0,3,1,1,0,6,Multishot,The number of Asakoko launched becomes three.,삽입식 아사코
-1011,Plug Type Asacoco,6,23,4,0,3,1,1,1,6,Multishot,The number of Asakoko launched becomes four.,삽입식 아사코
-1012,Glowstick,1,15,1,0,1,1,1,1,6,Multishot,Throw a fluorescent stick at a nearby enemy. The fluorescent stick spins back.,형광봉
-1012,Glowstick,2,17,1,0,1,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,형광봉
-1012,Glowstick,3,17,2,0,1,1,1,1,6,Multishot,"The number of hits is increased by 10, and the number of fluorescent rods thrown becomes two.",형광봉
-1012,Glowstick,4,17,3,0,1,1,1.25,1,6,Multishot,The size of the fluorescent rod is increased by <color=green>25</color>%.,형광봉
-1012,Glowstick,5,23,3,0,1,1,1.25,1,6,Multishot,The number of fluorescent rods thrown becomes three.,형광봉
-1012,Glowstick,6,23,4,0,1,1,1.25,1,6,Multishot,The number of fluorescent rods thrown becomes four.,형광봉
-1013,Idlo Song,1,15,1,0,1,1,1,1,6,Ranged,It fires a note that flies up and down.,아이돌 노래
-1013,Idlo Song,2,18,1,0,1,1,1,1,6,Ranged,<color=green>25</color> percent increase in damage.,아이돌 노래
-1013,Idlo Song,3,18,1,0,1,1,1.25,1,6,Ranged,"Increased attack speed, increased range.",아이돌 노래
-1013,Idlo Song,4,18,1,0,1,0.8,1.25,1,6,Ranged,a <color=green>25%</color> increase in the size of a note.,아이돌 노래
-1013,Idlo Song,5,18,1,0,1,0.8,1.5,1,6,Ranged,a <color=green>25%</color> increase in the size of a note.,아이돌 노래
-1013,Idlo Song,6,25,1,0,1,0.8,1.5,1,6,Ranged,a <color=green>50%</color> increase in damage.,아이돌 노래
-1014,BounceBall,1,15,1,0,1,1,1,1,6,Multishot,Fires a bouncing ball to a random target. It changes in size depending on the character.,밸런스볼
-1014,BounceBall,2,18,1,0,1,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,밸런스볼
-1014,BounceBall,3,18,2,0,1,1,1,1,6,Multishot,Drop two balls.,밸런스볼
-1014,BounceBall,4,18,2,0,1,1,1,0,6,Multishot,Drop three balls.,밸런스볼
-1014,BounceBall,5,18,3,0,1,1,1,0,6,Multishot,<color=green>15%</color> reduction in attack cycle.,밸런스볼
-1014,BounceBall,6,18,4,0,1,0.8,1,0,6,Multishot,"<color=green>30%</color> increase in damage, drop four balls.",밸런스볼
-1015,ENsCurse,1,15,1,0,1,1,1,1,6,Multishot,"It fires a cursed chunk of energy forward. If hit, another curse can be carried to another enemy.",EN의저주
-1015,ENsCurse,2,18,1,0,1,1,1,1,6,Multishot,<color=green>30%</color> increase in damage,EN의저주
-1015,ENsCurse,3,18,1,1,1,1,1.25,1,6,Multishot,Maximum range of curse chain increased to <color=green>125px</color>,EN의저주
-1015,ENsCurse,4,18,2,1,1,1,1.25,1,6,Multishot,"2 Curse Fires, Chain Probability Rises to <color=green>90%</color>.",EN의저주
-1015,ENsCurse,5,18,2,1,1,0.8,1.25,1,6,Multishot,<color=green>15%</color> reduction in attack cycles,EN의저주
-1015,ENsCurse,6,20,3,1,1,0.8,1.25,1,6,Multishot,3 curses fired and the damage increased by <color=green>10%</color> for each chain,EN의저주
-1101,Pistol Shot,1,15,1,0,0.85,1,3,1,6,Multishot,Shoots 3 Projectiles forward.,
-1101,Pistol Shot,2,15,1,0,0.85,1,4,1,6,Multishot,<color=green>1</color> additional shot.,
-1101,Pistol Shot,3,18,1,0,0.85,1,4,1,6,Multishot,Increase damage by <color=green>15%</color>.,
-1101,Pistol Shot,4,18,1,0,0.85,1,4,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1101,Pistol Shot,5,23,1,0,0.85,1,6,1,6,Multishot,Increase damage by <color=green>15%</color>.,
-1101,Pistol Shot,6,23,1,0,0.85,1,6,0,6,Multishot,Increase damage by <color=green>20%</color>.,
-1102,Trident Thrust,1,15,1,3,15,1,1,1,6,Melee,Mid ranged stab attack in front.,
-1102,Trident Thrust,2,15,2,3,15,1,1.2,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1102,Trident Thrust,3,18,2,4,15,1,1.2,1,6,Melee,"""Stab one extra time, forming a <color=green>V</color> shape.""",
-1102,Trident Thrust,4,23,2,4,15,1,1.2,1,6,Melee,Reduce the time between attacks by <color=green>15%</color>.,
-1102,Trident Thrust,5,23,3,4,15,1,1.2,1,6,Melee,Increase damage by <color=green>40%</color>.,
-1102,Trident Thrust,6,23,4,4,15,1,1.44,1,6,Melee,Increase attack area by <color=green>25%</color>.,
-1103,Summon Tentacle,1,15,1,1,1,1,1,1,6,Melee,A tentacle shoots out in front,
-1103,Summon Tentacle,2,18,1,1,1,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1103,Summon Tentacle,3,18,2,1,1,1,1,1,6,Melee,Reduce the time between attacks by <color=green>20%</color>.,
-1103,Summon Tentacle,4,18,2,1,1,0.67,1,1,6,Melee,Increase attack area by <color=green>25%</color>.,
-1103,Summon Tentacle,5,21,2,1.25,1,0.67,1,1,6,Melee,Increase damage by <color=green>50%</color>.,
-1103,Summon Tentacle,6,21,4,1.25,1,0.3,1,1,6,Melee,Adds small <color=yellow>knockback</color> on hit.,
-1104,Phoenix Sword,1,15,1,0,1,1,1,0,6,Melee,Short ranged slash in front.,
-1104,Phoenix Sword,2,18,1,0,1,1,1.3,0,6,Melee,Increase damage by <color=green>20%</color>.,
-1104,Phoenix Sword,3,18,1,0,1,0.8,1.3,0,6,Melee,Increase attack area by <color=green>25%</color>.,
-1104,Phoenix Sword,4,18,1,0,1,0.8,1.3,0,6,Melee,Reduce the time between attacks by <color=green>15%</color>.,
-1104,Phoenix Sword,5,23,1,0,1,0.8,1.3,0,6,Melee,Increase damage by <color=green>20%</color>.,
-1104,Phoenix Sword,6,23,1,0,1,0.8,1.6,0,6,Melee,Increase damage by <color=green>30%</color>.,
-1105,Scythe Swing,1,15,1,0,1,1,1,1,6,Melee,Swings in a half circle arc in front.,
-1105,Scythe Swing,2,18,1,0,1,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1105,Scythe Swing,3,18,1,0,1,1,1,0,6,Melee,Increase attack area by <color=green>15%</color>.,
-1105,Scythe Swing,4,18,1,0,1,0.8,1,0,6,Melee,Increase damage by <color=green>30%</color>.,
-1105,Scythe Swing,5,23,1,0,1,0.8,1,0,6,Melee,Reduce the time between attacks by <color=green>10%</color>.,
-1105,Scythe Swing,6,23,1,0,1,0.6,1,0,6,Melee,Increase attack area by <color=green>10%</color>.,
-1106,Play Dice,1,15,1,0,4,1,1,1,6,Multishot,null,
-1106,Play Dice,2,15,1,0,4,1,1.15,1,6,Multishot,null,
-1106,Play Dice,3,18,1,0,4,1,1.15,1,6,Multishot,null,
-1106,Play Dice,4,18,2,0,4,1,1.15,1,6,Multishot,null,
-1106,Play Dice,5,18,2,0,4,0.8,1.15,1,6,Multishot,null,
-1106,Play Dice,6,18,3,0,4,0.8,1.35,1,6,Multishot,null,
-1107,Clock Hands,1,15,1,1,1,1,1,1,6,Melee,Stab forward with a large clock hand.,
-1107,Clock Hands,2,18,1,1,1,1,1.2,1,6,Melee,Increase area of attack by <color=green>20%</color>.,
-1107,Clock Hands,3,18,1,1,1,0.8,1.2,1,6,Melee,Increase damage by <color=green>30%</color>.,
-1107,Clock Hands,4,23,1,1,1,0.8,1.44,1,6,Melee,Reduce the time between attack by <color=green>10%</color>.,
-1107,Clock Hands,5,23,1,1,1,0.8,2,1,6,Melee,Increase area of attack by <color=green>30%</color>.,
-1107,Clock Hands,6,30,1,1,1,0.8,2,1,6,Melee,Reduce time between attack by <color=green>15%</color>.,
-1108,Null,1,15,1,3,2,1,1,1,6,None,null,
-1108,Null,2,18,2,3,2,1,1,1,6,None,null,
-1108,Null,3,18,2,4,2,1,1,1,6,None,null,
-1108,Null,4,25,3,4,2,1,1,1,6,None,null,
-1108,Null,5,25,4,4,2,1,1,1,6,None,null,
-1108,Null,6,30,4,4,2,1,1,1,6,None,null,
-1109,Bird Feather,1,15,1,3,5,1,1,0,6,Multishot,Shoot a bunch of feathers at a spread. Pierces through targets.,
-1109,Bird Feather,2,15,1,3,5,1,1.3,0,6,Multishot,Increase damage by <color=green>20%</color>.,
-1109,Bird Feather,3,18,1,3,5,1,1.3,0,6,Multishot,Increase damage by <color=green>20%</color>.,
-1109,Bird Feather,4,18,1,3,7,1,1.3,0,6,Multishot,Shoot <color=green>1</color> additional feather.,
-1109,Bird Feather,5,26,1,3,7,1,1.3,0,6,Multishot,Reduce the time between attacks by <color=green>30%</color>.,
-1109,Bird Feather,6,26,2,3,7,0.5,1.3,0,6,Multishot,Shoot <color=green>1</color> additional feathers.,
-1110,Orbit,1,15,1,0,1,1,1,1,6,Multishot,Create an orbiting planet. Hits multiple targets.,
-1110,Orbit,2,15,1,0,1,1,1.3,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1110,Orbit,3,15,1,0,1,0.5,1.3,1,6,Multishot,Increase area of attack by <color=green>20%</color> and range by <color=green>20%</color>.,
-1110,Orbit,4,22,1,0,1,0.5,1.3,1,6,Multishot,Increase damage by <color=green>33%</color>.,
-1110,Orbit,5,22,1,0,1,0.5,2,1,6,Multishot,Increase area of attack by <color=green>30%</color> and range by <color=green>30%</color>.,
-1110,Orbit,6,22,2,0,1,0.5,2,1,6,Multishot,Reduces the time between attack by <color=green>10%</color>.,
-1111,Null,1,15,1,0,3,1,1,1,6,None,null,
-1111,Null,2,18,1,0,3,1,1,1,6,None,null,
-1111,Null,3,18,2,0,3,1,1,1,6,None,null,
-1111,Null,4,23,2,0,3,1,1,1,6,None,null,
-1111,Null,5,23,3,0,3,1,1,0,6,None,null,
-1111,Null,6,23,4,0,3,1,1,1,6,None,null,
-1112,Fox Tail,1,15,1,0,1,1,1,1,6,Melee,Swipes Tail in front at close range,
-1112,Fox Tail,2,17,1,0,1,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1112,Fox Tail,3,17,2,0,1,1,1,1,6,Melee,Increase attack area by <color=green>20%</color>.,
-1112,Fox Tail,4,17,3,0,1,1,1.25,1,6,Melee,Swing tail in front and back,
-1112,Fox Tail,5,23,3,0,1,1,1.25,1,6,Melee,Reduce time between attacks by <color=green>15%</color>.,
-1112,Fox Tail,6,23,4,0,1,1,1.25,1,6,Melee,Increase attack area by <color=green>20%</color>.,
-1113,Tarot Cards,1,15,1,0,1,1,1,1,6,Multishot,Throw a card that quickly returns back.,
-1113,Tarot Cards,2,18,1,0,1,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1113,Tarot Cards,3,18,1,0,1,1,1.25,1,6,Multishot,Throw <color=green>3</color> tarot cards.,
-1113,Tarot Cards,4,18,1,0,1,0.8,1.25,1,6,Multishot,Reduce time between attacks by <color=green>15%</color>.,
-1113,Tarot Cards,5,18,1,0,1,0.8,1.5,1,6,Multishot,Throw cards farther and increased damage by <color=green>40%</color>.,
-1113,Tarot Cards,6,25,1,0,1,0.8,1.5,1,6,Multishot,Throw <color=green>4</color> tarot cards.,
-1114,Null,1,15,1,0,1,1,1,1,6,None,null,
-1114,Null,2,18,1,0,1,1,1,1,6,None,null,
-1114,Null,3,18,2,0,1,1,1,1,6,None,null,
-1114,Null,4,18,2,0,1,1,1,0,6,None,null,
-1114,Null,5,18,3,0,1,1,1,0,6,None,null,
-1114,Null,6,18,4,0,1,0.8,1,0,6,None,null,
-1115,Orayo,1,15,1,0,1,1,1,1,6,Multishot,Punch towards the front.,
-1115,Orayo,2,18,1,0,1,1,1,1,6,Multishot,Increase attack area by <color=green>25%</color>.,
-1115,Orayo,3,18,1,1,1,1,1.25,1,6,Multishot,Increase damage by <color=green>30%</color>.,
-1115,Orayo,4,18,2,1,1,1,1.25,1,6,Multishot,Increase amount of punches by <color=green>1</color>.,
-1115,Orayo,5,18,2,1,1,0.8,1.25,1,6,Multishot,Increase attack area by <color=green>25%</color>. Widen Korone's punch range slightly.,
-1115,Orayo,6,20,3,1,1,0.8,1.25,1,6,Multishot,Increase amount of punches by <color=green>2</color>.,
-1116,Bright Star,1,15,1,0,0.85,1,3,1,6,Multishot,Shoot forward a spinning star.,
-1116,Bright Star,2,15,1,0,0.85,1,4,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1116,Bright Star,3,18,1,0,0.85,1,4,1,6,Multishot,Stars last <color=green>1</color> second longer.,
-1116,Bright Star,4,18,1,0,0.85,1,4,1,6,Multishot,Shoot <color=green>2</color> stars.,
-1116,Bright Star,5,23,1,0,0.85,1,6,1,6,Multishot,Increase size by <color=green>30%</color>.,
-1116,Bright Star,6,23,1,0,0.85,1,6,0,6,Multishot,Shoot <color=green>3</color> stars.,
-1117,Diva Song,1,15,1,3,15,1,1,1,6,Ranged,Send a flying music note in front.,
-1117,Diva Song,2,15,2,3,15,1,1.2,1,6,Ranged,Increase damage by <color=green>20%</color>.,
-1117,Diva Song,3,18,2,4,15,1,1.2,1,6,Ranged,Reduce time between attack by <color=green>15%</color>.,
-1117,Diva Song,4,23,2,4,15,1,1.2,1,6,Ranged,Increase attack area by <color=green>30%</color>.,
-1117,Diva Song,5,23,3,4,15,1,1.2,1,6,Ranged,Increase damage by <color=green>25%</color> and speed by <color=green>25%</color>.,
-1117,Diva Song,6,23,4,4,15,1,1.44,1,6,Ranged,Reduce time between attacks by <color=green>25%</color>.,
-1118,High Spec Pistol,1,15,1,1,1,1,1,1,6,Multishot,Shoots a few times in aimed direction.,
-1118,High Spec Pistol,2,18,1,1,1,1,1,1,6,Multishot,Shoot <color=green>one</color> more bullet.,
-1118,High Spec Pistol,3,18,2,1,1,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1118,High Spec Pistol,4,18,2,1,1,0.67,1,1,6,Multishot,Reduce the time between attacks by <color=green>15%</color>.,
-1118,High Spec Pistol,5,21,2,1.25,1,0.67,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1118,High Spec Pistol,6,21,4,1.25,1,0.3,1,1,6,Multishot,Shoot <color=green>one</color> more bullet.,
-1119,Axe Swing,1,15,1,0,1,1,1,0,6,Melee,Swing a bloody axe in an arc in front.,
-1119,Axe Swing,2,18,1,0,1,1,1.3,0,6,Melee,Increased damage by <color=green>30%</color>.,
-1119,Axe Swing,3,18,1,0,1,0.8,1.3,0,6,Melee,Increase attack area by <color=green>20%</color>.,
-1119,Axe Swing,4,18,1,0,1,0.8,1.3,0,6,Melee,Reduce time between attacks by <color=green>10%</color>.,
-1119,Axe Swing,5,23,1,0,1,0.8,1.3,0,6,Melee,Increased damage by <color=green>30%</color>.,
-1119,Axe Swing,6,23,1,0,1,0.8,1.6,0,6,Melee,Increase attack area by <color=green>20%</color>.,
-1120,Null,1,15,1,0,1,1,1,1,6,None,null,
-1120,Null,2,18,1,0,1,1,1,1,6,None,null,
-1120,Null,3,18,1,0,1,1,1,0,6,None,null,
-1120,Null,4,18,1,0,1,0.8,1,0,6,None,null,
-1120,Null,5,23,1,0,1,0.8,1,0,6,None,null,
-1120,Null,6,23,1,0,1,0.6,1,0,6,None,null,
-1121,Red Heart,1,15,1,0,4,1,1,1,6,Multishot,Create big red hearts. Hearts knock enemies back.,
-1121,Red Heart,2,15,1,0,4,1,1.15,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1121,Red Heart,3,18,1,0,4,1,1.15,1,6,Multishot,Increase size of hearts by <color=green>50%</color>.,
-1121,Red Heart,4,18,2,0,4,1,1.15,1,6,Multishot,Add an <color=green>additional</color> heart.,
-1121,Red Heart,5,18,2,0,4,0.8,1.15,1,6,Multishot,Hearts last <color=green>0.33</color> second longer.,
-1121,Red Heart,6,18,3,0,4,0.8,1.35,1,6,Multishot,Increase damage by <color=green>25%</color>.,
-1122,Kapu Kapu,1,15,1,1,1,1,1,1,6,Melee,Bite targets in front,
-1122,Kapu Kapu,2,18,1,1,1,1,1.2,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1122,Kapu Kapu,3,18,1,1,1,0.8,1.2,1,6,Melee,Reduce delay of attack by <color=green>10%</color>.,
-1122,Kapu Kapu,4,23,1,1,1,0.8,1.44,1,6,Melee,Increase size of bite by <color=green>15%</color>.,
-1122,Kapu Kapu,5,23,1,1,1,0.8,2,1,6,Melee,Reduce delay of attack by <color=green>15%</color>.,
-1122,Kapu Kapu,6,30,1,1,1,0.8,2,1,6,Melee,Increase damage by <color=green>25%</color>.,
-1123,Null,1,15,1,3,2,1,1,1,6,None,null,
-1123,Null,2,18,2,3,2,1,1,1,6,None,null,
-1123,Null,3,18,2,4,2,1,1,1,6,None,null,
-1123,Null,4,25,3,4,2,1,1,1,6,None,null,
-1123,Null,5,25,4,4,2,1,1,1,6,None,null,
-1123,Null,6,30,4,4,2,1,1,1,6,None,null,
-1124,Null,1,15,1,3,5,1,1,0,6,None,null,
-1124,Null,2,15,1,3,5,1,1.3,0,6,None,null,
-1124,Null,3,18,1,3,5,1,1.3,0,6,None,null,
-1124,Null,4,18,1,3,7,1,1.3,0,6,None,null,
-1124,Null,5,26,1,3,7,1,1.3,0,6,None,null,
-1124,Null,6,26,2,3,7,0.5,1.3,0,6,None,null,
-1125,Baseball Pitch,1,15,1,0,1,1,1,1,6,Ranged,Throws a very fast baseball in front.,
-1125,Baseball Pitch,2,15,1,0,1,1,1.3,1,6,Ranged,Increase damage by <color=green>20%</color>.,
-1125,Baseball Pitch,3,15,1,0,1,0.5,1.3,1,6,Ranged,Reduce time between attacks by <color=green>30%</color>.,
-1125,Baseball Pitch,4,22,1,0,1,0.5,1.3,1,6,Ranged,<color=green>Double</color> the speed of the baseball and gain small <color=green>Knockback</color>.,
-1125,Baseball Pitch,5,22,1,0,1,0.5,2,1,6,Ranged,Reduce time between attacks by <color=green>50%</color>.,
-1125,Baseball Pitch,6,22,2,0,1,0.5,2,1,6,Ranged,Increase damage by <color=green>20%</color>.,
-1126,Love Needle,1,15,1,0,3,1,1,1,6,Multishot,Thrust a giant needle in front.,
-1126,Love Needle,2,18,1,0,3,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1126,Love Needle,3,18,2,0,3,1,1,1,6,Multishot,Increase size of attack by <color=green>20%</color>.,
-1126,Love Needle,4,23,2,0,3,1,1,1,6,Multishot,Stab <color=green>twice</color> with needle.,
-1126,Love Needle,5,23,3,0,3,1,1,0,6,Multishot,Reduce time between attacks by <color=green>15%</color> and increase damage by <color=green>20%</color>.,
-1126,Love Needle,6,23,4,0,3,1,1,1,6,Multishot,Stab <color=green>3</color> times with needle and needle fires <color=green>25%</color> farther.,
-1127,Murasaki Bolt,1,15,1,0,1,1,1,1,6,Multishot,Fires a quick magic bolt in front.,
-1127,Murasaki Bolt,2,17,1,0,1,1,1,1,6,Multishot,Shoot <color=green>2</color> magic blast.,
-1127,Murasaki Bolt,3,17,2,0,1,1,1,1,6,Multishot,Shoot <color=green>3</color> magic blasts.,
-1127,Murasaki Bolt,4,17,3,0,1,1,1.25,1,6,Multishot,Increase damage and speed by <color=green>20%</color>.,
-1127,Murasaki Bolt,5,23,3,0,1,1,1.25,1,6,Multishot,Reduce time between attacks by <color=green>20%</color>.,
-1127,Murasaki Bolt,6,23,4,0,1,1,1.25,1,6,Multishot,Increase damage by <color=green>20%</color>.,
-1128,Dual Katana,1,15,1,0,1,1,1,1,6,Melee,Slashes twice in front.,
-1128,Dual Katana,2,18,1,0,1,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1128,Dual Katana,3,18,1,0,1,1,1.25,1,6,Melee,Increase size by <color=green>10%</color>.,
-1128,Dual Katana,4,18,1,0,1,0.8,1.25,1,6,Melee,Reduce time between attacks by <color=green>15%</color>.,
-1128,Dual Katana,5,18,1,0,1,0.8,1.5,1,6,Melee,Increase size by <color=green>20%</color>.,
-1128,Dual Katana,6,25,1,0,1,0.8,1.5,1,6,Melee,Increase damage by <color=green>20%</color>.,
-1129,Null,1,15,1,0,1,1,1,1,6,None,null,
-1129,Null,2,18,1,0,1,1,1,1,6,None,null,
-1129,Null,3,18,2,0,1,1,1,1,6,None,null,
-1129,Null,4,18,2,0,1,1,1,0,6,None,null,
-1129,Null,5,18,3,0,1,1,1,0,6,None,null,
-1129,Null,6,18,4,0,1,0.8,1,0,6,None,null,
+ID,Name,Level,Attack,Quantity,Speed,AttackRange,Duration,AttackCycle,Size,Knockback,MaxLevel,WeaponType,Explanation,Animation
+1001,Spider Cooking,1,15,1,0,0.85,3,1,3,1,6,Melee,"""Create an area of miasma around, dealing slow damage to enemies inside.""",null
+1001,Spider Cooking,2,15,1,0,0.85,3,1,4,1,6,Melee,Increase area by <color=green>15%</color>.,null
+1001,Spider Cooking,3,18,1,0,0.85,3,1,4,1,6,Melee,Increase damage by <color=green>30%</color>.,null
+1001,Spider Cooking,4,18,1,0,0.85,3,1,4,1,6,Melee,Increase area by <color=green>25%</color>.,null
+1001,Spider Cooking,5,23,1,0,0.85,3,1,6,1,6,Melee,Increase frequency of hits by <color=green>20%</color>.,null
+1001,Spider Cooking,6,23,1,0,0.85,3,1,6,0,6,Melee,Increase damage by <color=green>60%</color>.,null
+1002,Elite Lava Bucket,1,15,1,3,15,3,1,1,1,6,Multishot,"""Throw lava on the ground that continues to damage the enemy.""",null
+1002,Elite Lava Bucket,2,15,2,3,15,3,1,1.2,1,6,Multishot,Lava range is up by<color=green>20%</color>.,null
+1002,Elite Lava Bucket,3,18,2,4,15,3,1,1.2,1,6,Multishot,The number of lava buckets thrown becomes two.,null
+1002,Elite Lava Bucket,4,23,2,4,15,3,1,1.2,1,6,Multishot,"30% increase in damage, 1 second increase in lava duration.",null
+1002,Elite Lava Bucket,5,23,3,4,15,3,1,1.2,1,6,Multishot,The number of lava buckets thrown becomes three.,null
+1002,Elite Lava Bucket,6,23,4,4,15,3,1,1.44,1,6,Multishot,"The number of lava buckets thrown becomes 4, and the range of lava rises by <color=green>20%</color>.",null
+1003,CEO's Tears,1,15,1,1,1,3,1,1,1,6,Multishot,Speaks out tears shot in the direction of random enemies.,null
+1003,CEO's Tears,2,18,1,1,1,3,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,null
+1003,CEO's Tears,3,18,2,1,1,3,1,1,1,6,Multishot,Shoot two drops of tears.,null
+1003,CEO's Tears,4,18,2,1,1,3,0.67,1,1,6,Multishot,The attack cycle is <color=green>33%</color>.,null
+1003,CEO's Tears,5,21,2,1.25,1,3,0.67,1,1,6,Multishot,"The speed of moving tears increased by <color=green>25%</color>, and the damage also increased by <color=green>20%</color>.",null
+1003,CEO's Tears,6,21,4,1.25,1,3,0.3,1,1,6,Multishot,Four drops of tears.,null
+1004,Wamy Water,1,15,1,0,1,3,1,1,0,6,Melee,Spray water of unknown origin to the front to knock back the enemy.,null
+1004,Wamy Water,2,18,1,0,1,3,1,1.3,0,6,Melee,a <color=green>20%</color> increase in damage.,null
+1004,Wamy Water,3,18,1,0,1,3,0.8,1.3,0,6,Melee,The range of attacks is increased by <color=green>30%</color>.,null
+1004,Wamy Water,4,18,1,0,1,3,0.8,1.3,0,6,Melee,The attack cycle is <color=green>20%</color>.,null
+1004,Wamy Water,5,23,1,0,1,3,0.8,1.3,0,6,Melee,a <color=green>30%</color> increase in damage.,null
+1004,Wamy Water,6,23,1,0,1,3,0.8,1.6,0,6,Melee,"The range of attack increases by <color=green>30%</color>, and stops the opponent briefly after a knockback.",null
+1005,Sausage,1,15,1,0,1,3,1,1,1,6,Melee,"If the target is close, swing a small sausage at the nearest target.",null
+1005,Sausage,2,18,1,0,1,3,1,1,1,6,Melee,a <color=green>20%</color> increase in damage.,null
+1005,Sausage,3,18,1,0,1,3,1,1,0,6,Melee,The attack cycle is reduced by <color=green>20%</color>.,null
+1005,Sausage,4,18,1,0,1,3,0.8,1,0,6,Melee,<color=green>30%</color> increase in attack range and damage.,null
+1005,Sausage,5,23,1,0,1,3,0.8,1,0,6,Melee,The attack cycle is reduced by <color=green>20%</color>.,null
+1005,Sausage,6,23,1,0,1,3,0.6,1,0,6,Melee,The number of hits in the sausage increases to two.,null
+1006,Holo Bomb,1,15,1,0,4,3,1,1,1,6,Multishot,"A bomb that explodes, dealing damage to all nearby targets.",HoloBomb
+1006,Holo Bomb,2,15,1,0,4,3,1,1.15,1,6,Multishot,Increase explosion size by <color=green>15%</color>.,HoloBomb
+1006,Holo Bomb,3,18,1,0,4,3,1,1.15,1,6,Multishot,Increase damage by <color=green>20%</color>.,HoloBomb
+1006,Holo Bomb,4,18,2,0,4,3,1,1.15,1,6,Multishot,Throw <color=green>2</color> bombs.,HoloBomb
+1006,Holo Bomb,5,18,2,0,4,3,0.8,1.15,1,6,Multishot,Reduce the time between attacks by <color=green>20%</color>.,HoloBomb
+1006,Holo Bomb,6,18,3,0,4,3,0.8,1.35,1,6,Multishot,Increase explosion size by <color=green>20%</color>.,HoloBomb
+1007,Psycho Axe,1,15,1,1,1,3,1,1,1,6,Ranged,Throw an axe that spirals outward from the player.,PsychoAxe
+1007,Psycho Axe,2,18,1,1,1,3,1,1.2,1,6,Ranged,Increase size of axe by <color=green>20%</color>. ,PsychoAxe
+1007,Psycho Axe,3,18,1,1,1,3,0.8,1.2,1,6,Ranged,Reduce delay between attacks by <color=green>20%</color>.,PsychoAxe
+1007,Psycho Axe,4,23,1,1,1,3,0.8,1.44,1,6,Ranged,"""Increase damage by <color=green>33%</color>, and size by <color=green>20%</color>.",PsychoAxe
+1007,Psycho Axe,5,23,1,1,1,3,0.8,2,1,6,Ranged,Lasts <color=green>1</color> second longer.,PsychoAxe
+1007,Psycho Axe,6,30,1,1,1,3,0.8,2,1,6,Ranged,Increase attack size by <color=green>50%</color>.,PsychoAxe
+1008,BL Book,1,15,1,3,2,3,1,1,1,6,Multishot,Repels targets with orbiting BL Books.,BL 
+1008,BL Book,2,18,2,3,2,3,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
+1008,BL Book,3,18,2,4,2,3,1,1,1,6,Multishot,Increase damage by <color=green>30%</color> and increase duration by <color=green>1</color> second.,BL 
+1008,BL Book,4,25,3,4,2,3,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
+1008,BL Book,5,25,4,4,2,3,1,1,1,6,Multishot,Increase radius and spinning speed by <color=green>25%</color>.,BL 
+1008,BL Book,6,30,4,4,2,3,1,1,1,6,Multishot,Add <color=green>1</color> additional book.,BL 
+1009,Cutting Board,1,15,1,3,5,3,1,1,0,6,Ranged,Create a defensive wall that damages the enemy in the rear. The effect changes depending on the character.,null
+1009,Cutting Board,2,15,1,3,5,3,1,1.3,0,6,Ranged,The size of the wall has risen by <color=green>30%</color>.,null
+1009,Cutting Board,3,18,1,3,5,3,1,1.3,0,6,Ranged,a <color=green>30%</color> increase in damage.,null
+1009,Cutting Board,4,18,1,3,7,3,1,1.3,0,6,Ranged,The wall moves further.,null
+1009,Cutting Board,5,26,1,3,7,3,1,1.3,0,6,Ranged,a <color=green>50%</color> increase in damage.,null
+1009,Cutting Board,6,26,2,3,7,3,0.5,1.3,0,6,Ranged,Make more walls at the back.,null
+1010,FanBeam,1,15,1,0,1,3,1,1,1,6,Ranged,Shoot a powerful laser beam from the microphone.,null
+1010,FanBeam,2,15,1,0,1,3,1,1.3,1,6,Ranged,Increase size by <color=green>30%</color>.,null
+1010,FanBeam,3,15,1,0,1,3,0.5,1.3,1,6,Ranged,Reduce attack cooldown by <color=green>0.5</color> seconds.,null
+1010,FanBeam,4,22,1,0,1,3,0.5,1.3,1,6,Ranged,Increase damage by <color=green>50%</color>.,null
+1010,FanBeam,5,22,1,0,1,3,0.5,2,1,6,Ranged,Reduce attack cooldown by <color=green>0.5</color> seconds.,null
+1010,FanBeam,6,22,2,0,1,3,0.5,2,1,6,Ranged,Increase size by <color=green>50%</color>.,null
+1011,Plug Type Asacoco,1,15,1,0,3,3,1,1,1,6,Multishot,The penetrating tail shoots at high speed in the direction of the random enemy.,null
+1011,Plug Type Asacoco,2,18,1,0,3,3,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,null
+1011,Plug Type Asacoco,3,18,2,0,3,3,1,1,1,6,Multishot,The number of Asakoko launched becomes two.,null
+1011,Plug Type Asacoco,4,23,2,0,3,3,1,1,1,6,Multishot,a <color=green>30%</color> increase in damage.,null
+1011,Plug Type Asacoco,5,23,3,0,3,3,1,1,0,6,Multishot,The number of Asakoko launched becomes three.,null
+1011,Plug Type Asacoco,6,23,4,0,3,3,1,1,1,6,Multishot,The number of Asakoko launched becomes four.,null
+1012,Glowstick,1,15,1,0,1,3,1,1,1,6,Multishot,Throw a fluorescent stick at a nearby enemy. The fluorescent stick spins back.,null
+1012,Glowstick,2,17,1,0,1,3,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,null
+1012,Glowstick,3,17,2,0,1,3,1,1,1,6,Multishot,"The number of hits is increased by 10, and the number of fluorescent rods thrown becomes two.",null
+1012,Glowstick,4,17,3,0,1,3,1,1.25,1,6,Multishot,The size of the fluorescent rod is increased by <color=green>25</color>%.,null
+1012,Glowstick,5,23,3,0,1,3,1,1.25,1,6,Multishot,The number of fluorescent rods thrown becomes three.,null
+1012,Glowstick,6,23,4,0,1,3,1,1.25,1,6,Multishot,The number of fluorescent rods thrown becomes four.,null
+1013,Idlo Song,1,15,1,0,1,3,1,1,1,6,Ranged,It fires a note that flies up and down.,null
+1013,Idlo Song,2,18,1,0,1,3,1,1,1,6,Ranged,<color=green>25</color> percent increase in damage.,null
+1013,Idlo Song,3,18,1,0,1,3,1,1.25,1,6,Ranged,"Increased attack speed, increased range.",null
+1013,Idlo Song,4,18,1,0,1,3,0.8,1.25,1,6,Ranged,a <color=green>25%</color> increase in the size of a note.,null
+1013,Idlo Song,5,18,1,0,1,3,0.8,1.5,1,6,Ranged,a <color=green>25%</color> increase in the size of a note.,null
+1013,Idlo Song,6,25,1,0,1,3,0.8,1.5,1,6,Ranged,a <color=green>50%</color> increase in damage.,null
+1014,BounceBall,1,15,1,0,1,3,1,1,1,6,Multishot,Fires a bouncing ball to a random target. It changes in size depending on the character.,null
+1014,BounceBall,2,18,1,0,1,3,1,1,1,6,Multishot,a <color=green>20%</color> increase in damage.,null
+1014,BounceBall,3,18,2,0,1,3,1,1,1,6,Multishot,Drop two balls.,null
+1014,BounceBall,4,18,2,0,1,3,1,1,0,6,Multishot,Drop three balls.,null
+1014,BounceBall,5,18,3,0,1,3,1,1,0,6,Multishot,<color=green>15%</color> reduction in attack cycle.,null
+1014,BounceBall,6,18,4,0,1,3,0.8,1,0,6,Multishot,"<color=green>30%</color> increase in damage, drop four balls.",null
+1015,ENsCurse,1,15,1,0,1,3,1,1,1,6,Multishot,"It fires a cursed chunk of energy forward. If hit, another curse can be carried to another enemy.",null
+1015,ENsCurse,2,18,1,0,1,3,1,1,1,6,Multishot,<color=green>30%</color> increase in damage,null
+1015,ENsCurse,3,18,1,1,1,3,1,1.25,1,6,Multishot,Maximum range of curse chain increased to <color=green>125px</color>,null
+1015,ENsCurse,4,18,2,1,1,3,1,1.25,1,6,Multishot,"2 Curse Fires, Chain Probability Rises to <color=green>90%</color>.",null
+1015,ENsCurse,5,18,2,1,1,3,0.8,1.25,1,6,Multishot,<color=green>15%</color> reduction in attack cycles,null
+1015,ENsCurse,6,20,3,1,1,3,0.8,1.25,1,6,Multishot,3 curses fired and the damage increased by <color=green>10%</color> for each chain,null
+1101,Pistol Shot,1,15,3,1,0.85,3,1,1,1,6,Multishot,Shoots 3 Projectiles forward.,spr_Ame_bullet_1
+1101,Pistol Shot,2,15,4,1,0.85,3,1,1,1,6,Multishot,<color=green>1</color> additional shot.,spr_Ame_bullet_1
+1101,Pistol Shot,3,18,4,1,0.85,3,1,1,1,6,Multishot,Increase damage by <color=green>15%</color>.,spr_Ame_bullet_1
+1101,Pistol Shot,4,18,4,1,0.85,3,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,spr_Ame_bullet_1
+1101,Pistol Shot,5,23,4,1,0.85,3,1,1,1,6,Multishot,Increase damage by <color=green>15%</color>.,spr_Ame_bullet_1
+1101,Pistol Shot,6,23,5,1,0.85,3,1,1,0,6,Multishot,Increase damage by <color=green>20%</color>.,spr_Ame_bullet_1
+1102,Trident Thrust,1,15,1,3,15,3,1,3,1,6,Melee,Mid ranged stab attack in front.,GuraTridentThrust
+1102,Trident Thrust,2,15,2,3,15,3,1,4,1,6,Melee,Increase damage by <color=green>20%</color>.,GuraTridentThrust
+1102,Trident Thrust,3,18,2,4,15,3,1,4,1,6,Melee,"""Stab one extra time, forming a <color=green>V</color> shape.""",GuraTridentThrust
+1102,Trident Thrust,4,23,2,4,15,3,1,4,1,6,Melee,Reduce the time between attacks by <color=green>15%</color>.,GuraTridentThrust
+1102,Trident Thrust,5,23,3,4,15,3,1,4,1,6,Melee,Increase damage by <color=green>40%</color>.,GuraTridentThrust
+1102,Trident Thrust,6,23,4,4,15,3,1,4.5,1,6,Melee,Increase attack area by <color=green>25%</color>.,GuraTridentThrust
+1103,Summon Tentacle,1,15,1,1,1,3,1,3,1,6,Melee,A tentacle shoots out in front,SummonTentacle
+1103,Summon Tentacle,2,18,1,1,1,3,1,3,1,6,Melee,Increase damage by <color=green>20%</color>.,SummonTentacle
+1103,Summon Tentacle,3,18,2,1,1,3,1,3,1,6,Melee,Reduce the time between attacks by <color=green>20%</color>.,SummonTentacle
+1103,Summon Tentacle,4,18,2,1,1,3,0.67,3,1,6,Melee,Increase attack area by <color=green>25%</color>.,SummonTentacle
+1103,Summon Tentacle,5,21,2,1.25,1,3,0.67,3,1,6,Melee,Increase damage by <color=green>50%</color>.,SummonTentacle
+1103,Summon Tentacle,6,21,4,1.25,1,3,0.3,3,1,6,Melee,Adds small <color=yellow>knockback</color> on hit.,SummonTentacle
+1104,Phoenix Sword,1,15,1,0,1,3,3,3,0,6,Melee,Short ranged slash in front.,KiaraSlash
+1104,Phoenix Sword,2,18,1,0,1,3,3,4,0,6,Melee,Increase damage by <color=green>20%</color>.,KiaraSlash
+1104,Phoenix Sword,3,18,1,0,1,3,2.5,4,0,6,Melee,Increase attack area by <color=green>25%</color>.,KiaraSlash
+1104,Phoenix Sword,4,18,1,0,1,3,2.5,4,0,6,Melee,Reduce the time between attacks by <color=green>15%</color>.,KiaraSlash
+1104,Phoenix Sword,5,23,1,0,1,3,2.5,4,0,6,Melee,Increase damage by <color=green>20%</color>.,KiaraSlash
+1104,Phoenix Sword,6,23,1,0,1,3,2.5,5,0,6,Melee,Increase damage by <color=green>30%</color>.,KiaraSlash
+1105,Scythe Swing,1,15,1,0,1,3,3,5,1,6,Melee,Swings in a half circle arc in front.,CalliSlash
+1105,Scythe Swing,2,18,1,0,1,3,3,5,1,6,Melee,Increase damage by <color=green>20%</color>.,CalliSlash
+1105,Scythe Swing,3,18,1,0,1,3,3,5,0,6,Melee,Increase attack area by <color=green>15%</color>.,CalliSlash
+1105,Scythe Swing,4,18,1,0,1,3,2.5,5,0,6,Melee,Increase damage by <color=green>30%</color>.,CalliSlash
+1105,Scythe Swing,5,23,1,0,1,3,2.5,5,0,6,Melee,Reduce the time between attacks by <color=green>10%</color>.,CalliSlash
+1105,Scythe Swing,6,23,1,0,1,3,2,5,0,6,Melee,Increase attack area by <color=green>10%</color>.,CalliSlash
+1106,Play Dice,1,15,1,2,4,3,1,1,1,6,Multishot,  ,BaeDice
+1106,Play Dice,2,15,1,2,4,3,1,1.15,1,6,Multishot,  ,BaeDice
+1106,Play Dice,3,18,1,2,4,3,1,1.15,1,6,Multishot,  ,BaeDice
+1106,Play Dice,4,18,2,2,4,3,1,1.15,1,6,Multishot,  ,BaeDice
+1106,Play Dice,5,18,2,2,4,3,0.8,1.15,1,6,Multishot,  ,BaeDice
+1106,Play Dice,6,18,3,2,4,3,0.8,1.35,1,6,Multishot,  ,BaeDice
+1107,Clock Hands,1,15,1,1,1,3,1,3,1,6,Melee,Stab forward with a large clock hand.,KroniiStab
+1107,Clock Hands,2,18,1,1,1,3,1,4,1,6,Melee,Increase area of attack by <color=green>20%</color>.,KroniiStab
+1107,Clock Hands,3,18,1,1,1,3,0.8,4,1,6,Melee,Increase damage by <color=green>30%</color>.,KroniiStab
+1107,Clock Hands,4,23,1,1,1,3,0.8,5,1,6,Melee,Reduce the time between attack by <color=green>10%</color>.,KroniiStab
+1107,Clock Hands,5,23,1,1,1,3,0.8,5,1,6,Melee,Increase area of attack by <color=green>30%</color>.,KroniiStab
+1107,Clock Hands,6,30,1,1,1,3,0.8,5,1,6,Melee,Reduce time between attack by <color=green>15%</color>.,KroniiStab
+1108,  ,1,15,1,3,2,3,1,1,1,6,None,  ,FaunaAttack
+1108,  ,2,18,2,3,2,3,1,1,1,6,None,  ,FaunaAttack
+1108,  ,3,18,2,4,2,3,1,1,1,6,None,  ,FaunaAttack
+1108,  ,4,25,3,4,2,3,1,1,1,6,None,  ,FaunaAttack
+1108,  ,5,25,4,4,2,3,1,1,1,6,None,  ,FaunaAttack
+1108,  ,6,30,4,4,2,3,1,1,1,6,None,  ,FaunaAttack
+1109,Bird Feather,1,15,2,5,5,0.8,1,1,0,6,Multishot,Shoot a bunch of feathers at a spread. Pierces through targets.,spr_MumeiFeather_0
+1109,Bird Feather,2,15,2,5,5,0.8,1,1.3,0,6,Multishot,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,3,18,2,5,5,0.8,1,1.3,0,6,Multishot,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,4,18,3,5,7,0.8,1,1.3,0,6,Multishot,Shoot <color=green>1</color> additional feather.,spr_MumeiFeather_0
+1109,Bird Feather,5,26,3,5,7,0.8,1,1.3,0,6,Multishot,Reduce the time between attacks by <color=green>30%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,6,26,4,5,7,0.8,0.5,1.3,0,6,Multishot,Shoot <color=green>1</color> additional feathers.,spr_MumeiFeather_0
+1110,Orbit,1,15,1,0,1,3,1,1,1,6,Multishot,Create an orbiting planet. Hits multiple targets.,null
+1110,Orbit,2,15,1,0,1,3,1,1.3,1,6,Multishot,Increase damage by <color=green>20%</color>.,null
+1110,Orbit,3,15,1,0,1,3,0.5,1.3,1,6,Multishot,Increase area of attack by <color=green>20%</color> and range by <color=green>20%</color>.,null
+1110,Orbit,4,22,1,0,1,3,0.5,1.3,1,6,Multishot,Increase damage by <color=green>33%</color>.,null
+1110,Orbit,5,22,1,0,1,3,0.5,2,1,6,Multishot,Increase area of attack by <color=green>30%</color> and range by <color=green>30%</color>.,null
+1110,Orbit,6,22,2,0,1,3,0.5,2,1,6,Multishot,Reduces the time between attack by <color=green>10%</color>.,null
+1111,  ,1,15,1,0,3,3,1,1,1,6,None,  ,null
+1111,  ,2,18,1,0,3,3,1,1,1,6,None,  ,null
+1111,  ,3,18,2,0,3,3,1,1,1,6,None,  ,null
+1111,  ,4,23,2,0,3,3,1,1,1,6,None,  ,null
+1111,  ,5,23,3,0,3,3,1,1,0,6,None,  ,null
+1111,  ,6,23,4,0,3,3,1,1,1,6,None,  ,null
+1112,Fox Tail,1,15,1,0,1,3,1,1,1,6,Melee,Swipes Tail in front at close range,FubukiFoxTail
+1112,Fox Tail,2,17,1,0,1,3,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,FubukiFoxTail
+1112,Fox Tail,3,17,2,0,1,3,1,1,1,6,Melee,Increase attack area by <color=green>20%</color>.,FubukiFoxTail
+1112,Fox Tail,4,17,3,0,1,3,1,1.25,1,6,Melee,Swing tail in front and back,FubukiFoxTail
+1112,Fox Tail,5,23,3,0,1,3,1,1.25,1,6,Melee,Reduce time between attacks by <color=green>15%</color>.,FubukiFoxTail
+1112,Fox Tail,6,23,4,0,1,3,1,1.25,1,6,Melee,Increase attack area by <color=green>20%</color>.,FubukiFoxTail
+1113,Tarot Cards,1,15,1,0,1,3,1,1,1,6,Multishot,Throw a card that quickly returns back.,MioWeapon
+1113,Tarot Cards,2,18,1,0,1,3,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,MioWeapon
+1113,Tarot Cards,3,18,1,0,1,3,1,1.25,1,6,Multishot,Throw <color=green>3</color> tarot cards.,MioWeapon
+1113,Tarot Cards,4,18,1,0,1,3,0.8,1.25,1,6,Multishot,Reduce time between attacks by <color=green>15%</color>.,MioWeapon
+1113,Tarot Cards,5,18,1,0,1,3,0.8,1.5,1,6,Multishot,Throw cards farther and increased damage by <color=green>40%</color>.,MioWeapon
+1113,Tarot Cards,6,25,1,0,1,3,0.8,1.5,1,6,Multishot,Throw <color=green>4</color> tarot cards.,MioWeapon
+1114,  ,1,15,1,0,1,3,1,1,1,6,None,  ,null
+1114,  ,2,18,1,0,1,3,1,1,1,6,None,  ,null
+1114,  ,3,18,2,0,1,3,1,1,1,6,None,  ,null
+1114,  ,4,18,2,0,1,3,1,1,0,6,None,  ,null
+1114,  ,5,18,3,0,1,3,1,1,0,6,None,  ,null
+1114,  ,6,18,4,0,1,3,0.8,1,0,6,None,  ,null
+1115,Orayo,1,15,1,0,1,3,1,1,1,6,Multishot,Punch towards the front.,null
+1115,Orayo,2,18,1,0,1,3,1,1,1,6,Multishot,Increase attack area by <color=green>25%</color>.,null
+1115,Orayo,3,18,1,1,1,3,1,1.25,1,6,Multishot,Increase damage by <color=green>30%</color>.,null
+1115,Orayo,4,18,2,1,1,3,1,1.25,1,6,Multishot,Increase amount of punches by <color=green>1</color>.,null
+1115,Orayo,5,18,2,1,1,3,0.8,1.25,1,6,Multishot,Increase attack area by <color=green>25%</color>. Widen Korone's punch range slightly.,null
+1115,Orayo,6,20,3,1,1,3,0.8,1.25,1,6,Multishot,Increase amount of punches by <color=green>2</color>.,null
+1116,Bright Star,1,15,1,0,0.85,3,1,3,1,6,Multishot,Shoot forward a spinning star.,SoraStar
+1116,Bright Star,2,15,1,0,0.85,3,1,4,1,6,Multishot,Increase damage by <color=green>20%</color>.,SoraStar
+1116,Bright Star,3,18,1,0,0.85,3,1,4,1,6,Multishot,Stars last <color=green>1</color> second longer.,SoraStar
+1116,Bright Star,4,18,1,0,0.85,3,1,4,1,6,Multishot,Shoot <color=green>2</color> stars.,SoraStar
+1116,Bright Star,5,23,1,0,0.85,3,1,6,1,6,Multishot,Increase size by <color=green>30%</color>.,SoraStar
+1116,Bright Star,6,23,1,0,0.85,3,1,6,0,6,Multishot,Shoot <color=green>3</color> stars.,SoraStar
+1117,Diva Song,1,15,1,3,15,3,1,1,1,6,Ranged,Send a flying music note in front.,AZKi_music
+1117,Diva Song,2,15,2,3,15,3,1,1.2,1,6,Ranged,Increase damage by <color=green>20%</color>.,AZKi_music
+1117,Diva Song,3,18,2,4,15,3,1,1.2,1,6,Ranged,Reduce time between attack by <color=green>15%</color>.,AZKi_music
+1117,Diva Song,4,23,2,4,15,3,1,1.2,1,6,Ranged,Increase attack area by <color=green>30%</color>.,AZKi_music
+1117,Diva Song,5,23,3,4,15,3,1,1.2,1,6,Ranged,Increase damage by <color=green>25%</color> and speed by <color=green>25%</color>.,AZKi_music
+1117,Diva Song,6,23,4,4,15,3,1,1.44,1,6,Ranged,Reduce time between attacks by <color=green>25%</color>.,AZKi_music
+1118,High Spec Pistol,1,15,1,1,1,3,1,1,1,6,Multishot,Shoots a few times in aimed direction.,RobocoChargedShot
+1118,High Spec Pistol,2,18,1,1,1,3,1,1,1,6,Multishot,Shoot <color=green>one</color> more bullet.,RobocoChargedShot
+1118,High Spec Pistol,3,18,2,1,1,3,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,RobocoChargedShot
+1118,High Spec Pistol,4,18,2,1,1,3,0.67,1,1,6,Multishot,Reduce the time between attacks by <color=green>15%</color>.,RobocoChargedShot
+1118,High Spec Pistol,5,21,2,1.25,1,3,0.67,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,RobocoChargedShot
+1118,High Spec Pistol,6,21,4,1.25,1,3,0.3,1,1,6,Multishot,Shoot <color=green>one</color> more bullet.,RobocoChargedShot
+1119,Axe Swing,1,15,1,0,1,3,1,1,0,6,Melee,Swing a bloody axe in an arc in front.,SuiseiAxeSwing
+1119,Axe Swing,2,18,1,0,1,3,1,1.3,0,6,Melee,Increased damage by <color=green>30%</color>.,SuiseiAxeSwing
+1119,Axe Swing,3,18,1,0,1,3,0.8,1.3,0,6,Melee,Increase attack area by <color=green>20%</color>.,SuiseiAxeSwing
+1119,Axe Swing,4,18,1,0,1,3,0.8,1.3,0,6,Melee,Reduce time between attacks by <color=green>10%</color>.,SuiseiAxeSwing
+1119,Axe Swing,5,23,1,0,1,3,0.8,1.3,0,6,Melee,Increased damage by <color=green>30%</color>.,SuiseiAxeSwing
+1119,Axe Swing,6,23,1,0,1,3,0.8,1.6,0,6,Melee,Increase attack area by <color=green>20%</color>.,SuiseiAxeSwing
+1120,  ,1,15,1,0,1,3,1,1,1,6,None,  ,MikoGohei
+1120,  ,2,18,1,0,1,3,1,1,1,6,None,  ,MikoGohei
+1120,  ,3,18,1,0,1,3,1,1,0,6,None,  ,MikoGohei
+1120,  ,4,18,1,0,1,3,0.8,1,0,6,None,  ,MikoGohei
+1120,  ,5,23,1,0,1,3,0.8,1,0,6,None,  ,MikoGohei
+1120,  ,6,23,1,0,1,3,0.6,1,0,6,None,  ,MikoGohei
+1121,Red Heart,1,15,1,0,4,3,1,1,1,6,Multishot,Create big red hearts. Hearts knock enemies back.,null
+1121,Red Heart,2,15,1,0,4,3,1,1.15,1,6,Multishot,Increase damage by <color=green>20%</color>.,null
+1121,Red Heart,3,18,1,0,4,3,1,1.15,1,6,Multishot,Increase size of hearts by <color=green>50%</color>.,null
+1121,Red Heart,4,18,2,0,4,3,1,1.15,1,6,Multishot,Add an <color=green>additional</color> heart.,null
+1121,Red Heart,5,18,2,0,4,3,0.8,1.15,1,6,Multishot,Hearts last <color=green>0.33</color> second longer.,null
+1121,Red Heart,6,18,3,0,4,3,0.8,1.35,1,6,Multishot,Increase damage by <color=green>25%</color>.,null
+1122,Kapu Kapu,1,15,1,1,1,3,1,1,1,6,Melee,Bite targets in front,MelKapu
+1122,Kapu Kapu,2,18,1,1,1,3,1,1.2,1,6,Melee,Increase damage by <color=green>20%</color>.,MelKapu
+1122,Kapu Kapu,3,18,1,1,1,3,0.8,1.2,1,6,Melee,Reduce delay of attack by <color=green>10%</color>.,MelKapu
+1122,Kapu Kapu,4,23,1,1,1,3,0.8,1.44,1,6,Melee,Increase size of bite by <color=green>15%</color>.,MelKapu
+1122,Kapu Kapu,5,23,1,1,1,3,0.8,2,1,6,Melee,Reduce delay of attack by <color=green>15%</color>.,MelKapu
+1122,Kapu Kapu,6,30,1,1,1,3,0.8,2,1,6,Melee,Increase damage by <color=green>25%</color>.,MelKapu
+1123,  ,1,15,1,3,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1123,  ,2,18,2,3,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1123,  ,3,18,2,4,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1123,  ,4,25,3,4,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1123,  ,5,25,4,4,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1123,  ,6,30,4,4,2,3,1,1,1,6,None,  ,MatsuriEbifrion
+1124,  ,1,15,1,3,5,3,1,1,0,6,None,  ,null
+1124,  ,2,15,1,3,5,3,1,1.3,0,6,None,  ,null
+1124,  ,3,18,1,3,5,3,1,1.3,0,6,None,  ,null
+1124,  ,4,18,1,3,7,3,1,1.3,0,6,None,  ,null
+1124,  ,5,26,1,3,7,3,1,1.3,0,6,None,  ,null
+1124,  ,6,26,2,3,7,3,0.5,1.3,0,6,None,  ,null
+1125,Baseball Pitch,1,15,1,0,1,3,1,1,1,6,Ranged,Throws a very fast baseball in front.,null
+1125,Baseball Pitch,2,15,1,0,1,3,1,1.3,1,6,Ranged,Increase damage by <color=green>20%</color>.,null
+1125,Baseball Pitch,3,15,1,0,1,3,0.5,1.3,1,6,Ranged,Reduce time between attacks by <color=green>30%</color>.,null
+1125,Baseball Pitch,4,22,1,0,1,3,0.5,1.3,1,6,Ranged,<color=green>Double</color> the speed of the baseball and gain small <color=green>Knockback</color>.,null
+1125,Baseball Pitch,5,22,1,0,1,3,0.5,2,1,6,Ranged,Reduce time between attacks by <color=green>50%</color>.,null
+1125,Baseball Pitch,6,22,2,0,1,3,0.5,2,1,6,Ranged,Increase damage by <color=green>20%</color>.,null
+1126,Love Needle,1,15,1,0,3,3,1,1,1,6,Multishot,Thrust a giant needle in front.,ChocoNeedle
+1126,Love Needle,2,18,1,0,3,3,1,1,1,6,Multishot,Increase damage by <color=green>20%</color>.,ChocoNeedle
+1126,Love Needle,3,18,2,0,3,3,1,1,1,6,Multishot,Increase size of attack by <color=green>20%</color>.,ChocoNeedle
+1126,Love Needle,4,23,2,0,3,3,1,1,1,6,Multishot,Stab <color=green>twice</color> with needle.,ChocoNeedle
+1126,Love Needle,5,23,3,0,3,3,1,1,0,6,Multishot,Reduce time between attacks by <color=green>15%</color> and increase damage by <color=green>20%</color>.,ChocoNeedle
+1126,Love Needle,6,23,4,0,3,3,1,1,1,6,Multishot,Stab <color=green>3</color> times with needle and needle fires <color=green>25%</color> farther.,ChocoNeedle
+1127,Murasaki Bolt,1,15,1,0,1,3,1,1,1,6,Multishot,Fires a quick magic bolt in front.,null
+1127,Murasaki Bolt,2,17,1,0,1,3,1,1,1,6,Multishot,Shoot <color=green>2</color> magic blast.,null
+1127,Murasaki Bolt,3,17,2,0,1,3,1,1,1,6,Multishot,Shoot <color=green>3</color> magic blasts.,null
+1127,Murasaki Bolt,4,17,3,0,1,3,1,1.25,1,6,Multishot,Increase damage and speed by <color=green>20%</color>.,null
+1127,Murasaki Bolt,5,23,3,0,1,3,1,1.25,1,6,Multishot,Reduce time between attacks by <color=green>20%</color>.,null
+1127,Murasaki Bolt,6,23,4,0,1,3,1,1.25,1,6,Multishot,Increase damage by <color=green>20%</color>.,null
+1128,Dual Katana,1,15,1,0,1,3,1,1,1,6,Melee,Slashes twice in front.,AyameOniSlash
+1128,Dual Katana,2,18,1,0,1,3,1,1,1,6,Melee,Increase damage by <color=green>20%</color>.,AyameOniSlash
+1128,Dual Katana,3,18,1,0,1,3,1,1.25,1,6,Melee,Increase size by <color=green>10%</color>.,AyameOniSlash
+1128,Dual Katana,4,18,1,0,1,3,0.8,1.25,1,6,Melee,Reduce time between attacks by <color=green>15%</color>.,AyameOniSlash
+1128,Dual Katana,5,18,1,0,1,3,0.8,1.5,1,6,Melee,Increase size by <color=green>20%</color>.,AyameOniSlash
+1128,Dual Katana,6,25,1,0,1,3,0.8,1.5,1,6,Melee,Increase damage by <color=green>20%</color>.,AyameOniSlash
+1129,  ,1,15,1,0,1,3,1,1,1,6,None,  ,AquaBroom
+1129,  ,2,18,1,0,1,3,1,1,1,6,None,  ,AquaBroom
+1129,  ,3,18,2,0,1,3,1,1,1,6,None,  ,AquaBroom
+1129,  ,4,18,2,0,1,3,1,1,0,6,None,  ,AquaBroom
+1129,  ,5,18,3,0,1,3,1,1,0,6,None,  ,AquaBroom
+1129,  ,6,18,4,0,1,3,0.8,1,0,6,None,  ,AquaBroom

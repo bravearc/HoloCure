@@ -30,7 +30,7 @@ public static class Define
         StartingWeaopn_Start = 1,
         StartingWeaopn_End,
         Weapon_Start = 1001,
-        Weapon_End = 1018,
+        Weapon_End = 1129,
         Equipment_Start = 2001,
         Equipment_End = 2021,
         Stats_Start = 3501,
@@ -65,6 +65,7 @@ public static class Define
         public const string Anim_Idol = "Ani_Idle";
         public const string Anim_run = "Ani_run";
         public const string Anim_TakeDamage = "Ani_TakeDamage";
+        public const string Anim_Attack = "Ani_Attack";
     }
     public class Tag
     {

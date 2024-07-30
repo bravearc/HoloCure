@@ -1,5 +1,5 @@
-using System;
-using System.Collections.Generic;
+using UnityEngine;
+
 public class SubItem_Inventory : UI_SubItem
 {
     #region enum
@@ -52,9 +52,9 @@ public class SubItem_Inventory : UI_SubItem
     private void SetWeapon(int slot)
     {
         if (slot < 0) { return; }
-
         Weapon weapon = Manager.Game.Inventory.Weapons[slot];
-        UpdateUI_Image(slot, weapon.WeaponData.Name, true);
+        ItemData id = Manager.Data.Item[weapon.ID];
+        UpdateUI_Image(slot, id.IconImage, true);
         weapon.Level.BindModelEvent(level => UpdateUI_Text(level, slot, true), this);
     }
 
@@ -63,7 +63,8 @@ public class SubItem_Inventory : UI_SubItem
         if (slot < 0) { return; }
 
         Equipment equipment = Manager.Game.Inventory.Equipments[slot];
-        UpdateUI_Image(slot, equipment.EquipmentData.Name, false);
+        ItemData id = Manager.Data.Item[equipment.ID];
+        UpdateUI_Image(slot, id.IconImage, false);
         equipment.Level.BindModelEvent(level => UpdateUI_Text(level, slot, false), this);
     }
     private void UpdateUI_Image(int slot, string imageName, bool isWeapon)
