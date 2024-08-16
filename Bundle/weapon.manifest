@@ -1,0 +1,90 @@
+ManifestFileVersion: 0
+CRC: 1510887768
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 21a4f8fb60fd9c8f893594d0b545ed6f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1924b6aa911d73067d2a2e49f90b36e8
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 21a4f8fb60fd9c8f893594d0b545ed6f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3a0525e23b7eac747bd9ed4d7db73f25, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e26b281f75a997441ad82bdaba396d2e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3bedbf02b258a644b8e9876327f6ac9b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a8aada5c49f16a047ab6a2ee543e39ab, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d2c244b2531f31d428187b4f58c68dd2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ea89aefa005284a4d813687fc709f4ca, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a7eb27810aaced54785b3952f9b5caae, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0e535c9b1a7849749af3fdfda64747a9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1e7f6149da6b6f64ca5d03f116f1c3b3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eebde4838b4b6e8479a4e1c3dbb19896, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dee5a128cd6fdbe44ba32148fd2475c5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b6a47b0932f48e242997404857295dc3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9cfdd88f1ad73214996bd6a47c1e08d5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1639087fbda51f34895549e08c337fe7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8c0b246259966f94a88049ad4c92555d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0a0feb67da8a71d40ab6a8f9c94d85a7, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 221
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Object/BirdFeather.prefab
+- Assets/Resources/Object/CEOsTears.prefab
+- Assets/Resources/Object/FoxTail.prefab
+- Assets/Resources/Object/HoloBomb.prefab
+- Assets/Resources/Object/Bright.prefab
+- Assets/Resources/Object/DivaSong.prefab
+- Assets/Resources/Object/DualKatana.prefab
+- Assets/Resources/Object/EliteLavaBucket.prefab
+- Assets/Resources/Object/BaseballPitch.prefab
+- Assets/Resources/Object/Attack.prefab
+- Assets/Resources/Object/CleaningBroom.prefab
+- Assets/Resources/Object/AxeSwing.prefab
+- Assets/Resources/Object/Ebifrion.prefab
+- Assets/Resources/Object/Impact.prefab
+- Assets/Resources/Object/ClockHands.prefab
+- Assets/Resources/Object/HighSpecPistol.prefab
+Dependencies:
+- C:/Users/brave/HoloCure_Lee/./Bundle/animation

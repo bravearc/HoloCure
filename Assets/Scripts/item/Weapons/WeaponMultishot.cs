@@ -1,23 +1,33 @@
+using System;
+using UniRx.Triggers;
 using UnityEngine;
+using UniRx;
 
 public class WeaponMultishot : Weapon
 {
-    float speedAdjustment = 0.03f;
+    protected float _speedAdjustment = 4f;
     protected float _angle = 0f;
+    Rigidbody2D _rb;
+    IDisposable _disposable;
     protected override void AttackAction(Attack attack)
     {
-        WeaponSetComponenet(attack);
+        base.AttackAction(attack);
+        attack.transform.position = _character.transform.position;
+        WeaponSetComponent(attack);
+        attack.GetSprite().sortingOrder = 2;
 
-        Rigidbody2D rb = attack.GetRigid();
-        float timer = 0f;
-        while (attack.HoldingTime > timer)
+        _rb = attack.GetRigid();
+
+        Vector2 direction = (_cursor.position - _character.transform.position).normalized;
+        direction = Quaternion.Euler(0, 0, _angle) * direction;
+        _rb.AddForce(direction * _weaponData.Speed * _speedAdjustment, ForceMode2D.Impulse);
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ =>
         {
-            Vector2 direction = (_cursor.position - _character.transform.position).normalized;
-            direction = Quaternion.Euler(0, 0, _angle) * direction;
-
-            rb.AddForce(direction * WeaponData.Speed * speedAdjustment, ForceMode2D.Impulse);
-            timer += Time.fixedDeltaTime;
-        }
+            _rb.velocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+            _disposable?.Dispose();
+            _disposable = null;
+        });
     }
 
 }

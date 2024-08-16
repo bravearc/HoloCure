@@ -81,12 +81,14 @@ public class SubItem_ChooseMode : UI_SubItem
     }
     void OnClickButton(PointerEventData data)
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Buttons buttons = Enum.Parse<Buttons>(data.pointerClick.name);
         ProcessButton(buttons);
     }
 
     void SetButtonHighlighted(Buttons button) 
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         GetAnimator((int)Animators.Pointer).SetTrigger(Define.Anim.PointerMove);
         RectTransform _pointerRect = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
         RectTransform buttonRect = GetButton((int)button).GetComponent<RectTransform>();

@@ -117,13 +117,13 @@ public class Popup_Select : UI_Popup
         GetText((int)Texts.SkillNameText).text = data.SpecialName;
         GetText((int)Texts.SkillDescriptionText).text = data.SpecialDescription;
         
-        GetImage((int)Images.SkillImage).sprite = Manager.Asset.LoadSprite(data.SpecialName);
+        GetImage((int)Images.SkillImage).sprite = Manager.Asset.LoadSprite("spr_Default");
         GetText((int)Texts.WeaponNameText).text = data.Name;
         GetText((int)Texts.WeaponDescriptionText).text = data.WeaponDescription;
 
         string icon = data.Sprite;
         GetImage((int)Images.CharacterBGImage).sprite = Manager.Asset.LoadSprite($"spr_Title_{icon}_0");
-        GetImage((int)Images.NormalWeaponImage).sprite = Manager.Asset.LoadSprite($"spr_{icon}Weapon_0");
+        GetImage((int)Images.NormalWeaponImage).sprite = Manager.Asset.LoadSprite($"spr_{icon}weapon_0");
     }
     void SetAnimation(SelectData data)
     {

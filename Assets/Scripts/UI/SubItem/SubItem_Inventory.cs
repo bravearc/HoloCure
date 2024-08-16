@@ -71,11 +71,13 @@ public class SubItem_Inventory : UI_SubItem
     {
         int baseIndex = isWeapon ? (int)Images.WeaponImage0 : (int)Images.EquipmentImage0;
         GetImage(slot + baseIndex).sprite = Manager.Asset.LoadSprite(imageName);
+        RectTransform rectTransform = GetImage(slot + baseIndex).GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(80, 80);
     }
 
     private void UpdateUI_Text(int level, int slot, bool isWeapon)
     {
         int baseIndex = isWeapon ? (int)Texts.WeaponLevelText0 : (int)Texts.EquipmentLevelText0;
-        GetText(slot + baseIndex).text = $"Lv_{level}";
+        GetText(slot + baseIndex).text = $"Lv_{level + 1}";
     }
 }

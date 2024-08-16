@@ -1,66 +1,66 @@
-ID,Name,Type,IconImage,KOR
-1001,SpiderCooking,Weapon,spr_SpiderCookingIcon_0,거미 요리
-1002,EliteLavaBucket,Weapon,ui_empty_slot_item_0,엘리트 용암 양동이
-1003,CEOsTears,Weapon,ui_empty_slot_item_0,사장님의 눈물
-1004,WamyWater,Weapon,ui_empty_slot_item_0,와미수
-1005,Sausage,Weapon,ui_empty_slot_item_0,소시지
-1006,HoloBomb,Weapon,spr_HoloBombIcon_0,홀로폭탄탄
-1007,PsychoAxe,Weapon,spr_PsychoAxeIcon_0,싸이코 도끼
-1008,BL_Book,Weapon,spr_BLBookIcon_0,BL책
-1009,CuttingBoard,Weapon,ui_empty_slot_item_0,도마
-1010,FanBeam,Weapon,spr_FanBeamIcon_0,팬빔
-1011,PlugTypeAsacoco,Weapon,ui_empty_slot_item_0,삽입식 아사코
-1012,Glowstick,Weapon,ui_empty_slot_item_0,형광봉
-1013,IdloSong,Weapon,ui_empty_slot_item_0,아이돌 노래
-1014,BounceBall,Weapon,ui_empty_slot_item_0,바운스 볼
-1015,ENsCurse,Weapon,ui_empty_slot_item_0,EN의 저주
-1101,PistolShot,StartingWeapon,spr_Ameweapon_0,WatsonAmelia
-1102,TridentThrust,StartingWeapon,spr_GuraWeapon_0,GawrGura
-1103,SummonTentacle,StartingWeapon,spr_InaMaxedWeapon_0,NinomaeInanis
-1104,PhoenixSword,StartingWeapon,spr_KiaraWeapon_0,TakanashiKiara
-1105,ScytheSwing,StartingWeapon,spr_CalliWeapon_0,MoriCalliope
-1106,PlayDice,StartingWeapon,spr_BaeWeapon_0,HakosBaelz
-1107,ClockHands,StartingWeapon,spr_KroniiWeapon_0,OuroKronii
-1108,NatureShield,StartingWeapon,spr_FaunaWeapon_0,CeresFauna
-1109,BirdFeather,StartingWeapon,spr_MumeiWeapon_0,NanashiMumei
-1110,Orbit,StartingWeapon,spr_SanaWeapon_0,TsukumoSana
-1111,null,StartingWeapon,ui_empty_slot_item_0,IRyS
-1112,FoxTail,StartingWeapon,spr_FubukiWeapon_0,ShirakamiFubuki
-1113,TarotCards,StartingWeapon,spr_MioWeapon_0,OokamiMio
-1114,null,StartingWeapon,spr_OkayuWeapon_0,NekomataOkayu
-1115,Orayo,StartingWeapon,spr_KoroneWeapon_0,InugamiKorone
-1116,Bright,StartingWeapon,spr_SoraWeapon_0,TokinoSora
-1117,DivaSong,StartingWeapon,spr_AZKiWeapon_0,AZKi
-1118,HighSpecPistol,StartingWeapon,spr_RobocoWeapon_0,RobocoSan
-1119,AxeSwing,StartingWeapon,spr_SuiseiWeapon_0,HoshimachiSuisei
-1120,null,StartingWeapon,spr_MikoWeapon_0,SakuraMiko
-1121,RedHeart,StartingWeapon,spr_HaatoWeapon_0,AkaiHaato
-1122,KapuKapu,StartingWeapon,spr_MelWeapon_0,YozoraMel
-1123,null,StartingWeapon,spr_MatsuriWeapon_0,NatsuiroMatsuri
-1124,null,StartingWeapon,ui_empty_slot_item_0,AkiRosenthal
-1125,BaseballPitch,StartingWeapon,spr_SubaruWeapon_0,OozoraSubaru
-1126,LoveNeedle,StartingWeapon,spr_ChocoWeapon_0,YuzukiChoco
-1127,MurasakiBolt,StartingWeapon,spr_ShionWeapon_0,MurasakiShion
-1128,DualKatana,StartingWeapon,spr_AyameWeapon_0,NakiriAyame
-1129,null,StartingWeapon,spr_AquaWeapon_0,MinatoAqua
-2001,NinjaHeadband,Equipment,ui_empty_slot_item_0,닌자의 머리
-2002,HopeSoda,Equipment,ui_empty_slot_item_0,호프소다
-2003,Sake,Equipment,ui_empty_slot_item_0,술
-2004,CandyKingdomSweets,Equipment,ui_empty_slot_item_0,사탕왕국 간식
-2005,Limiter,Equipment,ui_empty_slot_item_0,리미터
-2006,DevilHat,Equipment,ui_empty_slot_item_0,악마의 모자
-2007,Halu,Equipment,ui_empty_slot_item_0,할루
-2008,FocusShades,Equipment,ui_empty_slot_item_0,집중 선글라
-2009,KnightlyMilk,Equipment,ui_empty_slot_item_0,기사의 우유
-2010,NursesHorn,Equipment,ui_empty_slot_item_0,간호사의 뿔
-2011,Headphones,Equipment,ui_empty_slot_item_0,헤드폰
-2012,GorillasPaw,Equipment,ui_empty_slot_item_0,고릴라의 
-3001,Anvil,Equipment,ui_empty_slot_item_0,모루
-3002,ExperiencePoints,Equipment,ui_empty_slot_item_0,경험치
-3003,HoloCoin,Equipment,ui_empty_slot_item_0,홀로코인
-3501,MaxHPUp,Stat,hud_HPicon_0,Null
-3502,ATKUp,Stat,hud_atkicon_0,Null
-3503,SPDUp,Stat,hud_spdicon_0,Null
-3504,CRTUp,Stat,hud_criticon_0,Null
-3505,PickUpRangeUp,Stat,hud_pickupicon_0,Null
-3506,HasteUp,Stat,hud_cooldownicon_0,Null
+ID,Name,Type,IconImage,Sound
+1001,SpiderCooking,Weapon,spr_SpiderCookingIcon_0,null
+1002,EliteLavaBucket,Weapon,spr_EliteLavaBucket_Icon_0,null
+1003,CEOsTears,Weapon,spr_CEOsTears_0,null
+1004,HoloBomb,Weapon,spr_HoloBombIcon_0,HoloBomb
+1005,WamyWater,Weapon,ui_empty_slot_item_0,null
+1006,Sausage,Weapon,ui_empty_slot_item_0,null
+1007,PsychoAxe,Weapon,spr_PsychoAxeIcon_0,PsychoAxe
+1008,BL_Book,Weapon,spr_BLBookIcon_0,null
+1009,CuttingBoard,Weapon,ui_empty_slot_item_0,null
+1010,FanBeam,Weapon,spr_FanBeamIcon_0,FanBeam
+1011,PlugTypeAsacoco,Weapon,ui_empty_slot_item_0,null
+1012,Glowstick,Weapon,ui_empty_slot_item_0,null
+1013,IdloSong,Weapon,ui_empty_slot_item_0,null
+1014,BounceBall,Weapon,ui_empty_slot_item_0,null
+1015,ENsCurse,Weapon,ui_empty_slot_item_0,null
+1101,PistolShot,StartingWeapon,spr_Ameweapon_0,PistolShot
+1102,TridentThrust,StartingWeapon,spr_GuraWeapon_0,TridentThrust
+1103,SummonTentacle,StartingWeapon,spr_InaMaxedWeapon_0,SummonTentacle
+1104,PhoenixSword,StartingWeapon,spr_KiaraWeapon_0,PhoenixSword
+1105,ScytheSwing,StartingWeapon,spr_CalliWeapon_0,ScytheSwing
+1106,PlayDice,StartingWeapon,spr_BaeWeapon_0,DivaSong
+1107,ClockHands,StartingWeapon,spr_KroniiWeapon_0,ClockHands
+1108,NatureShield,StartingWeapon,spr_FaunaWeapon_0,null
+1109,BirdFeather,StartingWeapon,spr_MumeiWeapon_0,BirdFeather
+1110,Orbit,StartingWeapon,spr_SanaWeapon_0,Orbit
+1111,null,StartingWeapon,ui_empty_slot_item_0,null
+1112,FoxTail,StartingWeapon,spr_FubukiWeapon_0,FoxTail
+1113,TarotCards,StartingWeapon,spr_MioWeapon_0,TarotCards
+1114,Onigiri,StartingWeapon,spr_OkayuWeapon_0,LoveNeedle
+1115,Orayo,StartingWeapon,spr_KoroneWeapon_0,Orayo
+1116,Bright,StartingWeapon,spr_SoraWeapon_0,BrightStar
+1117,DivaSong,StartingWeapon,spr_AZKiWeapon_0,DivaSong
+1118,HighSpecPistol,StartingWeapon,spr_RobocoWeapon_0,HighSpecPistol
+1119,AxeSwing,StartingWeapon,spr_SuiseiWeapon_0,AxeSwing
+1120,SakuraGohei,StartingWeapon,spr_MikoWeapon_0,LoveNeedle
+1121,RedHeart,StartingWeapon,spr_HaatoWeapon_0,RedHeart
+1122,KapuKapu,StartingWeapon,spr_MelWeapon_0,KapuKapu
+1123,Ebifrion,StartingWeapon,spr_MatsuriWeapon_0,LoveNeedle
+1124,null,StartingWeapon,ui_empty_slot_item_0,null
+1125,BaseballPitch,StartingWeapon,spr_SubaruWeapon_0,BaseballPitch
+1126,LoveNeedle,StartingWeapon,spr_ChocoWeapon_0,LoveNeedle
+1127,MurasakiBolt,StartingWeapon,spr_ShionWeapon_0,MurasakiBolt
+1128,DualKatana,StartingWeapon,spr_AyameWeapon_0,DualKatana
+1129,CleaningBroom,StartingWeapon,spr_AquaWeapon_0,LoveNeedle
+2001,NinjaHeadband,Equipment,ui_empty_slot_item_0,null
+2002,HopeSoda,Equipment,ui_empty_slot_item_0,null
+2003,Sake,Equipment,ui_empty_slot_item_0,null
+2004,CandyKingdomSweets,Equipment,ui_empty_slot_item_0,null
+2005,Limiter,Equipment,ui_empty_slot_item_0,null
+2006,DevilHat,Equipment,ui_empty_slot_item_0,null
+2007,Halu,Equipment,ui_empty_slot_item_0,null
+2008,FocusShades,Equipment,ui_empty_slot_item_0,null
+2009,KnightlyMilk,Equipment,ui_empty_slot_item_0,null
+2010,NursesHorn,Equipment,ui_empty_slot_item_0,null
+2011,Headphones,Equipment,ui_empty_slot_item_0,null
+2012,GorillasPaw,Equipment,ui_empty_slot_item_0,null
+3001,Anvil,Equipment,ui_empty_slot_item_0,null
+3002,ExperiencePoints,Equipment,ui_empty_slot_item_0,null
+3003,HoloCoin,Equipment,ui_empty_slot_item_0,null
+3501,MaxHPUp,Stat,hud_HPicon_0,null
+3502,ATKUp,Stat,hud_atkicon_0,null
+3503,SPDUp,Stat,hud_spdicon_0,null
+3504,CRTUp,Stat,hud_criticon_0,null
+3505,PickUpRangeUp,Stat,hud_pickupicon_0,null
+3506,HasteUp,Stat,hud_cooldownicon_0,null

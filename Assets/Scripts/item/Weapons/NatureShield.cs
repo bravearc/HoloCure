@@ -11,37 +11,38 @@ public class NatureShield : Weapon
         new Vector3(2,2),
         new Vector3(0, -2)
     };
-    protected override void WeaponSetComponenet(Attack attack)
+    protected override void WeaponSetComponent(Attack attack)
     {
         Vector3 tr = attack.transform.position;
-        attack.SetAttackComponent(false, size, tr + positions[0], Vector2.zero);
+        attack.SetAttackComponent(false, false, size, tr + positions[0], Vector2.zero);
         WeaponRotation(attack, 0);
         for (int idx = 1; idx < positions.Length; idx++) 
         {
             newAttack[idx] = Manager.Spawn.GetAttack();
-            newAttack[idx].SetAttackComponent(false, size, tr + positions[idx], Vector2.zero);
-            newAttack[idx].SetSprite(Manager.Asset.LoadSprite(WeaponData.Animation));
+            newAttack[idx].SetAttackComponent(false, false, size, tr + positions[idx], Vector2.zero);
+            SpriteRenderer spriteRenderer = attack.GetSprite();
+            //newAttack[idx].SetSprite(Manager.Asset.LoadSprite(WeaponData.Animation));
             WeaponRotation(newAttack[idx], idx);
         }
     }
 
     protected override void AttackAction(Attack attack)
     {
-        WeaponSetComponenet(attack);
+        WeaponSetComponent(attack);
     }
     void WeaponRotation(Attack attack, int idx)
     {
-        WeaponSetComponenet(attack);
+        WeaponSetComponent(attack);
 
         Transform weapon = attack.GetComponent<Transform>();
         _initPos = weapon.position;
 
         while (true)
         {
-            weapon.RotateAround(_initPos, Vector3.up, WeaponData.Speed * Time.deltaTime);
+            weapon.RotateAround(_initPos, Vector3.up, _weaponData.Speed * Time.deltaTime);
 
             Vector2 direction = ((Vector2)weapon.position - _initPos).normalized;
-            weapon.position = _initPos + direction * WeaponData.AttackRange;
+            weapon.position = _initPos + direction * _weaponData.AttackRange;
         }
     }
     private void OnDisable()

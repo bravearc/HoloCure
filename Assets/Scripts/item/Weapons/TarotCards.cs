@@ -1,13 +1,38 @@
+using System;
 using System.Collections;
+using System.Drawing;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
-public class TarotCards : WeaponMelee
+public class TarotCards : Weapon
 {
-    Vector2 size = new Vector2(0.5f, 0.2f);
-    protected override void WeaponSetComponenet(Attack attack)
+    Vector2 size;
+    Vector2 colSize = new Vector2(32, 7);
+    IEnumerator _boomerang;
+    IDisposable _disposable;
+    protected override void AttackAction(Attack attack)
     {
-        attack.SetAttackComponent(false, size, Vector2.one, Vector2.zero);
-        StartCoroutine(Boomerang(attack));
+        base.AttackAction(attack);
+        WeaponSetComponent(attack);
+        attack.GetSprite().sortingOrder = 2;
+
+        _boomerang = Boomerang(attack);
+        _disposable?.Dispose();
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ =>
+        {
+            StopCoroutine(_boomerang);
+            _disposable?.Dispose();
+            _disposable = null;
+            _boomerang = null;
+        });
+        StartCoroutine(_boomerang);
+    }
+    protected override void WeaponSetComponent(Attack attack)
+    {
+        float verticalSize = _weaponData.Size * 1.5f;
+        size = new Vector2(_weaponData.Size, verticalSize);
+        attack.SetAttackComponent(false, false, size, colSize, Vector2.zero);
     }
 
     IEnumerator Boomerang(Attack attack)
@@ -16,28 +41,23 @@ public class TarotCards : WeaponMelee
         Vector2 startPos = attack.transform.localPosition;
         Vector2 cursorDirection = ((Vector2)_cursor.position - characterPos).normalized;
         Vector2 endPos = startPos + cursorDirection * 4;
-        float duration = 5f;
+        float duration = 3f;
         float timer = 0f;
 
-        while (true)
+        while (timer < duration)
         {
-            while (timer < duration)
-            {
-                attack.transform.localPosition = Vector2.Lerp(startPos, endPos, timer / duration);
-                timer += Time.fixedDeltaTime;
-                yield return null;
-            }
+            attack.transform.localPosition = Vector2.Lerp(startPos, endPos, timer / duration);
+            timer += Time.fixedDeltaTime;
+            yield return null;
+        }
+        timer = 0f;
 
-            timer = 0f;
-
-            while (timer < duration)
-            {
-                attack.transform.localPosition = Vector2.Lerp(endPos, startPos, timer / duration);
-                timer += Time.fixedDeltaTime;
-                yield return null;
-            }
-
-            timer = 0f;
+        while (timer < duration)
+        {
+            attack.transform.localPosition = Vector2.Lerp(endPos, startPos, timer / duration);
+            timer += Time.fixedDeltaTime;
+            yield return null;
         }
     }
+
 }

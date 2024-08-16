@@ -1,16 +1,36 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using UniRx;
+using UniRx.Triggers;
 
 public class PlayDice : WeaponMultishot
 {
-    Vector2 size = new Vector2(3, 3);
-    protected override void WeaponSetComponenet(Attack attack)
+    Vector2 size;
+    Vector2 colSize = new Vector2(23f, 23f);
+    IEnumerator _moveStopCo;
+    IDisposable _disposable;
+    protected override void WeaponSetComponent(Attack attack)
     {
         int idx = Random.Range(0, 6);
-        attack.SetSprite(Manager.Asset.LoadSprite($"spr_BaeDice_{idx}"));
+        SpriteRenderer spriteRenderer = attack.GetSprite();
+        spriteRenderer.sprite = Manager.Asset.LoadSprite($"spr_BaeDice_{idx}");
 
-        attack.SetAttackComponent(false, size, Vector2.one, Vector2.zero);
-        StartCoroutine(MoveStopCo(attack));
+        size = new Vector2(_weaponData.Size, _weaponData.Size);
+        attack.SetAttackComponent(false, false, size, colSize, Vector2.zero);
+
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ =>
+        {
+            StopCoroutine(_moveStopCo);
+            _disposable?.Dispose();
+            _disposable = null;
+            _moveStopCo = null;
+
+        });
+
+        _moveStopCo = MoveStopCo(attack);
+        StartCoroutine(_moveStopCo);
     }
     IEnumerator MoveStopCo(Attack attack)
     {

@@ -27,7 +27,7 @@ public class CursorControl : MonoBehaviour
     {
         _cursor = transform.Find("Cursor");
         _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
-
+        _cursorSprite.transform.localScale = new Vector2(0.015f, 0.015f);
         this.UpdateAsObservable().Subscribe(_ => ProcessInput());
     }
 
@@ -92,7 +92,7 @@ public class CursorControl : MonoBehaviour
 
             Vector3 direction = (mousePosition - transform.position).normalized;
             float distance = Vector3.Distance(mousePosition, transform.position);
-            float maxDistance = 1.5f;
+            float maxDistance = 1f;
 
             if (distance > maxDistance)
             {

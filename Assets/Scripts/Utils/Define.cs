@@ -6,19 +6,20 @@ public static class Define
         Click,
         Enter
     }
-    public enum Sound
+    public enum SoundType
     {
         BGM,
         Effect,
         Collision,
         Max
     }
+
     public class Path
     {
         public const string Enemy = "Enemy/";
         public const string CSV = "Data/";
         public const string Character = "Character/";
-        public const string Audio = "Audio/";
+        public const string Sound = "Sound/";
         public const string Sprite = "Sprite/";
         public const string Item = "Item/";
         public const string Text = "Text/";
@@ -26,12 +27,18 @@ public static class Define
         public const string Ani = "Animation/";
         public const string Material = "Material/";
     }
+    public struct Sound
+    {
+        public const string ButtonMove = "ButtonMove";
+        public const string ButtonClick = "ButtonClick";
+    }
     public enum ItemNumber
     {
         StartingWeaopn_Start = 1,
         StartingWeaopn_End,
         Weapon_Start = 1001,
-        Weapon_End = 1129,
+        Weapon_End = 1005,
+        StartingWeapon_End = 1130,
         Equipment_Start = 2001,
         Equipment_End = 2021,
         Stats_Start = 3501,
@@ -65,8 +72,11 @@ public static class Define
         
         public const string Anim_Idol = "Ani_Idle";
         public const string Anim_run = "Ani_run";
-        public const string Anim_TakeDamage = "Ani_TakeDamage";
+        public const string Ani_AttackSkill = "Ani_AttackSkill";
         public const string Anim_Attack = "Ani_Attack";
+
+        public const string Anim_BoxOpen = "Ani_BoxOpen";
+        public const string Anim_BoxMove = "Ani_BoxMove";
     }
     public class Tag
     {

@@ -11,6 +11,8 @@ public class AssetManager : MonoBehaviour
     public Dictionary<string, AnimationClip> AnimClip { get; private set; }
     public Dictionary<string, Material> Material { get; private set; }
 
+    AtlasLoader _atlasLoader;
+
     public void Init()
     {
         Asset = new();
@@ -20,21 +22,31 @@ public class AssetManager : MonoBehaviour
         Text = new();
         AnimClip = new();
         Material = new();
+        
+        _atlasLoader = Utils.GetOrAddComponent<AtlasLoader>(gameObject);
+
+        AddAssetBundle<AudioClip>();
+        AddAssetBundle<Sprite>();
+        AddAssetBundle<GameObject>();
+        AddAssetBundle<AnimationClip>();
+        AddAssetBundle<Material>();
+
+
     }
 
-    public AudioClip LoadAudioClip(string audio) => Load(Sound, string.Concat(Define.Path.Audio, audio));
-    public Sprite LoadSprite(string sprite) => Load(Sprite, string.Concat(Define.Path.Sprite, sprite));
-    public GameObject LoadObject(string ob) => Load(Object, string.Concat(Define.Path.Object, ob));
-    public Material LoadMaterial(string mat) => Load(Material, string.Concat(Define.Path.Material, mat));
-    public AnimationClip LoadAnimClip(string ani) => Load(AnimClip, string.Concat(Define.Path.Ani, ani));
-    public GameObject InstantiateObject(string ob, Transform trans = null) => Instantiate(string.Concat(Define.Path.Object, ob
-        ), trans);
+    public AudioClip LoadAudioClip(string audio) => Load(Sound, audio);
+    public Sprite LoadSprite(string sprite) => Load(Sprite, sprite);
+    public GameObject LoadObject(string ob) => Load(Object, ob);
+    public Material LoadMaterial(string mat) => Load(Material, mat);
+    public AnimationClip LoadAnimClip(string ani) => Load(AnimClip, ani);
+    public GameObject InstantiateObject(string ob, Transform trans = null) => Instantiate(ob
+        , trans);
     public T Load<T>(Dictionary<string, T>dic, string path) where T : Object
     {
         if (false == dic.ContainsKey(path))
         {
-            T resource = Resources.Load<T>(path);
-            dic.Add(path, resource);
+            T asset = Asset[GetNameofT<T>()].LoadAsset<T>(path);
+            dic.Add(path, asset);
             return dic[path];
         }
         return dic[path]; 
@@ -42,7 +54,7 @@ public class AssetManager : MonoBehaviour
 
     public GameObject Instantiate(string path, Transform tr = null)
     {
-        GameObject obj = Resources.Load<GameObject>(path);
+        GameObject obj = Asset["GameObject"].LoadAsset<GameObject>(path);
         return Instantiate(obj, tr);
     }
 
@@ -58,5 +70,26 @@ public class AssetManager : MonoBehaviour
         if (go == null) { return; }
 
         UnityEngine.Object.Destroy(go);
+    }
+
+    void AddAssetBundle<T>()
+    {
+        string assetPath = string.Concat("Bundle/", GetNameofT<T>());
+        AssetBundle asset = AssetBundle.LoadFromFile(assetPath);
+        Asset.Add(GetNameofT<T>(), asset);
+    }
+    string GetNameofT<T>()
+    {
+        if (typeof(T) == typeof(GameObject))
+            return "GameObject";
+        if (typeof(T) == typeof(Sprite))
+            return "Sprite";
+        if (typeof(T) == typeof(AudioClip))
+            return "Sound";
+        if (typeof(T) == typeof(Material))
+            return "Material";
+        if (typeof(T) == typeof(AnimationClip))
+            return "Animation";
+        return null;
     }
 }

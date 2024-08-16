@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class BirdFeather: WeaponMultishot
 {
-    Vector2 size = new Vector2(0.8f, 0.8f);
-    Vector2 colsize = new Vector2(1, 0.5f);
+    Vector2 size;
+    Vector2 colsize = new Vector2(28, 13f);
 
-    protected override void WeaponSetComponenet(Attack attack)
+    protected override void WeaponSetComponent(Attack attack)
     {
         _angle = Utils.GetRandomAngle();
-        attack.SetAttackComponent(false, size, colsize, Vector2.zero);
+        size = new Vector2(_weaponData.Size, _weaponData.Size);
+        attack.SetAttackComponent(false, false, size, colsize, Vector2.zero);
     }
 }

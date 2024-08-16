@@ -16,8 +16,7 @@ public class Character : MonoBehaviour
     public CharacterID CharacterID;
     public Transform Cursor;
 
-    float _normalExp = 50;
-    Rigidbody2D _rigidbody;
+    float _maxExp = 50;
     private void Awake() => Init();
     public void Init()
     {
@@ -27,20 +26,20 @@ public class Character : MonoBehaviour
 
         Cursor = transform.Find("Cursor");
 
-        SetStats();
+        
     }
-    void SetStats()
+    public void SetStats()
     {
         CharacterData data = Manager.Game.GetCharacterData();
         MaxHp.Value = data.Hp;
-        Hp.Value = data.Hp;
         Attack.Value = data.Attack;
         Speed.Value = data.Speed;
         Criticial.Value = data.Criticial;
         Pickup.Value = data.Pickup;
         Haste.Value = data.Haste;
         Level.Value = 1;
-        MaxExp.Value = _normalExp;
+        MaxExp.Value = 1;
+        Hp.Value = data.Hp;
 
     }
     public void GetStats(ItemID id, int value)
@@ -59,18 +58,21 @@ public class Character : MonoBehaviour
     public void GetExp(float value)
     {
         //획득 사운드
-        CurrentExp.Value += value;
+        float addExp = value / _maxExp;
+        CurrentExp.Value += addExp;
         if(CurrentExp.Value > MaxExp.Value)
         {
             LevelUp();
         }
     }
-    public void Update_Hp(int damage)
+    public void GetHp(int damage)
     {
-        if (damage > 0) { }
-        //회복 사운드
-        else {}
-        //피격 사운드
+
+        if (damage > 0)
+            Manager.Sound.Play(Define.SoundType.Effect, "GetExp");
+
+        else
+            Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
 
         Hp.Value += damage;
         if(Hp.Value >= MaxHp.Value)
@@ -81,7 +83,8 @@ public class Character : MonoBehaviour
     }
     private void LevelUp()
     {
-        MaxExp.Value = _normalExp * 1.3f;
+        _maxExp *= 2f;
+        CurrentExp.Value = 0;
         Manager.UI.ShowPopup<Popup_LevelUp>();
     }
 

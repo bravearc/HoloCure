@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1348471108
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: sprite
+      Dependencies: {}
+    Info_1:
+      Name: material
+      Dependencies:
+        Dependency_0: sprite
+    Info_2:
+      Name: animation
+      Dependencies:
+        Dependency_0: sprite
+    Info_3:
+      Name: sound
+      Dependencies: {}
+    Info_4:
+      Name: gameobject
+      Dependencies:
+        Dependency_0: sprite
+        Dependency_1: material
+        Dependency_2: animation

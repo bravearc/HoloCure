@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class Orbit : WeaponRotation
 {
-    Vector2 size = new Vector2(0.8f, 0.8f);
+    Vector2 size;
+    Vector2 colSize = new Vector2(35, 35);
 
-    protected override void WeaponSetComponenet(Attack attack)
+    protected override void WeaponSetComponent(Attack attack)
     {
         _cursor = transform;
-        attack.SetAttackComponent(false, size, Vector2.one, Vector2.zero, true);
+        size = new Vector2(_weaponData.Size, _weaponData.Size); 
+        attack.SetAttackComponent(false, false, size, colSize, Vector2.zero, true);
 
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startLifetime = 0.15f;
         mainModule.startSpeed = 0;
+        mainModule.startSize = 30;
         mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
         mainModule.maxParticles = 100;
 

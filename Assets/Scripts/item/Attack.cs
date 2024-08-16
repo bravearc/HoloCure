@@ -12,36 +12,39 @@ public class Attack : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     Animator _animator;
     AnimationClip _animClip;
-    Action<Attack> _action;
+    public Action<Attack> _action;
     Transform _character;
     Transform _cursor;
-    Vector2 _newPOs;
     ParticleSystem _particleSystem;
     IEnumerator _strikeShot;
 
+    bool _isActive;
     float _damage;
+    
     public float HoldingTime;
     void Awake()
     {
         _rd = Utils.GetOrAddComponent<Rigidbody2D>(gameObject);
-        _spriteRenderer = Utils.GetOrAddComponent<SpriteRenderer>(gameObject);  
+        _spriteRenderer = Utils.GetOrAddComponent<SpriteRenderer>(gameObject);
+        _spriteRenderer.drawMode = SpriteDrawMode.Simple;
         _animator = Utils.GetOrAddComponent<Animator>(gameObject);
         _particleSystem = Utils.GetOrAddComponent<ParticleSystem>(gameObject);
          _character = Manager.Game.Character.transform;
         _collider = Utils.GetOrAddComponent<BoxCollider2D>(gameObject);
         _cursor = Manager.Game.Character.Cursor;
     }
-    public void Init(WeaponData data, Vector2 newPos, Action<Attack> action)
+    public void Init(WeaponData data, Action<Attack> action)
     {
         _weaponData = data;
-        transform.position = newPos;
-        transform.localScale = new Vector2(_weaponData.Size, _weaponData.Size);
         transform.rotation = CalculateRotation();
         SetSpriteOrAnim();
         _spriteRenderer.flipY = IsFlip();
-
+        _isActive = false;
+        _action = null;
         _action = action;
+
         this.OnTriggerEnter2DAsObservable().Subscribe(StirkeTrigger);
+        
         _strikeShot = StrikeShot();
         StartCoroutine(_strikeShot);
     }
@@ -50,11 +53,7 @@ public class Attack : MonoBehaviour
     {
         if (IsAnim() == true)
         {
-            Animator anim = _animator;
-            var overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
-            overrideController[Define.Anim.Anim_Attack] = Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0");
-            _animator.runtimeAnimatorController = overrideController;
-            _animClip = Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0");
+            SetAnim();
         }
         else
         {
@@ -67,7 +66,7 @@ public class Attack : MonoBehaviour
         _action?.Invoke(this);
 
         yield return new WaitForSeconds(HoldingTime);
-        Manager.Spawn.Attack.Release(this);
+        AttackDie();
     }
 
     private void StirkeTrigger(Collider2D col)
@@ -76,13 +75,17 @@ public class Attack : MonoBehaviour
         {
             Enemy enemy = col.GetComponent<Enemy>();
             enemy.TakeDamage(_weaponData.Attack);
+            if (_isActive)
+            {
+                AttackDie();
+            }
         }
     }
-    public void SetAttackComponent(bool anim, Vector2 size, Vector2 col, Vector2 offset, bool particle = false, float gravity = 0)
+    public void SetAttackComponent(bool aniTime, bool aniActive, Vector2 size, Vector2 col, Vector2 offset, bool particle = false, float gravity = 0, bool isActive = false)
     {
-        HoldingTime = anim ? _animClip.length : _weaponData.Duration;
-        _animator.enabled = anim;
-
+        HoldingTime = aniTime ? _animClip.length : _weaponData.Duration;
+        _animator.enabled = aniActive;
+        
         var emission = _particleSystem.emission;
         emission.enabled = particle;
 
@@ -92,6 +95,8 @@ public class Attack : MonoBehaviour
 
         _collider.size = col;
         _collider.offset = offset;
+
+        _isActive = isActive;
     }
     Quaternion CalculateRotation()
     {
@@ -100,11 +105,34 @@ public class Attack : MonoBehaviour
         return Quaternion.Euler(0, 0, angle);
     }
 
-    public bool IsAnim() => Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0") != null ? true : false; 
+    public bool IsAnim() => Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0") != null; 
     public bool IsFlip() => _character.position.x > _cursor.position.x ;
     public void OffCollider() => _collider.enabled = false;
     public void OnCollider() => _collider.enabled = true;
-    public void SetSprite(Sprite sprite) => _spriteRenderer.sprite = sprite;
-
+    public SpriteRenderer GetSprite() => _spriteRenderer;
     public Rigidbody2D GetRigid() => _rd;
+    public void SetFlipY(bool boo) => _spriteRenderer.flipY = boo;
+    public float GetAniLength() => _animClip.length;
+
+    public void SetAnim(string aniName = null)
+    {
+        Animator anim = _animator;
+        var overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        overrideController[Define.Anim.Anim_Attack] = Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0");
+        _animator.runtimeAnimatorController = overrideController;
+        if(aniName == null) 
+        { 
+            _animClip = Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0");
+            return;
+        }
+        _animClip = Manager.Asset.LoadAnimClip(aniName);
+    }
+    private void AttackDie()
+    {
+        StopCoroutine(_strikeShot);
+        _strikeShot = null;
+        _action = null;
+        Utils.ResetParticle(gameObject);
+        Manager.Spawn.Attack.Release(this);
+    }
 }

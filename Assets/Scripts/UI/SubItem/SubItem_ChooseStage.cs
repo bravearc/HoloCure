@@ -83,6 +83,7 @@ public class SubItem_ChooseStage : UI_SubItem
 
     void OnClickButton(PointerEventData data)
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
 
         switch (button)

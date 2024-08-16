@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject prefab = Manager.Asset.Load<GameObject>(Manager.Asset.Object, $"UI/SubItem/{name}");
+        GameObject prefab = Manager.Asset.Load<GameObject>(Manager.Asset.Object, name);
 
         GameObject go = Manager.Asset.Instantiate(prefab);
         if (parent != null)
@@ -64,9 +64,9 @@ public class UIManager : MonoBehaviour
             name = typeof(T).Name;
         }
 
-        GameObject prefab = Manager.Asset.Load<GameObject>(Manager.Asset.Object, $"UI/Popup/{name}");
+        GameObject prefab = Manager.Asset.Load<GameObject>(Manager.Asset.Object, name);
 
-        GameObject go = Manager.Asset.Instantiate($"UI/Popup/{name}");
+        GameObject go = Manager.Asset.Instantiate(name);
         T popup = Utils.GetOrAddComponent<T>(go);
         _popupStack.Push(popup);
 
@@ -94,6 +94,7 @@ public class UIManager : MonoBehaviour
 
     public void ClosePopupUI() 
     {
+
         if (_popupStack.Count == 0)
         { 
             return;

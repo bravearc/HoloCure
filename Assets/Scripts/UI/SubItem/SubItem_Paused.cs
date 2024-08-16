@@ -77,6 +77,7 @@ public class SubItem_Paused : UI_SubItem
 
     void OnClickButton(PointerEventData data)
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
         switch (button)
         {
@@ -110,16 +111,13 @@ public class SubItem_Paused : UI_SubItem
 
     void SetButtonNormal(Buttons button)
     {
-        Debug.Log($"normal{(int)button}");
-        Debug.Log(button);
         GetText((int)button).color = Color.white;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_0");
     }
 
     void SetButtonHighligthed(Buttons button) 
     {
-        Debug.Log($"high{(int)button}");
-        Debug.Log(button);
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         GetText((int)button).color = Color.black;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_1");
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public ReactiveProperty<int> Level { get; private set; } = new();
-    public WeaponData WeaponData;
+    protected WeaponData _weaponData;
     protected float _attackTimer;
     protected Character _character;
     protected Transform _cursor;
@@ -22,7 +22,7 @@ public abstract class Weapon : MonoBehaviour
     }
     public virtual void Init(ItemID id)
     {
-        WeaponData = Manager.Data.Weapon[id][1];
+        _weaponData = Manager.Data.Weapon[id][1];
         ID = id;
         _attackCo = AttackCo();
         StartCoroutine(_attackCo);
@@ -31,7 +31,7 @@ public abstract class Weapon : MonoBehaviour
     public virtual void LevelUp()
     {
         ++Level.Value;
-        WeaponData = Manager.Data.Weapon[ID][Level.Value];
+        _weaponData = Manager.Data.Weapon[ID][Level.Value];
     }
 
     IEnumerator AttackCo()
@@ -39,20 +39,33 @@ public abstract class Weapon : MonoBehaviour
         while (true)
         {
             int _attackCount = 0;
-            while (WeaponData.Quantity > _attackCount)
+            while (_weaponData.Quantity > _attackCount)
             {
                 Attack attack = Manager.Spawn.GetAttack();
-                attack.Init(WeaponData, _cursor.position, AttackAction);
+                attack.Init(_weaponData, AttackAction);
+                WeaopnSound();
                 ++_attackCount;
                 yield return new WaitForSeconds(_attackDelay);
             }
             _attackCount = 0;
-            yield return new WaitForSeconds(WeaponData.AttackCycle);
+            yield return new WaitForSeconds(_weaponData.AttackCycle);
         }
     }
 
-    protected virtual void AttackAction(Attack attack) {}
+    protected virtual void AttackAction(Attack attack) 
+    {
+        attack.transform.position = _character.transform.position;
+    }
 
-    protected virtual void WeaponSetComponenet(Attack attack) { }
-
+    protected virtual void WeaponSetComponent(Attack attack) { }
+    protected void WeaopnSound()
+    {
+        string sound = Manager.Data.Item[ID].Sound;
+        if (sound == "null")
+        {
+            Debug.Log("SoundNull");
+            return;
+        }
+        Manager.Sound.Play(Define.SoundType.Effect, sound);
+    }
 }

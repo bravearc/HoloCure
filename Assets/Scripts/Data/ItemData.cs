@@ -118,7 +118,7 @@ public class ItemData
     public string Name { get; set; }
     public ItemType Type { get; set; }
     public string IconImage { get; set; }
-    public string KOR { get; set; }
+    public string Sound { get; set; }
 }
 
 public class StatsData

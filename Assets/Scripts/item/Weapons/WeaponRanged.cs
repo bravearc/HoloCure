@@ -1,30 +1,58 @@
-
+using UniRx;
+using UniRx.Triggers;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class WeaponRanged : Weapon
 {
+    IEnumerator _rangerCo;
+    IDisposable _updatePos;
+    IDisposable _disposable;
     protected override void AttackAction(Attack attack)
     {
-        WeaponSetComponenet(attack);
+        base.AttackAction(attack);
+        WeaponSetComponent(attack);
+        attack.GetSprite().sortingOrder = 1;
 
-        float timer = 0;
+        _updatePos = this.FixedUpdateAsObservable().Subscribe(_ => Update_Position(attack));
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ => Disable());
         
-        //1초 
+        _rangerCo = RangedCo(attack);
+        StartCoroutine(_rangerCo);
+    }
+    void Update_Position(Attack attack)
+    {
+        attack.transform.position = _character.transform.position;
+    }
+    IEnumerator RangedCo(Attack attack)
+    {
+        float timer = 0;
         float attackTime = 3;
 
-        while (attack.HoldingTime > timer)
+        while (true)
         {
-            while ((int)timer / (int)attackTime == 0)
-            {
-                timer += Time.deltaTime;
+            timer += Time.deltaTime;
+            
+            if(timer > attackTime) 
+            { 
                 attack.OffCollider();
+                timer = 0;
             }
-
-            attack.OnCollider();
+            else
+            {
+                attack.OnCollider();
+            }
+            yield return new WaitForSeconds(attack.HoldingTime);
         }
     }
+    protected override void WeaponSetComponent(Attack attack){ }
 
-    //상속받은 클래스에서 재정의
-    protected override void WeaponSetComponenet(Attack attack){ }
+    void Disable()
+    {
+        StopCoroutine(_rangerCo);
+        _updatePos?.Dispose();
+        _disposable?.Dispose();
+        _rangerCo = null;
+    }
 }

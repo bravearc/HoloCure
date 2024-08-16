@@ -55,7 +55,7 @@ public class Utils : MonoBehaviour
     public static bool IsWeapon(ItemID id)
     {
         if ((int)Define.ItemNumber.Weapon_Start <= (int)id
-            && (int)id < (int)Define.ItemNumber.Weapon_End)
+            && (int)id < (int)Define.ItemNumber.StartingWeapon_End)
         {  
             return true; 
         }
@@ -79,14 +79,101 @@ public class Utils : MonoBehaviour
 
     public static string GetItemType(ItemID id)
     {
-        if ((int)id < (int)Define.ItemNumber.Weapon_End)
+        if ((int)id < (int)Define.ItemNumber.StartingWeapon_End)
             return "Weapon";
-        else if ((int)id < (int)Define.ItemNumber.Weapon_End)
+        else if ((int)id < (int)Define.ItemNumber.StartingWeapon_End)
             return "Equipment";
         else if ((int)Define.ItemNumber.Stats_Start <= (int)id
             && (int)id < (int)Define.ItemNumber.Stats_End)
             return "Stats";
         else
             return "Drop";
+    }
+
+    public static void ResetParticle(GameObject go)
+    {
+        var particleSystem = go.GetComponent<ParticleSystem>();
+        if (particleSystem == null)
+            return;
+
+        particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        var mainModule = particleSystem.main;
+        mainModule.duration = 5f;
+        mainModule.loop = true;
+        mainModule.startColor = Color.white;
+        mainModule.startLifetime = 1f;
+        mainModule.startSpeed = 5f;
+        mainModule.startSize = 1f;
+        mainModule.gravityModifier = 0f;
+        mainModule.simulationSpace = ParticleSystemSimulationSpace.Local;
+
+        var emissionModule = particleSystem.emission;
+        emissionModule.enabled = true;
+        emissionModule.rateOverTime = 10f;
+        emissionModule.rateOverDistance = 0f;
+
+        var shapeModule = particleSystem.shape;
+        shapeModule.enabled = true;
+        shapeModule.shapeType = ParticleSystemShapeType.Cone;
+        shapeModule.scale = new Vector3(1f, 1f, 1f);
+
+        var velocityOverLifetimeModule = particleSystem.velocityOverLifetime;
+        velocityOverLifetimeModule.enabled = false;
+
+        var limitVelocityOverLifetimeModule = particleSystem.limitVelocityOverLifetime;
+        limitVelocityOverLifetimeModule.enabled = false;
+
+        var forceOverLifetimeModule = particleSystem.forceOverLifetime;
+        forceOverLifetimeModule.enabled = false;
+
+        var colorOverLifetimeModule = particleSystem.colorOverLifetime;
+        colorOverLifetimeModule.enabled = false;
+
+        var colorBySpeedModule = particleSystem.colorBySpeed;
+        colorBySpeedModule.enabled = false;
+
+        var sizeOverLifetimeModule = particleSystem.sizeOverLifetime;
+        sizeOverLifetimeModule.enabled = false;
+
+        var sizeBySpeedModule = particleSystem.sizeBySpeed;
+        sizeBySpeedModule.enabled = false;
+
+        var rotationOverLifetimeModule = particleSystem.rotationOverLifetime;
+        rotationOverLifetimeModule.enabled = false;
+
+        var rotationBySpeedModule = particleSystem.rotationBySpeed;
+        rotationBySpeedModule.enabled = false;
+
+        var externalForcesModule = particleSystem.externalForces;
+        externalForcesModule.enabled = false;
+
+        var noiseModule = particleSystem.noise;
+        noiseModule.enabled = false;
+
+        var collisionModule = particleSystem.collision;
+        collisionModule.enabled = false;
+
+        var triggerModule = particleSystem.trigger;
+        triggerModule.enabled = false;
+
+        var subEmittersModule = particleSystem.subEmitters;
+        subEmittersModule.enabled = false;
+
+        var textureSheetAnimationModule = particleSystem.textureSheetAnimation;
+        textureSheetAnimationModule.enabled = false;
+
+        var lightsModule = particleSystem.lights;
+        lightsModule.enabled = false;
+
+        var trailsModule = particleSystem.trails;
+        trailsModule.enabled = false;
+
+        var customDataModule = particleSystem.customData;
+        customDataModule.enabled = false;
+
+        var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.enabled = true;
+        renderer.material = null;
     }
 }

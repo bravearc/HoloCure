@@ -74,7 +74,8 @@ public class SubItem_Title : UI_SubItem
     protected void OnClickButton(PointerEventData data)
     {
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
-        switch(button) 
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
+        switch (button) 
         { 
             case Buttons.PlayButton:
                 Manager.UI.ClosePopupUI();
@@ -90,6 +91,7 @@ public class SubItem_Title : UI_SubItem
 
     protected void SetButtonNormal(Buttons button)
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         GetText((int)button).color = Color.white;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_0");
     }

@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 2722250871
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7a19c9d91f5748c590a5edd88aa5c324
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7a19c9d91f5748c590a5edd88aa5c324
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Sound/ButtonMove.wav
+- Assets/Resources/Sound/FanBeam.wav
+- Assets/Resources/Sound/SelectMove.wav
+- Assets/Resources/Sound/PsychoAxe.wav
+- Assets/Resources/Sound/EnemyDamaged.wav
+- Assets/Resources/Sound/KapuKapu.wav
+- Assets/Resources/Sound/TridentThrust.wav
+- Assets/Resources/Sound/Orbit.wav
+- Assets/Resources/Sound/TarotCards.wav
+- Assets/Resources/Sound/ClockHands.wav
+- Assets/Resources/Sound/HoloBomb.wav
+- Assets/Resources/Sound/MurasakiBolt.wav
+- Assets/Resources/Sound/LoveNeedle.wav
+- Assets/Resources/Sound/SelectClick.wav
+- Assets/Resources/Sound/ButtonClick.wav
+- Assets/Resources/Sound/ButtonBack.wav
+- Assets/Resources/Sound/GetExp.wav
+- Assets/Resources/Sound/FoxTail.wav
+- Assets/Resources/Sound/GameClear.wav
+- Assets/Resources/Sound/SmollAmeAttack.wav
+- Assets/Resources/Sound/PlayerDamaged.wav
+- Assets/Resources/Sound/LevelUp.wav
+- Assets/Resources/Sound/GameOver.wav
+- Assets/Resources/Sound/BoxOpenOngoing.wav
+- Assets/Resources/Sound/SummonTentacle.wav
+- Assets/Resources/Sound/BrightStar.wav
+- Assets/Resources/Sound/BoxOpenStart.wav
+- Assets/Resources/Sound/Orayo.wav
+- Assets/Resources/Sound/DivaSong.wav
+- Assets/Resources/Sound/ScytheSwing.wav
+- Assets/Resources/Sound/BoxOpenEnd.wav
+- Assets/Resources/Sound/TitleBGM.ogg
+- Assets/Resources/Sound/DualKatana.wav
+- Assets/Resources/Sound/PistolShot.wav
+- Assets/Resources/Sound/HighSpecPistol.wav
+- Assets/Resources/Sound/BaseballPitch.wav
+- Assets/Resources/Sound/SmollAmeJump.wav
+- Assets/Resources/Sound/PhoenixSword.wav
+- Assets/Resources/Sound/AxeSwing.wav
+- Assets/Resources/Sound/StageOneBGM.ogg
+- Assets/Resources/Sound/RedHeart.wav
+- Assets/Resources/Sound/BirdFeather.wav
+Dependencies: []

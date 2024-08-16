@@ -1,22 +1,29 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using UniRx;
+using UniRx.Triggers;
+using System;
 
 public class WeaponRotation : Weapon
 {
-    Vector2 _initPos;
     protected float _radius = 1.2f;
     float angleSpeed = 1f;
-    //float initialAngle = 0f;
+    IEnumerator _rotationCo;
+    IDisposable _disposable;
     protected override void AttackAction(Attack attack)
     {
-        WeaponSetComponenet(attack);
-        StartCoroutine(RotationCo(attack));
+        base.AttackAction(attack);
+        WeaponSetComponent(attack);
+        attack.GetSprite().sortingOrder = 2;
+
+
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ => Disable());
+        _rotationCo = RotationCo(attack);
+        StartCoroutine(_rotationCo);
     }
 
     IEnumerator RotationCo(Attack attack) 
     { 
-        Transform weapon = attack.GetComponent<Transform>();
         float initialAngle = 0f;
         
         float timer = 0f;
@@ -33,5 +40,11 @@ public class WeaponRotation : Weapon
             yield return null;  
         }
     }
-
+    void Disable()
+    {
+        StopCoroutine(_rotationCo);
+        _disposable?.Dispose();
+        _disposable = null;
+        _rotationCo = null;
+    }
 }
