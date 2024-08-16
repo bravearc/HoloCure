@@ -1,50 +1,47 @@
-using UniRx;
 using UnityEngine;
 
-public class SpiderCooking : Weapon
+public class SpiderCooking : WeaponRanged
 {
-    CircleCollider2D _circle2D;
-    float _timer;
-    bool isDamage;
+    Vector2 size;
+    Vector2 colSize = new Vector2(108, 108);
+    protected override void WeaponSetComponent(Attack attack)
+    {
+        size = new(_weaponData.Size, _weaponData.Size);
+        attack.SetAttackComponent(false, false, size, colSize, Vector2.zero, true);
+        SpriteRenderer sprite = attack.GetSprite();
+        sprite.color = new Color(255, 255, 255, 120);
 
-    public override void Init(ItemID id)
-    {
-        base.Init(id);
-        _circle2D = GetComponent<CircleCollider2D>();
-    }
+        ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
+        particleSystem.Play();
+        ParticleSystem.MainModule mainModule = particleSystem.main;
+        mainModule.loop = true;
+        mainModule.startDelay = 0;
+        mainModule.gravityModifier = -0.2f;
+        mainModule.startLifetime = 0.5f;
+        mainModule.startSpeed = 2;
+        mainModule.startSize = 5f;
+        mainModule.startColor = new Color(121 / 255, 4 / 255, 255 / 255);
+        mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
+        mainModule.simulationSpeed = 1;
 
-    void FixedUpdate()
-    {
-        _timer += Time.fixedDeltaTime;
-        if(_timer > WeaponData.AttackCycle) 
-        {
-            isDamage = !isDamage;
-            _timer = 0;
-        }
-    }
-    void Update()
-    {
-        if(isDamage)
-        {
-            _circle2D.radius = WeaponData.AttackRange;
-        }
-        else
-        {
-            _circle2D.radius = 0;
-        }
-    }
+        ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
+        emissionModule.rateOverTime = 100;
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<IEnemy>() is IEnemy enemy)
-        {
-            //isKnockback를 매개변수로 전달해서 넉백 기능 추가.
-            enemy.TakeAttack(WeaponData.Attack);
-        }
-    }
+        ParticleSystem.ShapeModule shapeModule = particleSystem.shape;
+        shapeModule.shapeType = ParticleSystemShapeType.Cone;
+        shapeModule.radius = 53f;
+        shapeModule.angle = 0;
 
-    public virtual void ResetSettings() 
-    {
-        transform.localScale = new Vector2(WeaponData.Size, WeaponData.Size);
+        ParticleSystem.ForceOverLifetimeModule forceOverLifetimeModule = particleSystem.forceOverLifetime;
+        forceOverLifetimeModule.enabled = true;
+        forceOverLifetimeModule.y = 0.2f;
+
+        var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.enabled = true;
+        renderer.material = Manager.Asset.LoadMaterial("mat_SakuraGohei_0");
+        renderer.sortingOrder = 2;
+
+
+
     }
 }

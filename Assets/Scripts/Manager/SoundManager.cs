@@ -3,27 +3,29 @@ using System;
 
 public class SoundManager : MonoBehaviour
 {
-    private AudioSource[] _audioSources = new AudioSource[(int)Define.Sound.Max];
+    [SerializeField]
+    private AudioSource[] _audioSources = new AudioSource[(int)Define.SoundType.Max];
     public void Init()
     {
-        string[] names = Enum.GetNames(typeof(Define.Sound));
-        for (int i = 0; i < names.Length; i++)
+        string[] names = Enum.GetNames(typeof(Define.SoundType));
+        for (int i = 0; i < (int)Define.SoundType.Max; i++)
         {
             GameObject go = new GameObject(names[i]);
             _audioSources[i] = go.AddComponent<AudioSource>();
             go.transform.parent = transform;
         }
-        _audioSources[(int)Define.Sound.BGM].loop = true;
+        _audioSources[(int)Define.SoundType.BGM].loop = true;
     }
 
-    public void Play(Define.Sound type, string sound, int volume = 1)
+    public void Play(Define.SoundType type, string sound, int volume = 2)
     {
         AudioSource audioSource = _audioSources[(int)type];
+        audioSource.volume = volume;
         AudioClip clip = GetAudioClip(sound);
 
-        if (type == Define.Sound.Effect)
+        if (type == Define.SoundType.Effect)
         {
-            _audioSources[(int)type].PlayOneShot(_audioSources[(int)type].clip);
+            _audioSources[(int)type].PlayOneShot(clip);
         }
         else
         {
@@ -36,12 +38,12 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Stop(Define.Sound type)
+    public void Stop(Define.SoundType type)
     {
         _audioSources[(int)type].Stop();
     }
 
-    public void SoundScale(Define.Sound type, float volume) 
+    public void SoundScale(Define.SoundType type, float volume) 
     { 
         AudioSource audioSource = _audioSources[(int)type];
         audioSource.volume = volume;

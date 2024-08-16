@@ -27,7 +27,7 @@ public class IdolMove : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Vector3 input = new Vector3(horizontal, vertical);
+        Vector3 input = new Vector3(horizontal, vertical).normalized;
         Input_Vector2.Value = input;
         _rigidbody.MovePosition(transform.position + input * _speed * Time.fixedDeltaTime);
     }

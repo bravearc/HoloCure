@@ -101,12 +101,13 @@ public class SubItem_SelectIdol : UI_SubItem
     }    
     private void OnClickButton(PointerEventData data)
     {
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         ProcessButton();
     }
 
     private void SetButtonHighlighted(Buttons button)
     {
-        //»ç¿îµå
+        Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         RectTransform _pointerRect = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
         RectTransform buttonRect = GetButton((int)button).GetComponent<RectTransform>();
 

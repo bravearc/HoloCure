@@ -1,5 +1,5 @@
-using System;
-using System.Collections.Generic;
+using UnityEngine;
+
 public class SubItem_Inventory : UI_SubItem
 {
     #region enum
@@ -52,9 +52,9 @@ public class SubItem_Inventory : UI_SubItem
     private void SetWeapon(int slot)
     {
         if (slot < 0) { return; }
-
         Weapon weapon = Manager.Game.Inventory.Weapons[slot];
-        UpdateUI_Image(slot, weapon.WeaponData.Name, true);
+        ItemData id = Manager.Data.Item[weapon.ID];
+        UpdateUI_Image(slot, id.IconImage, true);
         weapon.Level.BindModelEvent(level => UpdateUI_Text(level, slot, true), this);
     }
 
@@ -63,18 +63,21 @@ public class SubItem_Inventory : UI_SubItem
         if (slot < 0) { return; }
 
         Equipment equipment = Manager.Game.Inventory.Equipments[slot];
-        UpdateUI_Image(slot, equipment.EquipmentData.Name, false);
+        ItemData id = Manager.Data.Item[equipment.ID];
+        UpdateUI_Image(slot, id.IconImage, false);
         equipment.Level.BindModelEvent(level => UpdateUI_Text(level, slot, false), this);
     }
     private void UpdateUI_Image(int slot, string imageName, bool isWeapon)
     {
         int baseIndex = isWeapon ? (int)Images.WeaponImage0 : (int)Images.EquipmentImage0;
         GetImage(slot + baseIndex).sprite = Manager.Asset.LoadSprite(imageName);
+        RectTransform rectTransform = GetImage(slot + baseIndex).GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(80, 80);
     }
 
     private void UpdateUI_Text(int level, int slot, bool isWeapon)
     {
         int baseIndex = isWeapon ? (int)Texts.WeaponLevelText0 : (int)Texts.EquipmentLevelText0;
-        GetText(slot + baseIndex).text = $"Lv_{level}";
+        GetText(slot + baseIndex).text = $"Lv_{level + 1}";
     }
 }

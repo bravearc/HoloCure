@@ -8,6 +8,8 @@ namespace Util.Pool
         private GameObject _container;
         protected ObjectPool<T> _pool;
         public T Get() => _pool.Get();
+        public void Clear() => _pool.Clear();
+        public void Dispose() => _pool.Dispose();
         public void Release(T element) => _pool.Release(element);
         public void Init(GameObject container)
         {
@@ -22,7 +24,7 @@ namespace Util.Pool
         }
 
         protected virtual void OnGet(T element) 
-        { 
+        {
             element.gameObject.SetActive(true);
         }
 
@@ -32,8 +34,8 @@ namespace Util.Pool
         }
 
         protected virtual void OnDestroy(T element) 
-        { 
-            Object.Destroy(element.gameObject);
+        {
+            Manager.Asset.Destroy(element.gameObject);
         }
     }
 }

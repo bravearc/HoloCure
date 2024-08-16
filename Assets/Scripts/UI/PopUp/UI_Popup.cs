@@ -17,13 +17,13 @@ public class UI_Popup : UI_Base
     }
     protected virtual void OnEnterButton(PointerEventData data)
     {
-        Manager.Sound.Play(Define.Sound.Effect, "ButtonMove");
+        Manager.Sound.Play(Define.SoundType.Effect, "ButtonMove");
     }
 
     protected virtual void OnClickButton(PointerEventData data)
     {
         Time.timeScale = 1;
-        Manager.Sound.SoundScale(Define.Sound.BGM, 1);
+        Manager.Sound.SoundScale(Define.SoundType.BGM, 1);
         Manager.Asset.Destroy(gameObject);
     }
 

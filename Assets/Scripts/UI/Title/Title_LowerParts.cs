@@ -22,7 +22,7 @@ public class Title_LowerParts : MonoBehaviour
         for (int idx = 0; idx < 40; ++idx)
         {
             float range = 70f * idx;
-            string path = "Object/Title_LowerPart";
+            string path = "Title_LowerPart";
             GameObject go = Manager.Asset.Instantiate(path, transform);
             RectTransform rect = go.GetComponent<RectTransform>();
             rect.anchoredPosition = _setPoint + new Vector2(range, 0);

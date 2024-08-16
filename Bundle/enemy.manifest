@@ -1,0 +1,52 @@
+ManifestFileVersion: 0
+CRC: 2557659860
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 41dc5b82e75530ee310d502044bd30eb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 81dcdd97f238be42e860aa4b7e498a01
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 41dc5b82e75530ee310d502044bd30eb
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 50
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 230c3d06f2fda8a4ab64ca7bcaacca44, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e82120785a68a4c4aa5ba631a57a6837, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b8c934e7779e33c43b8dc3e071d396c8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 221
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Object/Bloom.prefab
+- Assets/Resources/Object/Fubuzilla.prefab
+- Assets/Resources/Object/Enemy.prefab
+- Assets/Resources/Object/Baerat.prefab
+Dependencies:
+- C:/Users/brave/HoloCure_Lee/./Bundle/animation

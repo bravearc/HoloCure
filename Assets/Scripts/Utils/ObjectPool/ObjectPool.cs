@@ -73,7 +73,7 @@ namespace Util.Pool
         }
         public void Clear()
         {
-            if (_actionOnDestroy != null)
+             if (_actionOnDestroy != null)
             {
                 foreach (T item in _pool)
                 {
@@ -81,7 +81,6 @@ namespace Util.Pool
                 }
             }
         }
-
         public void Dispose()
         {
             Clear();

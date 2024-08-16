@@ -91,13 +91,14 @@ public class Popup_LevelUp : UI_Popup
         {
             Button button = GetButton(idx);
             button.BindEvent(OnEnterButton, Define.UIEvent.Enter, this);
-            button.BindEvent(OnEnterButton, Define.UIEvent.Click, this);
+            button.BindEvent(OnClickButton, Define.UIEvent.Click, this);
         }
         
         Manager.UI.MakeSubItem<SubItem_Stats>(transform);
         
         _inventory = Manager.Game.Inventory;
-        //SetupItem();
+        Time.timeScale = 0f;
+        SetupItem();
     }
 
     void SetupItem()
@@ -116,12 +117,13 @@ public class Popup_LevelUp : UI_Popup
         }
     }
 
-    void ShowItems(string name, string Exp, string typeImage, string icon, bool newText, string typeText, int idx)
+    void ShowItems(string name, string Exp, string typeImage, string icon, string type, bool newText, string typeText, int idx)
     {
         GetText(idx + (int)Texts.NameText0).text = name;
         GetText(idx + (int)Texts.DescriptionText0).text = Exp;
         GetImage(idx + (int)Images.TypeImage0).sprite = Manager.Asset.LoadSprite(typeImage);
         GetImage(idx + (int)Images.ItemImage0).sprite = Manager.Asset.LoadSprite(icon);
+        GetImage(idx + (int)Images.ItemFrameImage0).sprite = Manager.Asset.LoadSprite($"spr_option{type}Icon_0");
         GetText(idx + (int)Texts.NewText0).text = newText ? "New!" : "";
         GetText(idx + (int)Texts.TypeText0).text = typeText;
     }
@@ -130,32 +132,32 @@ public class Popup_LevelUp : UI_Popup
         List<Weapon> list = _inventory.Weapons;
         Weapon item = list.Find(weapon => weapon.ID == id);
 
-        int nextLevel = item == null ? 0 : item.Level.Value + 1;
+        int nextLevel = item == null ? 1 : item.Level.Value + 1;
 
         WeaponData data = Manager.Data.Weapon[id][nextLevel];
         string name = data.Name;
         string Exp = data.Explanation;
         string type = data.WeaponType.ToString();
-        string icon = data.Name;
-        bool active = item != null;
+        string icon = Manager.Data.Item[id].IconImage;
+        bool active = item == null;
         string typeText = Manager.Data.Item[id].Type.ToString();
-        ShowItems(name, Exp, type, icon, active, typeText, idx);  
+        ShowItems(name, Exp, type, icon, "weapon", active, typeText, idx);  
     }
     void SetupEquipment(ItemID id, int idx)
     {
         List<Equipment> list = _inventory.Equipments;
         Equipment item = list.Find(equipment => equipment.ID == id);
 
-        int nextLevel = item == null ? 0 : item.Level.Value + 1;
+        int nextLevel = item == null ? 1 : item.Level.Value + 1;
 
         EquipmentData data = Manager.Data.Equipment[id][nextLevel];
         string name = data.Name;
         string Exp = data.Explanation;
         string type = null;
         string icon = data.Name;
-        bool active = item != null;
+        bool active = item == null;
         string typeText = Manager.Data.Item[id].Type.ToString();
-        ShowItems(name, Exp, type, icon, active, typeText, idx);
+        ShowItems(name, Exp, type, icon, "Equipment", active, typeText, idx);
     }
     void SetupStats(ItemID id, int idx)
     {
@@ -166,7 +168,7 @@ public class Popup_LevelUp : UI_Popup
         string icon = data.Name;
         bool active = false;
         string typeText = "";
-        ShowItems(name, Exp, type, icon, active, typeText, idx);
+        ShowItems(name, Exp, type, icon, "Stat", active, typeText, idx);
     }
     protected override void OnEnterButton(PointerEventData data)
     {
@@ -177,8 +179,10 @@ public class Popup_LevelUp : UI_Popup
     protected override void OnClickButton(PointerEventData data) 
     {
         Buttons buttonIdx = Enum.Parse<Buttons>(data.pointerClick.name);
-        base.ClosePopup();
         _inventory.GetItem(_itemList[(int)buttonIdx]);
+        Debug.Log(_itemList[(int)buttonIdx]);
+        Time.timeScale = 1f;
+        base.ClosePopup();
     }
 
     protected void SetButtonNormal(Buttons button)

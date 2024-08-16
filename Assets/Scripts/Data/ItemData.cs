@@ -18,6 +18,27 @@ public enum ItemID
     BounceBall,
     ENsCurse,
     X_Potato,
+    PistolShot = 1101,
+    TridentThrust,
+    SummonTentacle,
+    PhoenixSword,
+    ScytheSwing,
+    PlayDice,
+    ClockHands,
+    BirdFeather = 1109,
+    Orbit,
+    FoxTail = 1112,
+    TarotCards,
+    Orayo = 1115,
+    Bright,
+    DivaSong,
+    HighSpecPistol,
+    AxeSwing,
+    RedHeart =1121,
+    KapuKapu,
+    BaseballPitch = 1125,
+    LoveNeedle,
+    DualKatana,
     Equipment = 2000,
     NinjaHeadband,
     HopeSoda,
@@ -81,6 +102,7 @@ public class WeaponData
     public float Attack { get; set; }
     public float Quantity { get; set; }
     public float Speed { get; set; }
+    public float Duration { get; set; }
     public float AttackRange { get; set; }
     public float AttackCycle { get; set; }
     public float Size { get; set; }
@@ -88,7 +110,7 @@ public class WeaponData
     public int MaxLevel { get; set; }
     public string Explanation { get; set; }
     public WeaponType WeaponType { get; set; }
-    public string KORNAME { get; set; }
+    public string Animation { get; set; }
 }
 public class ItemData
 {
@@ -96,7 +118,7 @@ public class ItemData
     public string Name { get; set; }
     public ItemType Type { get; set; }
     public string IconImage { get; set; }
-    public string KOR { get; set; }
+    public string Sound { get; set; }
 }
 
 public class StatsData

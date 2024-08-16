@@ -10,7 +10,7 @@ public class Popup_PlayUI : UI_Popup
     {
         base.Init();
         _stage1 = Manager.Asset.InstantiateObject(nameof(Map_Stage1)).gameObject;
-
+        Manager.Sound.Play(Define.SoundType.BGM, "StageOneBGM", 1);
         Manager.UI.MakeSubItem<SubItem_PlayUI>(transform);
         Manager.UI.MakeSubItem<SubItem_Inventory>(transform);
         this.UpdateAsObservable().Subscribe(_ => OnPressKey());

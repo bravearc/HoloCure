@@ -50,10 +50,10 @@ public class Manager : MonoBehaviour
         go.transform.parent = transform;
         UI = Utils.GetOrAddComponent<UIManager>(go);
 
+        Data.Init();
         Spawn.Init();
         Asset.Init();
-        Data.Init();
-        //Sound.Init();
+        Sound.Init();
         Game.Init();
     }
 

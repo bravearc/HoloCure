@@ -14,29 +14,32 @@ public class Character : MonoBehaviour
     public ReactiveProperty<float> CurrentExp = new();
     public ReactiveProperty<float> MaxExp = new();
     public CharacterID CharacterID;
+    public Transform Cursor;
 
-    Rigidbody2D _rigidbody;
-    private void Start() => Init();
+    float _maxExp = 50;
+    private void Awake() => Init();
     public void Init()
     {
         Utils.GetOrAddComponent<IdolMove>(gameObject);
         Utils.GetOrAddComponent<CursorControl>(gameObject);
         Utils.GetOrAddComponent<IdolAnim>(gameObject);
 
-        SetStats();
+        Cursor = transform.Find("Cursor");
+
+        
     }
-    void SetStats()
+    public void SetStats()
     {
         CharacterData data = Manager.Game.GetCharacterData();
         MaxHp.Value = data.Hp;
-        Hp.Value = data.Hp;
         Attack.Value = data.Attack;
         Speed.Value = data.Speed;
         Criticial.Value = data.Criticial;
         Pickup.Value = data.Pickup;
         Haste.Value = data.Haste;
         Level.Value = 1;
-        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
+        MaxExp.Value = 1;
+        Hp.Value = data.Hp;
 
     }
     public void GetStats(ItemID id, int value)
@@ -55,18 +58,21 @@ public class Character : MonoBehaviour
     public void GetExp(float value)
     {
         //획득 사운드
-        CurrentExp.Value += value;
+        float addExp = value / _maxExp;
+        CurrentExp.Value += addExp;
         if(CurrentExp.Value > MaxExp.Value)
         {
             LevelUp();
         }
     }
-    public void Update_Hp(int damage)
+    public void GetHp(int damage)
     {
-        if (damage > 0) { }
-        //회복 사운드
-        else {}
-        //피격 사운드
+
+        if (damage > 0)
+            Manager.Sound.Play(Define.SoundType.Effect, "GetExp");
+
+        else
+            Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
 
         Hp.Value += damage;
         if(Hp.Value >= MaxHp.Value)
@@ -77,7 +83,8 @@ public class Character : MonoBehaviour
     }
     private void LevelUp()
     {
-        MaxExp.Value = Manager.Data.Exp[Level.Value].Exp;
+        _maxExp *= 2f;
+        CurrentExp.Value = 0;
         Manager.UI.ShowPopup<Popup_LevelUp>();
     }
 

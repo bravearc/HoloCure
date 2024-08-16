@@ -64,6 +64,7 @@ public class DataManager
     private List<T> ParseToList<T>([NotNull] string path)
     {
         string fullPath = path;
+
 #if UNITY_EDITOR
         using (var reader = new StreamReader(fullPath))
 #else
@@ -75,48 +76,4 @@ public class DataManager
             return records;
         }
     }
-}
-
-
-public enum SoundID
-{
-    None
-}
-public struct SoundData
-{
-    public SoundID ID { get; set; }
-    public string Name { get; set; }
-    public string AudioClip { get; set; }
-    public int Volume { get; set; }
-
-}
-public enum AssetBuldleID
-{
-    None,
-    Character,
-    monster,
-    Item,
-    Sprite,
-    Sound, 
-    UI
-}
-public struct AssetBundleData
-{
-    public AssetBuldleID ID { get; set; }
-    public AssetBundle Asset { get; set; }
-}
-public enum EnemyID
-{
-    None,
-    Nomal = 1000,
-    Boss = 2000
-}
-public struct EnemyData
-{
-    public EnemyID ID { get; set; }
-    public float Hp { get; set; }
-    public float Speed { get; set; }
-    public int Attack { get; set; }
-    public string Sprite { get; set; }
-
 }

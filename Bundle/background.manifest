@@ -1,0 +1,44 @@
+ManifestFileVersion: 0
+CRC: 829842266
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 63b80fc59aac9aae14be5be84fb29588
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: dc0b9d62f8e284cd16c4446428e72e4c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 63b80fc59aac9aae14be5be84fb29588
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 82669bb5d9e9798419a4b731b093e5c5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3f9a9af704e264247b0085b9c1107d9c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Object/Map_Stage1.prefab
+Dependencies: []

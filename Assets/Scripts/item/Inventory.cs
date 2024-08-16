@@ -9,18 +9,16 @@ public class Inventory : MonoBehaviour
     public ReactiveProperty<int> WeaponCount = new(-1);
     public ReactiveProperty<int> EquipmentCount = new(-1);
 
-    [SerializeField]private SubItem_Inventory _inventory_SubItem;
     private HashSet<ItemID> _itemIDList = new();
 
     private const int INVENTORY_MAX_COUNT = 6;
     public void Init()
     {
-        //GetItem((ItemID)Manager.Game.GetCharacterData().StartingWeapon);
-        //_inventory_SubItem = Utils.GetOrAddComponent<SubItem_Inventory>(GameObject.Find(nameof(SubItem_Inventory)));
+        GetItem((ItemID)Manager.Game.GetCharacterData().StartingWeapon);
     }
     public bool IsItemTypeFull(ItemID id)
     {
-        if ((int)id < (int)Define.ItemNumber.Weapon_End)
+        if ((int)id < (int)Define.ItemNumber.StartingWeapon_End)
             return Weapons.Count >= INVENTORY_MAX_COUNT;
         else if ((int)id < (int)Define.ItemNumber.Equipment_End)
             return Equipments.Count >= INVENTORY_MAX_COUNT;
@@ -39,10 +37,11 @@ public class Inventory : MonoBehaviour
     {
         if (_itemIDList.Add(id))
         {
-            if ((int)id < (int)Define.ItemNumber.Weapon_End)
+            if ((int)id < (int)Define.ItemNumber.StartingWeapon_End)
             {
                 ItemData data = Manager.Data.Item[id];
-                Weapon newItem = Manager.Asset.Instantiate(data.Name, transform).GetComponent<Weapon>();
+                GameObject go = Manager.Asset.LoadObject(data.Name);
+                Weapon newItem = Manager.Asset.Instantiate(go, transform).GetComponent<Weapon>();
                 Weapons.Add(newItem);
                 newItem.Init(id);
                 WeaponCount.Value++;
@@ -59,7 +58,7 @@ public class Inventory : MonoBehaviour
         else
         {
             int idx = 0;
-            if((int)id < (int)Define.ItemNumber.Weapon_End)
+            if((int)id < (int)Define.ItemNumber.StartingWeapon_End)
             {
                 foreach(Weapon weapon in Weapons)
                 {
@@ -92,9 +91,14 @@ public class Inventory : MonoBehaviour
 
     public void Claer()
     {
+        _itemIDList.Clear();
         Weapons.Clear();
         Equipments.Clear();
         WeaponCount.Value = -1;
         EquipmentCount.Value = -1;
+        foreach(Transform child in transform)
+        {
+            Manager.Asset.Destroy(child.gameObject);
+        }
     }
 }
