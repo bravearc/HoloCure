@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class DivaSong : WeaponMultishot
@@ -8,10 +11,14 @@ public class DivaSong : WeaponMultishot
     float shakeY = 0.2f;
     float shakeDuration = 0.2f;
 
+    IEnumerator _moveCo;
+    IDisposable _disposable;
+
     protected override void WeaponSetComponent(Attack attack)
     {
         size = new Vector2(_weaponData.Size, _weaponData.Size);
         attack.SetAttackComponent(false, true, size, colSize, Vector2.zero, true);
+        
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startColor = new Color(234f / 255f, 106f / 255f, 87f / 255f);
@@ -30,7 +37,15 @@ public class DivaSong : WeaponMultishot
         renderer.material = Manager.Asset.LoadMaterial("mat_DivaSong_0");
         renderer.flip = _cursor.position.x > _character.transform.position.x ? Vector2.zero : Vector2.right;
 
-        StartCoroutine(Move(attack));
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ =>
+        {
+            StopCoroutine(_moveCo);
+            _disposable?.Dispose();
+            _moveCo = null;
+            _disposable = null;
+        });
+        _moveCo = Move(attack);
+        StartCoroutine(_moveCo);
     }
 
     IEnumerator Move(Attack attack) 

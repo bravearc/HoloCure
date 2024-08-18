@@ -1,10 +1,10 @@
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
-using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class Popup_ItemBox : UI_Popup
 {
@@ -48,8 +48,9 @@ public class Popup_ItemBox : UI_Popup
     Inventory _inventory;
     ItemID _id;
     public RectTransform _pointer;
+    bool _isBoxOpen;
 
-    Buttons _currentButon;
+    Buttons _currentButon = 0;
     Buttons CurrentButton 
     { 
         get
@@ -78,7 +79,7 @@ public class Popup_ItemBox : UI_Popup
         GetObject((int)Objects.CloseBox).SetActive(false);
 
         _updateDisposable =
-            this.UpdateAsObservable().Subscribe(_ => KeyCheck());
+            this.UpdateAsObservable().Subscribe(_ => OnPressKey());
 
         CurrentButton = _currentButon;
 
@@ -90,19 +91,34 @@ public class Popup_ItemBox : UI_Popup
         }
         Manager.Sound.Stop(Define.SoundType.BGM);
         Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenStart");
+        Manager.Game.IsPlaying.Value = false;
         Time.timeScale = 0f;
     }
 
-    protected void KeyCheck()
+    protected void OnPressKey()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (_isBoxOpen == false && Input.GetButtonDown(Define.Key.CONFIRM))
         {
             Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenOngoing");
             OpenBox();
-            _updateDisposable.Dispose();
+        }
+        else if (_isBoxOpen == true && Input.GetButtonDown(Define.Key.CONFIRM))
+        {
+            ProcessButton(CurrentButton);
+        }
+
+        if (Input.GetButtonDown(Define.Key.UP))
+        {
+            int idx = (int)CurrentButton == 0 ? 1 : 0;
+            CurrentButton = (Buttons)idx;
+        }
+        else if (Input.GetButtonDown(Define.Key.DOWN))
+        {
+            int idx = (int)CurrentButton == 1 ? 0 : 1;
+            CurrentButton = (Buttons)idx;
         }
     }
-    void SetupItem()
+    void ConfigureItemDisplay()
     {
         _inventory = Manager.Game.Inventory;
         _id = Manager.Spawn.GetRandomItem();
@@ -122,10 +138,7 @@ public class Popup_ItemBox : UI_Popup
                 data = Manager.Data.Weapon[_id][1];
                 newtext = "New!";
             }
-            if(GetText((int)Texts.NameText) == null)
-            {
-                Debug.Log($"{GetText((int)Texts.NameText)}: null");
-            }
+
             GetText((int)Texts.NameText).text = data.Name;
             GetText((int)Texts.TypeText).text = ">> Weapon";
             string sprite = Manager.Data.Item[_id].IconImage;
@@ -170,22 +183,43 @@ public class Popup_ItemBox : UI_Popup
 
         GetObject((int)Objects.OpenButton).SetActive(false);
 
+        var clickStream = Observable.EveryUpdate()
+        .Where(_ => Input.GetButtonDown(Define.Key.CANCEL) && Input.GetButtonDown(Define.Key.CONFIRM));
 
         Observable.EveryUpdate()
             .SkipWhile(_ => animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash("NormalBox"))
             .TakeWhile(_ => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+            .TakeUntil(clickStream)
             .Subscribe(_ =>
             {
                 Debug.Log("´ë±âÁß");
             },
             () =>
             {
-                Manager.Sound.Stop(Define.SoundType.Effect);
-                Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenEnd");
-                GetObject((int)Objects.CloseBox).SetActive(true);
-                Manager.UI.MakeSubItem<SubItem_Stats>(transform);
-                SetupItem();
+                EndBox();
             });
+        if (Input.GetKey(Define.Key.CANCEL))
+        {
+            EndBox();
+        }
+    }
+
+    void EndBox()
+    {
+        Manager.Sound.Stop(Define.SoundType.Effect);
+        Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenEnd");
+        GetObject((int)Objects.CloseBox).SetActive(true);
+        Manager.UI.MakeSubItem<SubItem_Stats>(transform);
+
+        ParticleSystem _particleSystem = Utils.FindChild<ParticleSystem>(gameObject);
+        UIParticleSystem _uIParticleSystem = Utils.FindChild<UIParticleSystem>(gameObject);
+        while (_particleSystem.isPlaying)
+        {
+            string materal = $"mat_ItemBox_Effect_{UnityEngine.Random.Range(0, 3)}";
+            _uIParticleSystem.material = Manager.Asset.LoadMaterial(materal);
+        }
+
+        ConfigureItemDisplay();
     }
 
     protected override void OnEnterButton(PointerEventData data)
@@ -197,9 +231,15 @@ public class Popup_ItemBox : UI_Popup
 
     protected override void OnClickButton(PointerEventData data)
     {
-
         Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
-        switch(button)
+
+        ProcessButton(button);
+        base.OnClickButton(data);
+
+    }
+    void ProcessButton(Buttons button)
+    {
+        switch (button)
         {
             case Buttons.TakeButton:
                 _inventory.GetItem(_id);
@@ -209,8 +249,11 @@ public class Popup_ItemBox : UI_Popup
         }
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Manager.Sound.Play(Define.SoundType.BGM, "StageOneBGM");
-        base.OnClickButton(data);
+        Manager.Game.IsPlaying.Value = true;
         Time.timeScale = 1f;
+
+        _updateDisposable?.Dispose();
+        _updateDisposable = null;
     }
 
     void SetButtonNormal(Buttons button)

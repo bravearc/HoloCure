@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1386962083
+CRC: 1550083460
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c39cf4c3b3e46501f80073fb8831a1b4
+    Hash: 115662eff8cecd2fcfbad5faad8bc1e9
   TypeTreeHash:
     serializedVersion: 2
     Hash: b30fce1a9ad74efb72be6c308c56e365
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: c39cf4c3b3e46501f80073fb8831a1b4
+    Hash: 115662eff8cecd2fcfbad5faad8bc1e9
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -23,7 +23,10 @@ Assets:
 - Assets/Resources/Material/mat_SakuraGohei_0.mat
 - Assets/Resources/Material/mat_DivaSong_0.mat
 - Assets/Resources/Material/mat_Orbi_0.mat
+- Assets/Resources/Material/mat_ItemBox_Effect_0.mat
 - Assets/Resources/Material/mat_HaatoRedHeart_0.mat
+- Assets/Resources/Material/mat_ItemBox_Effect_2.mat
 - Assets/Resources/Material/mat_Bright_0.mat
+- Assets/Resources/Material/mat_ItemBox_Effect_1.mat
 Dependencies:
 - C:/Users/brave/HoloCure_Lee/./Bundle/sprite

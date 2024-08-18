@@ -1,8 +1,6 @@
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
 
 public class SubItem_Paused : UI_SubItem
 {
@@ -38,7 +36,7 @@ public class SubItem_Paused : UI_SubItem
 
     Popup_Paused _popup_Paused;
 
-    Buttons _currentButton;
+    Buttons _currentButton = 0;
     Buttons CurrentButton
     {
         get
@@ -68,17 +66,57 @@ public class SubItem_Paused : UI_SubItem
     }
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        if (Input.GetButtonDown(Define.Key.CANCEL))
         {
             Manager.UI.ClosePopupUI();
             Time.timeScale = 1.0f;
         }
+        else if (Input.GetButtonDown(Define.Key.CONFIRM))
+        {
+            ProcessButton(CurrentButton);
+        }
+
+        if (Input.GetButtonDown(Define.Key.UP))
+        {
+            int nextButton = CurrentButtonIndex(-1);
+            CurrentButton = (Buttons)nextButton;
+        }
+        else if (Input.GetButtonDown(Define.Key.DOWN))
+        {
+            int nextButton = CurrentButtonIndex(1);
+            CurrentButton = (Buttons)nextButton;
+        }
     }
 
+    int CurrentButtonIndex(int idx)
+    {
+        int nextButton = (int)CurrentButton + idx;
+        if(nextButton < 0)
+        {
+            nextButton = 4;
+        }
+        else if(nextButton > 4)
+        {
+            nextButton = 0;
+        }
+        return nextButton;
+    }
+
+    void OnEnterButton(PointerEventData data)
+    {
+        Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
+        CurrentButton = button;
+    }
     void OnClickButton(PointerEventData data)
     {
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
+
+        ProcessButton(button);
+    }
+
+    void ProcessButton(Buttons button)
+    {
         switch (button)
         {
             case Buttons.Skill:
@@ -102,17 +140,10 @@ public class SubItem_Paused : UI_SubItem
                 break;
         }
     }
-
-    void OnEnterButton(PointerEventData data)
-    {
-        Buttons button = Enum.Parse<Buttons>(data.pointerEnter.name);
-        CurrentButton = button;
-    }
-
     void SetButtonNormal(Buttons button)
     {
         GetText((int)button).color = Color.white;
-        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_0");
+        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_Button_0");
     }
 
     void SetButtonHighligthed(Buttons button) 

@@ -57,13 +57,26 @@ public class SubItem_ChooseMode : UI_SubItem
     }
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
         {
-
+            ProcessButton(CurrentButon);
         }
-        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
             ProcessCancel();
+        }
+
+        if (Input.GetButtonDown(Define.Key.UP))
+        {
+            int current = (int)CurrentButon == 0 ? 1 : 0;
+            CurrentButon = (Buttons)current;
+            SetButtonHighlighted((Buttons)current);
+        }
+        else if (Input.GetButtonDown(Define.Key.DOWN))
+        {
+            int current = (int)CurrentButon == 0 ? 1 : 0;
+            CurrentButon = (Buttons)current;
+            SetButtonHighlighted((Buttons)current);
         }
     }
 

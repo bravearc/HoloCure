@@ -236,20 +236,17 @@ public class GameUI : UIManager
         return $"{Mathf.FloorToInt(value)}%";
     }
 
-    //시간 표기
     public void TimeUpdate(string timer)
     {
         _time.text = timer;
     }
 
 
-    //Enemy 처리 카운트 업데이트, Enemy객체가 전달.
     public void EnemyCountUpdate(int count)
     {
         _enemyCountText.text = count.ToString();
     }
 
-    //홀로코인 획득 갯수 업데이트, Inventory class에서 전달.
     public void GoldUpdate(int coin)
     {
         _holoCoinText.text = coin.ToString();

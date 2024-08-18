@@ -89,4 +89,5 @@ public abstract class UI_Base : MonoBehaviour
         model.Subscribe(action).AddTo(component);
     }
 
+
 }

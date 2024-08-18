@@ -95,7 +95,7 @@ public class Popup_LevelUp : UI_Popup
         }
         
         Manager.UI.MakeSubItem<SubItem_Stats>(transform);
-        
+        Manager.Game.IsPlaying.Value = false;
         _inventory = Manager.Game.Inventory;
         Time.timeScale = 0f;
         SetupItem();
@@ -180,7 +180,7 @@ public class Popup_LevelUp : UI_Popup
     {
         Buttons buttonIdx = Enum.Parse<Buttons>(data.pointerClick.name);
         _inventory.GetItem(_itemList[(int)buttonIdx]);
-        Debug.Log(_itemList[(int)buttonIdx]);
+        Manager.Game.IsPlaying.Value = true;
         Time.timeScale = 1f;
         base.ClosePopup();
     }

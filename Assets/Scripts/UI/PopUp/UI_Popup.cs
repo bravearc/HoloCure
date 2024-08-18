@@ -8,8 +8,6 @@ public class UI_Popup : UI_Base
     {
         base.Init();
         Manager.UI.SetCanvas(gameObject, true);
-        //Time.timeScale = 0;
-        //Manager.Sound.SoundScale(Define.Sound.BGM, 0.5f);
     }
     protected virtual void ClosePopup()
     {

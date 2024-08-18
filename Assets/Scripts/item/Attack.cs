@@ -6,22 +6,21 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    WeaponData _weaponData;
-    BoxCollider2D _collider;
-    Rigidbody2D _rd;
-    SpriteRenderer _spriteRenderer;
-    Animator _animator;
-    AnimationClip _animClip;
-    public Action<Attack> _action;
-    Transform _character;
-    Transform _cursor;
-    ParticleSystem _particleSystem;
-    IEnumerator _strikeShot;
+    private WeaponData _weaponData;
+    private BoxCollider2D _collider;
+    private Rigidbody2D _rd;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
+    private AnimationClip _animClip;
+    private Action<Attack> _action;
+    private Transform _character;
+    private Transform _cursor;
+    private ParticleSystem _particleSystem;
+    private IEnumerator _strikeShot;
 
     bool _isActive;
-    float _damage;
-    
     public float HoldingTime;
+
     void Awake()
     {
         _rd = Utils.GetOrAddComponent<Rigidbody2D>(gameObject);
@@ -38,6 +37,7 @@ public class Attack : MonoBehaviour
         _weaponData = data;
         transform.rotation = CalculateRotation();
         SetSpriteOrAnim();
+
         _spriteRenderer.flipY = IsFlip();
         _isActive = false;
         _action = null;
@@ -81,6 +81,12 @@ public class Attack : MonoBehaviour
             }
         }
     }
+    Quaternion CalculateRotation()
+    {
+        Vector2 direction = (_cursor.position - _character.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return Quaternion.Euler(0, 0, angle);
+    }
     public void SetAttackComponent(bool aniTime, bool aniActive, Vector2 size, Vector2 col, Vector2 offset, bool particle = false, float gravity = 0, bool isActive = false)
     {
         HoldingTime = aniTime ? _animClip.length : _weaponData.Duration;
@@ -98,22 +104,6 @@ public class Attack : MonoBehaviour
 
         _isActive = isActive;
     }
-    Quaternion CalculateRotation()
-    {
-        Vector2 direction = (_cursor.position - _character.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        return Quaternion.Euler(0, 0, angle);
-    }
-
-    public bool IsAnim() => Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0") != null; 
-    public bool IsFlip() => _character.position.x > _cursor.position.x ;
-    public void OffCollider() => _collider.enabled = false;
-    public void OnCollider() => _collider.enabled = true;
-    public SpriteRenderer GetSprite() => _spriteRenderer;
-    public Rigidbody2D GetRigid() => _rd;
-    public void SetFlipY(bool boo) => _spriteRenderer.flipY = boo;
-    public float GetAniLength() => _animClip.length;
-
     public void SetAnim(string aniName = null)
     {
         Animator anim = _animator;
@@ -127,6 +117,16 @@ public class Attack : MonoBehaviour
         }
         _animClip = Manager.Asset.LoadAnimClip(aniName);
     }
+
+    public bool IsAnim() => Manager.Asset.LoadAnimClip($"Ani_{_weaponData.Animation}_0") != null; 
+    public bool IsFlip() => _character.position.x > _cursor.position.x ;
+    public void OffCollider() => _collider.enabled = false;
+    public void OnCollider() => _collider.enabled = true;
+    public void SetFlipY(bool boo) => _spriteRenderer.flipY = boo;
+    public float GetAniLength() => _animClip.length;
+    public SpriteRenderer GetSprite() => _spriteRenderer;
+    public Rigidbody2D GetRigid() => _rd;
+
     private void AttackDie()
     {
         StopCoroutine(_strikeShot);

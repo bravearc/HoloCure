@@ -59,11 +59,11 @@ public class Popup_Select : UI_Popup
 
     void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
         {
 
         }
-        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
 
         }

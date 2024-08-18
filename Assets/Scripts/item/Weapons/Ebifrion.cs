@@ -25,6 +25,8 @@ public class Ebifrion : WeaponMelee
         {
             StopCoroutine(_rotationCo);
             _rotationCo = null;
+            _disposable?.Dispose();
+            _disposable = null;
         });
     }
 

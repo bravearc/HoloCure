@@ -34,8 +34,22 @@ public class SubItem_ChooseStage : UI_SubItem
 
     Popup_Select _select;
 
-    int _nextStage = 1;
+
     bool _isGoButtonSet;
+
+    int _nextStage = 1;
+    int NextStage
+    {
+        get
+        {
+            return _nextStage;
+        }
+        set
+        {
+            _nextStage = CurrentStage(value);
+            StageReplacement(_nextStage);
+        }
+    }
     protected override void Init()
     {
         base.Init();
@@ -58,13 +72,32 @@ public class SubItem_ChooseStage : UI_SubItem
     }
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
         {
-
+            if (_isGoButtonSet) 
+            {
+                ProcessButton(Buttons.GoButton, 0);
+            }
+            else
+            {
+                ProcessButton(Buttons.StageButton, 0);
+            }
         }
-        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
             ProcessCancel();
+        }
+
+        if (_isGoButtonSet == false)
+        {
+            if (Input.GetButtonDown(Define.Key.LEFT))
+            {
+                NextStage = -1;
+            }
+            else if (Input.GetButtonDown(Define.Key.RIGHT))
+            {
+                NextStage = 1;
+            }
         }
     }
     private void ProcessCancel()
@@ -86,13 +119,18 @@ public class SubItem_ChooseStage : UI_SubItem
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
 
+        ProcessButton(button, data.position.x);
+    }
+
+    void ProcessButton(Buttons button, float pos)
+    {
         switch (button)
         {
             case Buttons.StageChangeButton:
-                StageReplacement(data.position.x);
+                int idx = pos > 1000 ? 1 : -1;
+                StageReplacement(CurrentStage(idx));
                 break;
             case Buttons.GoButton:
-                //GameManager에 스테이지 세팅
                 Manager.Game.GameStart();
                 base.CloseSubItem();
                 break;
@@ -101,36 +139,24 @@ public class SubItem_ChooseStage : UI_SubItem
                 GetObject((int)Objects.Go).gameObject.SetActive(true);
                 break;
         }
+    }
+    int CurrentStage(int idx)
+    {
+        int nextStage = idx + _nextStage;
 
-        //ProcessButton(button);
-    }
-    void ProcessButton(Buttons button)
-    {
-        switch (button) 
-        { 
-            case Buttons.StageChangeButton:
-                
-                break;
-            case Buttons.GoButton:
-                Manager.Game.GameStart();
-                break;
-            case Buttons.StageButton:
-                GetButton((int)Buttons.GoButton).gameObject.SetActive(true);
-                break;
-        }
-    }
-    void StageReplacement(float buttonPosition)
-    {
-        _nextStage += buttonPosition > 1000 ? 1 : -1;
-        if (_nextStage < 1)
+        if (nextStage < 1)
         {
-            _nextStage = 3;
+            nextStage = 3;
         }
-        else if (_nextStage > 3) 
-        { 
-            _nextStage = 1;
+        else if (nextStage > 3)
+        {
+            nextStage = 1;
         }
-
+        return nextStage;
+    }
+    void StageReplacement(int nextStage)
+    {
+        this._nextStage = nextStage;
         GetImage((int)Images.StageButton).sprite = Manager.Asset.LoadSprite($"spr_Stage{_nextStage}Port_0");
         GetText((int)Texts.StageNameText).text = Manager.Data.Stage[_nextStage - 1].Name;
         GetText((int)Texts.HoloCoinText).text = $"x {_nextStage.ToString()}";

@@ -56,11 +56,15 @@ public static class Define
         StageMode,
         EndlessMode
     }
-    public class KeyCode
+    public class Key
     {
         public const string VERTICAL = "Vertical";
         public const string CONFIRM = "Confirm";
         public const string CANCEL = "Cancel";
+        public const string UP = "Up";
+        public const string DOWN = "Down";
+        public const string RIGHT = "Right";
+        public const string LEFT = "Left";
     }
 
     public class Anim

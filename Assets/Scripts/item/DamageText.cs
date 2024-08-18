@@ -7,7 +7,7 @@ public class DamageText : MonoBehaviour
     TMP_Text _damageText;
     float _endPositionY = 1;
     IEnumerator _moveCo;
-    float _dieTime = 0.3f;
+    float _dieTime = 0.5f;
     void Awake()
     {
         _damageText = Utils.FindChild<TMP_Text>(gameObject, nameof(TMP_Text));
