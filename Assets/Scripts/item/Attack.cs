@@ -71,6 +71,7 @@ public class Attack : MonoBehaviour
 
     private void StirkeTrigger(Collider2D col)
     {
+
         if (col.CompareTag("Enemy"))
         {
             Enemy enemy = col.GetComponent<Enemy>();

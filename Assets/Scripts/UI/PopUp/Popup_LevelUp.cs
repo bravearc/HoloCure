@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Type = System.Type;
+using System.Security.Cryptography;
 
 public class Popup_LevelUp : UI_Popup
 {
@@ -37,22 +37,22 @@ public class Popup_LevelUp : UI_Popup
     }
     protected enum Images
     {
-        TypeImage0,
-        TypeImage1,
-        TypeImage2,
-        TypeImage3,
-        ItemImage0 = 4,
-        ItemImage1,
-        ItemImage2,
-        ItemImage3,
-        ItemFrameImage0 = 8,
-        ItemFrameImage1,
-        ItemFrameImage2,
-        ItemFrameImage3,
         Button0,
         Button1,
         Button2,
-        Button3
+        Button3,
+        TypeImage0 = 4,
+        TypeImage1,
+        TypeImage2,
+        TypeImage3,
+        ItemImage0 = 8,
+        ItemImage1,
+        ItemImage2,
+        ItemImage3,
+        ItemFrameImage0 = 12,
+        ItemFrameImage1,
+        ItemFrameImage2,
+        ItemFrameImage3,
     }
     protected enum Objects
     {
@@ -75,7 +75,7 @@ public class Popup_LevelUp : UI_Popup
         }
     }
     private const int LEVELUP_ITEM_MAX_COUNT = 4;
-    private ItemID[] _itemList = new ItemID[4];
+    [SerializeField]private ItemID[] _itemList = new ItemID[4];
     private Inventory _inventory;
     private RectTransform _pointer;
 
@@ -110,6 +110,7 @@ public class Popup_LevelUp : UI_Popup
             switch(type)
             {
                 case ItemType.Weapon: SetupWeapon(id, idx); break;
+                case ItemType.StartingWeapon: SetupWeapon(id, idx); break;
                 case ItemType.Equipment: SetupEquipment(id, idx); break;
                 case ItemType.Stat: SetupStats(id, idx); break;
             }
@@ -131,16 +132,16 @@ public class Popup_LevelUp : UI_Popup
     {
         List<Weapon> list = _inventory.Weapons;
         Weapon item = list.Find(weapon => weapon.ID == id);
-
+ 
         int nextLevel = item == null ? 1 : item.Level.Value + 1;
-
         WeaponData data = Manager.Data.Weapon[id][nextLevel];
         string name = data.Name;
         string Exp = data.Explanation;
         string type = data.WeaponType.ToString();
         string icon = Manager.Data.Item[id].IconImage;
         bool active = item == null;
-        string typeText = Manager.Data.Item[id].Type.ToString();
+        string typeText = data.WeaponType.ToString();
+        Debug.Log($"{typeText}");
         ShowItems(name, Exp, type, icon, "weapon", active, typeText, idx);  
     }
     void SetupEquipment(ItemID id, int idx)
@@ -187,17 +188,18 @@ public class Popup_LevelUp : UI_Popup
 
     protected void SetButtonNormal(Buttons button)
     {
+        Debug.Log((int)button);
         GetImage((int)button).sprite = 
             Manager.Asset.LoadSprite("ui_menu_upgrade_window_0");
 
     }
-    protected void SetButtonHighlighted(Buttons currentButton)
+    protected void SetButtonHighlighted(Buttons button)
     {
 
-        GetImage((int)currentButton).sprite =
+        GetImage((int)button).sprite =
             Manager.Asset.LoadSprite("ui_menu_upgrade_window_selected_0");
         float resize = -600;
-        float pointerPosition = GetImage((int)currentButton).rectTransform.position.y;
+        float pointerPosition = GetImage((int)button).rectTransform.position.y;
             _pointer.anchoredPosition = new Vector2(-142, pointerPosition + resize);
     }
 }

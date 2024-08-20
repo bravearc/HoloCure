@@ -1,15 +1,19 @@
 using UnityEngine;
+using UniRx;
+using System;
+using UniRx.Triggers;
 
 public class SpiderCooking : WeaponRanged
 {
     Vector2 size;
     Vector2 colSize = new Vector2(108, 108);
+    IDisposable _disposable;
     protected override void WeaponSetComponent(Attack attack)
     {
         size = new(_weaponData.Size, _weaponData.Size);
         attack.SetAttackComponent(false, false, size, colSize, Vector2.zero, true);
         SpriteRenderer sprite = attack.GetSprite();
-        sprite.color = new Color(255, 255, 255, 120);
+        sprite.color = new Color(1f, 1f, 1f, 120f / 255f);
 
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
         particleSystem.Play();
@@ -20,7 +24,7 @@ public class SpiderCooking : WeaponRanged
         mainModule.startLifetime = 0.5f;
         mainModule.startSpeed = 2;
         mainModule.startSize = 5f;
-        mainModule.startColor = new Color(121 / 255, 4 / 255, 255 / 255);
+        mainModule.startColor = new Color(121 / 255f, 4 / 255f, 255 / 255f);
         mainModule.simulationSpace = ParticleSystemSimulationSpace.World;
         mainModule.simulationSpeed = 1;
 
@@ -41,7 +45,11 @@ public class SpiderCooking : WeaponRanged
         renderer.material = Manager.Asset.LoadMaterial("mat_SakuraGohei_0");
         renderer.sortingOrder = 2;
 
-
-
+        _disposable = attack.OnDisableAsObservable().Subscribe(_ => 
+        {
+            sprite.color = new Color(1, 1, 1, 1);   
+            _disposable?.Dispose();
+            _disposable = null;
+        });
     }
 }

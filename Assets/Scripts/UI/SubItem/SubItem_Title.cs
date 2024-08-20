@@ -134,7 +134,7 @@ public class SubItem_Title : UI_SubItem
     {
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         GetText((int)button).color = Color.white;
-        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_Button_0");
+        GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_OptionButton_0");
     }
 
     protected void SetButtonHighlighted(Buttons button)

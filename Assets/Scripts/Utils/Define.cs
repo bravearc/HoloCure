@@ -74,7 +74,7 @@ public static class Define
         public const string Idol_UI_Run = "Idol_UI_Run";
         public const string Idol_Play_Run = "Idol_Play_Run";
         
-        public const string Anim_Idol = "Ani_Idle";
+        public const string Anim_Idle = "Ani_Idle";
         public const string Anim_run = "Ani_run";
         public const string Ani_AttackSkill = "Ani_AttackSkill";
         public const string Anim_Attack = "Ani_Attack";

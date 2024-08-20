@@ -1,39 +1,25 @@
 using System;
-using UnityEngine.EventSystems;
 using UnityEngine;
-
-public class SubItem_Paused : UI_SubItem
+using UnityEngine.EventSystems;
+public class SubItem_Quit : UI_SubItem
 {
     #region enum
-    protected enum Buttons
+    enum Buttons
     {
-        Skill,
-        QuestionMark,
-        Resume,
-        Setting,
-        Quit
+        YesButton,
+        NoButton
     }
-
-    protected enum Texts
+    enum Texts
     {
-        Skill,
-        QuestionMark,
-        Resume,
-        Setting,
-        Quit
+        YesText,
+        NoText
     }
-
-    protected enum Images
+    enum Images
     {
-        Skill,
-        QuestionMark,
-        Resume,
-        Setting,
-        Quit
+        YesButton,
+        NoButton
     }
-
     #endregion
-
     Popup_Paused _popup_Paused;
 
     Buttons _currentButton = 0;
@@ -50,56 +36,42 @@ public class SubItem_Paused : UI_SubItem
             _currentButton = value;
         }
     }
-
     protected override void Init()
     {
         base.Init();
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
-        for (int i = 0; i < 5; i++)
+
+        for (int i = 0; i < 2; i++)
         {
             BindEvent(GetButton(i), OnClickButton, Define.UIEvent.Click, this);
             BindEvent(GetButton(i), OnEnterButton, Define.UIEvent.Enter, this);
         }
+
         _popup_Paused = transform.parent.GetComponent<Popup_Paused>();
     }
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.Key.CANCEL))
-        {
-            Manager.UI.ClosePopupUI();
-            Time.timeScale = 1.0f;
-        }
-        else if (Input.GetButtonDown(Define.Key.CONFIRM))
-        {
-            ProcessButton(CurrentButton);
-        }
-
         if (Input.GetButtonDown(Define.Key.UP))
         {
-            int nextButton = CurrentButtonIndex(-1);
-            CurrentButton = (Buttons)nextButton;
+            int idx = (int)CurrentButton == 0 ? 1 : 0;
+            CurrentButton = (Buttons)idx;
         }
         else if (Input.GetButtonDown(Define.Key.DOWN))
         {
-            int nextButton = CurrentButtonIndex(1);
-            CurrentButton = (Buttons)nextButton;
+            int idx = (int)CurrentButton == 1 ? 0 : 1;
+            CurrentButton = (Buttons)idx;
         }
-    }
 
-    int CurrentButtonIndex(int idx)
-    {
-        int nextButton = (int)CurrentButton + idx;
-        if(nextButton < 0)
+        if (Input.GetButtonDown(Define.Key.CONFIRM)) 
         {
-            nextButton = 4;
+            ProcessButton(CurrentButton);
         }
-        else if(nextButton > 4)
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
-            nextButton = 0;
+            ProcessButton(Buttons.NoButton);
         }
-        return nextButton;
     }
 
     void OnEnterButton(PointerEventData data)
@@ -119,35 +91,23 @@ public class SubItem_Paused : UI_SubItem
     {
         switch (button)
         {
-            case Buttons.Skill:
-                Manager.UI.MakeSubItem<SubItem_Skill>(_popup_Paused.transform);
-                base.CloseSubItem();
+            case Buttons.YesButton:
+                Manager.Game.GameOver();
                 break;
-            case Buttons.QuestionMark:
-                Manager.UI.MakeSubItem<SubItem_QuestionMark>(_popup_Paused.transform);
-                base.CloseSubItem();
-                break;
-            case Buttons.Resume:
-                Manager.UI.MakeSubItem<SubItem_Resume>(_popup_Paused.transform);
-                base.CloseSubItem();
-                break;
-            case Buttons.Setting:
-                Manager.UI.MakeSubItem<SubItem_Setting>(_popup_Paused.transform);
-                base.CloseSubItem();
-                break;
-            case Buttons.Quit:
-                Manager.UI.MakeSubItem<SubItem_Quit>(_popup_Paused.transform);
+            case Buttons.NoButton:
+                Manager.UI.MakeSubItem<SubItem_Paused>(_popup_Paused.transform);
                 base.CloseSubItem();
                 break;
         }
     }
+
     void SetButtonNormal(Buttons button)
     {
         GetText((int)button).color = Color.white;
         GetImage((int)button).sprite = Manager.Asset.LoadSprite("hud_Button_0");
     }
 
-    void SetButtonHighligthed(Buttons button) 
+    void SetButtonHighligthed(Buttons button)
     {
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonMove);
         GetText((int)button).color = Color.black;

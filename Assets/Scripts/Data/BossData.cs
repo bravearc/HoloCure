@@ -1,16 +1,15 @@
-public enum EnemyID
+public enum BossID
 {
-    None,
-    Nomal,
-    Boss = 1000
+    Fubuzilla = 1001,
+    SmollAme
 }
-public class EnemyData 
+public class BossData
 {
-    public EnemyID ID { get; set; }
+    public BossID ID { get; set; } 
     public string Name { get; set; }
     public float Hp { get; set; }
+    public float Attack { get; set; }
     public float Speed { get; set; }
-    public int Attack { get; set; }
     public string Sprite { get; set; }
     public string Skill { get; set; }
 }

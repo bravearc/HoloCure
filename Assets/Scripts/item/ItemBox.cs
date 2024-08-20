@@ -2,8 +2,7 @@ using UnityEngine;
 using UniRx;
 using System;
 using UniRx.Triggers;
-using System.Collections;
-using UnityEngine.UI.Extensions;
+
 
 public class ItemBox : MonoBehaviour
 {

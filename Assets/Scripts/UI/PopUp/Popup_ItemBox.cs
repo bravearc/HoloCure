@@ -5,6 +5,7 @@ using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
+using System.Collections;
 
 public class Popup_ItemBox : UI_Popup
 {
@@ -192,7 +193,6 @@ public class Popup_ItemBox : UI_Popup
             .TakeUntil(clickStream)
             .Subscribe(_ =>
             {
-                Debug.Log("´ë±âÁß");
             },
             () =>
             {
@@ -211,16 +211,10 @@ public class Popup_ItemBox : UI_Popup
         GetObject((int)Objects.CloseBox).SetActive(true);
         Manager.UI.MakeSubItem<SubItem_Stats>(transform);
 
-        ParticleSystem _particleSystem = Utils.FindChild<ParticleSystem>(gameObject);
-        UIParticleSystem _uIParticleSystem = Utils.FindChild<UIParticleSystem>(gameObject);
-        while (_particleSystem.isPlaying)
-        {
-            string materal = $"mat_ItemBox_Effect_{UnityEngine.Random.Range(0, 3)}";
-            _uIParticleSystem.material = Manager.Asset.LoadMaterial(materal);
-        }
-
         ConfigureItemDisplay();
     }
+
+
 
     protected override void OnEnterButton(PointerEventData data)
     {
