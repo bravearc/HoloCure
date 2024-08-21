@@ -32,7 +32,7 @@ public class IdolAnim : MonoBehaviour
         
         CharacterData data = Manager.Game.GetCharacterData();
         string newAni = data.Sprite;
-        overrideController[Define.Anim.Anim_Idol] = Manager.Asset.LoadAnimClip($"Ani_Idle_{newAni}_0");
+        overrideController[Define.Anim.Anim_Idle] = Manager.Asset.LoadAnimClip($"Ani_Idle_{newAni}_0");
         overrideController[Define.Anim.Anim_run] = Manager.Asset.LoadAnimClip($"Ani_run_{newAni}_0");
 
         _idolAnim.runtimeAnimatorController = overrideController;

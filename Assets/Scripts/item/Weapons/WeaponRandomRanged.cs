@@ -30,7 +30,7 @@ public class WeaponRandomRanged : Weapon
     IEnumerator RangedCo(Attack attack)
     {
         float timer = 0;
-        float attackTime = 3;
+        float attackTime = 2;
 
         while (true)
         {
@@ -48,13 +48,12 @@ public class WeaponRandomRanged : Weapon
 
             yield return new WaitForSeconds(attack.HoldingTime);
         }
-        
-        attack.OnCollider();
     }
 
     void Disable()
     {
         StopCoroutine(_rangedCo);
+        _rangedCo = null;
         _disposable?.Dispose();
         _disposable = null;
     }

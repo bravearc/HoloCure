@@ -1,8 +1,8 @@
 public enum EnemyID
 {
     None,
-    Nomal = 1000,
-    Boss = 2000
+    Nomal,
+    Boss = 1000
 }
 public class EnemyData 
 {

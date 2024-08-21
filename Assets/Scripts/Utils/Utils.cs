@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Type = System.Type;
 
 
 public class Utils : MonoBehaviour

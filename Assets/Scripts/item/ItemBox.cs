@@ -3,6 +3,7 @@ using UniRx;
 using System;
 using UniRx.Triggers;
 
+
 public class ItemBox : MonoBehaviour
 {
     Character _character;
@@ -10,6 +11,7 @@ public class ItemBox : MonoBehaviour
     Camera _camera;
     GameObject _chestPointer;
     BoxCollider2D _boxCollider;
+
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class ItemBox : MonoBehaviour
         _character = Manager.Game.Character;
         _camera = Camera.main;
         _chestPointer = transform.Find("ChestPointer").gameObject;
+
     }
 
 

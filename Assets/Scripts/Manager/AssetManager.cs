@@ -11,8 +11,6 @@ public class AssetManager : MonoBehaviour
     public Dictionary<string, AnimationClip> AnimClip { get; private set; }
     public Dictionary<string, Material> Material { get; private set; }
 
-    AtlasLoader _atlasLoader;
-
     public void Init()
     {
         Asset = new();
@@ -22,16 +20,14 @@ public class AssetManager : MonoBehaviour
         Text = new();
         AnimClip = new();
         Material = new();
-        
-        _atlasLoader = Utils.GetOrAddComponent<AtlasLoader>(gameObject);
+
+        Utils.GetOrAddComponent<AtlasLoader>(gameObject);
 
         AddAssetBundle<AudioClip>();
         AddAssetBundle<Sprite>();
         AddAssetBundle<GameObject>();
         AddAssetBundle<AnimationClip>();
         AddAssetBundle<Material>();
-
-
     }
 
     public AudioClip LoadAudioClip(string audio) => Load(Sound, audio);

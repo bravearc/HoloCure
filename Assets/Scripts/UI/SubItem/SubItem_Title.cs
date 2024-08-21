@@ -65,6 +65,41 @@ public class SubItem_Title : UI_SubItem
         }
     }
 
+    protected override void OnPressKey()
+    {
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
+        {
+            ProcessButton(CurrentButton);
+        }
+
+        if (Input.GetButtonDown(Define.Key.UP))
+        {
+            int nextButton = CurrentButtonIndex(-1);
+            CurrentButton = (Buttons)nextButton;
+        }
+        else if (Input.GetButtonDown(Define.Key.DOWN))
+        {
+            int nextButton = CurrentButtonIndex(1);
+            CurrentButton = (Buttons)nextButton;
+        }
+    }
+
+    int CurrentButtonIndex(int idx)
+    {
+        int nextButton = (int)CurrentButton + idx;
+
+        if (nextButton < 0) 
+        { 
+            nextButton = 6;
+        }
+        else if (nextButton > 6) 
+        { 
+            nextButton = 0;
+        }
+
+        return nextButton;
+    }
+
     protected void OnEnterButton(PointerEventData data)
     {
         Buttons nextButton = Enum.Parse<Buttons>(data.pointerEnter.name);
@@ -75,8 +110,14 @@ public class SubItem_Title : UI_SubItem
     {
         Buttons button = Enum.Parse<Buttons>(data.pointerClick.name);
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
-        switch (button) 
-        { 
+
+        ProcessButton(button);
+    }
+
+    void ProcessButton(Buttons button)
+    {
+        switch (button)
+        {
             case Buttons.PlayButton:
                 Manager.UI.ClosePopupUI();
                 Manager.UI.ShowPopup<Popup_Select>();

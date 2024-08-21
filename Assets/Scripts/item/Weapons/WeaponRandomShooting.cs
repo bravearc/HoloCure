@@ -22,6 +22,7 @@ public class WeaponRandomShooting : Weapon
         Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
         _rd.AddForce(direction * _weaponData.Speed * _speedAdjustment, ForceMode2D.Impulse);
 
+        _disposable?.Dispose();
         _disposable = attack.OnDisableAsObservable().Subscribe(_ => Disable());
     }
 

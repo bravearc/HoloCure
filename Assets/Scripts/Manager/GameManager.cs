@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public Character Character;
     public ReactiveProperty<int> EnemyCount = new();
     public ReactiveProperty<int> GoldCount = new();
-    //public ReactiveProperty<TimeSpan> ElapsedTime = new();
     public ReactiveProperty<int> PlayTimeSecond = new();
     public ReactiveProperty<int> PlayTimeMinute = new();
     public ReactiveProperty<float> SpecialTimer = new();
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
         Inventory.Init();
         Character.SetStats();
         IsPlaying.Value = true;
-        _isPlaying = true;
         TimeSystem(true);
     }
 
@@ -71,7 +69,6 @@ public class GameManager : MonoBehaviour
         Manager.Spawn.PoolReset();
         Time.timeScale = 1.0f;
         TimeSystem(false);
-        _isPlaying = false;
         IsPlaying.Value = false;
     }
     private void TimeSystem(bool isPlay)

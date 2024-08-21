@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 public class UI_Popup : UI_Base
 {
@@ -8,8 +7,8 @@ public class UI_Popup : UI_Base
     {
         base.Init();
         Manager.UI.SetCanvas(gameObject, true);
-        //Time.timeScale = 0;
-        //Manager.Sound.SoundScale(Define.Sound.BGM, 0.5f);
+        GameObject go = Manager.Asset.LoadObject("KeyDescription");
+        Manager.Asset.Instantiate(go, transform);
     }
     protected virtual void ClosePopup()
     {

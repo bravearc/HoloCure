@@ -56,11 +56,15 @@ public static class Define
         StageMode,
         EndlessMode
     }
-    public class KeyCode
+    public class Key
     {
         public const string VERTICAL = "Vertical";
         public const string CONFIRM = "Confirm";
         public const string CANCEL = "Cancel";
+        public const string UP = "Up";
+        public const string DOWN = "Down";
+        public const string RIGHT = "Right";
+        public const string LEFT = "Left";
     }
 
     public class Anim
@@ -70,7 +74,7 @@ public static class Define
         public const string Idol_UI_Run = "Idol_UI_Run";
         public const string Idol_Play_Run = "Idol_Play_Run";
         
-        public const string Anim_Idol = "Ani_Idle";
+        public const string Anim_Idle = "Ani_Idle";
         public const string Anim_run = "Ani_run";
         public const string Ani_AttackSkill = "Ani_AttackSkill";
         public const string Anim_Attack = "Ani_Attack";

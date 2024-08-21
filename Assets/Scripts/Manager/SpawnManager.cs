@@ -95,12 +95,6 @@ public class SpawnManager : MonoBehaviour
         box.Init(newPos);
     }
 
-    public void GetEnemy(EnemyID id)
-    {
-        Enemy enemy = Enemy.Get();
-        enemy.Init(id, GetRandomPosition);
-    }
-
     public void SpawnDamageText(float damage, Vector2 newPos)
     {
         DamageText damageText = DamageText.Get();
@@ -119,12 +113,13 @@ public class SpawnManager : MonoBehaviour
             return GetInventoryItem();
         }
 
-        int getType = Random.Range(1, 2);
+        int getType = Random.Range(1, 3);
         ItemID id = getType switch
         {
             1 => (ItemID)Random.Range((int)Define.ItemNumber.Weapon_Start, (int)Define.ItemNumber.Weapon_End),
-            2 => (ItemID)Random.Range((int)Define.ItemNumber.Equipment_Start, (int)Define.ItemNumber.Equipment_End),
-            3 => (ItemID)Random.Range((int)Define.ItemNumber.Stats_Start, (int)Define.ItemNumber.Stats_End),
+            2 => GetInventoryItem(),
+            3 => (ItemID)Random.Range((int)Define.ItemNumber.Equipment_Start, (int)Define.ItemNumber.Equipment_End),
+            4 => (ItemID)Random.Range((int)Define.ItemNumber.Stats_Start, (int)Define.ItemNumber.Stats_End),
             _ => throw new NotImplementedException()
         };
 

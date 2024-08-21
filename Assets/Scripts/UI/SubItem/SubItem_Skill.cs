@@ -12,7 +12,7 @@ public class SubItem_Skill : UI_SubItem
     }
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        if (Input.GetButtonDown(Define.Key.CANCEL))
         {
             Manager.UI.MakeSubItem<SubItem_Paused>(_popup_Paused.transform);
             base.CloseSubItem();

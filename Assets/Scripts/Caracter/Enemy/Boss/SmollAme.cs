@@ -1,11 +1,12 @@
 using UnityEngine;
-
 public class SmollAme : Boss_Base
 {
-    Vector2 size = new Vector2(0.07f, 0.07f);
-    protected override void SetBoss()
+    protected override void SetBoss(Enemy boss)
     {
-        _enemy.SetBoss(size);
-        base.SetBoss();
+        _animator = boss.GetAnim();
+    }
+    protected override void BossAction()
+    {
+        _animator.SetTrigger(Define.Anim.Ani_AttackSkill);
     }
 }

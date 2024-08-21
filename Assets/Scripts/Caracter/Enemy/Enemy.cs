@@ -3,10 +3,10 @@ using System.Collections;
 using UniRx.Triggers;
 using UniRx;
 using System;
-using static System.Collections.Specialized.BitVector32;
 public enum EnemyType
 {
     Normal,
+    MiniBoss,
     Boss
 }
 public class Enemy : MonoBehaviour
@@ -24,11 +24,9 @@ public class Enemy : MonoBehaviour
     readonly Vector2 _normalSize = Vector2.one;
 
     bool _isDead = false;
-    float _speed = 2f;
+    float _speed = 1f;
     float _hp;
     float _bossSize = 3;
-
-    Action<Enemy> _action;
 
     void Awake() 
     {
@@ -39,8 +37,6 @@ public class Enemy : MonoBehaviour
         _boxCollider = Utils.GetOrAddComponent<BoxCollider2D>(gameObject);
         gameObject.tag = Define.Tag.ENEMY;
 
-        _boxCollider.offset = new Vector2(0, 14);
-        _boxCollider.size = new Vector2(20, 30);
         _enemyRenderer.drawMode = SpriteDrawMode.Simple;
 
         _enemyRenderer.sortingOrder = 2;
@@ -54,51 +50,54 @@ public class Enemy : MonoBehaviour
         this.OnTriggerEnter2DAsObservable().Subscribe(DamageStrike);
     }
 
-    public void Init(EnemyID id, Vector2 newPosition, bool _isBoss = false)
+    public void Init(EnemyID id, Vector2 newPosition, EnemyType type)
     {
         _data = Manager.Data.Enemy[id];
-        _speed = _data.Speed;
-        _hp = _isBoss ? _data.Hp * 10 : _data.Hp;
         _isDead = false;
-        _action = null;
-        _enemyType = _isBoss ? EnemyType.Boss : EnemyType.Normal;
+        _enemyType = type;
 
         transform.position = (Vector2)_character.transform.position + newPosition;
 
-        if(_isBoss == false)
-        {
-            SetSize();
-        }
-        
-        SetAnim();
+
+        SetNormalAnim();
+
+        SetupStats();
+        SetCollider();
+
         _moveEnemy = MoveEnemy();
         _backMoveEnemy = BackMoveEnemy();
         StartCoroutine(_moveEnemy);
     }
-    void SetSize(Vector2? size = null)
+    void SetupStats()
     {
-        if(size == null)
-            transform.localScale = new Vector2(0.03f, 0.03f);
-        else
-            transform.localScale = (Vector2)size;
+        _speed = _data.Speed;
+
+        switch (_enemyType)
+        {
+            case EnemyType.Normal:
+                transform.localScale = new Vector2(0.03f, 0.03f);
+                _hp = _data.Hp;
+                break;
+            case EnemyType.MiniBoss:
+                transform.localScale = new Vector2(0.07f, 0.07f);
+                _hp = _data.Hp * 10;
+                break;
+            case EnemyType.Boss:
+                transform.localScale = new Vector2(0.1f, 0.1f);
+                _hp = _data.Hp;
+                break;
+        }
 
     }
-    void SetAnim()
+    void SetNormalAnim()
     {
         Animator anim = GetComponent<Animator>();
         var overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
         overrideController[Define.Anim.Anim_run] = Manager.Asset.LoadAnimClip($"Ani_{_data.Sprite}_0");
-        overrideController[Define.Anim.Ani_AttackSkill] = Manager.Asset.LoadAnimClip($"Ani_{_data.Skill}_0");
-
-        anim.runtimeAnimatorController = overrideController;
+        overrideController[Define.Anim.Ani_AttackSkill] = Manager.Asset.LoadAnimClip(_data.Skill);
+        _animator.runtimeAnimatorController = overrideController;
     }
  
-    public void SetBoss(Vector2 size)
-    {
-        SetSize(size);
-        _action?.Invoke(this);
-
-    }
     void DamageStrike(Collider2D collision)
     {
         if (collision.CompareTag("Idol"))
@@ -112,7 +111,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _hp -= damage;
-        Manager.Spawn.SpawnDamageText(damage, transform.position);
+        if (_isDead == false)
+        {
+            Manager.Spawn.SpawnDamageText(damage, transform.position);
+        }
 
         if (_hp <= 0)
         {
@@ -160,18 +162,34 @@ public class Enemy : MonoBehaviour
         if (_isDead)
             return;
 
-        if(_enemyType == EnemyType.Normal)
+        if(_enemyType == EnemyType.Normal) 
+        {
             Manager.Spawn.EnemyReward(transform);
-        else
+        }
+        else 
+        {
             Manager.Spawn.BossReward(transform);
+        }
 
         Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
 
-        _action = null;
         StopCoroutine(_moveEnemy);
         StartCoroutine(_backMoveEnemy);
 
     }
     Vector2 GetForward => (_character.transform.position - transform.position).normalized;
     public Animator GetAnim() => _animator;
+    void SetCollider()
+    {
+        if (_enemyType == EnemyType.Boss)
+        {
+            _boxCollider.offset = new Vector2(0, 20);
+            _boxCollider.size = new Vector2(30, 30);
+        }
+        else
+        {
+            _boxCollider.offset = new Vector2(0, 14);
+            _boxCollider.size = new Vector2(20, 30);
+        }
+    }
 }

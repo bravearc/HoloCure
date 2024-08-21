@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 12762146
+CRC: 1115546860
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 089d1fc36f78b70ca78afee039055178
+    Hash: e6d1b8fc900a94d06d64ff5556c06c4c
   TypeTreeHash:
     serializedVersion: 2
     Hash: eb91d63529abe1d65a8c6b1fd2b4494a
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 089d1fc36f78b70ca78afee039055178
+    Hash: e6d1b8fc900a94d06d64ff5556c06c4c
 HashAppended: 0
 ClassTypes:
 - Class: 74
@@ -181,6 +181,7 @@ Assets:
 - Assets/Resources/Animation/Ani_Weapons.overrideController
 - Assets/Resources/Animation/Ani_Idle_Fauna_0.anim
 - Assets/Resources/Animation/Ani_Deadbeat_0.anim
+- Assets/Resources/Animation/Ani_BossAttack.overrideController
 - Assets/Resources/Animation/UI/Select_Idol_Pointer.anim
 - Assets/Resources/Animation/Ani_Idle_Gura_0.anim
 - Assets/Resources/Animation/Ani_Idle_Fauna_UI_0.anim
@@ -223,5 +224,6 @@ Assets:
 - Assets/Resources/Animation/Ani_run_Matsuri_UI_0.anim
 - Assets/Resources/Animation/Ani_run_Okayu_UI_0.anim
 - Assets/Resources/Animation/Ani_Idle_Choco_0.anim
+- Assets/Resources/Animation/Ani_BossAttack.controller
 Dependencies:
 - C:/Users/brave/HoloCure_Lee/./Bundle/sprite

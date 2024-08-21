@@ -1,6 +1,5 @@
 using System;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -47,7 +46,11 @@ public class SubItem_SelectIdol : UI_SubItem
     }
     #endregion
 
-    Buttons _currentButton;
+    public ReactiveProperty<CharacterID> ID = new();
+    
+    Popup_Select _select;
+
+    Buttons _currentButton = 0;
     Buttons CurrentButton 
     { 
         get 
@@ -60,10 +63,6 @@ public class SubItem_SelectIdol : UI_SubItem
             _currentButton = value;
         }
     }
-    public ReactiveProperty<CharacterID> ID = new();
-    
-    Popup_Select _select;
-    const int _randomButton = 29;
 
     protected override void Init()
     {
@@ -85,14 +84,33 @@ public class SubItem_SelectIdol : UI_SubItem
 
     protected override void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
         {
-
+            ProcessButton();
         }
-        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
             ProcessCancel();
         }
+
+        if (Input.GetButtonDown(Define.Key.UP)) { CurrentButton = CurrentButtonIndex(-5); }
+        else if (Input.GetButtonDown(Define.Key.DOWN)) { CurrentButton = CurrentButtonIndex(5); }
+        else if (Input.GetButtonDown(Define.Key.LEFT)) { CurrentButton = CurrentButtonIndex(-1); }
+        else if (Input.GetButtonDown(Define.Key.RIGHT)) { CurrentButton = CurrentButtonIndex(1); }
+    }
+    Buttons CurrentButtonIndex(int idx)
+    {
+        Buttons nextButton = CurrentButton + idx;
+        if ((int)nextButton < 0) 
+        {
+            nextButton = (Buttons)29;
+        }
+        else if((int)nextButton > 29) 
+        {
+            nextButton = (Buttons)0;
+        }
+
+        return nextButton;
     }
     private void OnEnterButton(PointerEventData data)
     {

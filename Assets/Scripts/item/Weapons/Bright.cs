@@ -8,6 +8,7 @@ public class Bright : WeaponMultishot
     {
         size = new Vector2(_weaponData.Size, _weaponData.Size);
         attack.SetAttackComponent(false, true, size, colSize, Vector2.zero, true);
+        
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startLifetime = 0.15f;

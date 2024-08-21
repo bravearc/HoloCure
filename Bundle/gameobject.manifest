@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3725277820
+CRC: 2437699433
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fd3125acd14f9887434cf6c25970b22d
+    Hash: 8f7b24be52fc6107f3e3f96bb1d732fc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9854557e75bdb67213f9afb83aa085ad
+    Hash: e6cfcd81888249b05f6f8db5bb5b4887
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: fd3125acd14f9887434cf6c25970b22d
+    Hash: 8f7b24be52fc6107f3e3f96bb1d732fc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -17,6 +17,8 @@ ClassTypes:
 - Class: 4
   Script: {instanceID: 0}
 - Class: 21
+  Script: {instanceID: 0}
+- Class: 23
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
@@ -39,9 +41,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
@@ -58,6 +60,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 658240291eaf06b4cbb3f1e1f6c47948, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 22cbc30d90949a34e9241b6e225cba44, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 114
@@ -79,9 +83,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 837e40bf0aa70924f86ef64fc39ce68a, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 230c3d06f2fda8a4ab64ca7bcaacca44, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 6ca17839f2e35394098f4b07cb247ecb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f5f85388e938d9e4599afc6d9441ed57, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3bedbf02b258a644b8e9876327f6ac9b, type: 3}
 - Class: 114
@@ -104,6 +108,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: e82120785a68a4c4aa5ba631a57a6837, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3b5ca05a9fb55e1418d3d286ca88bd48, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 30ec757a9326d6e4685f516abdeb2271, type: 3}
 - Class: 114
@@ -129,6 +135,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 6c40697f16935af4f8a580832932d62c, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 434cc8de250f66e45bf46f3c883bf0e7, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: dee5a128cd6fdbe44ba32148fd2475c5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: cd0f3fe1605eb09439d70ad3184468ce, type: 3}
@@ -147,11 +155,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 8c0b246259966f94a88049ad4c92555d, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 87ef6ab9e8ada044f8301cac01ef610f, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 0a0feb67da8a71d40ab6a8f9c94d85a7, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 87ef6ab9e8ada044f8301cac01ef610f, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 9d97d6e7901ccc54b81a1cb1951724a2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 230c3d06f2fda8a4ab64ca7bcaacca44, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -185,12 +195,6 @@ SerializeReferenceClassIdentifiers:
   ClassName: TMPro.TMP_FontFeatureTable
 - AssemblyName: Unity.TextMeshPro
   ClassName: TMPro.TMP_FontWeightPair
-- AssemblyName: Unity.TextMeshPro
-  ClassName: TMPro.TMP_GlyphAdjustmentRecord
-- AssemblyName: Unity.TextMeshPro
-  ClassName: TMPro.TMP_GlyphPairAdjustmentRecord
-- AssemblyName: Unity.TextMeshPro
-  ClassName: TMPro.TMP_GlyphValueRecord
 - AssemblyName: Unity.TextMeshPro
   ClassName: TMPro.VertexGradient
 - AssemblyName: UnityEngine.CoreModule
@@ -227,17 +231,20 @@ Assets:
 - Assets/Resources/Object/Character.prefab
 - Assets/Resources/Object/BirdFeather.prefab
 - Assets/Resources/Object/Map_Stage1.prefab
-- Assets/Resources/Object/ItemBox.prefab
+- Assets/Resources/UI/SubItem/SubItem_Quit.prefab
 - Assets/Resources/Object/CEOsTears.prefab
 - Assets/Resources/Object/PlayDice.prefab
 - Assets/Resources/Object/FoxTail.prefab
 - Assets/Resources/UI/SubItem/SubItem_ChooseStage.prefab
 - Assets/Resources/Object/ScytheSwing.prefab
+- Assets/Resources/Object/ItemBox.prefab
 - Assets/Resources/Object/Ebifrion.prefab
 - Assets/Resources/Object/TridentThrust.prefab
 - Assets/Resources/Object/Title_LowerPart.prefab
+- Assets/Resources/Object/SmollAme.prefab
 - Assets/Resources/Object/Fubuzilla.prefab
 - Assets/Resources/Object/DivaSong.prefab
+- Assets/Resources/UI/KeyDescription.prefab
 - Assets/Resources/Object/Exp.prefab
 - Assets/Resources/UI/SubItem/SubItem_Title.prefab
 - Assets/Resources/Object/RedHeart.prefab

@@ -49,6 +49,7 @@ public class Popup_Select : UI_Popup
     float _animTime;
     protected override void Init()
     {
+        base.Init();
         BindImage(typeof(Images));
         BindText(typeof(Texts));
         BindAnimator(typeof(Animators));
@@ -59,11 +60,11 @@ public class Popup_Select : UI_Popup
 
     void OnPressKey()
     {
-        if (Input.GetButtonDown(Define.KeyCode.CONFIRM))
+        if (Input.GetButtonDown(Define.Key.CONFIRM))
         {
 
         }
-        else if (Input.GetButtonDown(Define.KeyCode.CANCEL))
+        else if (Input.GetButtonDown(Define.Key.CANCEL))
         {
 
         }
@@ -132,7 +133,7 @@ public class Popup_Select : UI_Popup
 
         string newAni = data.Sprite;
 
-        overrideController[Define.Anim.Anim_Idol] = Manager.Asset.LoadAnimClip($"Ani_Idle_{newAni}_UI_0");
+        overrideController[Define.Anim.Anim_Idle] = Manager.Asset.LoadAnimClip($"Ani_Idle_{newAni}_UI_0");
         overrideController[Define.Anim.Anim_run] = Manager.Asset.LoadAnimClip($"Ani_run_{newAni}_UI_0");
 
         ani.runtimeAnimatorController = overrideController;

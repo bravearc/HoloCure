@@ -6,13 +6,11 @@ public class SubItem_PlayUI : UI_SubItem
     #region enum
     protected enum Sliders
     {
-        HpSlider,
-        SpecialSlider
+        HpSlider
     }
     protected enum Images
     {
         CharacterImage,
-        SpecialImage,
         ExperiencePointsImage
     }
     protected enum Texts
@@ -53,10 +51,6 @@ public class SubItem_PlayUI : UI_SubItem
 
         GetImage((int)Images.CharacterImage).sprite =
             Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
-        //GetImage((int)Images.SpecialImage).sprite =
-        //    Manager.Asset.LoadSprite($"spr_{icon}_Special_0");
-        GetImage((int)Images.SpecialImage).sprite =
-            Manager.Asset.LoadSprite($"spr_{icon}Portrait_0");
     }
     private void UpdateUI_MaxHp(int maxHp)
     {
@@ -71,7 +65,7 @@ public class SubItem_PlayUI : UI_SubItem
     }
     private void UpdateUI_SpecialSlider(float SpesialTimer)
     {
-        GetSlider((int)Sliders.SpecialSlider).value = SpesialTimer;
+
     }
     private void UpdateUI_GoldCount(int goldCount)
     {
