@@ -79,7 +79,7 @@ public class Character : MonoBehaviour
             Hp.Value = MaxHp.Value;
 
         if (Hp.Value <= 0)
-            Manager.Game.GameOver();
+            Manager.UI.ShowPopup<Popup_GameOver>();
     }
     private void LevelUp()
     {

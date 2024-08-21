@@ -133,6 +133,8 @@ public class SubItem_ChooseStage : UI_SubItem
             case Buttons.GoButton:
                 Manager.Game.GameStart();
                 base.CloseSubItem();
+                Manager.UI.CloseALLPopupUI();
+                Manager.UI.ShowPopup<Popup_PlayUI>();
                 break;
             case Buttons.StageButton:
                 _isGoButtonSet = true;
@@ -159,6 +161,7 @@ public class SubItem_ChooseStage : UI_SubItem
         this._nextStage = nextStage;
         GetImage((int)Images.StageButton).sprite = Manager.Asset.LoadSprite($"spr_Stage{_nextStage}Port_0");
         GetText((int)Texts.StageNameText).text = Manager.Data.Stage[_nextStage - 1].Name;
+        Debug.Log(Manager.Data.Stage[_nextStage - 1].Name);
         GetText((int)Texts.HoloCoinText).text = $"x {_nextStage.ToString()}";
     }
 }

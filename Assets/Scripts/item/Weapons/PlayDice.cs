@@ -36,7 +36,7 @@ public class PlayDice : WeaponMultishot
     {
         Vector2 startPos = attack.transform.position;
         Vector2 currentPos = startPos;
-        float targetDistance = 2f;
+        float targetDistance = 4f;
         while (true)
         {
             currentPos = attack.transform.position;

@@ -2311,8 +2311,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CHOOSE YOUR IDOL
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c75a82a25883f3644a2053c6614f936a, type: 2}
-  m_sharedMaterial: {fileID: -5647680113614633528, guid: c75a82a25883f3644a2053c6614f936a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 95dad38cf32174f468b0084fda417d55, type: 2}
+  m_sharedMaterial: {fileID: 3413658635783727245, guid: 95dad38cf32174f468b0084fda417d55, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2336,8 +2336,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5572,7 +5572,7 @@ RectTransform:
   m_GameObject: {fileID: 7911899976462191059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7227964106128817355}

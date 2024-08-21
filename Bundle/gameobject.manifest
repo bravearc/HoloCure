@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2437699433
+CRC: 3176103202
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8f7b24be52fc6107f3e3f96bb1d732fc
+    Hash: d44fe239c1de7640202d0e491d83d985
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e6cfcd81888249b05f6f8db5bb5b4887
+    Hash: 04beeedad410176abf7a380b150e3914
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 8f7b24be52fc6107f3e3f96bb1d732fc
+    Hash: d44fe239c1de7640202d0e491d83d985
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -37,13 +37,15 @@ ClassTypes:
 - Class: 95
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
@@ -56,8 +58,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 1d3fec465ad84354d9e4644356b5f189, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c3e9f1a90503c054fa70b1e4dd89c184, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 658240291eaf06b4cbb3f1e1f6c47948, type: 3}
 - Class: 114
@@ -108,8 +108,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: e82120785a68a4c4aa5ba631a57a6837, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3b5ca05a9fb55e1418d3d286ca88bd48, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 30ec757a9326d6e4685f516abdeb2271, type: 3}
 - Class: 114
@@ -274,6 +272,7 @@ Assets:
 - Assets/Resources/UI/SubItem/SubItem_Paused.prefab
 - Assets/Resources/UI/SubItem/SubItem_Stats.prefab
 - Assets/Resources/Object/DualKatana.prefab
+- Assets/Resources/UI/PopUp/Popup_GameOver.prefab
 - Assets/Resources/Object/EliteLavaBucket.prefab
 - Assets/Resources/Object/BaseballPitch.prefab
 - Assets/Resources/Object/MurasakiBolt.prefab

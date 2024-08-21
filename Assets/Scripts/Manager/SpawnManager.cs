@@ -39,9 +39,11 @@ public class SpawnManager : MonoBehaviour
         _enemyContainer.transform.parent = _objectContainer.transform;
         _attackContainer.transform.parent = _objectContainer.transform;
         _expContainer.transform.parent = _objectContainer.transform;
+
+        SetSpawn();
     }
 
-    public void GameStartInit()
+    public void SetSpawn()
     {
         Enemy = new Pool<Enemy>();
         DamageText = new Pool<DamageText>();

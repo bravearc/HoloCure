@@ -46,13 +46,20 @@ public class GameManager : MonoBehaviour
         _characterData = Manager.Data.Character[CharacterID];
         Character = Utils.GetOrAddComponent<Character>(Manager.Asset.InstantiateObject(nameof(Character)));
         _enemyController = Utils.GetOrAddComponent<EnemyController>(Manager.Asset.InstantiateObject(nameof(EnemyController))); 
-        Manager.UI.CloseALLPopupUI();
-        Manager.UI.ShowPopup<Popup_PlayUI>();
-        Manager.Spawn.GameStartInit();
+
         Inventory.Init();
         Character.SetStats();
         IsPlaying.Value = true;
         TimeSystem(true);
+    }
+    public void GameReStart()
+    {
+        IsPlaying.Value = false;
+        Inventory.Claer();
+        Inventory.Init();
+        Character.SetStats();
+        Manager.Spawn.PoolReset();
+        IsPlaying.Value = true;
     }
 
     public void SetCharacterID(CharacterID id)
@@ -67,7 +74,6 @@ public class GameManager : MonoBehaviour
         Manager.Asset.Destroy(Character.gameObject);
         Manager.Asset.Destroy(_enemyController.gameObject);
         Manager.Spawn.PoolReset();
-        Time.timeScale = 1.0f;
         TimeSystem(false);
         IsPlaying.Value = false;
     }

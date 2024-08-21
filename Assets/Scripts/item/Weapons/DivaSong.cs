@@ -33,7 +33,8 @@ public class DivaSong : WeaponMultishot
 
         ParticleSystem.ShapeModule shapeModule = particleSystem.shape;
         shapeModule.enabled = false;
-        var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+
+        ParticleSystemRenderer renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.material = Manager.Asset.LoadMaterial("mat_DivaSong_0");
         renderer.flip = _cursor.position.x > _character.transform.position.x ? Vector2.zero : Vector2.right;
 
@@ -51,12 +52,11 @@ public class DivaSong : WeaponMultishot
     IEnumerator Move(Attack attack) 
     {
         Rigidbody2D rb = attack.GetRigid();
-        float timer = 0f;
 
         Vector2 baseDirection = (_cursor.position - _character.transform.position).normalized;
         baseDirection = Quaternion.Euler(0, 0, _angle) * baseDirection;
 
-        while (attack.HoldingTime > timer)
+        while (true)
         {
             float newY = Mathf.Sin(Time.time * Mathf.PI / shakeDuration) * shakeY;
             Vector2 shakeOffset = new Vector2(0, newY);
@@ -65,10 +65,11 @@ public class DivaSong : WeaponMultishot
             finalDirection.y += shakeOffset.y;
 
             rb.MovePosition(rb.position + finalDirection);
-            timer += Time.fixedDeltaTime;
+
 
             //yield return null;
             yield return new WaitForFixedUpdate();
         }
+        
     }
 }

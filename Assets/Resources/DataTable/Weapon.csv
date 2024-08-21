@@ -137,12 +137,12 @@ ID,Name,Level,Attack,Quantity,Speed,AttackRange,Duration,AttackCycle,Size,Knockb
 1108,Nature Shield,4,25,3,4,2,3,1,1,1,6,None,  ,FaunaAttack
 1108,Nature Shield,5,25,4,4,2,3,1,1,1,6,None,  ,FaunaAttack
 1108,Nature Shield,6,30,4,4,2,3,1,1,1,6,None,  ,FaunaAttack
-1109,Bird Feather,1,15,2,0.8,5,0.5,1,0.02,0,6,3,Shoot a bunch of feathers at a spread. Pierces through targets.,spr_MumeiFeather_0
-1109,Bird Feather,2,15,2,0.8,5,0.5,1,0.025,0,6,3,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
-1109,Bird Feather,3,18,2,0.8,5,0.5,1,0.025,0,6,3,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
-1109,Bird Feather,4,18,3,0.8,7,0.5,1,0.025,0,6,3,Shoot <color=green>1</color> additional feather.,spr_MumeiFeather_0
-1109,Bird Feather,5,26,3,0.8,7,0.5,1,0.025,0,6,3,Reduce the time between attacks by <color=green>30%</color>.,spr_MumeiFeather_0
-1109,Bird Feather,6,26,4,0.8,7,0.5,0.5,0.025,0,6,3,Shoot <color=green>1</color> additional feathers.,spr_MumeiFeather_0
+1109,Bird Feather,1,15,2,0.8,5,3,1,0.02,0,6,3,Shoot a bunch of feathers at a spread. Pierces through targets.,spr_MumeiFeather_0
+1109,Bird Feather,2,15,2,0.8,5,3,1,0.025,0,6,3,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,3,18,2,0.8,5,3,1,0.025,0,6,3,Increase damage by <color=green>20%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,4,18,3,0.8,7,3,1,0.025,0,6,3,Shoot <color=green>1</color> additional feather.,spr_MumeiFeather_0
+1109,Bird Feather,5,26,3,0.8,7,3,1,0.025,0,6,3,Reduce the time between attacks by <color=green>30%</color>.,spr_MumeiFeather_0
+1109,Bird Feather,6,26,4,0.8,7,3,0.5,0.025,0,6,3,Shoot <color=green>1</color> additional feathers.,spr_MumeiFeather_0
 1110,Orbit,1,15,1,1.5,1,0.7,1.5,0.02,1,6,3,Create an orbiting planet. Hits multiple targets.,spr_SanaPlanet1_0
 1110,Orbit,2,15,1,1.5,1,0.7,1.5,0.025,1,6,3,Increase damage by <color=green>20%</color>.,spr_SanaPlanet1_0
 1110,Orbit,3,15,1,1.5,1,0.7,1.5,0.025,1,6,3,Increase area of attack by <color=green>20%</color> and range by <color=green>20%</color>.,spr_SanaPlanet1_0
@@ -173,12 +173,12 @@ ID,Name,Level,Attack,Quantity,Speed,AttackRange,Duration,AttackCycle,Size,Knockb
 1114,Onigiri,4,18,2,3,1,3,1,0.025,0,6,None,  ,OkayuWeapon
 1114,Onigiri,5,18,3,3,1,3,1,0.03,0,6,None,  ,OkayuWeapon
 1114,Onigiri,6,18,4,3,1,3,0.8,0.03,0,6,None,  ,OkayuWeapon
-1115,Orayo,1,15,2,3,1,0.5,1,0.02,1,6,3,Punch towards the front.,spr_KoronePunch_0
-1115,Orayo,2,18,2,3,1,0.5,1,0.02,1,6,3,Increase attack area by <color=green>25%</color>.,spr_KoronePunch_0
-1115,Orayo,3,18,2,4,1,0.5,1,0.025,1,6,3,Increase damage by <color=green>30%</color>.,spr_KoronePunch_0
-1115,Orayo,4,18,3,4,1,0.5,1,0.025,1,6,3,Increase amount of punches by <color=green>1</color>.,spr_KoronePunch_0
-1115,Orayo,5,18,3,4,1,0.5,0.8,0.025,1,6,3,Increase attack area by <color=green>25%</color>. Widen Korone's punch range slightly.,spr_KoronePunch_0
-1115,Orayo,6,20,4,4,1,0.5,0.8,0.025,1,6,3,Increase amount of punches by <color=green>2</color>.,spr_KoronePunch_0
+1115,Orayo,1,15,2,3,1,0.3,1,0.02,1,6,3,Punch towards the front.,spr_KoronePunch_0
+1115,Orayo,2,18,2,3,1,0.3,1,0.02,1,6,3,Increase attack area by <color=green>25%</color>.,spr_KoronePunch_0
+1115,Orayo,3,18,2,4,1,0.3,1,0.025,1,6,3,Increase damage by <color=green>30%</color>.,spr_KoronePunch_0
+1115,Orayo,4,18,3,4,1,0.3,1,0.025,1,6,3,Increase amount of punches by <color=green>1</color>.,spr_KoronePunch_0
+1115,Orayo,5,18,3,4,1,0.3,0.8,0.025,1,6,3,Increase attack area by <color=green>25%</color>. Widen Korone's punch range slightly.,spr_KoronePunch_0
+1115,Orayo,6,20,4,4,1,0.3,0.8,0.025,1,6,3,Increase amount of punches by <color=green>2</color>.,spr_KoronePunch_0
 1116,Bright Star,1,15,1,2.5,0.85,1,1,0.02,1,6,3,Shoot forward a spinning star.,SoraStar
 1116,Bright Star,2,15,1,2.5,0.85,1,1,0.025,1,6,3,Increase damage by <color=green>20%</color>.,SoraStar
 1116,Bright Star,3,18,1,2.5,0.85,1,1,0.025,1,6,3,Stars last <color=green>1</color> second longer.,SoraStar
@@ -239,18 +239,18 @@ ID,Name,Level,Attack,Quantity,Speed,AttackRange,Duration,AttackCycle,Size,Knockb
 1125,Baseball Pitch,4,22,1,0.8,1,3,0.5,0.025,1,6,2,<color=green>Double</color> the speed of the baseball and gain small <color=green>Knockback</color>.,BaseballPitch
 1125,Baseball Pitch,5,22,1,0.8,1,3,0.5,0.03,1,6,2,Reduce time between attacks by <color=green>50%</color>.,BaseballPitch
 1125,Baseball Pitch,6,22,2,0.8,1,3,0.5,0.03,1,6,2,Increase damage by <color=green>20%</color>.,BaseballPitch
-1126,Love Needle,1,15,1,0.8,3,0.7,1,0.02,1,6,3,Thrust a giant needle in front.,spr_ChocoNeedle_0
-1126,Love Needle,2,18,1,0.8,3,0.7,1,0.02,1,6,3,Increase damage by <color=green>20%</color>.,spr_ChocoNeedle_0
-1126,Love Needle,3,18,2,0.8,3,0.7,1,0.02,1,6,3,Increase size of attack by <color=green>20%</color>.,spr_ChocoNeedle_0
-1126,Love Needle,4,23,2,0.8,3,0.7,1,0.025,1,6,3,Stab <color=green>twice</color> with needle.,spr_ChocoNeedle_0
-1126,Love Needle,5,23,3,0.8,3,0.7,1,0.025,0,6,3,Reduce time between attacks by <color=green>15%</color> and increase damage by <color=green>20%</color>.,spr_ChocoNeedle_0
-1126,Love Needle,6,23,4,0.8,3,0.7,1,0.025,1,6,3,Stab <color=green>3</color> times with needle and needle fires <color=green>25%</color> farther.,spr_ChocoNeedle_0
-1127,Murasaki Bolt,1,15,1,15,1,0.7,1,0.03,1,6,3,Fires a quick magic bolt in front.,ShionMagic
-1127,Murasaki Bolt,2,17,1,15,1,0.7,1,0.03,1,6,3,Shoot <color=green>2</color> magic blast.,ShionMagic
-1127,Murasaki Bolt,3,17,2,15,1,0.7,1,0.03,1,6,3,Shoot <color=green>3</color> magic blasts.,ShionMagic
-1127,Murasaki Bolt,4,17,3,15,1,0.7,1,0.04,1,6,3,Increase damage and speed by <color=green>20%</color>.,ShionMagic
-1127,Murasaki Bolt,5,23,3,15,1,0.7,1,0.04,1,6,3,Reduce time between attacks by <color=green>20%</color>.,ShionMagic
-1127,Murasaki Bolt,6,23,4,15,1,0.7,1,0.04,1,6,3,Increase damage by <color=green>20%</color>.,ShionMagic
+1126,Love Needle,1,15,1,0.8,3,1,1,0.02,1,6,3,Thrust a giant needle in front.,spr_ChocoNeedle_0
+1126,Love Needle,2,18,1,0.8,3,1,1,0.02,1,6,3,Increase damage by <color=green>20%</color>.,spr_ChocoNeedle_0
+1126,Love Needle,3,18,2,0.8,3,1,1,0.02,1,6,3,Increase size of attack by <color=green>20%</color>.,spr_ChocoNeedle_0
+1126,Love Needle,4,23,2,0.8,3,1,1,0.025,1,6,3,Stab <color=green>twice</color> with needle.,spr_ChocoNeedle_0
+1126,Love Needle,5,23,3,0.8,3,1,1,0.025,0,6,3,Reduce time between attacks by <color=green>15%</color> and increase damage by <color=green>20%</color>.,spr_ChocoNeedle_0
+1126,Love Needle,6,23,4,0.8,3,1,1,0.025,1,6,3,Stab <color=green>3</color> times with needle and needle fires <color=green>25%</color> farther.,spr_ChocoNeedle_0
+1127,Murasaki Bolt,1,15,1,5,1,0.2,1,0.03,1,6,3,Fires a quick magic bolt in front.,ShionMagic
+1127,Murasaki Bolt,2,17,1,5,1,0.2,1,0.03,1,6,3,Shoot <color=green>2</color> magic blast.,ShionMagic
+1127,Murasaki Bolt,3,17,2,5,1,0.2,1,0.03,1,6,3,Shoot <color=green>3</color> magic blasts.,ShionMagic
+1127,Murasaki Bolt,4,17,3,5,1,0.2,1,0.04,1,6,3,Increase damage and speed by <color=green>20%</color>.,ShionMagic
+1127,Murasaki Bolt,5,23,3,5,1,0.2,1,0.04,1,6,3,Reduce time between attacks by <color=green>20%</color>.,ShionMagic
+1127,Murasaki Bolt,6,23,4,5,1,0.2,1,0.04,1,6,3,Increase damage by <color=green>20%</color>.,ShionMagic
 1128,Dual Katana,1,15,1,0,1,3,1,0.02,1,6,2,Slashes twice in front.,AyameOniSlash
 1128,Dual Katana,2,18,1,0,1,3,1,0.02,1,6,2,Increase damage by <color=green>20%</color>.,AyameOniSlash
 1128,Dual Katana,3,18,1,0,1,3,1,0.025,1,6,2,Increase size by <color=green>10%</color>.,AyameOniSlash
