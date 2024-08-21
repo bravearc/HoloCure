@@ -7,6 +7,7 @@ using Object = UnityEngine.Object;
 using UniRx;
 using UnityEngine.EventSystems;
 using UniRx.Triggers;
+using TMPro;
 
 //[RequireComponent(typeof(Canvas))]
 public abstract class UI_Base : MonoBehaviour
@@ -44,7 +45,8 @@ public abstract class UI_Base : MonoBehaviour
     }
 
     protected void BindObject(Type type) => Bind<GameObject>(type);
-    protected void BindText(Type type) => Bind<Text>(type);
+    protected void BindText(Type type) => Bind<TextMeshProUGUI>(type);
+
     protected void BindImage(Type type) => Bind<Image>(type);
     protected void BindButton(Type type) => Bind<Button>(type);
     protected void BindSlider(Type type) => Bind<Slider>(type);
@@ -63,7 +65,7 @@ public abstract class UI_Base : MonoBehaviour
     }
 
     protected GameObject GetObject(int idx) => Get<GameObject>(idx);
-    protected Text GetText(int idx) => Get<Text>(idx);
+    protected TextMeshProUGUI GetText(int idx) => Get<TextMeshProUGUI>(idx);
     protected Image GetImage(int idx) => Get<Image>(idx);
     protected Button GetButton(int idx) => Get<Button>(idx);
     protected Slider GetSlider(int idx) => Get<Slider>(idx);
