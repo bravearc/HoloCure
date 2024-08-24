@@ -126,7 +126,6 @@ public class Enemy : MonoBehaviour
 
         if (_hp <= 0)
         {
-            Manager.Game.EnemyCount.Value += 1;
             Die();
             _isDead = true;
         }
@@ -182,6 +181,7 @@ public class Enemy : MonoBehaviour
 
         Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
 
+        Manager.Game.EnemyCount.Value += 1;
         _attackCycle?.Dispose();
         StopCoroutine(_moveEnemy);
         StartCoroutine(_backMoveEnemy);

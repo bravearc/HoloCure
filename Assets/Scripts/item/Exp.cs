@@ -173,6 +173,8 @@ public class Exp : MonoBehaviour
 
         while (isActiveAndEnabled)
         {
+            if (Time.timeScale == 0f) yield return null;
+
             Vector2 startPos = transform.position;
             Vector2 endPos = _character.transform.position;
             Vector2 newPos = Vector2.Lerp(startPos, endPos, elapsedTime);

@@ -18,6 +18,8 @@ public class DivaSong : WeaponMultishot
         attack.SetAttackComponent(false, true, size, colSize, Vector2.zero, true);
         
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
+        particleSystem.Stop();
+
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startColor = new Color(234f / 255f, 106f / 255f, 87f / 255f);
         mainModule.startLifetime = 0.15f;
@@ -35,6 +37,8 @@ public class DivaSong : WeaponMultishot
         ParticleSystemRenderer renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.material = Manager.Asset.LoadMaterial("mat_DivaSong_0");
         renderer.flip = _cursor.position.x > _character.transform.position.x ? Vector2.zero : Vector2.right;
+
+        particleSystem.Play();
 
         IEnumerator moveCo = Move(attack);
         StartCoroutine(moveCo);
