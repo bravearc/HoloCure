@@ -24,14 +24,14 @@ public class SakuraGohei : WeaponMelee
             if(particleTime > attack.GetAniLength())
             {
                 ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
-                particleSystem.Play();
+                particleSystem.Stop();
                 
                 ParticleSystem.MainModule mainModule = particleSystem.main;
                 mainModule.loop = false;
                 mainModule.duration = 0.2f;
                 mainModule.startDelay = 0.2f;
                 mainModule.startColor = new Color(106f / 255f, 39f / 255f, 16f / 255f);
-                mainModule.startLifetime = 50;
+                mainModule.startLifetime = 80;
                 mainModule.startSpeed = 100f;
                 mainModule.startSize = 10;
                 mainModule.gravityModifier = 0.3f;
@@ -52,6 +52,7 @@ public class SakuraGohei : WeaponMelee
                 renderer.enabled = true;
                 renderer.material = Manager.Asset.LoadMaterial("mat_SakuraGohei_0");
 
+                particleSystem.Play();
                 isImpect = true;
             }
             particleTime += Time.time;

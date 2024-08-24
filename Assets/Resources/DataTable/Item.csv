@@ -16,7 +16,7 @@ ID,Name,Type,IconImage,Sound
 1015,ENsCurse,Weapon,ui_empty_slot_item_0,null
 1101,PistolShot,StartingWeapon,spr_Ameweapon_0,PistolShot
 1102,TridentThrust,StartingWeapon,spr_GuraWeapon_0,TridentThrust
-1103,SummonTentacle,StartingWeapon,spr_InaMaxedWeapon_0,SummonTentacle
+1103,SummonTentacle,StartingWeapon,spr_InaWeapon_0,SummonTentacle
 1104,PhoenixSword,StartingWeapon,spr_KiaraWeapon_0,PhoenixSword
 1105,ScytheSwing,StartingWeapon,spr_CalliWeapon_0,ScytheSwing
 1106,PlayDice,StartingWeapon,spr_BaeWeapon_0,DivaSong

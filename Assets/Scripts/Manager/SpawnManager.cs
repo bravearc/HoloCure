@@ -40,7 +40,6 @@ public class SpawnManager : MonoBehaviour
         _attackContainer.transform.parent = _objectContainer.transform;
         _expContainer.transform.parent = _objectContainer.transform;
 
-        SetSpawn();
     }
 
     public void SetSpawn()
@@ -97,10 +96,10 @@ public class SpawnManager : MonoBehaviour
         box.Init(newPos);
     }
 
-    public void SpawnDamageText(float damage, Vector2 newPos)
+    public void SpawnDamageText(float damage, Vector2 newPos, DamageType type)
     {
         DamageText damageText = DamageText.Get();
-        damageText.Init(damage, newPos);
+        damageText.Init(damage, newPos, type);
     }
     public GameObject GetBoss(int i)
     {
@@ -160,7 +159,6 @@ public class SpawnManager : MonoBehaviour
         {
             foreach(Transform child in tr)
             {
-                Debug.Log(child.gameObject.name);
                 Manager.Asset.Destroy(child.gameObject);
             }
         }

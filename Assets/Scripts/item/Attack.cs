@@ -3,27 +3,31 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Util.Pool;
 
 public class Attack : MonoBehaviour
 {
     private WeaponData _weaponData;
     private BoxCollider2D _collider;
-    private Rigidbody2D _rd;
+    private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private AnimationClip _animClip;
     private Action<Attack> _action;
+    private Action<Attack> _impectAction;
     private Transform _character;
     private Transform _cursor;
     private ParticleSystem _particleSystem;
-    private IEnumerator _strikeShot;
+    private Coroutine _currentCoroutine;
+
+    IDisposable _trigger;
 
     bool _isActive;
     public float HoldingTime;
 
     void Awake()
     {
-        _rd = Utils.GetOrAddComponent<Rigidbody2D>(gameObject);
+        _rb = Utils.GetOrAddComponent<Rigidbody2D>(gameObject);
         _spriteRenderer = Utils.GetOrAddComponent<SpriteRenderer>(gameObject);
         _spriteRenderer.drawMode = SpriteDrawMode.Simple;
         _animator = Utils.GetOrAddComponent<Animator>(gameObject);
@@ -32,21 +36,25 @@ public class Attack : MonoBehaviour
         _collider = Utils.GetOrAddComponent<BoxCollider2D>(gameObject);
         _cursor = Manager.Game.Character.Cursor;
     }
+    private void OnEnable()
+    {
+        Utils.ResetRigidbody(GetRigid());
+        Utils.ResetParticle(gameObject);
+        _isActive = false;
+    }
     public void Init(WeaponData data, Action<Attack> action)
     {
+
         _weaponData = data;
         transform.rotation = CalculateRotation();
         SetSpriteOrAnim();
 
         _spriteRenderer.flipY = IsFlip();
-        _isActive = false;
-        _action = null;
         _action = action;
 
-        this.OnTriggerEnter2DAsObservable().Subscribe(StirkeTrigger);
-        
-        _strikeShot = StrikeShot();
-        StartCoroutine(_strikeShot);
+        _trigger = this.OnTriggerEnter2DAsObservable().Subscribe(StirkeTrigger);
+
+        _currentCoroutine = StartCoroutine(StrikeShot());
     }
 
     void SetSpriteOrAnim()
@@ -88,7 +96,7 @@ public class Attack : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         return Quaternion.Euler(0, 0, angle);
     }
-    public void SetAttackComponent(bool aniTime, bool aniActive, Vector2 size, Vector2 col, Vector2 offset, bool particle = false, float gravity = 0, bool isActive = false)
+    public void SetAttackComponent(bool aniTime, bool aniActive, Vector2 size, Vector2 col, Vector2 offset, bool particle = false, float gravity = 0, bool isActive = false, Action<Attack> action = null)
     {
         HoldingTime = aniTime ? _animClip.length : _weaponData.Duration;
         _animator.enabled = aniActive;
@@ -96,7 +104,7 @@ public class Attack : MonoBehaviour
         var emission = _particleSystem.emission;
         emission.enabled = particle;
 
-        _rd.gravityScale = gravity;
+        _rb.gravityScale = gravity;
 
         transform.localScale = size;
 
@@ -104,6 +112,7 @@ public class Attack : MonoBehaviour
         _collider.offset = offset;
 
         _isActive = isActive;
+        _impectAction = action;
     }
     public void SetAnim(string aniName = null)
     {
@@ -126,14 +135,20 @@ public class Attack : MonoBehaviour
     public void SetFlipY(bool boo) => _spriteRenderer.flipY = boo;
     public float GetAniLength() => _animClip.length;
     public SpriteRenderer GetSprite() => _spriteRenderer;
-    public Rigidbody2D GetRigid() => _rd;
-
+    public Rigidbody2D GetRigid() => _rb;
+    public void StopCurrentAction()
+    {
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+            _currentCoroutine = null;
+        }
+        _rb.velocity = Vector2.zero; 
+    }
     private void AttackDie()
     {
-        StopCoroutine(_strikeShot);
-        _strikeShot = null;
-        _action = null;
-        Utils.ResetParticle(gameObject);
+        _trigger?.Dispose();
+        _impectAction?.Invoke(this);
         Manager.Spawn.Attack.Release(this);
     }
 }

@@ -75,13 +75,14 @@ public class Popup_LevelUp : UI_Popup
         }
     }
     private const int LEVELUP_ITEM_MAX_COUNT = 4;
-    [SerializeField]private ItemID[] _itemList = new ItemID[4];
+    private ItemID[] _itemList = new ItemID[4];
     private Inventory _inventory;
     private RectTransform _pointer;
 
     protected override void Init()
     {
         base.Init();
+        Manager.Sound.Play(Define.SoundType.Effect, "LevelUp");
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
@@ -113,6 +114,7 @@ public class Popup_LevelUp : UI_Popup
                 case ItemType.StartingWeapon: SetupWeapon(id, idx); break;
                 case ItemType.Equipment: SetupEquipment(id, idx); break;
                 case ItemType.Stat: SetupStats(id, idx); break;
+
             }
             _itemList[idx] = id;
         }
@@ -132,8 +134,9 @@ public class Popup_LevelUp : UI_Popup
     {
         List<Weapon> list = _inventory.Weapons;
         Weapon item = list.Find(weapon => weapon.ID == id);
- 
+
         int nextLevel = item == null ? 1 : item.Level.Value + 1;
+
         WeaponData data = Manager.Data.Weapon[id][nextLevel];
         string name = data.Name;
         string Exp = data.Explanation;
@@ -141,7 +144,7 @@ public class Popup_LevelUp : UI_Popup
         string icon = Manager.Data.Item[id].IconImage;
         bool active = item == null;
         string typeText = data.WeaponType.ToString();
-        Debug.Log($"{typeText}");
+
         ShowItems(name, Exp, type, icon, "weapon", active, typeText, idx);  
     }
     void SetupEquipment(ItemID id, int idx)
@@ -179,6 +182,7 @@ public class Popup_LevelUp : UI_Popup
 
     protected override void OnClickButton(PointerEventData data) 
     {
+        Manager.Sound.Play(Define.SoundType.Effect, "ButtonClick");
         Buttons buttonIdx = Enum.Parse<Buttons>(data.pointerClick.name);
         _inventory.GetItem(_itemList[(int)buttonIdx]);
         Manager.Game.IsPlaying.Value = true;
@@ -188,14 +192,13 @@ public class Popup_LevelUp : UI_Popup
 
     protected void SetButtonNormal(Buttons button)
     {
-        Debug.Log((int)button);
         GetImage((int)button).sprite = 
             Manager.Asset.LoadSprite("ui_menu_upgrade_window_0");
 
     }
     protected void SetButtonHighlighted(Buttons button)
     {
-
+        Manager.Sound.Play(Define.SoundType.Effect, "ButtonMove");
         GetImage((int)button).sprite =
             Manager.Asset.LoadSprite("ui_menu_upgrade_window_selected_0");
         float resize = -600;

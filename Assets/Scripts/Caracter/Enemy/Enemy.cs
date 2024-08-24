@@ -11,23 +11,23 @@ public enum EnemyType
 }
 public class Enemy : MonoBehaviour
 {
-    Rigidbody2D _body;
-    Character _character;
-    Animator _animator;
-    EnemyData _data;
-    SpriteRenderer _enemyRenderer;
-    BoxCollider2D _boxCollider;
-    EnemyType _enemyType;
-    IEnumerator _moveEnemy;
-    IEnumerator _backMoveEnemy;
+    private Rigidbody2D _body;
+    private Character _character;
+    private Animator _animator;
+    private EnemyData _data;
+    private SpriteRenderer _enemyRenderer;
+    private BoxCollider2D _boxCollider;
+    private EnemyType _enemyType;
+    private IEnumerator _moveEnemy;
+    private IEnumerator _backMoveEnemy;
+    private IDisposable _attackCycle;
 
-    readonly Vector2 _normalSize = Vector2.one;
-
-    bool _isDead = false;
     float _speed = 1f;
     float _hp;
-    float _bossSize = 3;
-
+    float _attackTime = 2f;
+    float _attackCount = 0f;
+    bool _isOnAttack;
+    bool _isDead = false;
     void Awake() 
     {
         _enemyRenderer = Utils.GetOrAddComponent<SpriteRenderer>(gameObject);
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         shadowRenderer.transform.localScale = new Vector2(1, 1);
 
 
-        this.OnTriggerEnter2DAsObservable().Subscribe(DamageStrike);
+        this.OnTriggerStay2DAsObservable().Subscribe(DamageStrike);
     }
 
     public void Init(EnemyID id, Vector2 newPosition, EnemyType type)
@@ -58,11 +58,15 @@ public class Enemy : MonoBehaviour
 
         transform.position = (Vector2)_character.transform.position + newPosition;
 
-
         SetNormalAnim();
-
         SetupStats();
         SetCollider();
+
+        _attackCycle = this.FixedUpdateAsObservable().Subscribe(_ =>
+        {
+            _attackCount += 0.1f;
+            if( _attackCount > _attackTime) _isOnAttack = true;
+        });
 
         _moveEnemy = MoveEnemy();
         _backMoveEnemy = BackMoveEnemy();
@@ -100,10 +104,12 @@ public class Enemy : MonoBehaviour
  
     void DamageStrike(Collider2D collision)
     {
-        if (collision.CompareTag("Idol"))
+        if (collision.CompareTag("Idol") && _isOnAttack == true)
         {
             int damage = _data.Attack * -1;
             _character.GetHp(damage);
+            _isOnAttack = false;
+            _attackCount = 0f;
         }
     }
 
@@ -111,13 +117,16 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _hp -= damage;
+        _enemyRenderer.color = Color.red;
+        _enemyRenderer.color = Color.white;
         if (_isDead == false)
         {
-            Manager.Spawn.SpawnDamageText(damage, transform.position);
+            Manager.Spawn.SpawnDamageText(damage, transform.position, DamageType.Enemy);
         }
 
         if (_hp <= 0)
         {
+            Manager.Game.EnemyCount.Value += 1;
             Die();
             _isDead = true;
         }
@@ -173,6 +182,7 @@ public class Enemy : MonoBehaviour
 
         Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
 
+        _attackCycle?.Dispose();
         StopCoroutine(_moveEnemy);
         StartCoroutine(_backMoveEnemy);
 

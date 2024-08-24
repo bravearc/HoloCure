@@ -44,7 +44,7 @@ public class Popup_Select : UI_Popup
     const int _randomButton = 30;
     bool _isRandom;
     bool _isAnimRun;
-    float _intervalTime = 1f;
+    float _intervalTime = 3f;
     float _elapsedTime;
     float _animTime;
     protected override void Init()

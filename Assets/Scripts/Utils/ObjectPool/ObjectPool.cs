@@ -62,7 +62,8 @@ namespace Util.Pool
         public void Release(T element)
         {
             _actionOnRelease?.Invoke(element);
-            if(CountInactive < _max_Size)
+
+            if (CountInactive < _max_Size)
             {
                 _pool.Push(element);
             }

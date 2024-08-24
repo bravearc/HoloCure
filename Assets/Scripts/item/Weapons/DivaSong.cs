@@ -1,18 +1,16 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
-using UnityEngine;
+
 
 public class DivaSong : WeaponMultishot
 {
     Vector2 size;
     Vector2 colSize = new Vector2(33, 33);
-    float shakeY = 0.2f;
-    float shakeDuration = 0.2f;
-
-    IEnumerator _moveCo;
-    IDisposable _disposable;
+    Dictionary<Attack, IDisposable> _attackDisposables = new();
 
     protected override void WeaponSetComponent(Attack attack)
     {
@@ -38,20 +36,23 @@ public class DivaSong : WeaponMultishot
         renderer.material = Manager.Asset.LoadMaterial("mat_DivaSong_0");
         renderer.flip = _cursor.position.x > _character.transform.position.x ? Vector2.zero : Vector2.right;
 
-        _disposable = attack.OnDisableAsObservable().Subscribe(_ =>
+        IEnumerator moveCo = Move(attack);
+        StartCoroutine(moveCo);
+
+        _attackDisposables[attack] = attack.OnDisableAsObservable().Subscribe(_ =>
         {
-            StopCoroutine(_moveCo);
-            _disposable?.Dispose();
-            _moveCo = null;
-            _disposable = null;
+            StopCoroutine(moveCo);
+            _attackDisposables[attack]?.Dispose();
+            _attackDisposables.Remove(attack);
         });
-        _moveCo = Move(attack);
-        StartCoroutine(_moveCo);
     }
 
     IEnumerator Move(Attack attack) 
     {
         Rigidbody2D rb = attack.GetRigid();
+
+        float shakeY = 0.2f;
+        float shakeDuration = 0.2f;
 
         Vector2 baseDirection = (_cursor.position - _character.transform.position).normalized;
         baseDirection = Quaternion.Euler(0, 0, _angle) * baseDirection;
@@ -66,10 +67,13 @@ public class DivaSong : WeaponMultishot
 
             rb.MovePosition(rb.position + finalDirection);
 
-
-            //yield return null;
             yield return new WaitForFixedUpdate();
         }
         
+    }
+
+    protected override void Disable(Attack attack)
+    {
+
     }
 }

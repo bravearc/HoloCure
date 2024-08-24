@@ -650,7 +650,7 @@ SpriteAtlas:
   - spr_Bae_run_5
   - spr_Ame_bullet_1
   - spr_AyameOniSlash_7
-  - spr_AquaPort_0
+  - spr_AquaPortrait_0
   - spr_SuiseiAxeSwing_4
   - spr_Sora_run_2
   - spr_Aqua_idle_1
@@ -756,7 +756,7 @@ SpriteAtlas:
   - spr_Subaru_run_3
   - spr_SuiseiPortrait_0
   - spr_AZKi_idle_2
-  - spr_AyamePort_0
+  - spr_AyamePortrait_0
   - spr_SoraStar_3
   - spr_ShionWeapon_0
   - spr_Robo_bullet_1

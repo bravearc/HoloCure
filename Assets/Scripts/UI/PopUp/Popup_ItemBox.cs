@@ -4,8 +4,6 @@ using UniRx.Triggers;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UI.Extensions;
-using System.Collections;
 
 public class Popup_ItemBox : UI_Popup
 {
@@ -13,8 +11,7 @@ public class Popup_ItemBox : UI_Popup
     protected enum Buttons
     {
         TakeButton,
-        CancelButton,
-
+        CancelButton
     }
     protected enum Texts
     {
@@ -43,6 +40,7 @@ public class Popup_ItemBox : UI_Popup
     protected enum Anis
     {
         Box,
+        LightingAni
     }
     #endregion
     IDisposable _updateDisposable;
@@ -51,7 +49,7 @@ public class Popup_ItemBox : UI_Popup
     public RectTransform _pointer;
     bool _isBoxOpen;
 
-    Buttons _currentButon = 0;
+    Buttons _currentButon;
     Buttons CurrentButton 
     { 
         get
@@ -77,6 +75,7 @@ public class Popup_ItemBox : UI_Popup
         _pointer = Utils.GetOrAddComponent<RectTransform>(GetObject((int)Objects.Pointer));
         
         GetAnimator((int)Anis.Box).updateMode = AnimatorUpdateMode.UnscaledTime;
+        GetAnimator((int)Anis.LightingAni).updateMode = AnimatorUpdateMode.UnscaledTime;
         GetObject((int)Objects.CloseBox).SetActive(false);
 
         _updateDisposable =
@@ -98,14 +97,11 @@ public class Popup_ItemBox : UI_Popup
 
     protected void OnPressKey()
     {
-        if (_isBoxOpen == false && Input.GetButtonDown(Define.Key.CONFIRM))
+
+        if (Input.GetButtonDown(Define.Key.CONFIRM) || Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenOngoing");
-            OpenBox();
-        }
-        else if (_isBoxOpen == true && Input.GetButtonDown(Define.Key.CONFIRM))
-        {
-            ProcessButton(CurrentButton);
+            Buttons OpenButton = (Buttons)3;
+            ProcessButton(OpenButton);
         }
 
         if (Input.GetButtonDown(Define.Key.UP))
@@ -179,18 +175,23 @@ public class Popup_ItemBox : UI_Popup
 
     void OpenBox()
     {
+        if (_isBoxOpen) return; 
+        _isBoxOpen = true;
+
+        Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenOngoing");
         Animator animator = GetAnimator((int)Anis.Box);
         animator.SetTrigger(Define.Anim.Anim_BoxMove);
 
         GetObject((int)Objects.OpenButton).SetActive(false);
 
         var clickStream = Observable.EveryUpdate()
-        .Where(_ => Input.GetButtonDown(Define.Key.CANCEL) && Input.GetButtonDown(Define.Key.CONFIRM));
+        .Where(_ => Input.GetButtonDown(Define.Key.CANCEL) || Input.GetButtonDown(Define.Key.CONFIRM) || Input.GetKeyDown(KeyCode.Mouse0))
+        .Take(1);
 
         Observable.EveryUpdate()
-            .SkipWhile(_ => animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash("NormalBox"))
-            .TakeWhile(_ => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             .TakeUntil(clickStream)
+            .SkipWhile(_ => animator.GetCurrentAnimatorStateInfo(0).shortNameHash != Animator.StringToHash("OpenBox"))
+            .TakeWhile(_ => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             .Subscribe(_ =>
             {
             },
@@ -198,16 +199,15 @@ public class Popup_ItemBox : UI_Popup
             {
                 EndBox();
             });
-        if (Input.GetKey(Define.Key.CANCEL))
-        {
-            EndBox();
-        }
+
     }
 
     void EndBox()
     {
         Manager.Sound.Stop(Define.SoundType.Effect);
         Manager.Sound.Play(Define.SoundType.Effect, "BoxOpenEnd");
+
+        GetAnimator((int)Anis.Box).SetTrigger(Define.Anim.Anim_BoxOpen);
         GetObject((int)Objects.CloseBox).SetActive(true);
         Manager.UI.MakeSubItem<SubItem_Stats>(transform);
 
@@ -236,10 +236,10 @@ public class Popup_ItemBox : UI_Popup
         switch (button)
         {
             case Buttons.TakeButton:
-                _inventory.GetItem(_id);
-                break;
+                _inventory.GetItem(_id); break;
             case Buttons.CancelButton: break;
-            default: break;
+
+            default: OpenBox(); return;
         }
         Manager.Sound.Play(Define.SoundType.Effect, Define.Sound.ButtonClick);
         Manager.Sound.Play(Define.SoundType.BGM, "StageOneBGM");
@@ -248,6 +248,8 @@ public class Popup_ItemBox : UI_Popup
 
         _updateDisposable?.Dispose();
         _updateDisposable = null;
+
+        base.ClosePopup();
     }
 
     void SetButtonNormal(Buttons button)

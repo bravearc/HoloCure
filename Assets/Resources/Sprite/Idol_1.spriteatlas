@@ -950,7 +950,7 @@ SpriteAtlas:
   - spr_Gura_run_2
   - spr_FubukiFoxTail_2
   - spr_Fubuki_run_2
-  - spr_Calli_portrait_0
+  - spr_Calliportrait_0
   - spr_Calli_run_1
   - spr_Fubuki_run_4
   - spr_Choco_idle_3
@@ -1206,7 +1206,7 @@ SpriteAtlas:
   - spr_Matsuri_run_1
   - spr_Korone_run_5
   - spr_FaunaPortrait_0
-  - spr_Gura_portrait_0
+  - spr_Guraportrait_0
   - spr_KiaraMaxedWeapon_0
   - spr_Haato_run_0
   - spr_Mio_run_0

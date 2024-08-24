@@ -57,7 +57,7 @@ public class Character : MonoBehaviour
     }
     public void GetExp(float value)
     {
-        //È¹µæ »ç¿îµå
+        Manager.Sound.Play(Define.SoundType.Effect, "GetExp");
         float addExp = value / _maxExp;
         CurrentExp.Value += addExp;
         if(CurrentExp.Value > MaxExp.Value)
@@ -69,17 +69,26 @@ public class Character : MonoBehaviour
     {
 
         if (damage > 0)
+        {
             Manager.Sound.Play(Define.SoundType.Effect, "GetExp");
-
+        }
         else
+        {
             Manager.Sound.Play(Define.SoundType.Effect, "PlayerDamaged");
+            Manager.Spawn.SpawnDamageText(damage * -1, transform.position, DamageType.Player);
+        }
 
         Hp.Value += damage;
         if(Hp.Value >= MaxHp.Value)
+        {
             Hp.Value = MaxHp.Value;
+        }
 
         if (Hp.Value <= 0)
+        {
+            Manager.Game.IsGameClear = false;
             Manager.UI.ShowPopup<Popup_GameOver>();
+        }
     }
     private void LevelUp()
     {

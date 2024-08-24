@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2587986220
+CRC: 855650496
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 915e048cbad1fffb0e737e32b801d7fd
+    Hash: a55c7be5f86903cefe41128926dfa36d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 033fafe2c9f6c610c3a734393882fd4c
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 915e048cbad1fffb0e737e32b801d7fd
+    Hash: a55c7be5f86903cefe41128926dfa36d
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -548,7 +548,7 @@ Assets:
 - Assets/Resources/Sprite/spr_Kiara_run_2.png
 - Assets/Resources/Sprite/spr_Title_Sana_0.png
 - Assets/Resources/Sprite/spr_Gura_idle_2.png
-- Assets/Resources/Sprite/spr_AyamePort_0.png
+- Assets/Resources/Sprite/spr_AyamePortrait_0.png
 - Assets/Resources/Sprite/spr_Bloom_2.png
 - Assets/Resources/Sprite/spr_GuraTridentThrust_9.png
 - Assets/Resources/Sprite/spr_SmollAme_walk_7.png
@@ -771,7 +771,7 @@ Assets:
 - Assets/Resources/Sprite/spr_Mio_run_1.png
 - Assets/Resources/Sprite/spr_Title_Okayu_0.png
 - Assets/Resources/Sprite/spr_Aqua_run_4.png
-- Assets/Resources/Sprite/spr_Gura_portrait_0.png
+- Assets/Resources/Sprite/spr_Guraportrait_0.png
 - Assets/Resources/Sprite/hud_atkicon_0.png
 - Assets/Resources/Sprite/ui_digit_white_5.png
 - Assets/Resources/Sprite/spr_Matsuri_run_1.png
@@ -783,7 +783,7 @@ Assets:
 - Assets/Resources/Sprite/spr_holoCursor_3.png
 - Assets/Resources/Sprite/spr_PsychoAxe_0.png
 - Assets/Resources/Sprite/spr_HaatoPortrait_0.png
-- Assets/Resources/Sprite/spr_Calli_portrait_0.png
+- Assets/Resources/Sprite/spr_Calliportrait_0.png
 - Assets/Resources/Sprite/spr_Okayu_idle_3.png
 - Assets/Resources/Sprite/spr_Title_Ayame_0.png
 - Assets/Resources/Sprite/spr_Korone_run_4.png
@@ -906,7 +906,7 @@ Assets:
 - Assets/Resources/Sprite/ItemBox/hud_getBoxOpen_9.png
 - Assets/Resources/Sprite/spr_Subaru_idle_3.png
 - Assets/Resources/Sprite/spr_GameCursor_0.png
-- Assets/Resources/Sprite/spr_AquaPort_0.png
+- Assets/Resources/Sprite/spr_AquaPortrait_0.png
 - Assets/Resources/Sprite/spr_Suisei_run_1.png
 - Assets/Resources/Sprite/spr_Kiara_run_4.png
 - Assets/Resources/Sprite/spr_GuraTridentThrust_8.png
