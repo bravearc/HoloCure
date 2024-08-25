@@ -7,7 +7,7 @@ using System;
 public class EnemyController : MonoBehaviour
 {
     EnemyID _enemyID;
-    EnemyID _bossID = (EnemyID)1002;
+    EnemyID _bossID = (EnemyID)1001;
     float _timer;
     float _monsterRegenTimer = 15;
     const int NEXT_ENEMY_TIME = 1;

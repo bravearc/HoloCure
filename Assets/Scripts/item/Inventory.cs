@@ -89,7 +89,7 @@ public class Inventory : MonoBehaviour
         return _itemIDList.Contains(id);
     }
 
-    public void Claer()
+    public void Clear()
     {
         _itemIDList.Clear();
         Weapons.Clear();

@@ -8,7 +8,6 @@ public class WeaponRanged : Weapon
 {
     IEnumerator _rangerCo;
     IDisposable _updatePos;
-    IDisposable _disposable;
     protected override void AttackAction(Attack attack)
     {
         base.AttackAction(attack);
@@ -16,7 +15,6 @@ public class WeaponRanged : Weapon
         attack.GetSprite().sortingOrder = 1;
 
         _updatePos = this.FixedUpdateAsObservable().Subscribe(_ => Update_Position(attack));
-        _disposable = attack.OnDisableAsObservable().Subscribe(_ => Disable());
         
         _rangerCo = RangedCo(attack);
         StartCoroutine(_rangerCo);
@@ -48,11 +46,9 @@ public class WeaponRanged : Weapon
     }
     protected override void WeaponSetComponent(Attack attack){ }
 
-    void Disable()
+    protected override void Disable(Attack attack)
     {
         StopCoroutine(_rangerCo);
         _updatePos?.Dispose();
-        _disposable?.Dispose();
-        _rangerCo = null;
     }
 }

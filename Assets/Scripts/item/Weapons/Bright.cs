@@ -10,6 +10,8 @@ public class Bright : WeaponMultishot
         attack.SetAttackComponent(false, true, size, colSize, Vector2.zero, true);
         
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
+        particleSystem.Stop();
+
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startLifetime = 0.15f;
         mainModule.startSpeed = 0;
@@ -32,5 +34,7 @@ public class Bright : WeaponMultishot
         ParticleSystem.RotationBySpeedModule rotationBySpeedModule = particleSystem.rotationBySpeed;
         rotationBySpeedModule.enabled = true;
         rotationBySpeedModule.zMultiplier = 15;
+
+        particleSystem.Play();
     }
 }

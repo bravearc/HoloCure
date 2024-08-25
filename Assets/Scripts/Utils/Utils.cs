@@ -175,4 +175,15 @@ public class Utils : MonoBehaviour
         renderer.enabled = true;
         renderer.material = null;
     }
+
+    public static void ResetRigidbody(Rigidbody2D rb)
+    {
+        rb.angularVelocity = 0f;
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0f;
+        rb.freezeRotation = true;
+        rb.drag = 0f;
+        rb.angularDrag = 0f;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+    }
 }

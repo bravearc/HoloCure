@@ -1,15 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
-using System;
 using Random = UnityEngine.Random;
 
 public class WeaponRandomRanged : Weapon
 {
     protected float _maxRange = 5f;
     IEnumerator _rangedCo;
-    IDisposable _disposable;
+
     protected override void AttackAction(Attack attack)
     {
         WeaponSetComponent(attack);
@@ -21,10 +18,9 @@ public class WeaponRandomRanged : Weapon
         Vector2 newPos = (Vector2)_character.transform.position + direction * distance;
         attack.transform.position = newPos;
 
-        _disposable = attack.OnDisableAsObservable().Subscribe(_ => Disable());
-
         _rangedCo = RangedCo(attack);
         StartCoroutine(_rangedCo);
+
     }
 
     IEnumerator RangedCo(Attack attack)
@@ -50,12 +46,9 @@ public class WeaponRandomRanged : Weapon
         }
     }
 
-    void Disable()
+    protected override void Disable(Attack attack)
     {
         StopCoroutine(_rangedCo);
-        _rangedCo = null;
-        _disposable?.Dispose();
-        _disposable = null;
     }
 
 }

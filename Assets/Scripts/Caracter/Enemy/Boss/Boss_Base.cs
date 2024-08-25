@@ -1,5 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UniRx;
+using System;
+using UniRx.Triggers;
 
 public abstract class Boss_Base : MonoBehaviour
 {
@@ -8,7 +11,8 @@ public abstract class Boss_Base : MonoBehaviour
     Character _character;
     SpriteRenderer _bossSprite;
     public Animator _animator;
-    
+    IDisposable _disposable;
+
     protected float _skillTime = 5;
     protected float _skillCount = 0;
 
@@ -29,6 +33,14 @@ public abstract class Boss_Base : MonoBehaviour
     protected virtual void BossStart() 
     {
         SetBoss(_boss);
+        _bossSprite.flipX = IsBossFlip();
+
+        _disposable = _boss.OnDisableAsObservable().Subscribe(_ =>
+        {
+            Manager.Asset.Destroy(gameObject);
+            _disposable?.Dispose();
+        });
+
         StartCoroutine(AttackAnimCo());
     }
 
@@ -62,11 +74,12 @@ public abstract class Boss_Base : MonoBehaviour
 
     protected bool IsBossFlip()
     {
-        return _boss.transform.position.x < _character.transform.position.x;
+        return _boss.transform.position.x > _character.transform.position.x;
     }
 
-    private void OnDisable()
+    protected void GameClear()
     {
-        Destroy(this);
+        Manager.Game.IsGameClear = true;
+        Manager.UI.ShowPopup<Popup_GameOver>();
     }
 }

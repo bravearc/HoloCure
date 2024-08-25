@@ -33,6 +33,7 @@ public class CursorControl : MonoBehaviour
 
     void ProcessInput()
     {
+        if (Time.timeScale == 0f) return;
         MouseCheck();
         TargetPoint();
     }

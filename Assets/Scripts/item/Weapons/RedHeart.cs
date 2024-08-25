@@ -12,6 +12,7 @@ public class RedHeart : WeaponRotation
         attack.SetAttackComponent(false, false, size, colSize, Vector2.zero, true);
 
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
+        particleSystem.Stop();
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startLifetime = 0.15f;
         mainModule.startSize = 30f;
@@ -31,6 +32,8 @@ public class RedHeart : WeaponRotation
 
         var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
         renderer.material = Manager.Asset.LoadMaterial("mat_HaatoRedHeart_0");
+
+        particleSystem.Play();
 
     }
 }

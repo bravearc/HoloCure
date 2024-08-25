@@ -99,6 +99,8 @@ public class SubItem_Quit : UI_SubItem
                 base.CloseSubItem();
                 break;
         }
+
+        Time.timeScale = 1f;
     }
 
     void SetButtonNormal(Buttons button)

@@ -16,7 +16,7 @@ public class AtlasLoader : MonoBehaviour
 
     private void RequestAtlas(string tag, Action<SpriteAtlas> action)
     {
-        SpriteAtlas atlas = Resources.Load<SpriteAtlas>("Sprite/" + tag);
+        SpriteAtlas atlas = Resources.Load<SpriteAtlas>("Atlas/" + tag);
         if (atlas != null)
         {
             action(atlas);

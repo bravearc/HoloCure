@@ -73,6 +73,7 @@ public class Exp : MonoBehaviour
                 newExp.Die();
                 break;
             case Define.Tag.IDOL:
+                StopCoroutine(_dyingMoveCo);
                 GetItem();
                 Die();
                 break;
@@ -102,7 +103,7 @@ public class Exp : MonoBehaviour
             < 70 => 3,
             < 85 => 4,
             < 95 => 5,
-            _ => 6
+            _ => 5
         };
 
         Data = Manager.Data.Exp[id - 1];
@@ -172,6 +173,8 @@ public class Exp : MonoBehaviour
 
         while (isActiveAndEnabled)
         {
+            if (Time.timeScale == 0f) yield return null;
+
             Vector2 startPos = transform.position;
             Vector2 endPos = _character.transform.position;
             Vector2 newPos = Vector2.Lerp(startPos, endPos, elapsedTime);
@@ -184,8 +187,6 @@ public class Exp : MonoBehaviour
     void Die()
     {
         StopCoroutine(_dyingMoveCo);
-        _moveCo = null;
-        _dyingMoveCo = null;
         Manager.Spawn.Exp.Release(this);
     }
 }

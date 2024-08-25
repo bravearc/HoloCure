@@ -16,7 +16,8 @@ public class SpiderCooking : WeaponRanged
         sprite.color = new Color(1f, 1f, 1f, 120f / 255f);
 
         ParticleSystem particleSystem = attack.GetComponent<ParticleSystem>();
-        particleSystem.Play();
+        particleSystem.Stop();
+
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.loop = true;
         mainModule.startDelay = 0;
@@ -44,6 +45,8 @@ public class SpiderCooking : WeaponRanged
         renderer.enabled = true;
         renderer.material = Manager.Asset.LoadMaterial("mat_SakuraGohei_0");
         renderer.sortingOrder = 2;
+
+        particleSystem.Play();
 
         _disposable = attack.OnDisableAsObservable().Subscribe(_ => 
         {

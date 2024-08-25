@@ -133,6 +133,8 @@ public class SubItem_ChooseStage : UI_SubItem
             case Buttons.GoButton:
                 Manager.Game.GameStart();
                 base.CloseSubItem();
+                Manager.UI.CloseALLPopupUI();
+                Manager.UI.ShowPopup<Popup_PlayUI>();
                 break;
             case Buttons.StageButton:
                 _isGoButtonSet = true;

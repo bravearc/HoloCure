@@ -7,6 +7,6 @@ public class MurasakiBolt : WeaponMultishot
     protected override void WeaponSetComponent(Attack attack)
     {
         size = new Vector2(_weaponData.Size, _weaponData.Size);
-        attack.SetAttackComponent(true, true, size, colSize, Vector2.zero);
+        attack.SetAttackComponent(false, true, size, colSize, Vector2.zero);
     }
 }

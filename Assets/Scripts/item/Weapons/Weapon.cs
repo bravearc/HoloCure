@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -10,9 +13,10 @@ public abstract class Weapon : MonoBehaviour
     protected Character _character;
     protected Transform _cursor;
     public ItemID ID;
-    public IEnumerator _attackCo;
+    private IEnumerator _attackCo;
+    private Dictionary<Attack, IDisposable> _attackSubscriptions = new();
 
-    float _attackDelay = 0.13f;
+    float _attackDelay = 0.15f;
 
 
     void Awake()
@@ -34,6 +38,7 @@ public abstract class Weapon : MonoBehaviour
         _weaponData = Manager.Data.Weapon[ID][Level.Value];
     }
 
+
     IEnumerator AttackCo()
     {
         while (true)
@@ -42,8 +47,24 @@ public abstract class Weapon : MonoBehaviour
             while (_weaponData.Quantity > _attackCount)
             {
                 Attack attack = Manager.Spawn.GetAttack();
+                attack.StopCurrentAction();
                 attack.Init(_weaponData, AttackAction);
                 WeaopnSound();
+
+                IDisposable subscription = attack.OnDisableAsObservable().Subscribe(_ =>
+                {
+                    if (_attackSubscriptions.TryGetValue(attack, out IDisposable innerSubscription))
+                    {
+                        _attackSubscriptions.Remove(attack);
+                        innerSubscription.Dispose();
+
+                        Disable(attack);
+                    }
+
+                });
+
+                _attackSubscriptions[attack] = subscription;
+
                 ++_attackCount;
                 yield return new WaitForSeconds(_attackDelay);
             }
@@ -61,11 +82,12 @@ public abstract class Weapon : MonoBehaviour
     protected void WeaopnSound()
     {
         string sound = Manager.Data.Item[ID].Sound;
-        if (sound == "null")
+        if (sound == "null") 
         {
-            Debug.Log("SoundNull");
             return;
         }
         Manager.Sound.Play(Define.SoundType.Effect, sound);
     }
+
+    protected virtual void Disable(Attack attack) { }
 }
