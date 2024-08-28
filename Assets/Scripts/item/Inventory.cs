@@ -32,7 +32,6 @@ public class Inventory : MonoBehaviour
         return Weapons.Count >= INVENTORY_MAX_COUNT &&
             Equipments.Count >= INVENTORY_MAX_COUNT;
     }
-
     public void GetItem(ItemID id)
     {
         if (_itemIDList.Add(id))

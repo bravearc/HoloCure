@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1550083460
+CRC: 1006557813
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 115662eff8cecd2fcfbad5faad8bc1e9
+    Hash: 166d0cc80957b8e64888fca8a22c8b5e
   TypeTreeHash:
     serializedVersion: 2
     Hash: b30fce1a9ad74efb72be6c308c56e365
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 115662eff8cecd2fcfbad5faad8bc1e9
+    Hash: 166d0cc80957b8e64888fca8a22c8b5e
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -20,13 +20,13 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Resources/Material/mat_SakuraGohei_0.mat
-- Assets/Resources/Material/mat_DivaSong_0.mat
-- Assets/Resources/Material/mat_Orbi_0.mat
-- Assets/Resources/Material/mat_ItemBox_Effect_0.mat
-- Assets/Resources/Material/mat_HaatoRedHeart_0.mat
-- Assets/Resources/Material/mat_ItemBox_Effect_2.mat
-- Assets/Resources/Material/mat_Bright_0.mat
-- Assets/Resources/Material/mat_ItemBox_Effect_1.mat
+- Assets/Files/Material/mat_SakuraGohei_0.mat
+- Assets/Files/Material/mat_DivaSong_0.mat
+- Assets/Files/Material/mat_Orbi_0.mat
+- Assets/Files/Material/mat_ItemBox_Effect_0.mat
+- Assets/Files/Material/mat_HaatoRedHeart_0.mat
+- Assets/Files/Material/mat_ItemBox_Effect_2.mat
+- Assets/Files/Material/mat_Bright_0.mat
+- Assets/Files/Material/mat_ItemBox_Effect_1.mat
 Dependencies:
 - C:/Users/brave/HoloCure_Lee/./Bundle/sprite

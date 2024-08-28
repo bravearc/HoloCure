@@ -1,61 +1,61 @@
 ManifestFileVersion: 0
-CRC: 2722250871
+CRC: 4280906162
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7a19c9d91f5748c590a5edd88aa5c324
+    Hash: de4f3bd5a664a7dabd64327b0c4c87f4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9a2ca7bdbd1871f7131daf57de908e0c
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 7a19c9d91f5748c590a5edd88aa5c324
+    Hash: de4f3bd5a664a7dabd64327b0c4c87f4
 HashAppended: 0
 ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Resources/Sound/ButtonMove.wav
-- Assets/Resources/Sound/FanBeam.wav
-- Assets/Resources/Sound/SelectMove.wav
-- Assets/Resources/Sound/PsychoAxe.wav
-- Assets/Resources/Sound/EnemyDamaged.wav
-- Assets/Resources/Sound/KapuKapu.wav
-- Assets/Resources/Sound/TridentThrust.wav
-- Assets/Resources/Sound/Orbit.wav
-- Assets/Resources/Sound/TarotCards.wav
-- Assets/Resources/Sound/ClockHands.wav
-- Assets/Resources/Sound/HoloBomb.wav
-- Assets/Resources/Sound/MurasakiBolt.wav
-- Assets/Resources/Sound/LoveNeedle.wav
-- Assets/Resources/Sound/SelectClick.wav
-- Assets/Resources/Sound/ButtonClick.wav
-- Assets/Resources/Sound/ButtonBack.wav
-- Assets/Resources/Sound/GetExp.wav
-- Assets/Resources/Sound/FoxTail.wav
-- Assets/Resources/Sound/GameClear.wav
-- Assets/Resources/Sound/SmollAmeAttack.wav
-- Assets/Resources/Sound/PlayerDamaged.wav
-- Assets/Resources/Sound/LevelUp.wav
-- Assets/Resources/Sound/GameOver.wav
-- Assets/Resources/Sound/BoxOpenOngoing.wav
-- Assets/Resources/Sound/SummonTentacle.wav
-- Assets/Resources/Sound/BrightStar.wav
-- Assets/Resources/Sound/BoxOpenStart.wav
-- Assets/Resources/Sound/Orayo.wav
-- Assets/Resources/Sound/DivaSong.wav
-- Assets/Resources/Sound/ScytheSwing.wav
-- Assets/Resources/Sound/BoxOpenEnd.wav
-- Assets/Resources/Sound/TitleBGM.ogg
-- Assets/Resources/Sound/DualKatana.wav
-- Assets/Resources/Sound/PistolShot.wav
-- Assets/Resources/Sound/HighSpecPistol.wav
-- Assets/Resources/Sound/BaseballPitch.wav
-- Assets/Resources/Sound/SmollAmeJump.wav
-- Assets/Resources/Sound/PhoenixSword.wav
-- Assets/Resources/Sound/AxeSwing.wav
-- Assets/Resources/Sound/StageOneBGM.ogg
-- Assets/Resources/Sound/RedHeart.wav
-- Assets/Resources/Sound/BirdFeather.wav
+- Assets/Files/Sound/ButtonMove.wav
+- Assets/Files/Sound/FanBeam.wav
+- Assets/Files/Sound/SelectMove.wav
+- Assets/Files/Sound/PsychoAxe.wav
+- Assets/Files/Sound/EnemyDamaged.wav
+- Assets/Files/Sound/KapuKapu.wav
+- Assets/Files/Sound/TridentThrust.wav
+- Assets/Files/Sound/Orbit.wav
+- Assets/Files/Sound/TarotCards.wav
+- Assets/Files/Sound/ClockHands.wav
+- Assets/Files/Sound/HoloBomb.wav
+- Assets/Files/Sound/MurasakiBolt.wav
+- Assets/Files/Sound/LoveNeedle.wav
+- Assets/Files/Sound/SelectClick.wav
+- Assets/Files/Sound/ButtonClick.wav
+- Assets/Files/Sound/ButtonBack.wav
+- Assets/Files/Sound/GetExp.wav
+- Assets/Files/Sound/FoxTail.wav
+- Assets/Files/Sound/GameClear.wav
+- Assets/Files/Sound/SmollAmeAttack.wav
+- Assets/Files/Sound/PlayerDamaged.wav
+- Assets/Files/Sound/LevelUp.wav
+- Assets/Files/Sound/GameOver.wav
+- Assets/Files/Sound/BoxOpenOngoing.wav
+- Assets/Files/Sound/SummonTentacle.wav
+- Assets/Files/Sound/BrightStar.wav
+- Assets/Files/Sound/BoxOpenStart.wav
+- Assets/Files/Sound/Orayo.wav
+- Assets/Files/Sound/DivaSong.wav
+- Assets/Files/Sound/ScytheSwing.wav
+- Assets/Files/Sound/BoxOpenEnd.wav
+- Assets/Files/Sound/TitleBGM.ogg
+- Assets/Files/Sound/DualKatana.wav
+- Assets/Files/Sound/PistolShot.wav
+- Assets/Files/Sound/HighSpecPistol.wav
+- Assets/Files/Sound/BaseballPitch.wav
+- Assets/Files/Sound/SmollAmeJump.wav
+- Assets/Files/Sound/PhoenixSword.wav
+- Assets/Files/Sound/AxeSwing.wav
+- Assets/Files/Sound/StageOneBGM.ogg
+- Assets/Files/Sound/RedHeart.wav
+- Assets/Files/Sound/BirdFeather.wav
 Dependencies: []
