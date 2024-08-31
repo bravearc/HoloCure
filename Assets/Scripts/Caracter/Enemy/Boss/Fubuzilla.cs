@@ -22,18 +22,13 @@ public class Fubuzilla : Boss_Base
         
         _disposable = boss.OnDisableAsObservable().Subscribe(_ =>
         {
-            StopCoroutine(_warningCo);
             _disposable?.Dispose();
-            _warningCo = null;
-            _disposable = null;
         });
     }
-
     protected override void BossAction()
     {
         StartCoroutine(_warningCo);
     }
-
     IEnumerator WarningCo()
     {
         while (isActiveAndEnabled)

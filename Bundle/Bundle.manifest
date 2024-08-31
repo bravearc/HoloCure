@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 198129361
+CRC: 2674607529
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -22,7 +22,3 @@ AssetBundleManifest:
         Dependency_0: sprite
         Dependency_1: material
         Dependency_2: animation
-    Info_5:
-      Name: atilass
-      Dependencies:
-        Dependency_0: sprite

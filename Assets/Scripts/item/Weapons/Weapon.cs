@@ -8,11 +8,11 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public ReactiveProperty<int> Level { get; private set; } = new();
+    public ItemID ID;
     protected WeaponData _weaponData;
-    protected float _attackTimer;
     protected Character _character;
     protected Transform _cursor;
-    public ItemID ID;
+    protected float _attackTimer;
     private IEnumerator _attackCo;
     private Dictionary<Attack, IDisposable> _attackSubscriptions = new();
 

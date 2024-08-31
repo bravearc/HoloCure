@@ -7,6 +7,7 @@ using Util.Pool;
 
 public class Attack : MonoBehaviour
 {
+    #region Component
     private WeaponData _weaponData;
     private BoxCollider2D _collider;
     private Rigidbody2D _rb;
@@ -19,7 +20,7 @@ public class Attack : MonoBehaviour
     private Transform _cursor;
     private ParticleSystem _particleSystem;
     private Coroutine _currentCoroutine;
-
+    #endregion
     IDisposable _trigger;
 
     bool _isActive;

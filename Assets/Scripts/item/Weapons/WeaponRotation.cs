@@ -3,9 +3,11 @@ using System.Collections;
 
 public class WeaponRotation : Weapon
 {
+    #region
     protected float _radius = 1.2f;
     float angleSpeed = 1f;
     IEnumerator _rotationCo;
+    #endregion
     protected override void AttackAction(Attack attack)
     {
         base.AttackAction(attack);

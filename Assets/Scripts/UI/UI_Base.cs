@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 using UniRx.Triggers;
 using TMPro;
 
-//[RequireComponent(typeof(Canvas))]
 public abstract class UI_Base : MonoBehaviour
 {
     Dictionary<Type, Object[]> _objects = new();
@@ -46,7 +45,6 @@ public abstract class UI_Base : MonoBehaviour
 
     protected void BindObject(Type type) => Bind<GameObject>(type);
     protected void BindText(Type type) => Bind<TextMeshProUGUI>(type);
-
     protected void BindImage(Type type) => Bind<Image>(type);
     protected void BindButton(Type type) => Bind<Button>(type);
     protected void BindSlider(Type type) => Bind<Slider>(type);
@@ -61,7 +59,7 @@ public abstract class UI_Base : MonoBehaviour
         {
             return objects[idx] as T;
         }
-        throw new InvalidOperationException($"Failed to Get({typeof(T)}, {idx}). Binding must be completed first.");
+        throw new InvalidOperationException($"Failed to Get({typeof(T)}, {idx})");
     }
 
     protected GameObject GetObject(int idx) => Get<GameObject>(idx);

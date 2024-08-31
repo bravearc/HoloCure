@@ -6,8 +6,10 @@ using System;
 
 public class WeaponRanged : Weapon
 {
+    #region
     IEnumerator _rangerCo;
     IDisposable _updatePos;
+    #endregion
     protected override void AttackAction(Attack attack)
     {
         base.AttackAction(attack);

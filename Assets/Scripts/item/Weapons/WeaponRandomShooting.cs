@@ -3,7 +3,9 @@ using System.Collections;
 
 public class WeaponRandomShooting : Weapon
 {
+    #region
     float _speedAdjustment = 4f;
+    #endregion
     protected override void AttackAction(Attack attack)
     {
         base.AttackAction(attack);

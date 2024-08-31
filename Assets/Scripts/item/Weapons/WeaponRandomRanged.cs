@@ -4,9 +4,10 @@ using Random = UnityEngine.Random;
 
 public class WeaponRandomRanged : Weapon
 {
+    #region Component
     protected float _maxRange = 5f;
     IEnumerator _rangedCo;
-
+    #endregion
     protected override void AttackAction(Attack attack)
     {
         WeaponSetComponent(attack);

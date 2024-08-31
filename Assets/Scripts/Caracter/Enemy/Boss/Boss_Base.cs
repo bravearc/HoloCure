@@ -6,7 +6,8 @@ using UniRx.Triggers;
 
 public abstract class Boss_Base : MonoBehaviour
 {
-    EnemyData _data;
+    #region Component
+    EnemyData _bossData;
     Enemy _boss;
     Character _character;
     SpriteRenderer _bossSprite;
@@ -15,7 +16,7 @@ public abstract class Boss_Base : MonoBehaviour
 
     protected float _skillTime = 5;
     protected float _skillCount = 0;
-
+    #endregion
 
     private void Awake()
     {
@@ -25,25 +26,18 @@ public abstract class Boss_Base : MonoBehaviour
     }
     public void Init(EnemyID id)
     {
-        _data = Manager.Data.Enemy[id];
+        _bossData = Manager.Data.Enemy[id];
 
-        BossStart();
-    }
-
-    protected virtual void BossStart() 
-    {
         SetBoss(_boss);
-        _bossSprite.flipX = IsBossFlip();
 
+        _bossSprite.flipX = IsBossFlip();
         _disposable = _boss.OnDisableAsObservable().Subscribe(_ =>
         {
             Manager.Asset.Destroy(gameObject);
             _disposable?.Dispose();
         });
-
         StartCoroutine(AttackAnimCo());
     }
-
     protected virtual void SetBoss(Enemy boss){ }
     protected virtual void BossAction() { }
     IEnumerator AttackAnimCo()
@@ -60,23 +54,19 @@ public abstract class Boss_Base : MonoBehaviour
             yield return null;
         }
     }
-
     protected Animator GetAnim(GameObject go)
     {
         Animator anim = go.GetComponent<Animator>();
         var overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
-        //overrideController[Define.Anim.Anim_Idle] = Manager.Asset.LoadAnimClip($"Ani_{_data.Sprite}_0");
-        overrideController[Define.Anim.Ani_AttackSkill] = Manager.Asset.LoadAnimClip(_data.Skill);
+        overrideController[Define.Anim.Ani_AttackSkill] = Manager.Asset.LoadAnimClip(_bossData.Skill);
 
         anim.runtimeAnimatorController = overrideController;
         return anim;
     }
-
     protected bool IsBossFlip()
     {
         return _boss.transform.position.x > _character.transform.position.x;
     }
-
     protected void GameClear()
     {
         Manager.Game.IsGameClear = true;
